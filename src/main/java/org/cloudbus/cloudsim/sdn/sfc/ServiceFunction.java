@@ -146,11 +146,11 @@ public class ServiceFunction extends QueuedVM {
 		return this.runningNOS;
 	}
 
-	public int getQueueRam() {
-		return queueRam;
-	}
+	// public int getQueueRam() {
+	// 	return queueRam;
+	// }
 
-	public void setQueueRam(int queueRam) {
-		this.queueRam = queueRam;
-	}
+	// public void setQueueRam(int queueRam) {
+	// 	this.queueRam = queueRam;
+	// }
 }
