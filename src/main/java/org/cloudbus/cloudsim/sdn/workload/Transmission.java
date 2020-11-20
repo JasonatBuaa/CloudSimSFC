@@ -11,71 +11,85 @@ package org.cloudbus.cloudsim.sdn.workload;
 import org.cloudbus.cloudsim.sdn.Packet;
 
 /**
- * This class represents transmission of a package. It controls
- * amount of data transmitted in a shared data medium. Relation between
- * Transmission and Channel is the same as Cloudlet and CloudletScheduler,
- * but here we consider only the time shared case, representing a shared
- * channel among different simultaneous package transmissions.
- * Note that estimated transmission time is calculated in NOS.
+ * This class represents transmission of a package. It controls amount of data
+ * transmitted in a shared data medium. Relation between Transmission and
+ * Channel is the same as Cloudlet and CloudletScheduler, but here we consider
+ * only the time shared case, representing a shared channel among different
+ * simultaneous package transmissions. Note that estimated transmission time is
+ * calculated in NOS.
  *
- * @author Jungmin Son
+ * @author Jungmin Son, Jason Sun
  * @author Rodrigo N. Calheiros
  * @since CloudSimSDN 1.0
+ * 
+ *        Jason TODO: ADD Action: {Packet drop}
  */
 public class Transmission implements Activity {
 	private Packet pkt = null;
 	private long amountToBeProcessed;
 
-	private double requestedBw =0;
+	private double requestedBw = 0;
 
 	public Transmission(Packet pkt) {
 		this.pkt = pkt;
-		this.amountToBeProcessed=pkt.getSize();
+		this.amountToBeProcessed = pkt.getSize();
 	}
-	
+
+	/**
+	 * 
+	 * @param origin
+	 * @param destination
+	 * @param size
+	 * @param flowId
+	 * @param payload     payload with a specified SIZE
+	 */
 	public Transmission(int origin, int destination, long size, int flowId, Request payload) {
 		this(new Packet(origin, destination, size, flowId, payload));
 	}
-	
+
 	public Transmission(int origin, int destination, long size, int flowId, Request payload, Packet encapsulatedPkt) {
 		this(new Packet(origin, destination, size, flowId, payload, encapsulatedPkt));
 	}
-	
-	public long getSize(){
+
+	public long getSize() {
 		return amountToBeProcessed;
 	}
-	
+
 	public Packet getPacket() {
 		return pkt;
 	}
-	
+
 	/**
 	 * Sums some amount of data to the already transmitted data
+	 * 
 	 * @param completed amount of data completed since last update
 	 */
-	public void addCompletedLength(long completed){
-		amountToBeProcessed-=completed;
-		if (amountToBeProcessed<=0) amountToBeProcessed = 0;
+	public void addCompletedLength(long completed) {
+		amountToBeProcessed -= completed;
+		if (amountToBeProcessed <= 0)
+			amountToBeProcessed = 0;
 	}
-	
+
 	/**
 	 * Say if the Package transmission finished or not.
+	 * 
 	 * @return true if transmission finished; false otherwise
 	 */
-	public boolean isCompleted(){
-		return amountToBeProcessed==0;
+	public boolean isCompleted() {
+		return amountToBeProcessed == 0;
 	}
-	
+
 	public String toString() {
-		return "Transmission:"+this.pkt.toString();
+		return "Transmission:" + this.pkt.toString();
 	}
 
 	public void setRequestedBW(double bw) {
 		this.requestedBw = bw;
 	}
+
 	public double getExpectedDuration() {
 		double time = Double.POSITIVE_INFINITY;
-		if(requestedBw != 0)
+		if (requestedBw != 0)
 			time = pkt.getSize() / requestedBw;
 		return time;
 	}
@@ -108,7 +122,7 @@ public class Transmission implements Activity {
 
 	@Override
 	public void setFinishTime(double currentTime) {
-		getPacket().setPacketFinishTime(currentTime);		
+		getPacket().setPacketFinishTime(currentTime);
 	}
 
 	@Override

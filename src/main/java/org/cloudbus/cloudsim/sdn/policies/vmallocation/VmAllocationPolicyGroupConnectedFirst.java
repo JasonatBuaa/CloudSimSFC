@@ -19,9 +19,7 @@ import org.cloudbus.cloudsim.sdn.policies.vmallocation.overbooking.VmMigrationPo
 import org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm;
 
 public class VmAllocationPolicyGroupConnectedFirst extends VmAllocationPolicyEx implements VmAllocationInGroup {
-	public VmAllocationPolicyGroupConnectedFirst(
-			List<? extends Host> list,
-			HostSelectionPolicy hostSelectionPolicy,
+	public VmAllocationPolicyGroupConnectedFirst(List<? extends Host> list, HostSelectionPolicy hostSelectionPolicy,
 			VmMigrationPolicy vmMigrationPolicy) {
 		super(list, hostSelectionPolicy, vmMigrationPolicy);
 	}
@@ -36,23 +34,21 @@ public class VmAllocationPolicyGroupConnectedFirst extends VmAllocationPolicyEx 
 	 */
 	@Override
 	public boolean allocateHostForVmInGroup(Vm vm, VmGroup vmGroup) {
-		if(vmMigrationPolicy instanceof VmMigrationPolicyGroupInterface) {
-			((VmMigrationPolicyGroupInterface)vmMigrationPolicy).addVmInVmGroup(vm, vmGroup);
+		if (vmMigrationPolicy instanceof VmMigrationPolicyGroupInterface) {
+			((VmMigrationPolicyGroupInterface) vmMigrationPolicy).addVmInVmGroup(vm, vmGroup);
 		}
 
 		List<SDNHost> connectedHosts = getHostListVmGroup(vmGroup);
 
-		if(connectedHosts.size() == 0) {
+		if (connectedHosts.size() == 0) {
 			// This VM is the first VM to be allocated
-			return allocateHostForVm(vm);	// Use the Most Full First
-		}
-		else {
+			return allocateHostForVm(vm); // Use the Most Full First
+		} else {
 			// Other VMs in the group has been already allocated
-			// Try to put this VM into one of the correlated hosts			
-			if(allocateHostForVm(vm, hostSelectionPolicy.selectHostForVm((SDNVm)vm, connectedHosts)) == true) {
+			// Try to put this VM into one of the correlated hosts
+			if (allocateHostForVm(vm, hostSelectionPolicy.selectHostForVm((SDNVm) vm, connectedHosts)) == true) {
 				return true;
-			}
-			else {
+			} else {
 				// Cannot create VM to correlated hosts. Use the Most Full First
 				return allocateHostForVm(vm);
 			}
@@ -61,13 +57,13 @@ public class VmAllocationPolicyGroupConnectedFirst extends VmAllocationPolicyEx 
 
 	private List<SDNHost> getHostListVmGroup(VmGroup vmGroup) {
 		List<SDNHost> hosts = new ArrayList<SDNHost>();
-		
-		for(SDNVm vm:vmGroup.<SDNVm>getVms()) {
-			SDNHost h = (SDNHost)this.getHost(vm);
-			if(h != null)
+
+		for (SDNVm vm : vmGroup.<SDNVm>getVms()) {
+			SDNHost h = (SDNHost) this.getHost(vm);
+			if (h != null)
 				hosts.add(h);
 		}
-		
-		return hosts;		
-	}	
+
+		return hosts;
+	}
 }

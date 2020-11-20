@@ -1,0 +1,5 @@
+event_arrival_time,HostName,failure_time,recovery_time
+0.1,host01,0.2,100.1
+0.1,host02,0.2,30.1
+0.1,host03,0.2,50.1
+0.1,host04,0.2,20.1

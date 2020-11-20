@@ -22,9 +22,9 @@ public class FlowConfig {
 	private int flowId;
 	private long requiredBandwidth; // default: 0
 	private double requiredLatency;
-	
-	private String name=null;
-	
+
+	private String name = null;
+
 	public FlowConfig(int srcId, int dstId, int flowId, long reqBW, double reqLatency) {
 		super();
 		this.srcId = srcId;
@@ -33,7 +33,7 @@ public class FlowConfig {
 		this.requiredBandwidth = reqBW;
 		this.requiredLatency = reqLatency;
 	}
-	
+
 	public void updateReqiredBandwidth(long bw) {
 		this.requiredBandwidth = bw;
 	}
@@ -45,6 +45,7 @@ public class FlowConfig {
 	public int getDstId() {
 		return dstId;
 	}
+
 	public int getFlowId() {
 		return flowId;
 	}
@@ -56,16 +57,16 @@ public class FlowConfig {
 	public double getLatency() {
 		return requiredLatency;
 	}
-	
+
 	public void setName(String flowName) {
 		this.name = flowName;
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
-	
+
 	public String toString() {
-		return "Arc:"+getName()+"... "+getSrcId()+" -> "+getDstId()+" : "+getFlowId();
+		return "Arc:" + getName() + "... " + getSrcId() + " -> " + getDstId() + " : " + getFlowId();
 	}
 }

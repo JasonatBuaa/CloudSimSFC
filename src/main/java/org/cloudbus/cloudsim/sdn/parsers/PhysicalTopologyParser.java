@@ -40,8 +40,8 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 /**
- * This class parses Physical Topology JSON file.
- * It supports multiple data centers.
+ * This class parses Physical Topology JSON file. It supports multiple data
+ * centers.
  * 
  * @author Jungmin Son
  * @since CloudSimSDN 1.0
@@ -54,37 +54,45 @@ public class PhysicalTopologyParser {
 	private List<Link> links = new ArrayList<Link>();
 	private Hashtable<String, Node> nameNodeTable = new Hashtable<String, Node>();
 	private HostFactory hostFactory = null;
-	
+
+	public static Multimap<String, SDNHost> deployedHosts = HashMultimap.create(); // Jason: Hacking for test
+
 	public PhysicalTopologyParser(String jsonFilename, HostFactory hostFactory) {
 		sdnHosts = HashMultimap.create();
 		switches = HashMultimap.create();
 		this.hostFactory = hostFactory;
-		
+
 		this.filename = jsonFilename;
 	}
 
+	/**
+	 * Jason:
+	 * 
+	 * @param physicalTopologyFilename
+	 * @return
+	 */
 	public static Map<String, NetworkOperatingSystem> loadPhysicalTopologyMultiDC(String physicalTopologyFilename) {
 		PhysicalTopologyParser parser = new PhysicalTopologyParser(physicalTopologyFilename, new HostFactorySimple());
 		Map<String, String> dcNameType = parser.parseDatacenters(); // DC Name -> DC Type
 		Map<String, NetworkOperatingSystem> netOsList = new HashMap<String, NetworkOperatingSystem>();
-		
-		for(String dcName: dcNameType.keySet()) {
+
+		for (String dcName : dcNameType.keySet()) {
 			NetworkOperatingSystem nos;
-			nos = new NetworkOperatingSystemSimple("NOS_"+dcName);
-			
+			nos = new NetworkOperatingSystemSimple("NOS_" + dcName);
+
 			netOsList.put(dcName, nos);
 			parser.parseNode(dcName);
 		}
 		parser.parseLink();
-		
-		for(String dcName: dcNameType.keySet()) {
-			if(!"network".equals(dcNameType.get(dcName))) {
+
+		for (String dcName : dcNameType.keySet()) {
+			if (!"network".equals(dcNameType.get(dcName))) {
 				NetworkOperatingSystem nos = netOsList.get(dcName);
 				nos.configurePhysicalTopology(parser.getHosts(dcName), parser.getSwitches(dcName), parser.getLinks());
 			}
 		}
-		for(String dcName: dcNameType.keySet()) {
-			if("network".equals(dcNameType.get(dcName))) {
+		for (String dcName : dcNameType.keySet()) {
+			if ("network".equals(dcNameType.get(dcName))) {
 				NetworkOperatingSystem nos = netOsList.get(dcName);
 				nos.configurePhysicalTopology(parser.getHosts(dcName), parser.getSwitches(dcName), parser.getLinks());
 			}
@@ -92,139 +100,149 @@ public class PhysicalTopologyParser {
 
 		return netOsList;
 	}
-	
-	public static void loadPhysicalTopologySingleDC(String physicalTopologyFilename, NetworkOperatingSystem nos, HostFactory hostFactory) {
+
+	/**
+	 * 
+	 * @param physicalTopologyFilename
+	 * @param nos
+	 * @param hostFactory
+	 */
+	public static void loadPhysicalTopologySingleDC(String physicalTopologyFilename, NetworkOperatingSystem nos,
+			HostFactory hostFactory) {
 		PhysicalTopologyParser parser = new PhysicalTopologyParser(physicalTopologyFilename, hostFactory);
 		parser.parse(nos);
 		nos.configurePhysicalTopology(parser.getHosts(), parser.getSwitches(), parser.getLinks());
 	}
-	
+
 	public Collection<SDNHost> getHosts() {
 		return this.sdnHosts.values();
 	}
-	
+
 	public Collection<SDNHost> getHosts(String dcName) {
 		return this.sdnHosts.get(dcName);
 	}
-	
+
 	public Collection<Switch> getSwitches() {
 		return this.switches.values();
 	}
-	
+
 	public Collection<Switch> getSwitches(String dcName) {
 		return this.switches.get(dcName);
 	}
-	
+
 	public List<Link> getLinks() {
 		return this.links;
 	}
-	
+
 	public Map<String, String> parseDatacenters() {
 		HashMap<String, String> dcNameType = new HashMap<String, String>();
 		try {
-    		JSONObject doc = (JSONObject) JSONValue.parse(new FileReader(this.filename));
-    		
-    		JSONArray datacenters = (JSONArray) doc.get("datacenters");
-    		@SuppressWarnings("unchecked")
-			Iterator<JSONObject> iter = datacenters.iterator(); 
-			while(iter.hasNext()){
+			JSONObject doc = (JSONObject) JSONValue.parse(new FileReader(this.filename));
+
+			JSONArray datacenters = (JSONArray) doc.get("datacenters");
+			@SuppressWarnings("unchecked")
+			Iterator<JSONObject> iter = datacenters.iterator();
+			while (iter.hasNext()) {
 				JSONObject node = iter.next();
 				String dcName = (String) node.get("name");
 				String type = (String) node.get("type");
-				
+
 				dcNameType.put(dcName, type);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		return dcNameType;		
+
+		return dcNameType;
 	}
-	
+
 	private void parse(NetworkOperatingSystem nos) {
 		parseNode(null);
 		parseLink();
 	}
-	
+
 	public void parseNode(String datacenterName) {
 		try {
-    		JSONObject doc = (JSONObject) JSONValue.parse(new FileReader(this.filename));
-    		
-    		// Get Nodes (Switches and Hosts)
-    		JSONArray nodes = (JSONArray) doc.get("nodes");
-    		@SuppressWarnings("unchecked")
-			Iterator<JSONObject> iter =nodes.iterator(); 
-			while(iter.hasNext()){
+			JSONObject doc = (JSONObject) JSONValue.parse(new FileReader(this.filename));
+
+			// Get Nodes (Switches and Hosts)
+			JSONArray nodes = (JSONArray) doc.get("nodes");
+			@SuppressWarnings("unchecked")
+			Iterator<JSONObject> iter = nodes.iterator();
+			while (iter.hasNext()) {
 				JSONObject node = iter.next();
 				String nodeType = (String) node.get("type");
 				String nodeName = (String) node.get("name");
 				String dcName = (String) node.get("datacenter");
-				if(datacenterName != null && !datacenterName.equals(dcName)) {
+				if (datacenterName != null && !datacenterName.equals(dcName)) {
 					continue;
 				}
-				
-				if(nodeType.equalsIgnoreCase("host")){
+
+				if (nodeType.equalsIgnoreCase("host")) {
 					////////////////////////////////////////
 					// Host
 					////////////////////////////////////////
-					
+
 					long pes = (Long) node.get("pes");
 					long mips = (Long) node.get("mips");
-					int ram = new BigDecimal((Long)node.get("ram")).intValueExact();
+					int ram = new BigDecimal((Long) node.get("ram")).intValueExact();
 					long storage = (Long) node.get("storage");
-					long bw = new BigDecimal((Long)node.get("bw")).intValueExact();
-					
-					int num = 1;
-					if (node.get("nums")!= null)
-						num = new BigDecimal((Long)node.get("nums")).intValueExact();
+					long bw = new BigDecimal((Long) node.get("bw")).intValueExact();
 
-					for(int n = 0; n< num; n++) {
+					int num = 1;
+					if (node.get("nums") != null)
+						num = new BigDecimal((Long) node.get("nums")).intValueExact();
+
+					for (int n = 0; n < num; n++) {
 						String nodeName2 = nodeName;
-						if(num >1) nodeName2 = nodeName + n;
-						
+						if (num > 1)
+							nodeName2 = nodeName + n;
+
 						SDNHost sdnHost = hostFactory.createHost(ram, bw, storage, pes, mips, nodeName);
 						nameNodeTable.put(nodeName2, sdnHost);
-						//hostId++;
-						
+						// hostId++;
+
 						this.sdnHosts.put(dcName, sdnHost);
+
+						deployedHosts.put(dcName, sdnHost); // Jason: Hacking for test
 					}
-					
+
 				} else {
 					////////////////////////////////////////
 					// Switch
 					////////////////////////////////////////
-					
+
 					int MAX_PORTS = 256;
-							
-					long bw = new BigDecimal((Long)node.get("bw")).longValueExact();
+
+					long bw = new BigDecimal((Long) node.get("bw")).longValueExact();
 					long iops = (Long) node.get("iops");
 					int upports = MAX_PORTS;
 					int downports = MAX_PORTS;
-					if (node.get("upports")!= null)
-						upports = new BigDecimal((Long)node.get("upports")).intValueExact();
-					if (node.get("downports")!= null)
-						downports = new BigDecimal((Long)node.get("downports")).intValueExact();
+					if (node.get("upports") != null)
+						upports = new BigDecimal((Long) node.get("upports")).intValueExact();
+					if (node.get("downports") != null)
+						downports = new BigDecimal((Long) node.get("downports")).intValueExact();
 					Switch sw = null;
-					
-					if(nodeType.equalsIgnoreCase("core")) {
+
+					if (nodeType.equalsIgnoreCase("core")) {
 						sw = new CoreSwitch(nodeName, bw, iops, upports, downports);
-					} else if (nodeType.equalsIgnoreCase("aggregate")){
+					} else if (nodeType.equalsIgnoreCase("aggregate")) {
 						sw = new AggregationSwitch(nodeName, bw, iops, upports, downports);
-					} else if (nodeType.equalsIgnoreCase("edge")){
+					} else if (nodeType.equalsIgnoreCase("edge")) {
 						sw = new EdgeSwitch(nodeName, bw, iops, upports, downports);
-					} else if (nodeType.equalsIgnoreCase("intercloud")){
+					} else if (nodeType.equalsIgnoreCase("intercloud")) {
 						sw = new IntercloudSwitch(nodeName, bw, iops, upports, downports);
-					} else if (nodeType.equalsIgnoreCase("gateway")){
+					} else if (nodeType.equalsIgnoreCase("gateway")) {
 						// Find if this gateway is already created? If so, share it!
-						if(nameNodeTable.get(nodeName) != null)
-							sw = (Switch)nameNodeTable.get(nodeName);
+						if (nameNodeTable.get(nodeName) != null)
+							sw = (Switch) nameNodeTable.get(nodeName);
 						else
 							sw = new GatewaySwitch(nodeName, bw, iops, upports, downports);
 					} else {
 						throw new IllegalArgumentException("No switch found!");
 					}
-					
-					if(sw != null) {
+
+					if (sw != null) {
 						nameNodeTable.put(nodeName, sw);
 						this.switches.put(dcName, sw);
 					}
@@ -234,32 +252,33 @@ public class PhysicalTopologyParser {
 			e.printStackTrace();
 		}
 	}
-		
+
 	public void parseLink() {
 		try {
-    		JSONObject doc = (JSONObject) JSONValue.parse(new FileReader(this.filename));
-    		
+			JSONObject doc = (JSONObject) JSONValue.parse(new FileReader(this.filename));
+
 			JSONArray links = (JSONArray) doc.get("links");
 			@SuppressWarnings("unchecked")
-			Iterator<JSONObject> linksIter =links.iterator(); 
-			while(linksIter.hasNext()){
+			Iterator<JSONObject> linksIter = links.iterator();
+			while (linksIter.hasNext()) {
 				JSONObject link = linksIter.next();
-				String src = (String) link.get("source");  
+				String src = (String) link.get("source");
 				String dst = (String) link.get("destination");
 				double lat = (Double) link.get("latency");
-				
+
 				Node srcNode = nameNodeTable.get(src);
 				Node dstNode = nameNodeTable.get(dst);
-				
-				Link l = new Link(srcNode, dstNode, lat, -1); // Temporary Link (blueprint) to create the real one in NOS
+
+				Link l = new Link(srcNode, dstNode, lat, -1); // Temporary Link (blueprint) to create the real one in
+																// NOS
 				this.links.add(l);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public Hashtable<String, Node> getNameNode() {
 		return nameNodeTable;
 	}

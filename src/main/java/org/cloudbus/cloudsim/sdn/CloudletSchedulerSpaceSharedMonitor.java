@@ -16,27 +16,28 @@ import org.cloudbus.cloudsim.CloudletSchedulerSpaceShared;
 import org.cloudbus.cloudsim.Consts;
 import org.cloudbus.cloudsim.ResCloudlet;
 
-public class CloudletSchedulerSpaceSharedMonitor extends CloudletSchedulerSpaceShared implements CloudletSchedulerMonitor {
+public class CloudletSchedulerSpaceSharedMonitor extends CloudletSchedulerSpaceShared
+		implements CloudletSchedulerMonitor {
 	// For monitoring
 	private double prevMonitoredTime = 0;
 	private double timeoutLimit = Double.POSITIVE_INFINITY;
-	
+
 	public CloudletSchedulerSpaceSharedMonitor(double timeOut) {
 		super();
 		this.timeoutLimit = timeOut;
 	}
-	
+
 	@Override
 	public double updateVmProcessing(double currentTime, List<Double> mipsShare) {
 		double ret = super.updateVmProcessing(currentTime, mipsShare);
 		processTimeout(currentTime);
 		return ret;
 	}
-	
+
 	@Override
 	public List<Cloudlet> getFailedCloudlet() {
 		List<Cloudlet> failed = new ArrayList<Cloudlet>();
-		for(ResCloudlet cl:getCloudletFailedList()) {
+		for (ResCloudlet cl : getCloudletFailedList()) {
 			failed.add(cl.getCloudlet());
 		}
 		getCloudletFailedList().clear();
@@ -45,25 +46,25 @@ public class CloudletSchedulerSpaceSharedMonitor extends CloudletSchedulerSpaceS
 
 	protected void processTimeout(double currentTime) {
 		// Check if any cloudlet is timed out.
-		if(timeoutLimit > 0 && Double.isFinite(timeoutLimit)) {
-			double timeout = currentTime - this.timeoutLimit;
+		if (timeoutLimit > 0 && Double.isFinite(timeoutLimit)) {
+			double timeout = currentTime - this.timeoutLimit; // Jason: timeoutlimit是相对时间，即任务的最大执行超时时间
 			{
 				List<ResCloudlet> timeoutCloudlet = new ArrayList<ResCloudlet>();
 				for (ResCloudlet rcl : getCloudletExecList()) {
-					if(rcl.getCloudletArrivalTime() < timeout) {
+					if (rcl.getCloudletArrivalTime() < timeout) {
 						rcl.setCloudletStatus(Cloudlet.FAILED);
 						rcl.finalizeCloudlet();
 						timeoutCloudlet.add(rcl);
-						usedPes -= rcl.getNumberOfPes();					
+						usedPes -= rcl.getNumberOfPes();
 					}
 				}
 				getCloudletExecList().removeAll(timeoutCloudlet);
 				getCloudletFailedList().addAll(timeoutCloudlet);
 			}
-			{			
+			{
 				List<ResCloudlet> timeoutCloudlet = new ArrayList<ResCloudlet>();
 				for (ResCloudlet rcl : getCloudletWaitingList()) {
-					if(rcl.getCloudletArrivalTime() < timeout) {
+					if (rcl.getCloudletArrivalTime() < timeout) {
 						rcl.setCloudletStatus(Cloudlet.FAILED);
 						rcl.finalizeCloudlet();
 						timeoutCloudlet.add(rcl);
@@ -72,7 +73,7 @@ public class CloudletSchedulerSpaceSharedMonitor extends CloudletSchedulerSpaceS
 				getCloudletWaitingList().removeAll(timeoutCloudlet);
 				getCloudletFailedList().addAll(timeoutCloudlet);
 			}
-			
+
 		}
 	}
 
@@ -81,11 +82,11 @@ public class CloudletSchedulerSpaceSharedMonitor extends CloudletSchedulerSpaceS
 		long totalProcessedMIs = 0;
 		double timeSpent = currentTime - prevMonitoredTime;
 		double capacity = getCapacity(mipsShare);
-		
+
 		for (ResCloudlet rcl : getCloudletExecList()) {
 			totalProcessedMIs += (long) (capacity * timeSpent * rcl.getNumberOfPes() * Consts.MILLION);
 		}
-		
+
 		prevMonitoredTime = currentTime;
 		return totalProcessedMIs;
 	}
@@ -105,9 +106,9 @@ public class CloudletSchedulerSpaceSharedMonitor extends CloudletSchedulerSpaceS
 
 	@Override
 	public boolean isVmIdle() {
-		if(runningCloudlets() > 0)
+		if (runningCloudlets() > 0)
 			return false;
-		if(getCloudletWaitingList().size() > 0)
+		if (getCloudletWaitingList().size() > 0)
 			return false;
 		return true;
 	}
@@ -122,10 +123,9 @@ public class CloudletSchedulerSpaceSharedMonitor extends CloudletSchedulerSpaceS
 	public int getCloudletTotalPesRequested() {
 		return getCurrentMipsShare().size();
 	}
-	
-	
+
 	public int getNumAllCloudlets() {
-		return super.cloudletExecList.size() + super.cloudletFailedList.size() + super.getCloudletFinishedList().size() +
-				super.cloudletPausedList.size() + super.cloudletWaitingList.size();
+		return super.cloudletExecList.size() + super.cloudletFailedList.size() + super.getCloudletFinishedList().size()
+				+ super.cloudletPausedList.size() + super.cloudletWaitingList.size();
 	}
 }

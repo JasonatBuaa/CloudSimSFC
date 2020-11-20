@@ -19,8 +19,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
- * Generate virtual topology Json file from pre-configured VM type sets.
- * VM types are defined in another class - VirtualTopologyGeneratorVmTypes.
+ * Generate virtual topology Json file from pre-configured VM type sets. VM
+ * types are defined in another class - VirtualTopologyGeneratorVmTypes.
  * 
  * @author Jungmin Son
  * @since CloudSimSDN 1.0
@@ -30,130 +30,186 @@ public class VirtualTopologyGenerator {
 	private List<LinkSpec> links = new ArrayList<LinkSpec>();
 	private List<DummyWorkloadSpec> dummyWorkload = new ArrayList<DummyWorkloadSpec>();
 	private List<SFCPolicySpec> policies = new ArrayList<SFCPolicySpec>();
-	
+
+	public static final long byteSize = 1L;
+	public static final long KB = 1000 * byteSize;
+	public static final long MB = 1000 * KB;
+	public static final long GB = 1000 * MB;
+
 	// For test //
 
-	public static void main(String [] argv) {
+	public static void main(String[] argv) {
 		VirtualTopologyGenerator vmGenerator = new VirtualTopologyGenerator();
 		vmGenerator.generateTestVMs("virtual.test.json");
+		// System.out.println(Integer.MAX_VALUE);
 	}
-	
-	public void generateTestVMs(String jsonFileName)
-	{
+
+	public void generateTestVMs(String jsonFileName) {
 		final int groupNum = 4;
 		final long flowBw = 100L;
 
-		for(int i=0; i< groupNum; i++) {
+		for (int i = 0; i < groupNum; i++) {
 			VMSpec v1 = createTestVM(i, 0);
 			VMSpec v2 = createTestVM(i, 1);
 			addLinkAutoNameBoth(v1, v2, flowBw);
 		}
 		wrtieJSON(jsonFileName);
 	}
-		
+
 	public VMSpec createTestVM(int vmGroupId, int vmGroupSubId) {
 		String name = "vm";
 		int pes = 1;
 		long vmStorage = 10;
-		long mips=100;
+		long mips = 100;
 		int vmRam = 256;
-		long vmBW=100;
+		long vmBW = 100;
 
 		name += vmGroupId;
-		if(vmGroupSubId != -1) {
+		if (vmGroupSubId != -1) {
 			name += "-" + vmGroupSubId;
 		}
 
 		VMSpec vm = addVM(name, pes, mips, vmRam, vmStorage, vmBW, -1, -1);
 		return vm;
 	}
-	
+
 	// APIs //
 
 	public VMSpec addVM(String name, VMSpec spec) {
 		return addVM(name, spec.pe, spec.mips, spec.ram, spec.size, spec.bw, spec.starttime, spec.endtime);
 	}
-	
-	public VMSpec addVM(String name, int pes, long mips, int ram, long storage, long bw, double starttime, double endtime) {
+
+	public VMSpec addVM(String name, int pes, long mips, int ram, long storage, long bw, double starttime,
+			double endtime) {
 		VMSpec vm = new VMSpec(pes, mips, ram, storage, bw, starttime, endtime, null, null, null);
 		vm.name = name;
-		
+
 		vms.add(vm);
 		return vm;
 	}
-	
-	public VMSpec addVM(String name, String datacenter, String host, int pes, long mips, int ram, long storage, long bw, double starttime, double endtime) {
+
+	public VMSpec addVM(String name, String datacenter, String host, int pes, long mips, int ram, long storage, long bw,
+			double starttime, double endtime) {
 		VMSpec vm = new VMSpec(pes, mips, ram, storage, bw, starttime, endtime, datacenter, null, host);
 		vm.name = name;
-		
+
 		vms.add(vm);
 		return vm;
 	}
-	
-	public SFSpec addSF(String name, int pes, long mips, int ram, long storage, long bw, double starttime, double endtime, long miPerOperation, String type) {
+
+	public SFSpec addSF(String name, int pes, long mips, int ram, long storage, long bw, double starttime,
+			double endtime, long miPerOperation, String type) {
 		return addSF(name, null, null, pes, mips, ram, storage, bw, starttime, endtime, miPerOperation, type);
 	}
-	
-	public SFSpec addSF(String name, String datacenter, List<String> subdatacenter, int pes, long mips, int ram, long storage, long bw, double starttime, double endtime, long miPerOperation, String type) {
-		SFSpec vm = new SFSpec(pes, mips, ram, storage, bw, starttime, endtime, miPerOperation, type, datacenter, subdatacenter);
+
+	public SFSpec addSF(String name, String datacenter, List<String> subdatacenter, int pes, long mips, int ram,
+			long storage, long bw, double starttime, double endtime, long miPerOperation, String type) {
+		SFSpec vm = new SFSpec(pes, mips, ram, storage, bw, starttime, endtime, miPerOperation, type, datacenter,
+				subdatacenter);
 		vm.name = name;
-		
+
 		vms.add(vm);
 		return vm;
 	}
-	
-	public SFCPolicySpec addSFCPolicy(String policyname, VMSpec source, VMSpec dest, String linkname, List<SFSpec> sfChain, double expectedTime ) {
+
+	/**
+	 * 
+	 * @param policyname
+	 * @param source
+	 * @param dest
+	 * @param linkname
+	 * @param sfChain
+	 * @param expectedTime ？？
+	 * @return
+	 */
+	public SFCPolicySpec addSFCPolicy(String policyname, VMSpec source, VMSpec dest, String linkname,
+			List<SFSpec> sfChain, double expectedTime) {
 		SFCPolicySpec policy = new SFCPolicySpec(policyname, source.name, dest.name, linkname, sfChain, expectedTime);
 		policies.add(policy);
-		
+
 		return policy;
 	}
-	
+
 	private void validateLinkNameDuplicate(String newName) {
-		if("default".equals(newName)) 
+		if ("default".equals(newName))
 			return;
-		for(LinkSpec link:this.links) {
-			if(link.name.equals(newName)) {
-				throw new RuntimeException("Same name!"+newName);
+		for (LinkSpec link : this.links) {
+			if (link.name.equals(newName)) {
+				throw new RuntimeException("Same name!" + newName);
 			}
 		}
-		
+
 	}
+
+	/**
+	 * Jason: 添加单向link
+	 * 
+	 * @param linkname
+	 * @param source
+	 * @param dest
+	 * @param bw
+	 * @return 将新建的LinkSpec对象返回
+	 */
 	public LinkSpec addLink(String linkname, VMSpec source, VMSpec dest, Long bw) {
 		validateLinkNameDuplicate(linkname);
-		
-		LinkSpec link = new LinkSpec(linkname, source.name,dest.name, bw);
+
+		LinkSpec link = new LinkSpec(linkname, source.name, dest.name, bw);
 		links.add(link);
-		
+
 		addWorkload(linkname, source, dest);
 		return link;
 	}
-	
+
+	/**
+	 * 
+	 * @param src
+	 * @param dest
+	 * @param bw
+	 */
 	public void addLinkAutoName(VMSpec src, VMSpec dest, Long bw) {
 		String linkName = "default";
 		addLink(linkName, src, dest, null);
-		
-		if(bw != null && bw > 0) {
+
+		if (bw != null && bw > 0) {
 			linkName = getAutoLinkName(src, dest);
 			addLink(linkName, src, dest, bw);
 		}
 	}
-	
+
 	protected static String getAutoLinkName(VMSpec src, VMSpec dest) {
 		String linkName = src.name + dest.name;
-		return linkName;		
+		return linkName;
 	}
-	
+
+	/**
+	 * Jason: 为链路添加双向带宽
+	 * 
+	 * @param vm1
+	 * @param vm2
+	 * @param linkBw
+	 */
 	public void addLinkAutoNameBoth(VMSpec vm1, VMSpec vm2, Long linkBw) {
 		addLinkAutoName(vm1, vm2, linkBw);
 		addLinkAutoName(vm2, vm1, linkBw);
 	}
-	
+
 	public void addWorkload(String linkname, VMSpec source, VMSpec dest) {
-		DummyWorkloadSpec wl = new DummyWorkloadSpec(source.starttime, source.name,dest.name, linkname);
+		DummyWorkloadSpec wl = new DummyWorkloadSpec(source.starttime, source.name, dest.name, linkname);
 		this.dummyWorkload.add(wl);
 	}
-	
+
+	/**
+	 * Jason:建立VM对象
+	 * 
+	 * @param pe
+	 * @param mips
+	 * @param ram
+	 * @param storage
+	 * @param bw
+	 * @param starttime
+	 * @param endtime
+	 * @return
+	 */
 	public VMSpec createVmSpec(int pe, long mips, int ram, long storage, long bw, double starttime, double endtime) {
 		return new VMSpec(pe, mips, ram, storage, bw, starttime, endtime, null, null, null);
 	}
@@ -171,8 +227,9 @@ public class VirtualTopologyGenerator {
 		long bw;
 		double starttime = -1;
 		double endtime = -1;
-		
-		public VMSpec(int pe, long mips, int ram, long storage, long bw,double starttime,double endtime, String datacenter, List<String> subdatacenter, String host) {
+
+		public VMSpec(int pe, long mips, int ram, long storage, long bw, double starttime, double endtime,
+				String datacenter, List<String> subdatacenter, String host) {
 			this.pe = pe;
 			this.mips = mips;
 			this.ram = ram;
@@ -185,7 +242,7 @@ public class VirtualTopologyGenerator {
 			this.subdatacenter = subdatacenter;
 			this.host = host;
 		}
-		
+
 		@SuppressWarnings("unchecked")
 		JSONObject toJSON() {
 			VMSpec vm = this;
@@ -197,30 +254,50 @@ public class VirtualTopologyGenerator {
 			obj.put("size", vm.size);
 			obj.put("ram", new Integer(vm.ram));
 			obj.put("type", vm.type);
-			if(vm.starttime != -1)
+			if (vm.starttime != -1)
 				obj.put("starttime", vm.starttime);
-			if(vm.endtime != -1)
+			if (vm.endtime != -1)
 				obj.put("endtime", vm.endtime);
-			if(vm.datacenter != null)
+			if (vm.datacenter != null)
 				obj.put("datacenter", vm.datacenter);
-			if(vm.subdatacenter != null)
+			if (vm.subdatacenter != null)
 				obj.put("subdatacenters", vm.subdatacenter);
-			if(vm.host != null)
+			if (vm.host != null)
 				obj.put("host", vm.host);
 
 			return obj;
 		}
 	}
-	
+
+	/**
+	 * Jason: 对应单个VNF节点（SF）的类，
+	 * 
+	 * TODO：增加availability、ram和availability对应关系
+	 */
 	class SFSpec extends VMSpec {
 		long mipsPerOperation;
 
-		public SFSpec(int pe, long mips, int ram, long storage, long bw, double starttime, double endtime, long mipOper, String type, String datacenter, List<String> subdatacenter) {
+		/**
+		 * 
+		 * @param pe
+		 * @param mips
+		 * @param ram
+		 * @param storage
+		 * @param bw
+		 * @param starttime
+		 * @param endtime
+		 * @param mipsPerOperation: mips per operation
+		 * @param type
+		 * @param datacenter
+		 * @param subdatacenter
+		 */
+		public SFSpec(int pe, long mips, int ram, long storage, long bw, double starttime, double endtime,
+				long mipsPerOperation, String type, String datacenter, List<String> subdatacenter) {
 			super(pe, mips, ram, storage, bw, starttime, endtime, datacenter, subdatacenter, null);
-			this.mipsPerOperation = mipOper;
+			this.mipsPerOperation = mipsPerOperation;
 			this.type = type;
 		}
-		
+
 		@SuppressWarnings("unchecked")
 		JSONObject toJSON() {
 			JSONObject obj = super.toJSON();
@@ -228,7 +305,13 @@ public class VirtualTopologyGenerator {
 			return obj;
 		}
 	}
-	
+
+	/**
+	 * Jason: 一个SFC对应的类
+	 * 
+	 * 
+	 * TODO：增加availability
+	 */
 	class SFCPolicySpec {
 		String name;
 		String source;
@@ -236,8 +319,9 @@ public class VirtualTopologyGenerator {
 		String linkname;
 		List<SFSpec> sfChain;
 		double expectTime;
-		
-		public SFCPolicySpec(String name,String source,String destination,String linkname, List<SFSpec> sfChain, double expectedTime) {
+
+		public SFCPolicySpec(String name, String source, String destination, String linkname, List<SFSpec> sfChain,
+				double expectedTime) {
 			this.name = name;
 			this.source = source;
 			this.destination = destination;
@@ -245,6 +329,7 @@ public class VirtualTopologyGenerator {
 			this.sfChain = sfChain;
 			this.expectTime = expectedTime;
 		}
+
 		@SuppressWarnings("unchecked")
 		JSONObject toJSON() {
 			SFCPolicySpec policy = this;
@@ -254,9 +339,9 @@ public class VirtualTopologyGenerator {
 			obj.put("destination", policy.destination);
 			obj.put("flowname", policy.linkname);
 			obj.put("expected_time", policy.expectTime);
-			
+
 			JSONArray jsonChain = new JSONArray();
-			for(SFSpec sf:sfChain) {
+			for (SFSpec sf : sfChain) {
 				jsonChain.add(sf.name);
 			}
 			obj.put("sfc", jsonChain);
@@ -265,35 +350,41 @@ public class VirtualTopologyGenerator {
 
 	}
 
+	/**
+	 * Jason: 什么是Dummy？
+	 */
 	class DummyWorkloadSpec {
 		double startTime;
 		String source;
 		String linkname;
 		String destination;
-		
-		public DummyWorkloadSpec(double startTime, String source,String destination,String linkname) {
+
+		public DummyWorkloadSpec(double startTime, String source, String destination, String linkname) {
 			this.linkname = linkname;
 			this.source = source;
 			this.destination = destination;
 			this.startTime = startTime;
 		}
+
 		public String toString() {
-			String st = startTime+ ","+ source + ",0,1,"+linkname+","+destination + ",1000000000000000,1";
+			String st = startTime + "," + source + ",0,1," + linkname + "," + destination + ",1000000000000000,1";
 			return st;
 		}
 	}
+
 	class LinkSpec {
 		String name;
 		String source;
 		String destination;
 		Long bw;
-		
-		public LinkSpec(String name,String source,String destination,Long bw) {
+
+		public LinkSpec(String name, String source, String destination, Long bw) {
 			this.name = name;
 			this.source = source;
 			this.destination = destination;
 			this.bw = bw;
 		}
+
 		@SuppressWarnings("unchecked")
 		JSONObject toJSON() {
 			LinkSpec link = this;
@@ -301,79 +392,79 @@ public class VirtualTopologyGenerator {
 			obj.put("name", link.name);
 			obj.put("source", link.source);
 			obj.put("destination", link.destination);
-			if(link.bw != null)
+			if (link.bw != null)
 				obj.put("bandwidth", link.bw);
 			return obj;
 		}
 	}
-	
+
 	int vmId = 0;
 	final int SEED = 10;
-	
+
 	@SuppressWarnings("unchecked")
 	public void wrtieJSON(String jsonFileName) {
 		JSONObject obj = new JSONObject();
 
 		JSONArray vmList = new JSONArray();
 		JSONArray linkList = new JSONArray();
-		
+
 		// Place VM in random order
 		ArrayList<Integer> indexes = new ArrayList<Integer>();
-		for(int i=0; i<vms.size();i++)
+		for (int i = 0; i < vms.size(); i++)
 			indexes.add(i);
-		Collections.shuffle(indexes, new Random(SEED));		
+		Collections.shuffle(indexes, new Random(SEED));
 
-		for(Integer i:indexes) {
+		for (Integer i : indexes) {
 			VMSpec vm = vms.get(i);
 			vmList.add(vm.toJSON());
 		}
-		
+
 		// Shuffle virtual link order
 		indexes = new ArrayList<Integer>();
-		for(int i=0; i<links.size();i++)
+		for (int i = 0; i < links.size(); i++)
 			indexes.add(i);
-		Collections.shuffle(indexes, new Random(SEED));		
+		Collections.shuffle(indexes, new Random(SEED));
 
-		for(Integer i:indexes) {
+		for (Integer i : indexes) {
 			LinkSpec link = links.get(i);
 			linkList.add(link.toJSON());
 		}
-		
+
 		/*
-		for(LinkSpec link:links) {
-			linkList.add(link.toJSON());
-		}
-		*/
-		
+		 * for(LinkSpec link:links) { linkList.add(link.toJSON()); }
+		 */
+
 		obj.put("nodes", vmList);
 		obj.put("links", linkList);
-		
+
 		// Add SFC Policies to the json.
-		if(policies.size() != 0) {
+		if (policies.size() != 0) {
 			JSONArray policyList = new JSONArray();
-			for(SFCPolicySpec policy:policies) {
+			for (SFCPolicySpec policy : policies) {
 				policyList.add(policy.toJSON());
 			}
 			obj.put("policies", policyList);
 		}
-		
+
 		try {
-	 
+
 			FileWriter file = new FileWriter(jsonFileName);
+
 			file.write(obj.toJSONString().replaceAll(",", ",\n"));
 			file.flush();
 			file.close();
-	 
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	 
+
 		System.out.println(obj);
-		
+
 		System.out.println("===============WORKLOAD=============");
 		System.out.println("start, source, z, w1, link, dest, psize, w2");
-		for(DummyWorkloadSpec wl:this.dummyWorkload) {
+		for (DummyWorkloadSpec wl : this.dummyWorkload) {
 			System.out.println(wl);
+			// Jason : TODO: generate workload
 		}
 	}
 }

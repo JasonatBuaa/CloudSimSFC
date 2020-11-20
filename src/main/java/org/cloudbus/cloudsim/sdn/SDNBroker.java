@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.cloudbus.cloudsim.Host;
 import org.cloudbus.cloudsim.Log;
 import org.cloudbus.cloudsim.UtilizationModelFull;
 import org.cloudbus.cloudsim.Vm;
@@ -20,179 +21,213 @@ import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.core.CloudSimTags;
 import org.cloudbus.cloudsim.core.SimEntity;
 import org.cloudbus.cloudsim.core.SimEvent;
+import org.cloudbus.cloudsim.sdn.example.StartAvailability;
 import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystem;
+import org.cloudbus.cloudsim.sdn.parsers.FailOverEventParser;
+import org.cloudbus.cloudsim.sdn.parsers.PhysicalTopologyParser;
 import org.cloudbus.cloudsim.sdn.parsers.VirtualTopologyParser;
 import org.cloudbus.cloudsim.sdn.parsers.WorkloadParser;
+// import org.cloudbus.cloudsim.sdn.physicalcomponents.PhysicalTopology;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNDatacenter;
+import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
 import org.cloudbus.cloudsim.sdn.sfc.ServiceFunction;
 import org.cloudbus.cloudsim.sdn.sfc.ServiceFunctionChainPolicy;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.FlowConfig;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm;
+import org.cloudbus.cloudsim.sdn.workload.FailOverEvent;
 import org.cloudbus.cloudsim.sdn.workload.Request;
 import org.cloudbus.cloudsim.sdn.workload.Workload;
 import org.cloudbus.cloudsim.sdn.workload.WorkloadResultWriter;
 
 /**
- * Broker class for CloudSimSDN example. This class represents a broker (Service Provider)
- * who uses the Cloud data center.
+ * Broker class for CloudSimSDN example. This class represents a broker (Service
+ * Provider) who uses the Cloud data center.
  * 
  * @author Jungmin Son
  * @since CloudSimSDN 1.0
  */
 public class SDNBroker extends SimEntity {
-	
+
 	public static double experimentStartTime = -1;
 	public static double experimentFinishTime = Double.POSITIVE_INFINITY;
 
 	public static int lastAppId = 0;
-	
+
 	private static Map<String, SDNDatacenter> datacenters = new HashMap<String, SDNDatacenter>();
 	private static Map<Integer, SDNDatacenter> vmIdToDc = new HashMap<Integer, SDNDatacenter>();
-	
+
 	private String applicationFileName = null;
-	private HashMap<WorkloadParser, Integer> workloadId=null;
-	private HashMap<Long, Workload> requestMap=null;
-	private List<String> workloadFileNames=null;
+	private HashMap<WorkloadParser, Integer> workloadId = null;
+
+	private HashMap<FailOverEventParser, Integer> failOverIds = null; // Jason: For failOver Events
+	private HashMap<Long, Workload> requestMap = null;
+	private List<String> workloadFileNames = null;
+
+	// private List<String> availEventFileNames = null;
+	private List<String> failOverFileNames = null;
 
 	public SDNBroker(String name) throws Exception {
 		super(name);
 		this.workloadFileNames = new ArrayList<String>();
+
+		this.failOverFileNames = new ArrayList<String>();
 		workloadId = new HashMap<WorkloadParser, Integer>();
+		failOverIds = new HashMap<FailOverEventParser, Integer>();
 		requestMap = new HashMap<Long, Workload>();
+
 	}
-	
+
 	@Override
 	public void startEntity() {
 		sendNow(getId(), CloudSimTagsSDN.APPLICATION_SUBMIT, this.applicationFileName);
 	}
+
 	@Override
 	public void shutdownEntity() {
-		for(SDNDatacenter datacenter:datacenters.values()) {
+		for (SDNDatacenter datacenter : datacenters.values()) {
 			List<Vm> vmList = datacenter.getVmList();
-			for(Vm vm:vmList) {
+			for (Vm vm : vmList) {
 				Log.printLine(CloudSim.clock() + ": " + getName() + ": Shuttingdown.. VM:" + vm.getId());
 			}
 		}
 	}
+
 	public void printResult() {
-		int numWorkloads=0, numWorkloadsCPU=0, numWorkloadsNetwork =0, 
-				numWorkloadsOver=0, numWorkloadsNetworkOver=0, numWorkloadsCPUOver=0, numTimeout=0;
-		double totalServetime=0, totalServetimeCPU=0, totalServetimeNetwork=0;
-		
-		// For group analysis		
+		int numWorkloads = 0, numWorkloadsCPU = 0, numWorkloadsNetwork = 0, numWorkloadsOver = 0,
+				numWorkloadsNetworkOver = 0, numWorkloadsCPUOver = 0, numTimeout = 0;
+		double totalServetime = 0, totalServetimeCPU = 0, totalServetimeNetwork = 0;
+
+		// For group analysis
 		int[] groupNumWorkloads = new int[SDNBroker.lastAppId];
 		double[] groupTotalServetime = new double[SDNBroker.lastAppId];
 		double[] groupTotalServetimeCPU = new double[SDNBroker.lastAppId];
 		double[] groupTotalServetimeNetwork = new double[SDNBroker.lastAppId];
-		
-		for(WorkloadParser wp:workloadId.keySet()) {
-			WorkloadResultWriter wrw = wp.getResultWriter(); 
+
+		for (WorkloadParser wp : workloadId.keySet()) {
+			WorkloadResultWriter wrw = wp.getResultWriter();
+			if (wrw == null) {
+				try {
+					throw new Exception();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			wrw.printStatistics();
-			
+
 			numWorkloads += wrw.getWorklaodNum();
-			numTimeout +=  wrw.getTimeoutNum();
+			numTimeout += wrw.getTimeoutNum();
 			numWorkloadsOver += wrw.getWorklaodNumOvertime();
 			numWorkloadsCPU += wrw.getWorklaodNumCPU();
 			numWorkloadsCPUOver += wrw.getWorklaodNumCPUOvertime();
 			numWorkloadsNetwork += wrw.getWorklaodNumNetwork();
 			numWorkloadsNetworkOver += wrw.getWorklaodNumNetworkOvertime();
-			
+
 			totalServetime += wrw.getServeTime();
 			totalServetimeCPU += wrw.getServeTimeCPU();
 			totalServetimeNetwork += wrw.getServeTimeNetwork();
-			
+
 			// For group analysis
 			groupNumWorkloads[wp.getGroupId()] += wrw.getWorklaodNum();
 			groupTotalServetime[wp.getGroupId()] += wrw.getServeTime();
 			groupTotalServetimeCPU[wp.getGroupId()] += wrw.getServeTimeCPU();
 			groupTotalServetimeNetwork[wp.getGroupId()] += wrw.getServeTimeNetwork();
 		}
-		
-		Log.printLine("============= SDNBroker.printResult() =============================");
-		Log.printLine("Workloads Num: "+ numWorkloads);
-		Log.printLine("Workloads CPU Num: "+ numWorkloadsCPU);
-		Log.printLine("Workloads Network Num: "+ numWorkloadsNetwork);
-		Log.printLine("Workloads Timed Out Num: "+ numTimeout);
 
-		Log.printLine("Total serve time: "+ totalServetime);
-		Log.printLine("Total serve time CPU: "+ totalServetimeCPU);
-		Log.printLine("Total serve time Network: "+ totalServetimeNetwork);
-		if(numWorkloads!=0) {
-			Log.printLine("Avg serve time: "+ totalServetime/numWorkloads);
-			Log.printLine("Overall overtime percentage: "+ (double)numWorkloadsOver/numWorkloads);
+		Log.printLine("============= SDNBroker.printResult() =============================");
+		Log.printLine("Workloads Num: " + numWorkloads);
+		Log.printLine("Workloads CPU Num: " + numWorkloadsCPU);
+		Log.printLine("Workloads Network Num: " + numWorkloadsNetwork);
+		Log.printLine("Workloads Timed Out Num: " + numTimeout);
+
+		Log.printLine("Total serve time: " + totalServetime);
+		Log.printLine("Total serve time CPU: " + totalServetimeCPU);
+		Log.printLine("Total serve time Network: " + totalServetimeNetwork);
+		if (numWorkloads != 0) {
+			Log.printLine("Avg serve time: " + totalServetime / numWorkloads);
+			Log.printLine("Overall overtime percentage: " + (double) numWorkloadsOver / numWorkloads);
 		}
-		if(numWorkloadsCPU!=0) {
-			Log.printLine("Avg serve time CPU: "+ totalServetimeCPU/numWorkloadsCPU);
-			Log.printLine("CPU overtime percentage: "+ (double)numWorkloadsCPUOver/numWorkloadsCPU);
+		if (numWorkloadsCPU != 0) {
+			Log.printLine("Avg serve time CPU: " + totalServetimeCPU / numWorkloadsCPU);
+			Log.printLine("CPU overtime percentage: " + (double) numWorkloadsCPUOver / numWorkloadsCPU);
 		}
-		if(numWorkloadsNetwork!=0) {
-			Log.printLine("Avg serve time Network: "+ totalServetimeNetwork/numWorkloadsNetwork);
-			Log.printLine("Network overtime percentage: "+ (double)numWorkloadsNetworkOver/numWorkloadsNetwork);
+		if (numWorkloadsNetwork != 0) {
+			Log.printLine("Avg serve time Network: " + totalServetimeNetwork / numWorkloadsNetwork);
+			Log.printLine("Network overtime percentage: " + (double) numWorkloadsNetworkOver / numWorkloadsNetwork);
 		}
-			
+
 		// For group analysis
 		Log.printLine("============= SDNBroker.printResult() Group analysis =======================");
-		for(int i=0; i<SDNBroker.lastAppId; i++) {
-			if(groupNumWorkloads[i] != 0) {
-				Log.printLine("Group num: "+i+", groupNumWorkloads:"+groupNumWorkloads[i]);
-				Log.printLine("Group num: "+i+", groupTotalServetime:"+groupTotalServetime[i]);
-				Log.printLine("Group num: "+i+", groupTotalServetimeCPU:"+groupTotalServetimeCPU[i]);
-				Log.printLine("Group num: "+i+", groupTotalServetimeNetwork:"+groupTotalServetimeNetwork[i]);
-				Log.printLine("Group num: "+i+", group avg Serve time:"+groupTotalServetime[i]/groupNumWorkloads[i]);
-				Log.printLine("Group num: "+i+", group avg Serve time CPU:"+groupTotalServetimeCPU[i]/groupNumWorkloads[i]);
-				Log.printLine("Group num: "+i+", group avg Serve time Network:"+groupTotalServetimeNetwork[i]/groupNumWorkloads[i]);				
+		for (int i = 0; i < SDNBroker.lastAppId; i++) {
+			if (groupNumWorkloads[i] != 0) {
+				Log.printLine("Group num: " + i + ", groupNumWorkloads:" + groupNumWorkloads[i]);
+				Log.printLine("Group num: " + i + ", groupTotalServetime:" + groupTotalServetime[i]);
+				Log.printLine("Group num: " + i + ", groupTotalServetimeCPU:" + groupTotalServetimeCPU[i]);
+				Log.printLine("Group num: " + i + ", groupTotalServetimeNetwork:" + groupTotalServetimeNetwork[i]);
+				Log.printLine(
+						"Group num: " + i + ", group avg Serve time:" + groupTotalServetime[i] / groupNumWorkloads[i]);
+				Log.printLine("Group num: " + i + ", group avg Serve time CPU:"
+						+ groupTotalServetimeCPU[i] / groupNumWorkloads[i]);
+				Log.printLine("Group num: " + i + ", group avg Serve time Network:"
+						+ groupTotalServetimeNetwork[i] / groupNumWorkloads[i]);
 			}
-			
+
 		}
 	}
-	
+
 	public void submitDeployApplication(SDNDatacenter dc, String filename) {
 		SDNBroker.datacenters.put(dc.getName(), dc); // default DC
 		this.applicationFileName = filename;
 	}
-	
+
 	public void submitDeployApplication(Collection<SDNDatacenter> dcs, String filename) {
-		for(SDNDatacenter dc: dcs) {
-			if(dc != null)
+		for (SDNDatacenter dc : dcs) {
+			if (dc != null)
 				SDNBroker.datacenters.put(dc.getName(), dc); // default DC
 		}
 		this.applicationFileName = filename;
 	}
-	
+
 	public void submitRequests(String filename) {
 		this.workloadFileNames.add(filename);
+	}
+
+	public void submitFailOverEvents(String filename) {
+		this.failOverFileNames.add(filename);
 	}
 
 	@Override
 	public void processEvent(SimEvent ev) {
 		int tag = ev.getTag();
-		
-		switch(tag){
+
+		switch (tag) {
 			case CloudSimTags.VM_CREATE_ACK:
 				processVmCreate(ev);
 				break;
-			case CloudSimTagsSDN.APPLICATION_SUBMIT: 
-				processApplication(ev.getSource(),(String) ev.getData()); 
+			case CloudSimTagsSDN.APPLICATION_SUBMIT:
+				processApplication(ev.getSource(), (String) ev.getData());
 				break;
 			case CloudSimTagsSDN.APPLICATION_SUBMIT_ACK:
-				applicationSubmitCompleted(ev); 
+				applicationSubmitCompleted(ev);
+				hostFailOver(ev); // Jason: Todo! check
 				break;
 			case CloudSimTagsSDN.REQUEST_COMPLETED:
-				requestCompleted(ev); 
+				requestCompleted(ev);
 				break;
 			case CloudSimTagsSDN.REQUEST_FAILED:
-				requestFailed(ev); 
+				requestFailed(ev);
 				break;
 			case CloudSimTagsSDN.REQUEST_OFFER_MORE:
 				requestOfferMode(ev);
-				break;					
-			default: 
-				System.out.println("Unknown event received by "+super.getName()+". Tag:"+ev.getTag());
+				break;
+			default:
+				System.out.println("Unknown event received by " + super.getName() + ". Tag:" + ev.getTag());
 				break;
 		}
 	}
+
 	private void processVmCreate(SimEvent ev) {
-		
+
 	}
 
 	private void requestFailed(SimEvent ev) {
@@ -201,50 +236,80 @@ public class SDNBroker extends SimEntity {
 		wl.failed = true;
 		wl.writeResult();
 	}
-	
+
 	private void requestCompleted(SimEvent ev) {
 		Request req = (Request) ev.getData();
 		Workload wl = requestMap.remove(req.getRequestId());
 		wl.writeResult();
 	}
-	
+
 	private void applicationSubmitCompleted(SimEvent ev) {
-		for(String filename: this.workloadFileNames) {
+		for (String filename : this.workloadFileNames) {
 			WorkloadParser wParser = startWorkloadParser(filename);
 			workloadId.put(wParser, SDNBroker.lastAppId);
 			SDNBroker.lastAppId++;
-			
+
 			scheduleRequest(wParser);
 		}
 	}
-	
-	private void processApplication(int userId, String vmsFileName){
-		SDNDatacenter defaultDC = SDNBroker.datacenters.entrySet().iterator().next().getValue();		
+
+	// private void injectFailOverEvents(SimEvent ev) {
+
+	// }
+
+	/**
+	 * Jason: host availability event
+	 * 
+	 * Gets from applicationSubmitCompleted
+	 * 
+	 * @param ev
+	 */
+	private void hostFailOver(SimEvent ev) {
+
+		if (StartAvailability.failOverDebug)
+			return;
+		for (String filename : this.failOverFileNames) {
+			FailOverEventParser foEventParser = startFailOverEventParser(filename);
+			failOverIds.put(foEventParser, SDNBroker.lastAppId);
+			SDNBroker.lastAppId++;
+
+			injectFailOverEvents(foEventParser);
+		}
+	}
+
+	/**
+	 * Jason: initilize the regarding data structures, including: VMs, arcs, NFC
+	 * policy, nos
+	 * 
+	 * @param userId
+	 * @param vmsFileName
+	 */
+	private void processApplication(int userId, String vmsFileName) {
+		SDNDatacenter defaultDC = SDNBroker.datacenters.entrySet().iterator().next().getValue();
 		VirtualTopologyParser parser = new VirtualTopologyParser(defaultDC.getName(), vmsFileName, userId);
-		
-		for(String dcName: SDNBroker.datacenters.keySet()) {
+
+		for (String dcName : SDNBroker.datacenters.keySet()) {
 			SDNDatacenter dc = SDNBroker.datacenters.get(dcName);
 			NetworkOperatingSystem nos = dc.getNOS();
-			
-			for(SDNVm vm:parser.getVmList(dcName)) {
+
+			for (SDNVm vm : parser.getVmList(dcName)) {
 				nos.addVm(vm);
-				if(vm instanceof ServiceFunction) {
-					ServiceFunction sf = (ServiceFunction)vm;
+				if (vm instanceof ServiceFunction) {
+					ServiceFunction sf = (ServiceFunction) vm;
 					sf.setNetworkOperatingSystem(nos);
 				}
 				SDNBroker.vmIdToDc.put(vm.getId(), dc);
 			}
 		}
-			
-		for(FlowConfig arc:parser.getArcList()) {
+
+		for (FlowConfig arc : parser.getArcList()) {
 			SDNDatacenter srcDc = SDNBroker.vmIdToDc.get(arc.getSrcId());
 			SDNDatacenter dstDc = SDNBroker.vmIdToDc.get(arc.getDstId());
-			
-			if(srcDc.equals(dstDc)) {
+
+			if (srcDc.equals(dstDc)) {
 				// Intra-DC traffic: create a virtual flow inside the DC
 				srcDc.getNOS().addFlow(arc);
-			}
-			else {
+			} else {
 				// Inter-DC traffic: Create it in inter-DC N.O.S.
 				srcDc.getNOS().addFlow(arc);
 				dstDc.getNOS().addFlow(arc);
@@ -252,64 +317,92 @@ public class SDNBroker extends SimEntity {
 		}
 
 		// Add parsed ServiceFunctionChainPolicy
-		for(ServiceFunctionChainPolicy policy:parser.getSFCPolicyList()) {
+		for (ServiceFunctionChainPolicy policy : parser.getSFCPolicyList()) {
 			SDNDatacenter srcDc = SDNBroker.vmIdToDc.get(policy.getSrcId());
 			SDNDatacenter dstDc = SDNBroker.vmIdToDc.get(policy.getDstId());
-			if(srcDc.equals(dstDc)) {
+			if (srcDc.equals(dstDc)) {
 				// Intra-DC traffic: create a virtual flow inside the DC
 				srcDc.getNOS().addSFCPolicy(policy);
-			}
-			else {
+			} else {
 				// Inter-DC traffic: Create it in inter-DC N.O.S.
 				srcDc.getNOS().addSFCPolicy(policy);
 				dstDc.getNOS().addSFCPolicy(policy);
 			}
 		}
-		
-		for(String dcName: SDNBroker.datacenters.keySet()) {
+
+		for (String dcName : SDNBroker.datacenters.keySet()) {
 			SDNDatacenter dc = SDNBroker.datacenters.get(dcName);
 			NetworkOperatingSystem nos = dc.getNOS();
 			nos.startDeployApplicatoin();
 		}
-		
+
 		send(userId, 0, CloudSimTagsSDN.APPLICATION_SUBMIT_ACK, vmsFileName);
 	}
-	
+
 	public static SDNDatacenter getDataCenterByName(String dcName) {
 		return SDNBroker.datacenters.get(dcName);
 	}
-	
+
 	public static SDNDatacenter getDataCenterByVmID(int vmId) {
 		return SDNBroker.vmIdToDc.get(vmId);
 	}
-	
+
 	private void requestOfferMode(SimEvent ev) {
 		WorkloadParser wp = (WorkloadParser) ev.getData();
 		scheduleRequest(wp);
 	}
-	
+
+	/**
+	 * Jason: Todo! find host_name to host_id relationship
+	 * 
+	 * @param failOverEventFile
+	 * @return
+	 */
+	private FailOverEventParser startFailOverEventParser(String failOverEventFile) {
+		Map<String, Integer> hostIdMap = new HashMap<>(); // Jason:Todo! finish this part!!
+		FailOverEventParser failOverEventParser = new FailOverEventParser(failOverEventFile);
+		// (failOverEventFile,
+
+		for (SDNDatacenter datacenter : datacenters.values()) {
+			List<? extends Host> hostList = datacenter.getVmAllocationPolicy().getHostList();
+			for (Host targetHost : hostList) {
+				Log.printLine(CloudSim.clock() + ": " + getName() + ": Shuttingdown.. VM:" + targetHost.getId());
+			}
+		}
+
+		// System.err.println("SDNBroker.startWorkloadParser : DEBUGGGGGGGGGGG REMOVE
+		// here!");
+		failOverEventParser.forceStartTime(experimentStartTime);
+		failOverEventParser.forceFinishTime(experimentFinishTime);
+		return failOverEventParser;
+
+	}
+
 	private WorkloadParser startWorkloadParser(String workloadFile) {
-		WorkloadParser workParser = new WorkloadParser(workloadFile, this.getId(), new UtilizationModelFull(), 
+		WorkloadParser workParser = new WorkloadParser(workloadFile, this.getId(), new UtilizationModelFull(),
 				NetworkOperatingSystem.getVmNameToIdMap(), NetworkOperatingSystem.getFlowNameToIdMap());
-		
-		//System.err.println("SDNBroker.startWorkloadParser : DEBUGGGGGGGGGGG REMOVE here!");
+
+		// System.err.println("SDNBroker.startWorkloadParser : DEBUGGGGGGGGGGG REMOVE
+		// here!");
 		workParser.forceStartTime(experimentStartTime);
 		workParser.forceFinishTime(experimentFinishTime);
 		return workParser;
-		
+
 	}
+
 	private void scheduleRequest(WorkloadParser workParser) {
 		int workloadId = this.workloadId.get(workParser);
 		workParser.parseNextWorkloads();
 		List<Workload> parsedWorkloads = workParser.getParsedWorkloads();
-		
-		if(parsedWorkloads.size() > 0) {
-			// Schedule the parsed workloads 
-			for(Workload wl: parsedWorkloads) {
+
+		if (parsedWorkloads.size() > 0) {
+			// Schedule the parsed workloads
+			for (Workload wl : parsedWorkloads) {
 				double scehduleTime = wl.time - CloudSim.clock();
-				if(scehduleTime <0) {
-					//throw new IllegalArgumentException("SDNBroker.scheduleRequest(): Workload's start time is negative: " + wl);
-					Log.printLine("**"+CloudSim.clock()+": SDNBroker.scheduleRequest(): abnormal start time." + wl);
+				if (scehduleTime < 0) {
+					// throw new IllegalArgumentException("SDNBroker.scheduleRequest(): Workload's
+					// start time is negative: " + wl);
+					Log.printLine("**" + CloudSim.clock() + ": SDNBroker.scheduleRequest(): abnormal start time." + wl);
 					continue;
 				}
 				wl.appId = workloadId;
@@ -317,18 +410,97 @@ public class SDNBroker extends SimEntity {
 				send(dc.getId(), scehduleTime, CloudSimTagsSDN.REQUEST_SUBMIT, wl.request);
 				requestMap.put(wl.request.getTerminalRequest().getRequestId(), wl);
 			}
-			
-//			this.cloudletList.addAll(workParser.getParsedCloudlets());
-//			this.workloads.addAll(parsedWorkloads);
-			
+
+			// this.cloudletList.addAll(workParser.getParsedCloudlets());
+			// this.workloads.addAll(parsedWorkloads);
+
 			// Schedule the next workload submission
-			Workload lastWorkload = parsedWorkloads.get(parsedWorkloads.size()-1);
+			Workload lastWorkload = parsedWorkloads.get(parsedWorkloads.size() - 1);
 			send(this.getId(), lastWorkload.time - CloudSim.clock(), CloudSimTagsSDN.REQUEST_OFFER_MORE, workParser);
 		}
 	}
-	
+	// List<FailOverEvent> parsedFailOverEvents =
+
+	/**
+	 * Jason: Gets from Schedule Requests
+	 * 
+	 * @param failOverEventParser
+	 */
+	private void injectFailOverEvents(FailOverEventParser failOverEventParser) {
+		int failOverId = this.failOverIds.get(failOverEventParser);
+		failOverEventParser.parseNextFailOverEvents();
+		List<FailOverEvent> parsedFailOverEvents = failOverEventParser.getParsedFailOverEvents();
+
+		if (parsedFailOverEvents.size() > 0) {
+			// Schedule the parsed workloads
+			for (FailOverEvent fow : parsedFailOverEvents) {
+				double injectTime = fow.getTime() - CloudSim.clock();
+				if (injectTime < 0) {
+					// throw new IllegalArgumentException("SDNBroker.scheduleRequest(): Workload's
+					// start time is negative: " + wl);
+					Log.printLine(
+							"**" + CloudSim.clock() + ": SDNBroker.scheduleRequest(): abnormal start time." + fow);
+					continue;
+				}
+				fow.failOverEventId = failOverId;
+				int hostId = fow.getHostID();
+
+				double failureTime = fow.getFailureTime();
+				double recoveryTime = fow.getRecoveryTime();
+				if (failureTime > recoveryTime) {
+					// throw new IllegalArgumentException("SDNBroker.scheduleRequest(): Workload's
+					// start time is negative: " + wl);
+					Log.printLine("** ERROR!!" + CloudSim.clock()
+							+ ": SDNBroker.scheduleRequest(): abnormal failure and recovery time." + fow);
+					continue;
+				}
+
+				// String dcName;
+				// SDNDatacenter dc = SDNBroker.vmIdToDc.get(fow.submitVmId);
+				// SDNHost host = (SDNHost)
+				// SDNBroker.getDataCenterByName(dcName).getHostList().get(hostId);
+				SDNHost host = null;
+				String dc_name = null;
+
+				// Jason: locate the failure host
+				// for(SDNHost h: PhysicalTopologyParser.deployedHosts.values()){
+				// if(h.getId() == hostId)
+				// host = h;
+				// }
+
+				for (Map.Entry<String, SDNHost> h : PhysicalTopologyParser.deployedHosts.entries()) {
+
+					System.out.println("--- " + h.getKey());
+					if (h.getValue().getId() == hostId) {
+						host = h.getValue();
+						dc_name = h.getKey();
+						break;
+					}
+				}
+
+				if (host == null) {
+					System.out.println("ERROR!!! Could not find the corresponding host!!!");
+					continue;
+				} else {
+					SDNDatacenter dc = getDataCenterByName(dc_name);
+					send(dc.getId(), failureTime, CloudSimTagsSDN.SDN_HOST_FAIL, host);
+					send(dc.getId(), recoveryTime, CloudSimTagsSDN.SDN_HOST_RECOVER, host);
+				}
+
+				// Jason: Todo! Complete the following steps
+				// steps: 1-2 need test, 3 need to be done
+				// 1. find the corresponding host
+				// 2. generate a host_failure event, and send it (the source is SDNBroker, the
+				// dest is SDNDataCenter)
+				// 3. go to the SDNDataCenter for further event processing
+
+				// requestMap.put(wl.request.getTerminalRequest().getRequestId(), wl);
+			}
+		}
+	}
+
 	public List<Workload> getWorkloads() {
-//		return workloads;
+		// return workloads;
 		return null;
 	}
 }

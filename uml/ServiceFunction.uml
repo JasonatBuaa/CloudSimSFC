@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.cloudbus.cloudsim.sdn.sfc.ServiceFunction</OriginalElement>
+  <nodes>
+    <node x="126.5" y="0.0">org.cloudbus.cloudsim.Vm</node>
+    <node x="63.0" y="744.0">org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm</node>
+    <node x="0.0" y="1687.0">org.cloudbus.cloudsim.sdn.sfc.ServiceFunction</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm" target="org.cloudbus.cloudsim.Vm">
+      <point x="0.0" y="-446.5" />
+      <point x="0.0" y="347.0" />
+    </edge>
+    <edge source="org.cloudbus.cloudsim.sdn.sfc.ServiceFunction" target="org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm">
+      <point x="0.0" y="-105.0" />
+      <point x="0.0" y="446.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="133.5" y="1573.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

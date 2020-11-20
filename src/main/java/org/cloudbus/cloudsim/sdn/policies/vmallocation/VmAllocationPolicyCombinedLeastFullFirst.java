@@ -16,14 +16,14 @@ import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm;
 
 /**
- * VM Allocation Policy - BW and Compute combined, LFF.
- * When select a host to create a new VM, this policy chooses 
- * the least full host in terms of both compute power and network bandwidth.   
- *  
- * @author Jungmin Son
+ * VM Allocation Policy - BW and Compute combined, LFF. When select a host to
+ * create a new VM, this policy chooses the least full host in terms of both
+ * compute power and network bandwidth.
+ * 
+ * @author Jungmin Son, Jason Sun
  * @since CloudSimSDN 1.0
  */
-public class VmAllocationPolicyCombinedLeastFullFirst extends VmAllocationPolicyCombinedMostFullFirst{
+public class VmAllocationPolicyCombinedLeastFullFirst extends VmAllocationPolicyCombinedMostFullFirst {
 
 	public VmAllocationPolicyCombinedLeastFullFirst(List<? extends Host> list) {
 		super(list);
@@ -42,7 +42,7 @@ public class VmAllocationPolicyCombinedLeastFullFirst extends VmAllocationPolicy
 		if (getVmTable().containsKey(vm.getUid())) { // if this vm was not created
 			return false;
 		}
-		
+
 		int numHosts = getHostList().size();
 
 		// 1. Find/Order the best host for this VM by comparing a metric
@@ -51,29 +51,30 @@ public class VmAllocationPolicyCombinedLeastFullFirst extends VmAllocationPolicy
 		long requiredBw = vm.getCurrentRequestedBw();
 
 		boolean result = false;
-		
+
 		double[] freeResources = new double[numHosts];
 		for (int i = 0; i < numHosts; i++) {
-			double mipsFreePercent = (double)getFreeMips().get(i) / hostTotalMips; 
-			double bwFreePercent = (double)getFreeBw().get(i) / hostTotalBw;
-			
+			double mipsFreePercent = (double) getFreeMips().get(i) / hostTotalMips;
+			double bwFreePercent = (double) getFreeBw().get(i) / hostTotalBw;
+
 			freeResources[i] = convertWeightedMetric(mipsFreePercent, bwFreePercent);
 		}
-		
-		if(vm instanceof SDNVm) {
+
+		if (vm instanceof SDNVm) {
 			SDNVm svm = (SDNVm) vm;
-			if(svm.getHostName() != null) {
+			if (svm.getHostName() != null) {
 				// allocate this VM to the specific Host!
 				for (int i = 0; i < numHosts; i++) {
-					SDNHost h = (SDNHost)(getHostList().get(i));
-					if(svm.getHostName().equals(h.getName())) {
+					SDNHost h = (SDNHost) (getHostList().get(i));
+					if (svm.getHostName().equals(h.getName())) {
 						freeResources[i] = Double.MAX_VALUE;
 					}
 				}
 			}
 		}
 
-		for(int tries = 0; tries < numHosts; tries++) {// we still trying until we find a host or until we try all of them
+		for (int tries = 0; tries < numHosts; tries++) {// we still trying until we find a host or until we try all of
+														// them
 			double moreFree = Double.NEGATIVE_INFINITY;
 			int idx = -1;
 
@@ -84,50 +85,50 @@ public class VmAllocationPolicyCombinedLeastFullFirst extends VmAllocationPolicy
 					idx = i;
 				}
 			}
-			
-			if(idx==-1) {
-				System.err.println("Cannot assign the VM to any host:"+tries+"/"+numHosts);
+
+			if (idx == -1) {
+				System.err.println("Cannot assign the VM to any host:" + tries + "/" + numHosts);
 				return false;
 			}
-			
+
 			freeResources[idx] = Double.NEGATIVE_INFINITY;
-			
+
 			Host host = getHostList().get(idx);
 
 			// Check whether the host can hold this VM or not.
-			if( getFreeMips().get(idx) < requiredMips) {
-				//System.err.println("not enough MIPS");
-				//Cannot host the VM
+			if (getFreeMips().get(idx) < requiredMips) {
+				// System.err.println("not enough MIPS");
+				// Cannot host the VM
 				continue;
 			}
-			if( getFreeBw().get(idx) < requiredBw) {
-				//System.err.println("not enough BW");
-				//Cannot host the VM
+			if (getFreeBw().get(idx) < requiredBw) {
+				// System.err.println("not enough BW");
+				// Cannot host the VM
 				continue;
 			}
-			
+
 			result = host.vmCreate(vm);
 
 			if (result) { // if vm were succesfully created in the host
 				getVmTable().put(vm.getUid(), host);
 				getUsedPes().put(vm.getUid(), requiredPes);
 				getFreePes().set(idx, getFreePes().get(idx) - requiredPes);
-				
+
 				getUsedMips().put(vm.getUid(), (long) requiredMips);
-				getFreeMips().set(idx,  (long) (getFreeMips().get(idx) - requiredMips));
+				getFreeMips().set(idx, (long) (getFreeMips().get(idx) - requiredMips));
 
 				getUsedBw().put(vm.getUid(), (long) requiredBw);
-				getFreeBw().set(idx,  (long) (getFreeBw().get(idx) - requiredBw));
+				getFreeBw().set(idx, (long) (getFreeBw().get(idx) - requiredBw));
 				break;
-			} 
+			}
 		}
-		if(!result) {
-			System.err.println("Cannot assign this VM("+vm+") to any host. NumHosts="+numHosts);
-			//throw new IllegalArgumentException("Cannot assign this VM("+vm+") to any host. NumHosts="+numHosts);
+		if (!result) {
+			System.err.println("Cannot assign this VM(" + vm + ") to any host. NumHosts=" + numHosts);
+			// throw new IllegalArgumentException("Cannot assign this VM("+vm+") to any
+			// host. NumHosts="+numHosts);
 		}
 		logMaxNumHostsUsed();
 		return result;
 	}
 
 }
-

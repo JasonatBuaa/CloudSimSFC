@@ -1,0 +1,12 @@
+Switch: edge2,5.0,0.0
+Switch: edge1,5.0,0.0
+host01,5.0,0.0
+host02,5.0,0.0
+host04,5.0,0.0
+host03,5.0,0.0
+Switch: edge2,10.3,0.0
+Switch: edge1,10.3,0.0
+host01,10.3,0.0
+host02,10.3,0.0
+host04,10.3,0.0
+host03,10.3,0.0

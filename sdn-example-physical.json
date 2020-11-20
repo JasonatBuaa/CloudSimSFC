@@ -1,74 +1,118 @@
 {
-  "nodes" : [
+  "nodes": [
     {
-      "name": "core",
-      "type" : "core",
-      "iops" : 1000000000,
-      "upports" : 0,
-      "downports" : 2,
-      "bw" : 12500000,
+      "ram": 10240,
+      "pes": 16,
+      "name": "h_0_0",
+      "bw": 1000000000,
+      "mips": 4000,
+      "type": "host",
+      "storage": 10000000
     },
     {
-      "name": "edge1",
-      "type" : "edge",
-      "iops" : 1000000000,
-      "upports" : 1,
-      "downports" : 4,
-      "bw" : 12500000,
+      "ram": 10240,
+      "pes": 16,
+      "name": "h_0_1",
+      "bw": 1000000000,
+      "mips": 4000,
+      "type": "host",
+      "storage": 10000000
     },
     {
-      "name": "edge2",
-      "type" : "edge",
-      "iops" : 1000000000,
-      "upports" : 1,
-      "downports" : 4,
-      "bw" : 12500000,
-    },
-    
-    
-    {
-      "name": "host01",
-      "type" : "host",
-      "pes" : 1,
-      "mips" : 30000000,
-      "ram" : 10240,
-      "storage" : 10000000,
-      "bw" : 12500000,
-    },
-     {
-      "name": "host02",
-      "type" : "host",
-      "pes" : 1,
-      "mips" : 30000000,
-      "ram" : 10240,
-      "storage" : 10000000,
-      "bw" : 12500000,
+      "ram": 10240,
+      "pes": 16,
+      "name": "h_0_2",
+      "bw": 1000000000,
+      "mips": 4000,
+      "type": "host",
+      "storage": 10000000
     },
     {
-      "name": "host03",
-      "type" : "host",
-      "pes" : 1,
-      "mips" : 30000000,
-      "ram" : 10240,
-      "storage" : 10000000,
-      "bw" : 12500000,
+      "ram": 10240,
+      "pes": 16,
+      "name": "h_1_0",
+      "bw": 1000000000,
+      "mips": 4000,
+      "type": "host",
+      "storage": 10000000
     },
     {
-      "name": "host04",
-      "type" : "host",
-      "pes" : 1,
-      "mips" : 30000000,
-      "ram" : 10240,
-      "storage" : 10000000,
-      "bw" : 12500000,
+      "ram": 10240,
+      "pes": 16,
+      "name": "h_1_1",
+      "bw": 1000000000,
+      "mips": 4000,
+      "type": "host",
+      "storage": 10000000
+    },
+    {
+      "ram": 10240,
+      "pes": 16,
+      "name": "h_1_2",
+      "bw": 1000000000,
+      "mips": 4000,
+      "type": "host",
+      "storage": 10000000
+    },
+    {
+      "iops": 1000000000,
+      "name": "c",
+      "bw": 1000000000,
+      "type": "core"
+    },
+    {
+      "iops": 1000000000,
+      "name": "e0",
+      "bw": 1000000000,
+      "type": "edge"
+    },
+    {
+      "iops": 1000000000,
+      "name": "e1",
+      "bw": 1000000000,
+      "type": "edge"
     }
   ],
-  "links" : [
-    { "source" : "core" , "destination" : "edge1" , "latency" : 1.0 },
-    { "source" : "core" , "destination" : "edge2" , "latency" : 1.0 },
-    { "source" : "edge1" , "destination" : "host01" , "latency" : 1.0 },
-    { "source" : "edge1" , "destination" : "host02" , "latency" : 1.0 },
-    { "source" : "edge2" , "destination" : "host03" , "latency" : 1.0 },
-    { "source" : "edge2" , "destination" : "host04" , "latency" : 1.0 },
+  "links": [
+    {
+      "latency": 0.1,
+      "source": "c",
+      "destination": "e0"
+    },
+    {
+      "latency": 0.1,
+      "source": "e0",
+      "destination": "h_0_0"
+    },
+    {
+      "latency": 0.1,
+      "source": "e0",
+      "destination": "h_0_1"
+    },
+    {
+      "latency": 0.1,
+      "source": "e0",
+      "destination": "h_0_2"
+    },
+    {
+      "latency": 0.1,
+      "source": "c",
+      "destination": "e1"
+    },
+    {
+      "latency": 0.1,
+      "source": "e1",
+      "destination": "h_1_0"
+    },
+    {
+      "latency": 0.1,
+      "source": "e1",
+      "destination": "h_1_1"
+    },
+    {
+      "latency": 0.1,
+      "source": "e1",
+      "destination": "h_1_2"
+    }
   ]
 }
