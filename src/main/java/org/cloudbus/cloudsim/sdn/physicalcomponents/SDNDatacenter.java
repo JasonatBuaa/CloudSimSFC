@@ -32,7 +32,9 @@ import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystem;
 import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationInGroup;
 import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationPolicyPriorityFirst;
 import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmGroup;
+import org.cloudbus.cloudsim.sdn.virtualcomponents.QueuedVM;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm;
+// import org.cloudbus.cloudsim.sdn.virtualcomponents.TheQueue;
 import org.cloudbus.cloudsim.sdn.workload.Activity;
 import org.cloudbus.cloudsim.sdn.workload.Processing;
 import org.cloudbus.cloudsim.sdn.workload.Request;
@@ -439,7 +441,7 @@ public class SDNDatacenter extends Datacenter {
 		send(req.getUserId(), CloudSim.getMinTimeBetweenEvents(), CloudSimTagsSDN.REQUEST_FAILED, lastReq);
 	}
 
-	private void processPacketCompleted(Packet pkt) {
+	private void processPacketCompleted(Packet pkt) { // Jason: ? what is packet completed?
 		pkt.setPacketFinishTime(CloudSim.clock());
 		Request req = pkt.getPayload();
 		processNextActivity(req);
@@ -485,6 +487,19 @@ public class SDNDatacenter extends Datacenter {
 			Vm orgVm = nos.getSFForwarderOriginalVm(vmId);
 			if (orgVm != null) {
 				vmId = orgVm.getId();
+				// Jason: use the queue
+				// boolean enQueue = true;
+				// if (orgVm instanceof QueuedVM) {
+				// TheQueue theQueue = ((QueuedVM) orgVm).getTheQueue();
+				// enQueue = theQueue.addCloudlet(cl);
+				// }
+				// if (!enQueue) {
+				// // Jason: discard the request. Use cloudlet failed?? or enlarge the process
+				// time
+				// // to triger timeout?
+				// sendNow(getId(), CloudSimTags.CLOUDLET_CANCEL, cl); // Jason: here
+
+				// }
 				cl.setVmId(vmId);
 				host = getVmAllocationPolicy().getHost(vmId, userId);
 			} else {
@@ -493,8 +508,8 @@ public class SDNDatacenter extends Datacenter {
 		}
 		Vm vm = host.getVm(vmId, userId);
 		double mips = vm.getMips();
-		if (vm instanceof SDNVm) {
-			System.out.println("SDNVm!!! hahahaha");
+		if (vm instanceof QueuedVM) {
+			System.out.println("QueuedVM!!! hahahaha");
 		}
 		proc.setVmMipsPerPE(mips);
 	}

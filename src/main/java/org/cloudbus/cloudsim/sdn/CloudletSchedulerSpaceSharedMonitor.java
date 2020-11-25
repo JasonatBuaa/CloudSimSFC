@@ -24,7 +24,7 @@ public class CloudletSchedulerSpaceSharedMonitor extends CloudletSchedulerSpaceS
 
 	public CloudletSchedulerSpaceSharedMonitor(double timeOut) {
 		super();
-		this.timeoutLimit = timeOut;
+		this.timeoutLimit = timeOut; // Jason: here inputs the timeout value
 	}
 
 	@Override

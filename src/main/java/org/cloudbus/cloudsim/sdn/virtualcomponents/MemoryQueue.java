@@ -11,19 +11,27 @@ import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.Log;
 import org.cloudbus.cloudsim.core.CloudSim;
 
-public class TheQueue {
+public class MemoryQueue {
     private final SortedSet<EncapedCloudlet> cacheQueue = new TreeSet<EncapedCloudlet>();
 
     /**
      * A incremental number used for {@link EncapedCloudlet#serial} event attribute.
      */
     private long serial = 0;
-    private long queueSize;
-    private QueuedVM owner = null;
+    /**
+     * Jason: Unit: KiloByte = MegaByte * 1000
+     */
+    private long queueRemainingSize; // KB
+    private long queueTotalSize;
+    private int multiplerUnit = 1000;
+    // private QueuedVM owner = null;
 
-    public TheQueue(QueuedVM owner, long size) {
-        this.owner = owner;
-        this.queueSize = size;
+    // public TheQueue(QueuedVM owner, long size MB) {
+    public MemoryQueue(long size) {
+        // this.owner = owner; // Jason : I forget why it need to have an owner!!!
+        this.queueTotalSize = size * multiplerUnit;
+        this.queueRemainingSize = this.queueTotalSize;
+
     }
 
     /**
@@ -32,18 +40,24 @@ public class TheQueue {
      * 
      * @param newEvent The event to be put in the queue.
      */
-    public void addCloudlet(Cloudlet newCloudlet) {
-        if (newCloudlet.getCloudletLength() > queueSize * 1000) {
+    public boolean addCloudlet(Cloudlet newCloudlet) {
+        if (newCloudlet.getCloudletLength() > queueRemainingSize) {
             Log.print("Not enough queue size!!! Queue in: " + this);
+            return false;
         }
         EncapedCloudlet enCloudlet = new EncapedCloudlet(newCloudlet, CloudSim.clock(), serial++);
         // newCloudlet.setSerial(serial++);
         cacheQueue.add(enCloudlet);
+        queueRemainingSize -= newCloudlet.getCloudletLength();
+        return true;
     }
 
     public Cloudlet consumeCloudlet() {
         EncapedCloudlet enCloudlet = cacheQueue.first();
         cacheQueue.remove(enCloudlet);
+        if (enCloudlet != null) {
+            queueRemainingSize += enCloudlet.cl.getCloudletLength();
+        }
         return enCloudlet.cl;
     }
 
@@ -102,6 +116,22 @@ public class TheQueue {
      */
     public void clear() {
         cacheQueue.clear();
+    }
+
+    public long getQueueRemainingSize() {
+        return queueRemainingSize;
+    }
+
+    public void setQueueRemainingSize(long queueRemainingSize) {
+        this.queueRemainingSize = queueRemainingSize;
+    }
+
+    public long getQueueTotalSize() {
+        return queueTotalSize;
+    }
+
+    public void setQueueTotalSize(long queueTotalSize) {
+        this.queueTotalSize = queueTotalSize;
     }
 
 }

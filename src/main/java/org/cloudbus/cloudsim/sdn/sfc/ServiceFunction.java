@@ -106,7 +106,7 @@ public class ServiceFunction extends QueuedVM {
 	 * @throws Exception
 	 */
 	public ServiceFunction(int id, int userId, double mips, int numberOfPes, int ram, long bw, long size, String vmm,
-			CloudletScheduler cloudletScheduler, double startTime, double finishTime, double avail, int queueSize)
+			CloudletScheduler cloudletScheduler, double startTime, double finishTime, double avail, long queueSize)
 			throws Exception {
 		super(id, userId, mips, numberOfPes, ram, bw, size, vmm, cloudletScheduler, startTime, finishTime, avail,
 				queueSize);
@@ -147,10 +147,10 @@ public class ServiceFunction extends QueuedVM {
 	}
 
 	// public int getQueueRam() {
-	// 	return queueRam;
+	// return queueRam;
 	// }
 
 	// public void setQueueRam(int queueRam) {
-	// 	this.queueRam = queueRam;
+	// this.queueRam = queueRam;
 	// }
 }

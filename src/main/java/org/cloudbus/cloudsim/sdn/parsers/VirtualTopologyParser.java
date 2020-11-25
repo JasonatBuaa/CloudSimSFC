@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.cloudbus.cloudsim.CloudletScheduler;
 import org.cloudbus.cloudsim.sdn.CloudletSchedulerSpaceSharedMonitor;
+import org.cloudbus.cloudsim.sdn.CloudletSchedulerSpaceSharedQueueAwareMonitor;
 import org.cloudbus.cloudsim.sdn.Configuration;
 import org.cloudbus.cloudsim.sdn.sfc.ServiceFunction;
 import org.cloudbus.cloudsim.sdn.sfc.ServiceFunctionChainPolicy;
@@ -144,7 +145,11 @@ public class VirtualTopologyParser {
 					nodeName2 = nodeName + n;
 				}
 
-				CloudletScheduler clSch = new CloudletSchedulerSpaceSharedMonitor(Configuration.TIME_OUT);
+				// Jason: this one is hard coding presently.
+				// I can not figure out a more deligated way to accomplish the queue.
+
+				CloudletScheduler clSch = new CloudletSchedulerSpaceSharedQueueAwareMonitor(queueSize,
+						Configuration.TIME_OUT);
 				// CloudletScheduler clSch = new CloudletSchedulerTimeSharedMonitor(mips);
 
 				// int vmId = SDNVm.getUniqueVmId();
@@ -163,6 +168,10 @@ public class VirtualTopologyParser {
 					vm.setHostName(hostName);
 					vm.setOptionalDatacenters(optionalDatacenter);
 					vmList.put(dcName, vm);
+
+					// Jason: Check: 1. here use the new
+					// CloudletSchedulerSpaceSharedQueueAwareMonitor as the new scheduler.
+
 				} else {
 					// Create ServiceFunction objects
 					ServiceFunction sf;
@@ -180,6 +189,10 @@ public class VirtualTopologyParser {
 						sf.setMiddleboxType(nodeType);
 						vmList.put(dcName, sf);
 						sfList.add(sf);
+
+						// Jason: Check: 2. here use the new
+						// CloudletSchedulerSpaceSharedQueueAwareMonitor as the new scheduler.
+
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
