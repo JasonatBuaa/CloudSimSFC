@@ -16,6 +16,9 @@ public class EncapedResCloudlet extends ResCloudlet implements Comparable<Encape
     public int priority;
 
     private long serial = 0;
+    private long numCount = 0;
+
+    public final int defaultPriority = 99;
 
     /**
      * Jason: This version need a priority value
@@ -29,6 +32,21 @@ public class EncapedResCloudlet extends ResCloudlet implements Comparable<Encape
         this.aTime = arrivalTime;
         this.serial = ordering;
         this.priority = preSetPriority;
+        numCount++;
+    }
+
+    public EncapedResCloudlet(Cloudlet cloudlet, double arrivalTime, int preSetPriority) {
+        super(cloudlet);
+        this.aTime = arrivalTime;
+        this.serial = ++numCount;
+        this.priority = preSetPriority;
+    }
+
+    public EncapedResCloudlet(Cloudlet cloudlet, double arrivalTime) {
+        super(cloudlet);
+        this.aTime = arrivalTime;
+        this.serial = ++numCount;
+        this.priority = defaultPriority;
     }
 
     /**
@@ -41,7 +59,8 @@ public class EncapedResCloudlet extends ResCloudlet implements Comparable<Encape
         super(cloudlet);
         this.aTime = arrivalTime;
         this.serial = ordering;
-        this.priority = 0; // priority: the higher, the more prioritized.
+        this.priority = defaultPriority; // priority: the higher, the more prioritized.
+        numCount++;
     }
 
     // @Override
