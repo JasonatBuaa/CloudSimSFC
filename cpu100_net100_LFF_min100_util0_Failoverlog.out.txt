@@ -12,6 +12,10 @@ Entities started.
 0.0: NOS: Trying to Create VM #1 in dc1, (0.0~Infinity)
 0.0: NOS: Trying to Create VM #3 in dc1, (0.0~Infinity)
 0.0: NOS: Trying to Create VM #2 in dc1, (0.0~Infinity)
+0.0: Broker: Shuttingdown.. VM:6
+0.0: Broker: Shuttingdown.. VM:5
+0.0: Broker: Shuttingdown.. VM:4
+0.0: Broker: Shuttingdown.. VM:3
 0.0: NOS: VM Created: VM #0 (vm01) in (host04) in host04
 0.0: VMs are in different hosts:host04(0)->host03(2)
 0.0: VMs are in different hosts:host04(0)->host02(1)
@@ -50,54 +54,57 @@ Entities started.
 0.0: VMs are in different hosts:host03(2)->host01(3)
 5.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
 5.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-10.3: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@7f9a81e8
+10.3: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@7823a2f9
 10.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
 10.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-13.3: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@9629756
+13.3: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@4cc0edeb
 15.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
 15.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
 20.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
 20.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-23.3: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@62ee68d8
-24.41033333333333: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@735b5592
+23.3: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@457e2f02
+25.3: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@5c7fa833
 25.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
 25.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-33.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-33.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-38.11366666666667: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@58651fd0
-38.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-38.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-43.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-43.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-60.333999999999996: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-60.333999999999996: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-65.334: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.10002000393412017
-65.334: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.10002000400080016
-70.334: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-70.334: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-87.55426666666665: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-87.55426666666665: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-92.55426666666665: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-92.55426666666665: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-92.55426666666665: Simulation: No more future events
+30.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+30.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+35.3: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@39aeed2f
+35.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+35.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+40.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+40.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+43.81699999999999: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@724af044
+45.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+45.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+50.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+50.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+57.520333333333326: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+57.520333333333326: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+62.520333333333326: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+62.520333333333326: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+100.1: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+100.1: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+105.1: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+105.1: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+105.1: Simulation: No more future events
 CloudInformationService: Notify all CloudSim entities for shutting down.
 dc1 is shutting down...
-92.55426666666665: Broker: Shuttingdown.. VM:0
-92.55426666666665: Broker: Shuttingdown.. VM:1
-92.55426666666665: Broker: Shuttingdown.. VM:3
-92.55426666666665: Broker: Shuttingdown.. VM:2
+105.1: Broker: Shuttingdown.. VM:0
+105.1: Broker: Shuttingdown.. VM:1
+105.1: Broker: Shuttingdown.. VM:3
+105.1: Broker: Shuttingdown.. VM:2
 Simulation completed.
 Simulation completed.
-92.55426666666665: ========== EXPERIMENT FINISHED ===========
+105.1: ========== EXPERIMENT FINISHED ===========
 ========== HOST POWER CONSUMPTION based on Actual Workload processing ===========
-Host #6: 4.287771236847666
-Host #5: 0.17736111111111136
-Host #4: 2.116141887383622
-Host #3: 0.17736111110398176
+Host #6: 1.3363358333048148
+Host #5: 0.0
+Host #4: 0.0
+Host #3: 0.0
 ========== SWITCH POWER CONSUMPTION AND DETAILED UTILIZATION ===========
-Switch:edge2: 0.050883799999999924
-Switch:edge1: 0.05088380000000006
-Switch:core: 0.025441899999999962
+Switch:edge2: 0.0
+Switch:edge1: 0.0
+Switch:core: 0.0
 ========== HOST Overload percentage ===========
 Overload Host #6: 0.0/0.0=0.0... Scaled Overload duration= 0.0
 Overload Host #5: 0.0/0.0=0.0... Scaled Overload duration= 0.0
@@ -131,9 +138,9 @@ OVERBOOKING_RATIO_INIT:1.0
 OVERBOOKING_RATIO_UTIL_PORTION:0.0
 OVERLOAD_HOST_PERCENTILE_THRESHOLD:0.0
 ========== TOTAL POWER CONSUMPTION ===========
-Host energy consumed: 6.758635346446382
-Switch energy consumed: 0.12720949999999995
-Total energy consumed: 6.885844846446382
+Host energy consumed: 1.3363358333048148
+Switch energy consumed: 0.0
+Total energy consumed: 1.3363358333048148
 ========== MIGRATION ===========
 Attempted: 0
 Completed: 0
@@ -145,25 +152,12 @@ Scaled overloaded: 1.0
 Overloaded Percent: 0.0
 Simultanously used hosts:4
 ============= SDNBroker.printResult() =============================
-Workloads Num: 1
-Workloads CPU Num: 2
-Workloads Network Num: 1
-Workloads Timed Out Num: 5
-Total serve time: 54.25426666666665
-Total serve time CPU: 49.24666666666666
-Total serve time Network: 5.007599999999989
-Avg serve time: 54.25426666666665
-Overall overtime percentage: 0.0
-Avg serve time CPU: 24.62333333333333
-CPU overtime percentage: 0.0
-Avg serve time Network: 5.007599999999989
-Network overtime percentage: 1.0
+Workloads Num: 0
+Workloads CPU Num: 0
+Workloads Network Num: 0
+Workloads Timed Out Num: 6
+Total serve time: 0.0
+Total serve time CPU: 0.0
+Total serve time Network: 0.0
 ============= SDNBroker.printResult() Group analysis =======================
-Group num: 0, groupNumWorkloads:1
-Group num: 0, groupTotalServetime:54.25426666666665
-Group num: 0, groupTotalServetimeCPU:49.24666666666666
-Group num: 0, groupTotalServetimeNetwork:5.007599999999989
-Group num: 0, group avg Serve time:54.25426666666665
-Group num: 0, group avg Serve time CPU:49.24666666666666
-Group num: 0, group avg Serve time Network:5.007599999999989
 CloudSim SDN finished!

@@ -21,6 +21,7 @@ import java.util.Queue;
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.UtilizationModel;
 import org.cloudbus.cloudsim.sdn.Configuration;
+import org.cloudbus.cloudsim.sdn.example.StartAvailability;
 import org.cloudbus.cloudsim.sdn.workload.Processing;
 import org.cloudbus.cloudsim.sdn.workload.Request;
 import org.cloudbus.cloudsim.sdn.workload.Transmission;
@@ -80,6 +81,10 @@ public class WorkloadParser {
 
 	public static String getResultFileName(String fileName) {
 		String result_file = null;
+
+		fileName += (StartAvailability.failOverDebug ? "" : "Availability");
+		fileName += (StartAvailability.queueDebug ? "" : "Queue");
+
 		int indexSlash = fileName.lastIndexOf("/");
 		if (indexSlash != -1) {
 			String path_folder = fileName.substring(0, indexSlash + 1);

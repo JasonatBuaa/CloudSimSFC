@@ -45,6 +45,11 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
         cloudletWaitingList = new MemoryQueue(queueSize);
     }
 
+    public void GiveAWarningForDebug() {
+        System.out.println("==============================================");
+        System.out.println("warning!! this message denotes the use of an unexpected function!!!");
+    }
+
     @Override
     public double cloudletSubmit(Cloudlet cloudlet) {
         return cloudletSubmit(cloudlet, 0.0);
@@ -74,7 +79,12 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
         // Jason: change of design:
         // Since we have combined our memoryqueue with CloudSimSDN's Waitinglist, we
         // should change the cloudlet processing procedure hereafter.
-        ResCloudlet ercl;
+
+        // Jason: After changed!!
+        // 1. if MemoryQueue has sufficient space, then enQueue the request; else, drop
+        // the request(check else)
+        // 2. if can exec, then transfer the request from MemoryQueue to execlist
+        EncapedResCloudlet ercl;
 
         // if (!(cloudletWaitingList.getQueueRemainingSize() > clLength) ||
         // !cloudletWaitingList.addCloudlet(cloudlet)) {
@@ -88,30 +98,56 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
         // }
 
         // it can go to the exec list
-        if ((currentCpus - usedPes) >= cloudlet.getNumberOfPes()) {
-            ercl = new EncapedResCloudlet(cloudlet, CloudSim.clock());
-            ercl.setCloudletStatus(Cloudlet.INEXEC);
-            for (int i = 0; i < cloudlet.getNumberOfPes(); i++) {
-                ercl.setMachineAndPeId(0, i);
+
+        // EncapedResCloudlet ercl = new EncapedResCloudlet(cloudlet, CloudSim.clock(),
+        // 0);
+        ercl = getCloudletWaitingList(true).addCloudlet(cloudlet);
+        // ResCloudlet rcl = new ResCloudlet(cloudlet);
+        // rcl.setCloudletStatus(Cloudlet.QUEUED);
+        ercl.setCloudletStatus(Cloudlet.QUEUED);
+        // getCloudletWaitingList().add(rcl); // Jason: encapsulate this function to
+        // support memory queue features.
+
+        // if ((currentCpus - usedPes) >= cloudlet.getNumberOfPes()) {
+        // ercl.setCloudletStatus(Cloudlet.INEXEC);
+        // for (int i = 0; i < cloudlet.getNumberOfPes(); i++) {
+        // ercl.setMachineAndPeId(0, i);
+        // }
+        // ercl = getCloudletWaitingList(true).consumeCloudlet();
+        // getCloudletExecList().add(ercl);
+        // usedPes += cloudlet.getNumberOfPes();
+
+        if ((currentCpus - usedPes) >= this.getCloudletWaitingList(true).testConsumeCloudlet().getNumberOfPes()) {
+            if (!getCloudletWaitingList(true).isEmpty()) {
+                List<EncapedResCloudlet> toRemoveinWaitingList = new ArrayList<EncapedResCloudlet>();
+                for (int i = 0; !getCloudletWaitingList(true).isEmpty()
+                        && (currentCpus - usedPes) >= getCloudletWaitingList(true).testConsumeCloudlet()
+                                .getNumberOfPes();) {
+                    ercl = getCloudletWaitingList(true).consumeCloudlet();
+                    ercl.setCloudletStatus(Cloudlet.INEXEC);
+                    for (int k = 0; k < ercl.getNumberOfPes(); k++) {
+                        ercl.setMachineAndPeId(0, i);
+                    }
+                    getCloudletExecList().add(ercl);
+                    usedPes += ercl.getNumberOfPes();
+                    toRemoveinWaitingList.add(ercl);
+                }
+                getCloudletWaitingList(true).removeAll(toRemoveinWaitingList);
             }
-            getCloudletExecList().add(ercl);
-            usedPes += cloudlet.getNumberOfPes();
-        } else {// no enough free PEs: go to the waiting queue
-            // EncapedResCloudlet ercl = new EncapedResCloudlet(cloudlet, CloudSim.clock(),
-            // 0);
-            ercl = getCloudletWaitingList(true).addCloudlet(cloudlet);
-            // ResCloudlet rcl = new ResCloudlet(cloudlet);
-            // rcl.setCloudletStatus(Cloudlet.QUEUED);
-            ercl.setCloudletStatus(Cloudlet.QUEUED);
-            // getCloudletWaitingList().add(rcl); // Jason: encapsulate this function to
-            // support memory queue features.
+
+        } else
+
+        {// no enough free PEs: remain in the waiting queue
+
             return 0.0;
         }
 
         // calculate the expected time for cloudlet completion
         double capacity = 0.0;
         int cpus = 0;
-        for (Double mips : getCurrentMipsShare()) {
+        for (Double mips :
+
+        getCurrentMipsShare()) {
             capacity += mips;
             if (mips > 0) {
                 cpus++;
@@ -156,6 +192,7 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
 
     @Override
     public double cloudletResume(int cloudletId) {
+        GiveAWarningForDebug();
         boolean found = false;
         int position = 0;
 
@@ -275,28 +312,6 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
             getCloudletExecList().removeAll(toRemove);
 
             // for each finished cloudlet, add a new one from the waiting list
-            // Jason: Todo!! this functional part should be re-build
-            // if (!getCloudletWaitingList(true).isEmpty()) {
-            // for (int i = 0; i < finished; i++) {
-            // toRemove.clear();
-            // List<EncapedResCloudlet> toRemoveinWaitingList = new
-            // ArrayList<EncapedResCloudlet>();
-            // for (EncapedResCloudlet ercl : getCloudletWaitingList(true).getCacheQueue())
-            // {
-            // if ((currentCpus - usedPes) >= ercl.getNumberOfPes()) {
-            // ercl.setCloudletStatus(Cloudlet.INEXEC);
-            // for (int k = 0; k < ercl.getNumberOfPes(); k++) {
-            // ercl.setMachineAndPeId(0, i);
-            // }
-            // getCloudletExecList().add(ercl);
-            // usedPes += ercl.getNumberOfPes();
-            // toRemoveinWaitingList.add(ercl);
-            // break;
-            // }
-            // }
-            // getCloudletWaitingList(true).removeAll(toRemoveinWaitingList);
-            // }
-            // }
 
             // Jason: updated logic:
             // Jason: In this part, we linearly search for the next Cloudlet in the
@@ -306,8 +321,9 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
             if (!getCloudletWaitingList(true).isEmpty()) {
                 EncapedResCloudlet ercl;
                 List<EncapedResCloudlet> toRemoveinWaitingList = new ArrayList<EncapedResCloudlet>();
-                for (int i = 0; (currentCpus - usedPes) >= getCloudletWaitingList(true).testConsumeCloudlet()
-                        .getNumberOfPes();) {
+                for (int i = 0; !getCloudletWaitingList(true).isEmpty()
+                        && (currentCpus - usedPes) >= getCloudletWaitingList(true).testConsumeCloudlet()
+                                .getNumberOfPes();) {
                     toRemove.clear();
                     ercl = getCloudletWaitingList(true).consumeCloudlet();
                     ercl.setCloudletStatus(Cloudlet.INEXEC);
@@ -319,7 +335,6 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
                     toRemoveinWaitingList.add(ercl);
                 }
                 getCloudletWaitingList(true).removeAll(toRemoveinWaitingList);
-
             }
 
             // estimate finish time of cloudlets in the execution queue
@@ -358,6 +373,8 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
     // }
 
     // Jason: Todo! check this part.
+    // Jason: what is a disabled cloudlet? meaning dropped because of insufficient
+    // queue ??
     public void setDisabledCloudlet(EncapedResCloudlet encapedRcl) {
         List<ResCloudlet> rslList = getCloudletFailedList();
         rslList.add(encapedRcl);
@@ -398,6 +415,7 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
 
     @Override
     public Cloudlet cloudletCancel(int cloudletId) {
+        GiveAWarningForDebug();
         // First, looks in the finished queue
         for (ResCloudlet rcl : getCloudletFinishedList()) {
             if (rcl.getCloudletId() == cloudletId) {
@@ -442,6 +460,7 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
 
     @Override
     public boolean cloudletPause(int cloudletId) {
+        GiveAWarningForDebug();
         boolean found = false;
         int position = 0;
 

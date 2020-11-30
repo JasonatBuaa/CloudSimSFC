@@ -18,10 +18,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.lang.model.util.ElementScanner6;
+
 import org.cloudbus.cloudsim.CloudletScheduler;
 import org.cloudbus.cloudsim.sdn.CloudletSchedulerSpaceSharedMonitor;
 import org.cloudbus.cloudsim.sdn.CloudletSchedulerSpaceSharedQueueAwareMonitor;
 import org.cloudbus.cloudsim.sdn.Configuration;
+import org.cloudbus.cloudsim.sdn.example.StartAvailability;
 import org.cloudbus.cloudsim.sdn.sfc.ServiceFunction;
 import org.cloudbus.cloudsim.sdn.sfc.ServiceFunctionChainPolicy;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.FlowConfig;
@@ -104,7 +107,7 @@ public class VirtualTopologyParser {
 
 			int queueSize = 0;
 			if (node.get("queuesize") != null)
-				queueSize = new BigDecimal((Long) node.get("ram")).intValueExact();
+				queueSize = new BigDecimal((Long) node.get("queuesize")).intValueExact();
 
 			double starttime = 0;
 			double endtime = Double.POSITIVE_INFINITY;
@@ -147,9 +150,14 @@ public class VirtualTopologyParser {
 
 				// Jason: this one is hard coding presently.
 				// I can not figure out a more deligated way to accomplish the queue.
-
-				CloudletScheduler clSch = new CloudletSchedulerSpaceSharedQueueAwareMonitor(queueSize,
-						Configuration.TIME_OUT);
+				CloudletScheduler clSch;
+				if (!StartAvailability.queueDebug)
+					// CloudletScheduler clSch = new
+					// CloudletSchedulerSpaceSharedQueueAwareMonitor(queueSize,
+					// Configuration.TIME_OUT);
+					clSch = new CloudletSchedulerSpaceSharedQueueAwareMonitor(queueSize, Configuration.TIME_OUT);
+				else
+					clSch = new CloudletSchedulerSpaceSharedMonitor(mips);
 				// CloudletScheduler clSch = new CloudletSchedulerTimeSharedMonitor(mips);
 
 				// int vmId = SDNVm.getUniqueVmId();

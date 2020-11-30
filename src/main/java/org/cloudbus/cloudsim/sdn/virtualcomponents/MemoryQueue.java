@@ -7,14 +7,21 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import javax.naming.directory.InvalidAttributeValueException;
+// import javax.naming.directory.InvalidAttributeValueException;
 
-import com.google.common.collect.Queues;
+// import com.google.common.collect.Queues;
 
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.Log;
-import org.cloudbus.cloudsim.ResCloudlet;
+// import org.cloudbus.cloudsim.ResCloudlet;
 import org.cloudbus.cloudsim.core.CloudSim;
+
+/**
+ * 
+ * Jason: Todo!! maybe we could implement a sorted list to support the
+ * CloudSimSDN original design.
+ * 
+ */
 
 public class MemoryQueue {
     private final SortedSet<EncapedResCloudlet> cacheQueue = new TreeSet<EncapedResCloudlet>();
@@ -27,16 +34,16 @@ public class MemoryQueue {
     /**
      * Jason: Unit: KiloByte = MegaByte * 1000
      */
-    private long queueRemainingSize; // KB
-    private long queueTotalSize;
+    private long queueRemainingSpace; // KB
+    private long queueTotalSpace;
     private int multiplerUnit = 1000;
     // private QueuedVM owner = null;
 
     // public TheQueue(QueuedVM owner, long size MB) {
     public MemoryQueue(long size) {
         // this.owner = owner; // Jason : I forget why it need to have an owner!!!
-        this.queueTotalSize = size * multiplerUnit;
-        this.queueRemainingSize = this.queueTotalSize;
+        this.queueTotalSpace = size * multiplerUnit;
+        this.queueRemainingSpace = this.queueTotalSpace;
 
     }
 
@@ -47,7 +54,7 @@ public class MemoryQueue {
      * @param newEvent The event to be put in the queue.
      */
     // public boolean addCloudlet(Cloudlet newCloudlet) {
-    // if (newCloudlet.getCloudletLength() > queueRemainingSize) {
+    // if (newCloudlet.getCloudletLength() > queueRemainingSpace) {
     // Log.print("Not enough queue size!!! Queue in: " + this);
     // return false;
     // }
@@ -55,28 +62,31 @@ public class MemoryQueue {
     // CloudSim.clock(), serial++);
     // // newCloudlet.setSerial(serial++);
     // cacheQueue.add(enCloudlet);
-    // queueRemainingSize -= newCloudlet.getCloudletLength();
+    // queueRemainingSpace -= newCloudlet.getCloudletLength();
     // return true;
     // }
 
     public EncapedResCloudlet addCloudlet(Cloudlet newCloudlet) {
-        EncapedResCloudlet enCloudlet = new EncapedResCloudlet(newCloudlet, CloudSim.clock(), serial++);
+        EncapedResCloudlet ercl = new EncapedResCloudlet(newCloudlet, CloudSim.clock(), serial++);
         // newCloudlet.setSerial(serial++);
         // cacheQueue.add(enCloudlet);
-        // queueRemainingSize -= newCloudlet.getCloudletLength();
-        if (!_addEncapedResCloudlet(enCloudlet)) {
-            return null;
+        // queueRemainingSpace -= newCloudlet.getCloudletLength();
+        if (_addEncapedResCloudlet(ercl)) {
+            return ercl;
         }
-        return enCloudlet;
+        // return enCloudlet;
+        return null;
     }
 
     private boolean _addEncapedResCloudlet(EncapedResCloudlet ercl) {
-        if (ercl.getCloudletLength() > queueRemainingSize) {
+        if (ercl.getCloudletLength() > queueRemainingSpace) {
             Log.print("Not enough queue size!!! Queue in: " + this);
             return false;
         }
         if (cacheQueue.add(ercl)) {
-            queueRemainingSize -= ercl.getCloudletLength();
+            queueRemainingSpace -= ercl.getCloudletLength();
+            System.out.println("Jason: Queue Debug here == current queue length: " + getQueueRemainingSpace());
+            System.out.println("Jason: Queue Debug here == current queue items: " + size());
             return true;
         } else {
             System.out.println("ERROR!!!!! when adding cloudlet to memoryqueue!!!");
@@ -85,7 +95,9 @@ public class MemoryQueue {
     }
 
     /**
-     * Adds a new event to the head of the queue.
+     * Adds a new event to the head of the queue. It's not necessarily the head,
+     * because we use the priority value to control the position of the inputed
+     * cloudlet.
      * 
      * @param newEvent The event to be put in the queue.
      */
@@ -108,18 +120,18 @@ public class MemoryQueue {
     // EncapedResCloudlet enCloudlet = cacheQueue.first();
     // cacheQueue.remove(enCloudlet);
     // if (enCloudlet != null) {
-    // queueRemainingSize += enCloudlet.getCloudletLength();
+    // queueRemainingSpace += enCloudlet.getCloudletLength();
     // }
     // return enCloudlet.getCloudlet();
     // }
 
     public EncapedResCloudlet consumeCloudlet() {
-        EncapedResCloudlet enCloudlet = cacheQueue.first();
-        if (enCloudlet != null) {
-            cacheQueue.remove(enCloudlet);
-            queueRemainingSize += enCloudlet.getCloudletLength();
+        EncapedResCloudlet ercl = cacheQueue.first();
+        if (ercl != null) {
+            cacheQueue.remove(ercl);
+            queueRemainingSpace += ercl.getCloudletLength();
         }
-        return enCloudlet;
+        return ercl;
     }
 
     public EncapedResCloudlet testConsumeCloudlet() {
@@ -202,10 +214,12 @@ public class MemoryQueue {
      * @return true, if successful
      */
     public boolean remove(EncapedResCloudlet encloudlet) {
-        long length = encloudlet.getCloudletLength();
-        if (this.getQueueRemainingSize() + length > this.getQueueTotalSize())
+        long length = 0;
+        if (cacheQueue.contains(encloudlet))
+            length = encloudlet.getCloudletLength();
+        if (this.getQueueRemainingSpace() + length > this.getQueueTotalSpace())
             System.out.println("ERROR!!! in memoryqueue remove");
-        this.setQueueRemainingSize(this.getQueueRemainingSize() + length);
+        this.setQueueRemainingSpace(this.getQueueRemainingSpace() + length);
         return cacheQueue.remove(encloudlet);
     }
 
@@ -222,11 +236,12 @@ public class MemoryQueue {
     public boolean removeAll(Collection<EncapedResCloudlet> encloudlets) {
         long totalLength = 0;
         for (EncapedResCloudlet ercl : encloudlets) {
-            totalLength += ercl.getCloudletLength();
+            if (cacheQueue.contains(ercl))
+                totalLength += ercl.getCloudletLength();
         }
-        if (this.getQueueRemainingSize() + totalLength > this.getQueueTotalSize())
+        if (this.getQueueRemainingSpace() + totalLength > this.getQueueTotalSpace())
             System.out.println("ERROR!!! in memoryqueue removeAll");
-        this.setQueueRemainingSize(this.getQueueRemainingSize() + totalLength);
+        this.setQueueRemainingSpace(this.getQueueRemainingSpace() + totalLength);
         return cacheQueue.removeAll(encloudlets);
     }
 
@@ -245,20 +260,24 @@ public class MemoryQueue {
         cacheQueue.clear();
     }
 
-    public long getQueueRemainingSize() {
-        return queueRemainingSize;
+    public long getQueueRemainingSpace() {
+        return queueRemainingSpace;
     }
 
-    public void setQueueRemainingSize(long queueRemainingSize) {
-        this.queueRemainingSize = queueRemainingSize;
+    public void setQueueRemainingSpace(long queueRemainingSpace) {
+        this.queueRemainingSpace = queueRemainingSpace;
+        if (this.queueRemainingSpace > this.queueTotalSpace) {
+            System.out.println("wrong argument here!!!");
+            System.out.println("check the algorithm");
+        }
     }
 
-    public long getQueueTotalSize() {
-        return queueTotalSize;
+    public long getQueueTotalSpace() {
+        return queueTotalSpace;
     }
 
-    public void setQueueTotalSize(long queueTotalSize) {
-        this.queueTotalSize = queueTotalSize;
+    public void setQueueTotalSpace(long queueTotalSpace) {
+        this.queueTotalSpace = queueTotalSpace;
     }
 
     public SortedSet<EncapedResCloudlet> getCacheQueue() {

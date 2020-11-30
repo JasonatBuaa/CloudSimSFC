@@ -66,8 +66,12 @@ public class StartAvailability {
     // protected static String workload_file = "SmallSFCDemo/singleSmallWL.csv";
 
     protected static String physicalTopologyFile = "SmallSFCDemo/4HostsPhysical.json";
-    protected static String deploymentFile = "SmallSFCDemo/SingleSF.json";
-    protected static String workload_file = "SmallSFCDemo/TripleWL.csv";
+    // protected static String deploymentFile = "SmallSFCDemo/SingleSF.json"; //
+    // without queue
+    protected static String deploymentFile = "SmallSFCDemo/SingleQueuedSF.json";
+
+    // protected static String workload_file = "SmallSFCDemo/TripleWL.csv";
+    protected static String workload_file = "SmallSFCDemo/WLQueue.csv";
 
     protected static String failOver_file = "SmallSFCDemo/FailureEvent.csv";
 
@@ -77,6 +81,7 @@ public class StartAvailability {
             failOver_file };
 
     public static boolean failOverDebug = false; // True: Do not injuct fail over event.
+    public static boolean queueDebug = true; // True: Do not use MemoryQueue.
 
     private static boolean logEnabled = true; // Log for debug
     /*
@@ -178,8 +183,9 @@ public class StartAvailability {
         failOverEvents = new ArrayList<>();
         failOverEvents.add(args[args.length - 1]);
 
-        FileOutputStream output = new FileOutputStream(
-                Configuration.workingDirectory + Configuration.experimentName + "log.out.txt");
+        String outputFileName = Configuration.workingDirectory + Configuration.experimentName
+                + (failOverDebug ? "" : "Failover") + (!queueDebug ? "" : "Queue") + "log.out.txt";
+        FileOutputStream output = new FileOutputStream(outputFileName);
         Log.setOutput(output);
 
         Log.enable();

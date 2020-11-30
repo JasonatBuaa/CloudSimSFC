@@ -15,9 +15,15 @@ import org.cloudbus.cloudsim.Log;
 import org.cloudbus.cloudsim.core.CloudSim;
 
 /**
+ * 
+ * Jason: this file is deprecated. Moved to MemoryQueue
+ * 
  * Jason: Todo!! maybe we could implement a sorted list to support the
  * CloudSimSDN original design.
+ * 
+ * 
  */
+
 public class MemQueue {
     private final SortedSet<EncapedResCloudlet> cacheQueue = new TreeSet<EncapedResCloudlet>();
 

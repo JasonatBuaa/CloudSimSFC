@@ -1,0 +1,196 @@
+Data center infrastructure (Physical Topology) : SmallSFCDemo/4HostsPhysical.json
+Virtual Machine and Network requests (Virtual Topology) : SmallSFCDemo/SingleQueuedSF.json
+Workloads in ./ :
+  SmallSFCDemo/WLQueue.csv
+Starting CloudSim SDN...
+Initialising...
+Starting CloudSim version 3.0
+dc1 is starting...
+Entities started.
+0.0: NOS: Starting deploying application..
+0.0: NOS: Trying to Create VM #0 in dc1, (0.0~Infinity)
+0.0: NOS: Trying to Create VM #1 in dc1, (0.0~Infinity)
+0.0: NOS: Trying to Create VM #3 in dc1, (0.0~Infinity)
+0.0: NOS: Trying to Create VM #2 in dc1, (0.0~Infinity)
+0.0: Broker: Shuttingdown.. VM:6
+0.0: Broker: Shuttingdown.. VM:5
+0.0: Broker: Shuttingdown.. VM:4
+0.0: Broker: Shuttingdown.. VM:3
+0.0: NOS: VM Created: VM #0 (vm01) in (host04) in host04
+0.0: VMs are in different hosts:host04(0)->host02(1)
+0.0: VMs are in different hosts:host04(0)->host03(2)
+0.0: VMs are in different hosts:host04(0)->host02(1)
+0.0: VMs are in different hosts:host01(3)->host02(1)
+0.0: VMs are in different hosts:host04(0)->host03(2)
+0.0: VMs are in different hosts:host03(2)->host01(3)
+0.0: VMs are in different hosts:host01(3)->host02(1)
+0.0: VMs are in different hosts:host03(2)->host01(3)
+0.0: NOS: VM Created: VM #1 (vm02) in (host02) in host02
+0.0: VMs are in different hosts:host04(0)->host02(1)
+0.0: VMs are in different hosts:host04(0)->host03(2)
+0.0: VMs are in different hosts:host04(0)->host02(1)
+0.0: VMs are in different hosts:host01(3)->host02(1)
+0.0: VMs are in different hosts:host04(0)->host03(2)
+0.0: VMs are in different hosts:host03(2)->host01(3)
+0.0: VMs are in different hosts:host01(3)->host02(1)
+0.0: VMs are in different hosts:host03(2)->host01(3)
+0.0: NOS: VM Created: VM #3 (vnf2) in (host01) in host01
+0.0: VMs are in different hosts:host04(0)->host02(1)
+0.0: VMs are in different hosts:host04(0)->host03(2)
+0.0: VMs are in different hosts:host04(0)->host02(1)
+0.0: VMs are in different hosts:host01(3)->host02(1)
+0.0: VMs are in different hosts:host04(0)->host03(2)
+0.0: VMs are in different hosts:host03(2)->host01(3)
+0.0: VMs are in different hosts:host01(3)->host02(1)
+0.0: VMs are in different hosts:host03(2)->host01(3)
+0.0: NOS: VM Created: VM #2 (vnf1) in (host03) in host03
+0.0: VMs are in different hosts:host04(0)->host02(1)
+0.0: VMs are in different hosts:host04(0)->host03(2)
+0.0: VMs are in different hosts:host04(0)->host02(1)
+0.0: VMs are in different hosts:host01(3)->host02(1)
+0.0: VMs are in different hosts:host04(0)->host03(2)
+0.0: VMs are in different hosts:host03(2)->host01(3)
+0.0: VMs are in different hosts:host01(3)->host02(1)
+0.0: VMs are in different hosts:host03(2)->host01(3)
+5.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+5.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+10.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+10.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+15.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+15.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+20.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+20.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+25.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+25.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+30.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+30.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+35.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+35.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+40.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+40.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+47.69660000000002: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+47.69660000000002: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+52.69660000000002: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+52.69660000000002: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+62.510200000000026: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+62.510200000000026: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+67.51020000000003: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+81.02700000000003: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+81.02700000000003: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+86.02700000000003: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.10002000400080016
+86.02700000000003: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+100.1: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+100.1: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+105.1: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.10002000400080016
+105.1: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+110.1: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+115.1: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+115.1: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+130.475: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+130.475: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+135.475: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+135.475: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+145.28866666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+145.28866666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+150.28866666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+150.28866666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+159.842: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+159.842: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+164.842: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+164.842: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+174.656: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+174.656: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+179.656: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+179.656: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+193.173: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+193.173: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+198.173: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+198.173: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+198.173: Simulation: No more future events
+CloudInformationService: Notify all CloudSim entities for shutting down.
+dc1 is shutting down...
+198.173: Broker: Shuttingdown.. VM:0
+198.173: Broker: Shuttingdown.. VM:1
+198.173: Broker: Shuttingdown.. VM:3
+198.173: Broker: Shuttingdown.. VM:2
+Simulation completed.
+Simulation completed.
+198.173: ========== EXPERIMENT FINISHED ===========
+========== HOST POWER CONSUMPTION based on Actual Workload processing ===========
+Host #6: 6.166482914510302
+Host #5: 0.5641623888675
+Host #4: 6.517182429967164
+Host #3: 0.23082620368944443
+========== SWITCH POWER CONSUMPTION AND DETAILED UTILIZATION ===========
+Switch:edge2: 0.19656596666666715
+Switch:edge1: 0.19656596666666704
+Switch:core: 0.09828298333333345
+========== HOST Overload percentage ===========
+Overload Host #6: 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Overload Host #5: 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Overload Host #4: 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Overload Host #3: 0.0/0.0=0.0... Scaled Overload duration= 0.0
+========== VM Overload percentage ===========
+Vm(VM #0 (vm01) in (host04)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Vm(VM #2 (vnf1) in (host03)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Vm(VM #1 (vm02) in (host02)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Vm(VM #3 (vnf2) in (host01)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
+========== CONFIGURATIONS ===========
+workingDirectory :./
+overbookingTimeWindowInterval:5.0
+OVERLOAD_THRESHOLD:1.0
+OVERLOAD_THRESHOLD_ERROR:0.0
+OVERLOAD_THRESHOLD_BW_UTIL:1.0
+UNDERLOAD_THRESHOLD_HOST:0.0
+UNDERLOAD_THRESHOLD_HOST_BW:0.3
+UNDERLOAD_THRESHOLD_VM:0.3
+DECIDE_SLA_VIOLATION_GRACE_ERROR:1.0
+==================================================
+========== PARAMETERS ===========
+experimentName :cpu100_net100_LFF_min100_util0_
+CPU_REQUIRED_MIPS_PER_WORKLOAD_PERCENT:1.0
+monitoringTimeInterval:5.0
+overbookingTimeWindowNumPoints:1.0
+migrationTimeInterval:5.0
+OVERBOOKING_RATIO_MAX:1.0
+OVERBOOKING_RATIO_MIN:1.0
+OVERBOOKING_RATIO_INIT:1.0
+OVERBOOKING_RATIO_UTIL_PORTION:0.0
+OVERLOAD_HOST_PERCENTILE_THRESHOLD:0.0
+========== TOTAL POWER CONSUMPTION ===========
+Host energy consumed: 13.47865393703441
+Switch energy consumed: 0.49141491666666764
+Total energy consumed: 13.970068853701077
+========== MIGRATION ===========
+Attempted: 0
+Completed: 0
+========== HOST OVERLOADED ===========
+Scaled overloaded: 1.0
+Overloaded Percent: 0.0
+========== VM OVERLOADED ===========
+Scaled overloaded: 1.0
+Overloaded Percent: 0.0
+Simultanously used hosts:4
+============= SDNBroker.printResult() =============================
+Workloads Num: 6
+Workloads CPU Num: 12
+Workloads Network Num: 6
+Workloads Timed Out Num: 0
+Total serve time: 883.6711158063333
+Total serve time CPU: 586.8236491396667
+Total serve time Network: 296.8474666666666
+Avg serve time: 147.27851930105555
+Overall overtime percentage: 0.0
+Avg serve time CPU: 48.90197076163889
+CPU overtime percentage: 0.0
+Avg serve time Network: 49.47457777777777
+Network overtime percentage: 1.0
+============= SDNBroker.printResult() Group analysis =======================
+Group num: 0, groupNumWorkloads:6
+Group num: 0, groupTotalServetime:883.6711158063333
+Group num: 0, groupTotalServetimeCPU:586.8236491396667
+Group num: 0, groupTotalServetimeNetwork:296.8474666666666
+Group num: 0, group avg Serve time:147.27851930105555
+Group num: 0, group avg Serve time CPU:97.80394152327779
+Group num: 0, group avg Serve time Network:49.47457777777777
+CloudSim SDN finished!
