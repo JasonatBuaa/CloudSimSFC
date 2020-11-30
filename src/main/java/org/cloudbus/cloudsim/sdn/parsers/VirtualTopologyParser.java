@@ -33,6 +33,7 @@ import org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.junit.rules.Timeout;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -157,12 +158,14 @@ public class VirtualTopologyParser {
 					// Configuration.TIME_OUT);
 					clSch = new CloudletSchedulerSpaceSharedQueueAwareMonitor(queueSize, Configuration.TIME_OUT);
 				else
-					clSch = new CloudletSchedulerSpaceSharedMonitor(mips);
+					clSch = new CloudletSchedulerSpaceSharedMonitor(Configuration.TIME_OUT);
 				// CloudletScheduler clSch = new CloudletSchedulerTimeSharedMonitor(mips);
 
 				// int vmId = SDNVm.getUniqueVmId();
 				int vmId = QueuedVM.getUniqueVmId();
 				double initialAvail = 0.0d;
+
+				QueuedVM newVM = null;
 
 				if (nodeType.equalsIgnoreCase("vm")) {
 					// Create VM objects
@@ -176,6 +179,7 @@ public class VirtualTopologyParser {
 					vm.setHostName(hostName);
 					vm.setOptionalDatacenters(optionalDatacenter);
 					vmList.put(dcName, vm);
+					newVM = vm;
 
 					// Jason: Check: 1. here use the new
 					// CloudletSchedulerSpaceSharedQueueAwareMonitor as the new scheduler.
@@ -198,6 +202,8 @@ public class VirtualTopologyParser {
 						vmList.put(dcName, sf);
 						sfList.add(sf);
 
+						newVM = sf;
+
 						// Jason: Check: 2. here use the new
 						// CloudletSchedulerSpaceSharedQueueAwareMonitor as the new scheduler.
 
@@ -205,6 +211,10 @@ public class VirtualTopologyParser {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+				}
+
+				if (clSch instanceof CloudletSchedulerSpaceSharedQueueAwareMonitor) {
+					((CloudletSchedulerSpaceSharedQueueAwareMonitor) clSch).setQueuedVM(newVM);
 				}
 
 				vmNameIdTable.put(nodeName2, vmId);

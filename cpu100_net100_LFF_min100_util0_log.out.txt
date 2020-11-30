@@ -50,54 +50,55 @@ Entities started.
 0.0: VMs are in different hosts:host03(2)->host01(3)
 5.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
 5.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-10.3: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@7f9a81e8
 10.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
 10.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-13.3: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@9629756
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@7f9a81e8   Current time:14.3   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+14.3: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@62ee68d8
 15.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
 15.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-20.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-20.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-23.3: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@62ee68d8
-24.41033333333333: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@735b5592
-25.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-25.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-33.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-33.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-38.11366666666667: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@58651fd0
-38.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-38.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-43.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-43.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-60.333999999999996: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-60.333999999999996: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-65.334: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.10002000393412017
-65.334: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.10002000400080016
-70.334: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-70.334: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-87.55426666666665: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-87.55426666666665: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-92.55426666666665: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-92.55426666666665: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-92.55426666666665: Simulation: No more future events
+20.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.10002000400080016
+20.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.10004001600640255
+25.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.10001333511134818
+25.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.1000100010001
+31.259466666666665: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+31.259466666666665: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+36.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.10003334438146048
+36.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.10003000900270081
+41.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+41.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+46.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+46.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+51.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.10002000400080016
+51.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.10003000900270083
+64.5608: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+64.5608: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+69.5608: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+69.5608: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+74.5608: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.10001333511134818
+74.5608: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.10002000400080016
+95.52080000000001: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+95.52080000000001: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+100.52080000000001: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
+100.52080000000001: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
+100.52080000000001: Simulation: No more future events
 CloudInformationService: Notify all CloudSim entities for shutting down.
 dc1 is shutting down...
-92.55426666666665: Broker: Shuttingdown.. VM:0
-92.55426666666665: Broker: Shuttingdown.. VM:1
-92.55426666666665: Broker: Shuttingdown.. VM:3
-92.55426666666665: Broker: Shuttingdown.. VM:2
+100.52080000000001: Broker: Shuttingdown.. VM:0
+100.52080000000001: Broker: Shuttingdown.. VM:1
+100.52080000000001: Broker: Shuttingdown.. VM:3
+100.52080000000001: Broker: Shuttingdown.. VM:2
 Simulation completed.
 Simulation completed.
-92.55426666666665: ========== EXPERIMENT FINISHED ===========
+100.52080000000001: ========== EXPERIMENT FINISHED ===========
 ========== HOST POWER CONSUMPTION based on Actual Workload processing ===========
-Host #6: 4.287771236847666
-Host #5: 0.17736111111111136
-Host #4: 2.116141887383622
-Host #3: 0.17736111110398176
+Host #6: 4.282817705237767
+Host #5: 0.8868055555555556
+Host #4: 5.855404035690639
+Host #3: 0.886805555548426
 ========== SWITCH POWER CONSUMPTION AND DETAILED UTILIZATION ===========
-Switch:edge2: 0.050883799999999924
-Switch:edge1: 0.05088380000000006
-Switch:core: 0.025441899999999962
+Switch:edge2: 0.15416280000000038
+Switch:edge1: 0.15416280000000046
+Switch:core: 0.07708140000000023
 ========== HOST Overload percentage ===========
 Overload Host #6: 0.0/0.0=0.0... Scaled Overload duration= 0.0
 Overload Host #5: 0.0/0.0=0.0... Scaled Overload duration= 0.0
@@ -131,9 +132,9 @@ OVERBOOKING_RATIO_INIT:1.0
 OVERBOOKING_RATIO_UTIL_PORTION:0.0
 OVERLOAD_HOST_PERCENTILE_THRESHOLD:0.0
 ========== TOTAL POWER CONSUMPTION ===========
-Host energy consumed: 6.758635346446382
-Switch energy consumed: 0.12720949999999995
-Total energy consumed: 6.885844846446382
+Host energy consumed: 11.911832852032388
+Switch energy consumed: 0.3854070000000011
+Total energy consumed: 12.297239852032389
 ========== MIGRATION ===========
 Attempted: 0
 Completed: 0
@@ -145,25 +146,25 @@ Scaled overloaded: 1.0
 Overloaded Percent: 0.0
 Simultanously used hosts:4
 ============= SDNBroker.printResult() =============================
-Workloads Num: 1
-Workloads CPU Num: 2
-Workloads Network Num: 1
-Workloads Timed Out Num: 5
-Total serve time: 54.25426666666665
-Total serve time CPU: 49.24666666666666
-Total serve time Network: 5.007599999999989
-Avg serve time: 54.25426666666665
+Workloads Num: 5
+Workloads CPU Num: 10
+Workloads Network Num: 5
+Workloads Timed Out Num: 1
+Total serve time: 222.966382473
+Total serve time CPU: 205.80878247299995
+Total serve time Network: 17.15760000000003
+Avg serve time: 44.593276494600005
 Overall overtime percentage: 0.0
-Avg serve time CPU: 24.62333333333333
+Avg serve time CPU: 20.580878247299996
 CPU overtime percentage: 0.0
-Avg serve time Network: 5.007599999999989
+Avg serve time Network: 3.431520000000006
 Network overtime percentage: 1.0
 ============= SDNBroker.printResult() Group analysis =======================
-Group num: 0, groupNumWorkloads:1
-Group num: 0, groupTotalServetime:54.25426666666665
-Group num: 0, groupTotalServetimeCPU:49.24666666666666
-Group num: 0, groupTotalServetimeNetwork:5.007599999999989
-Group num: 0, group avg Serve time:54.25426666666665
-Group num: 0, group avg Serve time CPU:49.24666666666666
-Group num: 0, group avg Serve time Network:5.007599999999989
+Group num: 0, groupNumWorkloads:5
+Group num: 0, groupTotalServetime:222.966382473
+Group num: 0, groupTotalServetimeCPU:205.80878247299995
+Group num: 0, groupTotalServetimeNetwork:17.15760000000003
+Group num: 0, group avg Serve time:44.593276494600005
+Group num: 0, group avg Serve time CPU:41.16175649459999
+Group num: 0, group avg Serve time Network:3.431520000000006
 CloudSim SDN finished!

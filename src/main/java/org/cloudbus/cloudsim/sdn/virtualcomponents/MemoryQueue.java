@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.apache.commons.lang3.ObjectUtils.Null;
+
 // import javax.naming.directory.InvalidAttributeValueException;
 
 // import com.google.common.collect.Queues;
@@ -26,6 +28,8 @@ import org.cloudbus.cloudsim.core.CloudSim;
 public class MemoryQueue {
     private final SortedSet<EncapedResCloudlet> cacheQueue = new TreeSet<EncapedResCloudlet>();
 
+    public static boolean ENQUEUE_SUCCESS = true;
+    public static boolean ENQUEUE_FAILURE = false;
     /**
      * A incremental number used for {@link EncapedResCloudlet#serial} event
      * attribute.
@@ -37,6 +41,8 @@ public class MemoryQueue {
     private long queueRemainingSpace; // KB
     private long queueTotalSpace;
     private int multiplerUnit = 1000;
+
+    private QueuedVM vmInfotoDebug = null;
     // private QueuedVM owner = null;
 
     // public TheQueue(QueuedVM owner, long size MB) {
@@ -71,7 +77,7 @@ public class MemoryQueue {
         // newCloudlet.setSerial(serial++);
         // cacheQueue.add(enCloudlet);
         // queueRemainingSpace -= newCloudlet.getCloudletLength();
-        if (_addEncapedResCloudlet(ercl)) {
+        if (_addEncapedResCloudlet(ercl) == ENQUEUE_SUCCESS) {
             return ercl;
         }
         // return enCloudlet;
@@ -80,17 +86,22 @@ public class MemoryQueue {
 
     private boolean _addEncapedResCloudlet(EncapedResCloudlet ercl) {
         if (ercl.getCloudletLength() > queueRemainingSpace) {
-            Log.print("Not enough queue size!!! Queue in: " + this);
-            return false;
+            Log.print("Not enough queue size!!! Queue in: " + this + currentTime()
+                    + (this.vmInfotoDebug == null ? "" : ": " + this.vmInfotoDebug));
+            System.out.println("Not enough queue size!!! Queue in: " + currentTime()
+                    + (this.vmInfotoDebug == null ? "" : ": " + this.vmInfotoDebug));
+            return ENQUEUE_FAILURE;
         }
         if (cacheQueue.add(ercl)) {
             queueRemainingSpace -= ercl.getCloudletLength();
-            System.out.println("Jason: Queue Debug here == current queue length: " + getQueueRemainingSpace());
-            System.out.println("Jason: Queue Debug here == current queue items: " + size());
-            return true;
+            System.out.println("Jason: Queue Debug here == current queue length: " + getQueueRemainingSpace()
+                    + currentTime() + (this.vmInfotoDebug == null ? "" : ": " + this.vmInfotoDebug));
+            System.out.println("Jason: Queue Debug here == current queue items: " + size() + currentTime()
+                    + (this.vmInfotoDebug == null ? "" : ": " + this.vmInfotoDebug));
+            return ENQUEUE_SUCCESS;
         } else {
             System.out.println("ERROR!!!!! when adding cloudlet to memoryqueue!!!");
-            return false;
+            return ENQUEUE_FAILURE;
         }
     }
 
@@ -282,6 +293,18 @@ public class MemoryQueue {
 
     public SortedSet<EncapedResCloudlet> getCacheQueue() {
         return cacheQueue;
+    }
+
+    public QueuedVM getVmInfotoDebug() {
+        return vmInfotoDebug;
+    }
+
+    public void setVmInfotoDebug(QueuedVM vmInfotoDebug) {
+        this.vmInfotoDebug = vmInfotoDebug;
+    }
+
+    public String currentTime() {
+        return "   Current time:" + CloudSim.clock() + "   ";
     }
 
 }

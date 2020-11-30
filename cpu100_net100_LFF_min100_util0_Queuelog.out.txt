@@ -152,21 +152,21 @@ Workloads Num: 6
 Workloads CPU Num: 12
 Workloads Network Num: 6
 Workloads Timed Out Num: 0
-Total serve time: 305.6231158063334
-Total serve time CPU: 284.1245158063333
+Total serve time: 314.6231158063334
+Total serve time CPU: 293.1245158063333
 Total serve time Network: 21.49860000000004
-Avg serve time: 50.93718596772223
+Avg serve time: 52.43718596772223
 Overall overtime percentage: 0.0
-Avg serve time CPU: 23.67704298386111
+Avg serve time CPU: 24.42704298386111
 CPU overtime percentage: 0.0
 Avg serve time Network: 3.5831000000000066
 Network overtime percentage: 1.0
 ============= SDNBroker.printResult() Group analysis =======================
 Group num: 0, groupNumWorkloads:6
-Group num: 0, groupTotalServetime:305.6231158063334
-Group num: 0, groupTotalServetimeCPU:284.1245158063333
+Group num: 0, groupTotalServetime:314.6231158063334
+Group num: 0, groupTotalServetimeCPU:293.1245158063333
 Group num: 0, groupTotalServetimeNetwork:21.49860000000004
-Group num: 0, group avg Serve time:50.93718596772223
-Group num: 0, group avg Serve time CPU:47.35408596772222
+Group num: 0, group avg Serve time:52.43718596772223
+Group num: 0, group avg Serve time CPU:48.85408596772222
 Group num: 0, group avg Serve time Network:3.5831000000000066
 CloudSim SDN finished!

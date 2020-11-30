@@ -73,7 +73,7 @@ Entities started.
 35.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
 40.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
 40.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-43.81699999999999: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@724af044
+43.81699999999999: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@4678c730
 45.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
 45.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
 50.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
