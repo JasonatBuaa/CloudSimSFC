@@ -5,7 +5,7 @@
             "type": "vm",
             "size": 1000,
             "pes": 1,
-            "mips": 3000,
+            "mips": 2000,
             "ram": 512,
             "queuesize": 128
         },
@@ -14,7 +14,7 @@
             "type": "vm",
             "size": 1000,
             "pes": 1,
-            "mips": 3000,
+            "mips": 2000,
             "ram": 512,
             "queuesize": 128
         },
@@ -23,7 +23,7 @@
             "type": "firewall",
             "size": 1000,
             "pes": 1,
-            "mips": 2000,
+            "mips": 5000,
             "mipoper": 1000,
             "ram": 512,
             "queuesize": 128
@@ -33,7 +33,7 @@
             "type": "IDS",
             "size": 1000,
             "pes": 1,
-            "mips": 3000,
+            "mips": 5000,
             "mipoper": 1500,
             "ram": 512,
             "queuesize": 128
