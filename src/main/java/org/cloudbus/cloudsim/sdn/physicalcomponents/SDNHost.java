@@ -46,6 +46,9 @@ public class SDNHost extends Host implements Node {
 	private String name = null;
 	private double availability;
 
+	private double mtbf = 0;
+	private double mttr = 0;
+
 	private HashMap<Node, Link> linkToNextHop = new HashMap<Node, Link>();
 
 	public SDNHost(RamProvisioner ramProvisioner, BwProvisioner bwProvisioner, long storage, List<? extends Pe> peList,
@@ -456,5 +459,21 @@ public class SDNHost extends Host implements Node {
 
 	public void setAvailability(double availability) {
 		this.availability = availability;
+	}
+
+	public double getMtbf() {
+		return mtbf;
+	}
+
+	public void setMtbf(double mtbf) {
+		this.mtbf = mtbf;
+	}
+
+	public double getMttr() {
+		return mttr;
+	}
+
+	public void setMttr(double mttr) {
+		this.mttr = mttr;
 	}
 }

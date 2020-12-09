@@ -82,14 +82,24 @@ public class WorkloadParser {
 	public static String getResultFileName(String fileName) {
 		String result_file = null;
 
-		fileName += (StartAvailability.failOverDebug ? "" : "Availability");
-		fileName += (StartAvailability.queueDebug ? "" : "Queue");
+		// fileName += (StartAvailability.failOverDebug ? "" : "Availability");
+		// fileName += (StartAvailability.queueDebug ? "" : "Queue");
+
+		// fileName = (StartAvailability.failOverDebug ? "" : "Availability") +
+		// fileName;
+		// fileName = (StartAvailability.queueDebug ? "" : "Queue") + fileName;
 
 		int indexSlash = fileName.lastIndexOf("/");
 		if (indexSlash != -1) {
 			String path_folder = fileName.substring(0, indexSlash + 1);
 			String path_file = fileName.substring(indexSlash + 1);
-			result_file = path_folder + "result_" + path_file;
+			// result_file = path_folder + "result_" + path_file;
+			result_file = path_folder + "result_";
+			result_file += (StartAvailability.failOverDebug ? "" : "Availability");
+			result_file += (StartAvailability.queueDebug ? "" : "Queue");
+
+			result_file += path_file;
+
 		} else {
 			result_file = "result_" + fileName;
 		}

@@ -33,22 +33,32 @@ import javax.sql.rowset.WebRowSet;
  * This class creates Virtual Environment for SFC experiments.
  * 
  * @author Jason Sun
- * @since 2020/12/01
+ * @since 2020/12/01 // generate raw flow size and SFC graph demands
+ * 
+ * 
+ *        Jason: Todo!!
+ * 
+ *        1. generate all VMOffers
+ * 
+ *        2. generate host resource quotas
+ * 
+ *        3. generate fixed length (or variable length) SFC
+ * 
+ *        4. For the generated SFC, generate workloads for them
+ * 
  */
 public class MyGenerator extends SFCWorkloadGenerator {
-
-    // 1. generate raw flow size and SFC graph demands
 
     // 1. get end-point VM pairs from hashmap
     // 2. select links for the VM pair
 
     // 要生成的东西：
     // 1、拓扑文件
-    // 2、request
-    // 3、由资源量计算得到 -> sfc结构
+    // 2、request -- done
+    // 3、由资源量计算得到 -> sfc结构 ??
 
     // p2p request; data imbalance;
-    // 起点、终点要指定位置
+    // 起点、终点要指定位置 -- very important!!
 
     // vm mips 在2k-5k之间,2k,3k,4k,5k;
     // host mips 5k or 10k
@@ -68,6 +78,9 @@ public class MyGenerator extends SFCWorkloadGenerator {
     private boolean isHeadPrinted = false;
     private LogWriter out = null;
 
+    /**
+     * Jason: this variable is not used.
+     */
     private double minTimeSpan;
     List<Double> computeWL = new ArrayList<>();
     List<Double> transmissionWL = new ArrayList<>();
@@ -75,6 +88,16 @@ public class MyGenerator extends SFCWorkloadGenerator {
 
     Map<Integer, List<String>> SFCs = new HashMap<>();
 
+    /**
+     * 
+     * @param vmMipsBase
+     * @param hostMipsBase
+     * @param requestPerSecondAverage
+     * @param vnfMiPOAverage
+     * @param workloadSizeMin
+     * @param workloadSizeMax
+     * @param queueSize
+     */
     public MyGenerator(int vmMipsBase, int hostMipsBase, int requestPerSecondAverage, int vnfMiPOAverage,
             int workloadSizeMin, int workloadSizeMax, int queueSize) {
 
@@ -88,6 +111,11 @@ public class MyGenerator extends SFCWorkloadGenerator {
         this.queueSize = queueSize;
     }
 
+    /**
+     * Jason: MyGenerator.
+     * 
+     * @param filename
+     */
     public MyGenerator(String filename) {
         out = LogWriter.getLogger(filename);
     }
@@ -129,10 +157,6 @@ public class MyGenerator extends SFCWorkloadGenerator {
 
         MyGenerator mg = new MyGenerator("testFile.csv");
 
-        // mg.out.print("abc");
-
-        // mg.out.printLine("abcabc");
-
         Integer[] a = { 1, 2, 3 };
         List<Integer> workload = Arrays.asList(a);
 
@@ -159,10 +183,8 @@ public class MyGenerator extends SFCWorkloadGenerator {
         int workloadSizeAverage = 1500; // use normal distribution
         int workloadSizeDeviation = 100;
 
-        // int SFClength = 2;
-
         int sfcid = 0;
-        String[] sfc0 = { "vm01", "vm02" };
+        String[] sfc0 = { "vm01", "vm02" }; // Jason: todo!! the sfc demands should be automatically generated
         mg.SFCs.put(sfcid, Arrays.asList(sfc0));
 
         int SFC0_length = mg.SFCs.get(0).size();
@@ -178,31 +200,11 @@ public class MyGenerator extends SFCWorkloadGenerator {
 
         mg.writeWorkloadIntoFile(timePoints, clWorkload, wlTransmission, mg.SFCs.get(0));
 
-        // public List<List<Integer>> genWorkloads(List<Integer>
-        // requestAmountEverySecond, int workloadEverage, int mu, int sigma) {
-
-        // mg.genWorkload(workloadSizeAverage, workloadSizeDeviation, 2);
-
-        // List<Integer> requestAmountEverySecond =
-        // mg.genRequestAmountInEverySecond(requestPerSecondAverage, timeSpan);
-
-        // List<Integer> workLoads = mg.newWorkload(requestAmountEverySecond,
-        // workloadSizeAverage, workloadSizeDeviation);
-
         List<Double> allTimePoints = mg.genTimePoints(timeSpan, requestPerSecondAverage);
 
         int numberOfTimePoints = allTimePoints.size();
 
         int queueSize = (int) Math.round(workloadSizeAverage * requestPerSecondAverage * 1.5);
-
-        // vm mips 在2k-5k之间 {2k,4k};
-        // host mips 在5k-10k之间 {5k,10k};
-
-        // vnf mipoper 在1k-1.5k之间
-
-        // request workload (cloudlet) 在0.5k-1k之间（平均值0.75）
-        // request per second -> 4
-        // queue size: 6* workload平均值
 
         // MyGenerator mg = new MyGenerator(requestPerSecondAverage, vnfMiPOAverage,
         // workloadSizeMin, workloadSizeMax,
@@ -241,18 +243,6 @@ public class MyGenerator extends SFCWorkloadGenerator {
     }
 
     private List<Integer> genTransmissionWorkload(List<Integer> toWorkloads) {
-        // List<List<Integer>> transWorkloads = new ArrayList<>();
-        // for (List<Integer> workload : toWorkloads) {
-        // List<Integer> transWorkload = new ArrayList<>();
-        // Iterator wit = workload.iterator();
-        // while (wit.hasNext()) {
-        // int tworkload = (int) Math.round((int) wit.next() / 3.0);
-        // transWorkload.add(tworkload);
-        // }
-        // transWorkloads.add(transWorkload);
-        // transWorkload.clear();
-        // }
-
         List<Integer> transWorkloads = new ArrayList<>();
         for (int workload : toWorkloads) {
             int tworkload = (int) Math.round((int) workload / 3.0);
@@ -263,19 +253,8 @@ public class MyGenerator extends SFCWorkloadGenerator {
 
     public List<Integer> genVNFWorkloads(int workloadAmounts, int mu, int sigma) {
         List<Integer> workloads = new ArrayList<>();
-        // for (int n : requestAmountInEverySecond) {
-        // workloads.add(new ArrayList<>());
-        // for (int j = 0; j < n; j++) {
-        // workloads.get(j).addAll(genWorkload(mu, sigma, n));
-        // }
-        // }
 
         workloads.addAll(newWorkload(mu, sigma, workloadAmounts));
-
-        // String name[] = { "张三", "李四", "王五", "孙刘", "赵强", "李明", "赵强", "汪汪" };
-        // List<String> stringList = Arrays.stream(name).filter(x ->
-        // !x.equals("赵强")).collect(toList());
-
         return workloads;
     }
 
@@ -324,25 +303,6 @@ public class MyGenerator extends SFCWorkloadGenerator {
         List<Integer> workload = Arrays.stream(nd.sample(sampleSize)).map(x -> Math.round(x)).boxed()
                 .map(Double::intValue).collect(Collectors.toList());
 
-        // List<Integer> workloada = Arrays.stream(nd.sample(sampleSize)).map(x ->
-        // Math.round(x)).boxed()
-        // .mapToInt(Double::intValue).boxed().collect(Collectors.toList());
-
-        // int[] a = { 1, 2, 3 };
-        // Arrays.asList(a);
-        // Double aa = new Double(1);
-        // // long aa = 1;
-        // Integer aaa = aa.intValue();
-
-        // // Arrays.asList({1,2,3});
-        // List<Long> test = new ArrayList(Arrays.asList(new int[] { 1, 2, 3 }));
-        // List<Integer> haha = test.stream().map(x -> (Integer)
-        // x).collect(Collectors.toList());
-
-        // Jason: for debug !!!
-        // System.out.println(workload);
-
-        // Arrays.asList(Math.round(nd.sample(sampleSize)));
         return workload;
     }
 
@@ -378,22 +338,6 @@ public class MyGenerator extends SFCWorkloadGenerator {
 
     private List<Map> genWorkLoads(int amountOfWorkloads, int SFClength, int workloadSizeAverage,
             int workloadSizeDeviation, int requestPerSecondAverage) {
-
-        // List<Integer> requestAmountEverySecond =
-        // this.genRequestAmountInEverySecond(requestPerSecondAverage, timeSpan);
-
-        // List<Double> allTimePoints = new ArrayList<>();
-        // for (int start = 0; start < timeSpan; start++) {
-        // int amountps = requestAmountEverySecond.get(start);
-        // double[] timePoint = new double[amountps];
-        // for (int k = 0; k < amountps; k++) {
-        // timePoint[k] = randomEvenDouble(start, start + 1);
-        // }
-        // List<Double> timePoints =
-        // Arrays.stream(timePoint).sorted().boxed().collect(Collectors.toList());
-        // allTimePoints.addAll(timePoints);
-        // }
-
         if (SFClength <= 0 || amountOfWorkloads <= 0 || workloadSizeAverage <= 0 || workloadSizeDeviation <= 0
                 || requestPerSecondAverage <= 0) {
             System.out.println("invalid variables in genWorkLoads!!!");
@@ -404,9 +348,6 @@ public class MyGenerator extends SFCWorkloadGenerator {
         List<Integer> workLoadsFirstVNF = this.genVNFWorkloads(amountOfWorkloads, workloadSizeAverage,
                 workloadSizeDeviation);
 
-        // List<Double> allTimePoints = genTimePoints(timeSpan,
-        // requestPerSecondAverage);
-
         List<Integer> VNFwlforFirstTransmission = this.genVNFWorkloads(amountOfWorkloads, 0, 1);
         wlTransmission.put(0, genTransmissionWorkload(VNFwlforFirstTransmission));
 
@@ -416,8 +357,6 @@ public class MyGenerator extends SFCWorkloadGenerator {
             List<Integer> workLoadsNextVNF = this.genVNFWorkloads(amountOfWorkloads, workloadSizeAverage,
                     workloadSizeDeviation);
             clWorkload.put(i, workLoadsNextVNF);
-            // wlTransmission.put(i - 1, genTransmissionWorkload(workLoadsNextVNF));
-            // //Jason: change transmission
 
             // Jason: change transmission: the transmission happens before every
             // corresponding clworkload, i.e., transmission is the upload of the next
@@ -462,10 +401,6 @@ public class MyGenerator extends SFCWorkloadGenerator {
             isHeadPrinted = true;
         }
 
-        // atime,VMname.1,submitted packet
-        // size(zeros),CloudletLen1,link.1.2,VMname.2,p.1.2,CloudletLen2
-        // 0.009217527,vm01,0,4931,default,vm02,4642800,43663
-
         for (int wlIndex = 0; wlIndex < totalAmountofWorkloads; wlIndex++) {
             StringBuilder perWorkload = new StringBuilder();
             perWorkload.append(timePoints.get(wlIndex));
@@ -480,41 +415,13 @@ public class MyGenerator extends SFCWorkloadGenerator {
             perWorkload.append(firstWLVNfj);
 
             for (int node = 1; node < clWorkload.size(); node++) {
-                // perWorkload.append(",");
-                // perWorkload.append(SFC.get(node));
-                // perWorkload.append(",");
-                // perWorkload.append(",");
-                // perWorkload.append(SFC.get(0)); // vnf0
-                // perWorkload.append(",");
-                // perWorkload.append("0"); // submitted_packets
-
-                // int ithWLVNfj = clWorkload.get(node).get(wlIndex); // clworkload_0
-                // perWorkload.append(",");
-                // perWorkload.append(ithWLVNfj);
-                // perWorkload.append(",");
-
-                // perWorkload.append("l12");// link_0_1
-
-                // perWorkload.append(",");
-
-                // int ithWLtransmissionj = wlTransmission.get(node).get(wlIndex);
-                // perWorkload.append(ithWLtransmissionj);
-                // }
-
-                // perWorkload.append(",");
-                // perWorkload.append(clWorkload.get(clWorkload.size() - 1).get(wlIndex));
-
-                // // Log.print(perWorkload);
-                // this.out.printLine(perWorkload.toString());
-
-                // // out.print(perWorkload);
 
                 perWorkload.append(",");
 
-                perWorkload.append("l12");// link_i-1_i
+                perWorkload.append("l12");// link_i-1_i // Jason: todo!! hard coding -- need to be configurable
 
                 perWorkload.append(",");
-                perWorkload.append(SFC.get(0)); // vnf_i
+                perWorkload.append(SFC.get(node)); // vnf_i
                 perWorkload.append(",");
                 // perWorkload.append("0"); // packet_size_i
 
@@ -527,22 +434,10 @@ public class MyGenerator extends SFCWorkloadGenerator {
 
             }
 
-            // perWorkload.append(",");
-            // perWorkload.append(clWorkload.get(clWorkload.size() - 1).get(wlIndex));
-
-            // // Log.print(perWorkload);
             this.out.printLine(perWorkload.toString());
-
-            // out.print(perWorkload);
         }
 
     }
-
-    // public void printWorkloadList(List<Workload> wls) {
-    // for (Workload wl : wls) {
-    // printWorkload(wl);
-    // }
-    // }
 
     public void printWorkload(List<Double> wls) {
         if (!isHeadPrinted) {

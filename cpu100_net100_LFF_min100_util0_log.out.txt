@@ -1,114 +1,216 @@
 Data center infrastructure (Physical Topology) : SmallSFCDemo/4HostsPhysical.json
 Virtual Machine and Network requests (Virtual Topology) : SmallSFCDemo/SingleQueuedSF.json
 Workloads in ./ :
-  SmallSFCDemo/WLQueue.csv
+  SmallSFCDemo/jasontestFile.csv
 Starting CloudSim SDN...
 Initialising...
 Starting CloudSim version 3.0
 dc1 is starting...
 Entities started.
 0.0: NOS: Starting deploying application..
+0.0: NOS: Trying to Create VM #2 in dc1, (0.0~Infinity)
+0.0: NOS: Trying to Create VM #3 in dc1, (0.0~Infinity)
 0.0: NOS: Trying to Create VM #0 in dc1, (0.0~Infinity)
 0.0: NOS: Trying to Create VM #1 in dc1, (0.0~Infinity)
-0.0: NOS: Trying to Create VM #3 in dc1, (0.0~Infinity)
-0.0: NOS: Trying to Create VM #2 in dc1, (0.0~Infinity)
+0.0: NOS: VM Created: VM #2 (vnf1) in (host04) in host04
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(0)->host03(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(0)->host03(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(2)->host03(3)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(2)->host03(3)
+0.0: NOS: VM Created: VM #3 (vnf2) in (host03) in host03
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(0)->host03(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(0)->host03(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(2)->host03(3)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(2)->host03(3)
 0.0: NOS: VM Created: VM #0 (vm01) in (host04) in host04
-0.0: VMs are in different hosts:host04(0)->host03(2)
-0.0: VMs are in different hosts:host04(0)->host02(1)
-0.0: VMs are in different hosts:host01(3)->host02(1)
-0.0: VMs are in different hosts:host04(0)->host02(1)
-0.0: VMs are in different hosts:host04(0)->host03(2)
-0.0: VMs are in different hosts:host03(2)->host01(3)
-0.0: VMs are in different hosts:host01(3)->host02(1)
-0.0: VMs are in different hosts:host03(2)->host01(3)
-0.0: NOS: VM Created: VM #1 (vm02) in (host02) in host02
-0.0: VMs are in different hosts:host04(0)->host03(2)
-0.0: VMs are in different hosts:host04(0)->host02(1)
-0.0: VMs are in different hosts:host01(3)->host02(1)
-0.0: VMs are in different hosts:host04(0)->host02(1)
-0.0: VMs are in different hosts:host04(0)->host03(2)
-0.0: VMs are in different hosts:host03(2)->host01(3)
-0.0: VMs are in different hosts:host01(3)->host02(1)
-0.0: VMs are in different hosts:host03(2)->host01(3)
-0.0: NOS: VM Created: VM #3 (vnf2) in (host01) in host01
-0.0: VMs are in different hosts:host04(0)->host03(2)
-0.0: VMs are in different hosts:host04(0)->host02(1)
-0.0: VMs are in different hosts:host01(3)->host02(1)
-0.0: VMs are in different hosts:host04(0)->host02(1)
-0.0: VMs are in different hosts:host04(0)->host03(2)
-0.0: VMs are in different hosts:host03(2)->host01(3)
-0.0: VMs are in different hosts:host01(3)->host02(1)
-0.0: VMs are in different hosts:host03(2)->host01(3)
-0.0: NOS: VM Created: VM #2 (vnf1) in (host03) in host03
-0.0: VMs are in different hosts:host04(0)->host03(2)
-0.0: VMs are in different hosts:host04(0)->host02(1)
-0.0: VMs are in different hosts:host01(3)->host02(1)
-0.0: VMs are in different hosts:host04(0)->host02(1)
-0.0: VMs are in different hosts:host04(0)->host03(2)
-0.0: VMs are in different hosts:host03(2)->host01(3)
-0.0: VMs are in different hosts:host01(3)->host02(1)
-0.0: VMs are in different hosts:host03(2)->host01(3)
-5.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-5.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-10.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-10.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@7f9a81e8   Current time:14.3   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
-14.3: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@62ee68d8
-15.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-15.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-20.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.10002000400080016
-20.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.10004001600640255
-25.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.10001333511134818
-25.3: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.1000100010001
-31.259466666666665: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-31.259466666666665: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-36.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.10003334438146048
-36.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.10003000900270081
-41.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-41.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-46.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-46.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-51.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.10002000400080016
-51.25946666666667: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.10003000900270083
-64.5608: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-64.5608: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-69.5608: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-69.5608: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-74.5608: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.10001333511134818
-74.5608: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.10002000400080016
-95.52080000000001: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-95.52080000000001: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-100.52080000000001: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host01)) is underutilized!!! util =0.0
-100.52080000000001: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host03)) is underutilized!!! util =0.0
-100.52080000000001: Simulation: No more future events
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(0)->host03(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(0)->host03(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(2)->host03(3)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(2)->host03(3)
+0.0: NOS: VM Created: VM #1 (vm02) in (host03) in host03
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(0)->host03(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(0)->host03(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(2)->host03(3)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:host04(2)->host03(3)
+5.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.24344895912730186
+5.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.16012810240192152
+10.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.39769592696696693
+10.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.280155087975013
+15.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.3942556463404869
+15.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.2542635238438438
+20.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.3727028411630422
+20.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.2662305028836911
+25.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.28033079944724826
+30.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.2402037954991391
+35.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.3777475084304538
+35.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.28027181056510075
+40.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.28344879790940763
+45.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.2402571392237754
+50.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.38572497120659965
+50.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.2802802066880256
+55.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.3958782173180323
+55.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.26841431887488965
+60.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.25594792274180656
+65.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.3729757329675171
+65.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.28030269567829535
+70.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.25435337072936276
+75.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.2664803302627363
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:75.97421460128277   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+75.97421460128277: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@7dc7cbad
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:77.97764153707402   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+77.97764153707402: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@d2cc05a
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:78.16168449514575   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+78.16168449514575: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@4f933fd1
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:79.28964440484299   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+79.28964440484299: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@548a9f61
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:79.48685657637807   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+79.48685657637807: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@1753acfe
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:79.58889963385026   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+79.58889963385026: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@7c16905e
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:79.65143028809067   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+79.65143028809067: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@2a2d45ba
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:79.99618754316403   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+79.99618754316403: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@2a5ca609
+80.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.3749594528075027
+80.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.2804399696216736
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:80.12021924112487   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+80.12021924112487: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@20e2cbe0
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:81.12356886226696   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+81.12356886226696: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@68be2bc2
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:81.76612420052454   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+81.76612420052454: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@28feb3fa
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:83.32816605573416   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+83.32816605573416: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@675d3402
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:83.82230574378534   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+83.82230574378534: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@51565ec2
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:83.83105762941173   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+83.83105762941173: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@482f8f11
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:84.78672255136958   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+84.78672255136958: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@1593948d
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:84.83746668035104   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+84.83746668035104: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@1b604f19
+85.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.24038197640129813
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:85.3892615222374   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+85.3892615222374: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@7823a2f9
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:86.68027815585612   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+86.68027815585612: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@4cc0edeb
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:86.95664441947034   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+86.95664441947034: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@457e2f02
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:87.5962553728395   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+87.5962553728395: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@5c7fa833
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:87.74708002058901   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+87.74708002058901: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@39aeed2f
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:87.84527875486002   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+87.84527875486002: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@724af044
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:88.40677170632063   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+88.40677170632063: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@4678c730
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:89.28467868463832   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+89.28467868463832: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@6767c1fc
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:89.841341383716   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+89.841341383716: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@29ee9faa
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:89.95655292412614   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+89.95655292412614: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@c038203
+90.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.3863634074148136
+90.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.2798942847830434
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:92.48690995499919   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+92.48690995499919: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@cc285f4
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:92.87750535792355   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+92.87750535792355: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@55f3ddb1
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:93.2188133858644   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+93.2188133858644: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@8bd1b6a
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:93.25199338190264   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+93.25199338190264: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@18be83e4
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:94.01475071682331   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+94.01475071682331: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@cb5822
+95.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.3937764019541104
+95.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.25880496443874895
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:95.86777814712876   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+95.86777814712876: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@4b9e13df
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:96.81690419540826   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+96.81690419540826: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@2b98378d
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:97.01908324187013   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+97.01908324187013: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@475530b9
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:97.18708346342686   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+97.18708346342686: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@1d057a39
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:97.39219219788302   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+97.39219219788302: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@26be92ad
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:97.73292110166122   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+97.73292110166122: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@4c70fda8
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:98.25986794018837   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+98.25986794018837: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@224edc67
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:98.65094993137362   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+98.65094993137362: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@14acaea5
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:98.94291148894771   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+98.94291148894771: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@46d56d67
+Not enough queue size!!! Queue in: org.cloudbus.cloudsim.sdn.virtualcomponents.MemoryQueue@4520ebad   Current time:99.69977793649421   : VM #0 (vm01) in (host04)Warning!!! cloudlet dropped because of insufficient memory queue space!!!
+99.69977793649421: dc1.processCloudletFailed(): Cloudlet failed: org.cloudbus.cloudsim.Cloudlet@d8355a8
+100.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.26163547138222454
+105.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.3768163014334908
+105.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.28359493837591093
+110.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.24047867198524692
+115.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.36204966188172255
+115.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.2735124759277031
+120.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.28668962463460534
+125.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.280251461159606
+130.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.24019136824405476
+135.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.3664557720738397
+135.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.28027390637514016
+140.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.2427942350680544
+145.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.280172931027581
+150.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.37534531765224005
+150.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.2836809862273291
+155.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.2530125301253053
+160.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.3850742682868239
+160.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.2673552722395708
+165.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.39555226382161013
+165.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.24014171872372794
+170.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (vnf2) in (host03)) is underutilized!!! util =0.0
+170.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (vnf1) in (host04)) is underutilized!!! util =0.0
+170.0: Simulation: No more future events
 CloudInformationService: Notify all CloudSim entities for shutting down.
 dc1 is shutting down...
-100.52080000000001: Broker: Shuttingdown.. VM:0
-100.52080000000001: Broker: Shuttingdown.. VM:1
-100.52080000000001: Broker: Shuttingdown.. VM:3
-100.52080000000001: Broker: Shuttingdown.. VM:2
+170.0: Broker: Shuttingdown.. VM:2
+170.0: Broker: Shuttingdown.. VM:3
+170.0: Broker: Shuttingdown.. VM:0
+170.0: Broker: Shuttingdown.. VM:1
 Simulation completed.
 Simulation completed.
-100.52080000000001: ========== EXPERIMENT FINISHED ===========
+170.0: ========== EXPERIMENT FINISHED ===========
 ========== HOST POWER CONSUMPTION based on Actual Workload processing ===========
-Host #6: 4.282817705237767
-Host #5: 0.8868055555555556
-Host #4: 5.855404035690639
-Host #3: 0.886805555548426
+Host #6: 6.6594358934235
+Host #5: 7.055279506355528
+Host #4: 0.0
+Host #3: 0.0
 ========== SWITCH POWER CONSUMPTION AND DETAILED UTILIZATION ===========
-Switch:edge2: 0.15416280000000038
-Switch:edge1: 0.15416280000000046
-Switch:core: 0.07708140000000023
+Switch:edge2: 0.4121083999999995
+Switch:edge1: 0.0
+Switch:core: 0.0
 ========== HOST Overload percentage ===========
 Overload Host #6: 0.0/0.0=0.0... Scaled Overload duration= 0.0
 Overload Host #5: 0.0/0.0=0.0... Scaled Overload duration= 0.0
 Overload Host #4: 0.0/0.0=0.0... Scaled Overload duration= 0.0
 Overload Host #3: 0.0/0.0=0.0... Scaled Overload duration= 0.0
 ========== VM Overload percentage ===========
+Vm(VM #2 (vnf1) in (host04)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
 Vm(VM #0 (vm01) in (host04)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
-Vm(VM #2 (vnf1) in (host03)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
-Vm(VM #1 (vm02) in (host02)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
-Vm(VM #3 (vnf2) in (host01)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Vm(VM #3 (vnf2) in (host03)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Vm(VM #1 (vm02) in (host03)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
 ========== CONFIGURATIONS ===========
 workingDirectory :./
 overbookingTimeWindowInterval:5.0
@@ -132,9 +234,9 @@ OVERBOOKING_RATIO_INIT:1.0
 OVERBOOKING_RATIO_UTIL_PORTION:0.0
 OVERLOAD_HOST_PERCENTILE_THRESHOLD:0.0
 ========== TOTAL POWER CONSUMPTION ===========
-Host energy consumed: 11.911832852032388
-Switch energy consumed: 0.3854070000000011
-Total energy consumed: 12.297239852032389
+Host energy consumed: 13.714715399779028
+Switch energy consumed: 0.4121083999999995
+Total energy consumed: 14.126823799779027
 ========== MIGRATION ===========
 Attempted: 0
 Completed: 0
@@ -144,27 +246,27 @@ Overloaded Percent: 0.0
 ========== VM OVERLOADED ===========
 Scaled overloaded: 1.0
 Overloaded Percent: 0.0
-Simultanously used hosts:4
+Simultanously used hosts:2
 ============= SDNBroker.printResult() =============================
-Workloads Num: 5
-Workloads CPU Num: 10
-Workloads Network Num: 5
-Workloads Timed Out Num: 1
-Total serve time: 222.966382473
-Total serve time CPU: 205.80878247299995
-Total serve time Network: 17.15760000000003
-Avg serve time: 44.593276494600005
+Workloads Num: 216
+Workloads CPU Num: 432
+Workloads Network Num: 216
+Workloads Timed Out Num: 41
+Total serve time: 8300.160955340685
+Total serve time CPU: 8126.647378390779
+Total serve time Network: 173.51357694990077
+Avg serve time: 38.42667108954021
 Overall overtime percentage: 0.0
-Avg serve time CPU: 20.580878247299996
+Avg serve time CPU: 18.81168374627495
 CPU overtime percentage: 0.0
-Avg serve time Network: 3.431520000000006
+Avg serve time Network: 0.8033035969902813
 Network overtime percentage: 1.0
 ============= SDNBroker.printResult() Group analysis =======================
-Group num: 0, groupNumWorkloads:5
-Group num: 0, groupTotalServetime:222.966382473
-Group num: 0, groupTotalServetimeCPU:205.80878247299995
-Group num: 0, groupTotalServetimeNetwork:17.15760000000003
-Group num: 0, group avg Serve time:44.593276494600005
-Group num: 0, group avg Serve time CPU:41.16175649459999
-Group num: 0, group avg Serve time Network:3.431520000000006
+Group num: 0, groupNumWorkloads:216
+Group num: 0, groupTotalServetime:8300.160955340685
+Group num: 0, groupTotalServetimeCPU:8126.647378390779
+Group num: 0, groupTotalServetimeNetwork:173.51357694990077
+Group num: 0, group avg Serve time:38.42667108954021
+Group num: 0, group avg Serve time CPU:37.6233674925499
+Group num: 0, group avg Serve time Network:0.8033035969902813
 CloudSim SDN finished!

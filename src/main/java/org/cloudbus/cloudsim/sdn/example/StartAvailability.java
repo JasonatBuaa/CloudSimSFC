@@ -71,7 +71,9 @@ public class StartAvailability {
     protected static String deploymentFile = "SmallSFCDemo/SingleQueuedSF.json";
 
     // protected static String workload_file = "SmallSFCDemo/TripleWL.csv";
-    protected static String workload_file = "SmallSFCDemo/WLQueue.csv";
+    // protected static String workload_file = "SmallSFCDemo/WLQueue.csv";
+
+    protected static String workload_file = "SmallSFCDemo/jasontestFile.csv";
 
     protected static String failOver_file = "SmallSFCDemo/FailureEvent.csv";
 
@@ -80,8 +82,8 @@ public class StartAvailability {
     private static String[] argString = { "LFF", physicalTopologyFile, deploymentFile, "./", workload_file,
             failOver_file };
 
-    public static boolean failOverDebug = true; // True: Do not injuct fail over event.
-    public static boolean queueDebug = true; // True: Do not use MemoryQueue.
+    public static boolean failOverDebug = false; // True: Do not injuct fail over event.
+    public static boolean queueDebug = false; // True: Do not use MemoryQueue.
 
     private static boolean logEnabled = true; // Log for debug
     /*

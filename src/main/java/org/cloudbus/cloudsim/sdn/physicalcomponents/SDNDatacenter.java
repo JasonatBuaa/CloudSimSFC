@@ -508,9 +508,9 @@ public class SDNDatacenter extends Datacenter {
 		}
 		Vm vm = host.getVm(vmId, userId);
 		double mips = vm.getMips();
-		if (vm instanceof QueuedVM) {
-			System.out.println("QueuedVM!!! hahahaha");
-		}
+		// if (vm instanceof QueuedVM) {
+		// System.out.println("QueuedVM!!! hahahaha");
+		// }
 		proc.setVmMipsPerPE(mips);
 	}
 
