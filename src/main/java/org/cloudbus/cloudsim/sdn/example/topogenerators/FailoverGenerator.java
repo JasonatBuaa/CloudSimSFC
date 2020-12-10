@@ -17,6 +17,7 @@ import org.cloudbus.cloudsim.distributions.ExponentialDistr;
 import org.cloudbus.cloudsim.distributions.PoiDistribution;
 import org.cloudbus.cloudsim.distributions.UniformDistr;
 import org.cloudbus.cloudsim.sdn.LogWriter;
+import org.cloudbus.cloudsim.sdn.parsers.PhysicalTopologyParser;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.internal.runners.statements.Fail;
@@ -66,8 +67,8 @@ public class FailoverGenerator extends SFCWorkloadGenerator {
     private double timelineStart = 0;
     private double timelineEnd;
 
-    private double mtbf = 0;
-    private double mttr = 0;
+    // private double mtbf = 0;
+    // private double mttr = 0;
 
     public FailoverGenerator(String filename, List<Host> hosts, double timelineEnd) {
 
@@ -184,7 +185,9 @@ public class FailoverGenerator extends SFCWorkloadGenerator {
             // mtbf/(mttr+mtbf) = availability
             // mtbf = (mttr + mtbf) * availability
             // mttr = (mtbf - mtbf * availability)/availability
-            mttr = (mtbf / availability) - mtbf;
+            // mttr = (mtbf / availability) - mtbf;
+
+            double mtbf = mttr / (1 - availability);
 
             sdn_host.setMtbf(mtbf);
             sdn_host.setMttr(mttr);
@@ -193,7 +196,7 @@ public class FailoverGenerator extends SFCWorkloadGenerator {
         return false;
     }
 
-    public List<FailoverEvent> genHostFoeByMTBF(Host host, double start, double end) {
+    public List<FailoverEvent> genHostFoeByMTBF(Host host, double start, double end, double mttr_min, double mttr_max) {
 
         List<FailoverEvent> foe_list = null;
         if (host instanceof SDNHost) {
@@ -204,8 +207,14 @@ public class FailoverGenerator extends SFCWorkloadGenerator {
             // double remaining_failure_time =
             ExponentialDistr failure_expdis = new ExponentialDistr(mtbf);
             ExponentialDistr recovery_expdis = new ExponentialDistr(mttr);
+            // if(recovery_expdis> mttr_max || mttr< mttr_min)
+            // ExponentialDistr recovery_expdis = new ExponentialDistr(mttr);
             double time_to_failure = failure_expdis.sample();
-            double time_to_recovery = recovery_expdis.sample();
+            double time_to_recovery = recovery_expdis.sample(mttr_min, mttr_max);
+
+            // while (time_to_recovery > mttr_max || time_to_recovery < mttr_min)
+            // time_to_recovery = recovery_expdis.sample(); // Jason:
+            // 控制time_to_recovery的上限下限值
 
             double next_failure_time = start + time_to_failure;
             double next_recovery_time = start + time_to_recovery;
@@ -213,16 +222,22 @@ public class FailoverGenerator extends SFCWorkloadGenerator {
 
             while (current_time < end) {
                 if (next_recovery_time > end)
-                    next_failure_time = end;
+                    next_recovery_time = end;
                 foe_list.add(
                         new FailoverEvent(sdn_host.getName(), CloudSim.clock(), next_failure_time, next_recovery_time));
                 time_to_failure = failure_expdis.sample();
-                time_to_recovery = recovery_expdis.sample();
+
+                // time_to_recovery = recovery_expdis.sample();
+
+                time_to_recovery = recovery_expdis.sample(mttr_min, mttr_max);
+
+                // while (time_to_recovery > mttr_max || time_to_recovery < mttr_min)
+                // time_to_recovery = recovery_expdis.sample(); // Jason:
+                // 控制time_to_recovery的上限下限值
 
                 next_failure_time = current_time + time_to_failure;
-                next_recovery_time = current_time + time_to_recovery;
-
                 current_time = next_failure_time;
+                next_recovery_time = current_time + time_to_recovery;
             }
         }
 
@@ -233,7 +248,7 @@ public class FailoverGenerator extends SFCWorkloadGenerator {
         List<FailoverEvent> allfoe_list = new LinkedList();
 
         for (Host host : host_list) {
-            List<FailoverEvent> foe_list = genHostFoeByMTBF(host, start, end);
+            List<FailoverEvent> foe_list = genHostFoeByMTBF(host, start, end, 1, 3);
             if (foe_list != null)
                 allfoe_list.addAll(foe_list);
             else
@@ -257,10 +272,37 @@ public class FailoverGenerator extends SFCWorkloadGenerator {
     // return workload;
     // }
 
+    public void test() {
+        FailoverGenerator fg = new FailoverGenerator("FailoverFile.csv");
+        List<Host> host_list = new ArrayList<>(PhysicalTopologyParser.deployedHosts.get("dc1"));
+
+        double mttr_min = 1.5;
+        double mttr_max = 3;
+        for (Host host : host_list) {
+            fg.genMTBFMTTRWithAvailability(host, mttr_min, mttr_max);
+        }
+
+        double start = 0;
+        double end = 100;
+        List<FailoverEvent> allfoe_list = fg.genAllFoeByMTBF(host_list, start, end);
+        fg.writeFailoverEventIntoFile(allfoe_list);
+    }
+
     public static void main(String[] argv) {
 
         FailoverGenerator fg = new FailoverGenerator("FailoverFile.csv");
+        List<Host> host_list = new ArrayList<>(PhysicalTopologyParser.deployedHosts.get("dc1"));
 
+        double mttr_min = 1.5;
+        double mttr_max = 3;
+        for (Host host : host_list) {
+            fg.genMTBFMTTRWithAvailability(host, mttr_min, mttr_max);
+        }
+
+        double start = 0;
+        double end = 100;
+        List<FailoverEvent> allfoe_list = fg.genAllFoeByMTBF(host_list, start, end);
+        fg.writeFailoverEventIntoFile(allfoe_list);
     }
 
     /**
@@ -328,20 +370,20 @@ public class FailoverGenerator extends SFCWorkloadGenerator {
 
     }
 
-    public double getMtbf() {
-        return mtbf;
-    }
+    // public double getMtbf() {
+    // return mtbf;
+    // }
 
-    public void setMtbf(double mtbf) {
-        this.mtbf = mtbf;
-    }
+    // public void setMtbf(double mtbf) {
+    // this.mtbf = mtbf;
+    // }
 
-    public double getMttr() {
-        return mttr;
-    }
+    // public double getMttr() {
+    // return mttr;
+    // }
 
-    public void setMttr(double mttr) {
-        this.mttr = mttr;
-    }
+    // public void setMttr(double mttr) {
+    // this.mttr = mttr;
+    // }
 
 }

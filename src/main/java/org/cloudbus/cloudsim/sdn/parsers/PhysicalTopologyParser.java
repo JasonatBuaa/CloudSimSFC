@@ -199,6 +199,12 @@ public class PhysicalTopologyParser {
 							nodeName2 = nodeName + n;
 
 						SDNHost sdnHost = hostFactory.createHost(ram, bw, storage, pes, mips, nodeName);
+
+						// Jason: set availability value
+						if (node.get("availability") != null) {
+							Double availability = new Double(node.get("availability").toString());
+							sdnHost.setAvailability(availability);
+						}
 						nameNodeTable.put(nodeName2, sdnHost);
 						// hostId++;
 

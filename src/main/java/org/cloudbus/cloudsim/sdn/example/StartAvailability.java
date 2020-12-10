@@ -26,6 +26,7 @@ import org.cloudbus.cloudsim.sdn.Configuration;
 import org.cloudbus.cloudsim.sdn.HostFactory;
 import org.cloudbus.cloudsim.sdn.HostFactoryOverbookable;
 import org.cloudbus.cloudsim.sdn.SDNBroker;
+import org.cloudbus.cloudsim.sdn.example.topogenerators.FailoverGenerator;
 import org.cloudbus.cloudsim.sdn.monitor.power.PowerUtilizationMaxHostInterface;
 import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystem;
 import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystemSimple;
@@ -65,7 +66,14 @@ public class StartAvailability {
     // protected static String deploymentFile = "SmallSFCDemo/4VMSmallVirtual.json";
     // protected static String workload_file = "SmallSFCDemo/singleSmallWL.csv";
 
-    protected static String physicalTopologyFile = "SmallSFCDemo/4HostsPhysical.json";
+    // protected static String physicalTopologyFile =
+    // "SmallSFCDemo/4HostsPhysical.json"; //Jason: this file does not configure the
+    // availability value
+
+    protected static String physicalTopologyFile = "SmallSFCDemo/4AvailabilityHostsPhysical.json"; // Jason: this file
+                                                                                                   // configures the
+                                                                                                   // availability value
+
     // protected static String deploymentFile = "SmallSFCDemo/SingleSF.json"; //
     // without queue
     protected static String deploymentFile = "SmallSFCDemo/SingleQueuedSF.json";
@@ -323,6 +331,9 @@ public class StartAvailability {
 
             submitAvailabilityEvent(broker); // Jason: submit failOVer (Availability) into the cloudsim simulation
                                              // system.
+
+            FailoverGenerator fg = new FailoverGenerator("failover_file.csv");
+            fg.test();
 
             // Sixth step: Starts the simulation
             if (!StartAvailability.logEnabled)
