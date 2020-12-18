@@ -57,7 +57,6 @@ public class FailoverGenerator extends SFCWorkloadGenerator {
     // request per second -> 4
     // queue size: 6* workload平均值
 
-    private static double minTimeSpan = 0.01;
     private static double minRecoveryTime = 20;
 
     private LogWriter out = null;
