@@ -1,0 +1,163 @@
+{
+    "nodes": [
+        {
+            "mipoper": 800,
+            "size": 8,
+            "bw": 1500000,
+            "name": "fw0",
+            "mips": 1000,
+            "type": "Firewall",
+            "pes": 16,
+            "ram": 8
+        },
+        {
+            "mipoper": 200,
+            "size": 8,
+            "bw": 1500000,
+            "name": "ids0",
+            "mips": 1300,
+            "type": "IDS",
+            "pes": 12,
+            "ram": 8
+        },
+        {
+            "mipoper": 20,
+            "size": 8,
+            "bw": 1500000,
+            "name": "lb20",
+            "mips": 1500,
+            "type": "LoadBalancer",
+            "pes": 10,
+            "ram": 8
+        },
+        {
+            "size": 1000,
+            "bw": 1500000,
+            "name": "app0-0",
+            "mips": 1300,
+            "type": "vm",
+            "pes": 4,
+            "ram": 256
+        },
+        {
+            "mipoper": 20,
+            "size": 8,
+            "bw": 1500000,
+            "name": "lb10",
+            "mips": 1500,
+            "type": "LoadBalancer",
+            "pes": 10,
+            "ram": 8
+        },
+        {
+            "size": 1000,
+            "bw": 1500000,
+            "name": "web0-0",
+            "mips": 1000,
+            "type": "vm",
+            "pes": 8,
+            "ram": 256
+        },
+        {
+            "size": 1000,
+            "bw": 1500000,
+            "name": "db0-0",
+            "mips": 1500,
+            "type": "vm",
+            "pes": 12,
+            "ram": 256
+        }
+    ],
+    "policies": [
+        {
+            "sfc": [
+                "fw0",
+                "lb10"
+            ],
+            "name": "sfc-web0-0app0-0",
+            "destination": "app0-0",
+            "flowname": "web0-0app0-0",
+            "source": "web0-0",
+            "expected_time": 1.0
+        },
+        {
+            "sfc": [
+                "lb20",
+                "ids0"
+            ],
+            "name": "sfc-app0-0db0-0",
+            "destination": "db0-0",
+            "flowname": "app0-0db0-0",
+            "source": "app0-0",
+            "expected_time": 1.0
+        },
+        {
+            "sfc": [
+                "ids0",
+                "lb20"
+            ],
+            "name": "sfc-db0-0app0-0",
+            "destination": "app0-0",
+            "flowname": "db0-0app0-0",
+            "source": "db0-0",
+            "expected_time": 1.0
+        },
+        {
+            "sfc": [
+                "lb10",
+                "fw0"
+            ],
+            "name": "sfc-app0-0web0-0",
+            "destination": "web0-0",
+            "flowname": "app0-0web0-0",
+            "source": "app0-0",
+            "expected_time": 1.0
+        }
+    ],
+    "links": [
+        {
+            "name": "default",
+            "destination": "web0-0",
+            "source": "app0-0"
+        },
+        {
+            "bandwidth": 2000000,
+            "name": "db0-0app0-0",
+            "destination": "app0-0",
+            "source": "db0-0"
+        },
+        {
+            "name": "default",
+            "destination": "app0-0",
+            "source": "db0-0"
+        },
+        {
+            "name": "default",
+            "destination": "db0-0",
+            "source": "app0-0"
+        },
+        {
+            "name": "default",
+            "destination": "app0-0",
+            "source": "web0-0"
+        },
+        {
+            "bandwidth": 2000000,
+            "name": "app0-0web0-0",
+            "destination": "web0-0",
+            "source": "app0-0"
+        },
+        {
+            "bandwidth": 2000000,
+            "name": "web0-0app0-0",
+            "destination": "app0-0",
+            "source": "web0-0"
+        },
+        {
+            "bandwidth": 2000000,
+            "name": "app0-0db0-0",
+            "destination": "db0-0",
+            "source": "app0-0"
+        }
+    ]
+}
