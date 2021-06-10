@@ -47,7 +47,7 @@ import javax.sql.rowset.WebRowSet;
  *        4. For the generated SFC, generate workloads for them
  * 
  */
-public class MyGenerator extends SFCWorkloadGenerator {
+public class LoadGenerator extends SFCWorkloadGenerator {
 
     // 1. get end-point VM pairs from hashmap
     // 2. select links for the VM pair
@@ -98,7 +98,7 @@ public class MyGenerator extends SFCWorkloadGenerator {
      * @param workloadSizeMax
      * @param queueSize
      */
-    public MyGenerator(int vmMipsBase, int hostMipsBase, int requestPerSecondAverage, int vnfMiPOAverage,
+    public LoadGenerator(int vmMipsBase, int hostMipsBase, int requestPerSecondAverage, int vnfMiPOAverage,
             int workloadSizeMin, int workloadSizeMax, int queueSize) {
 
         this.vmMipsBase = vmMipsBase;
@@ -116,7 +116,7 @@ public class MyGenerator extends SFCWorkloadGenerator {
      * 
      * @param filename
      */
-    public MyGenerator(String filename) {
+    public LoadGenerator(String filename) {
         out = LogWriter.getLogger(filename);
     }
 
@@ -155,7 +155,7 @@ public class MyGenerator extends SFCWorkloadGenerator {
 
     public static void main(String[] argv) {
 
-        MyGenerator mg = new MyGenerator("testFile.csv");
+        LoadGenerator mg = new LoadGenerator("testFile.csv");
 
         Integer[] a = { 1, 2, 3 };
         List<Integer> workload = Arrays.asList(a);

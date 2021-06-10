@@ -44,7 +44,12 @@ import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationPolicyMipsMos
  * @author Jungmin Son
  * @since CloudSimSDN 1.0
  */
-public class SimpleExampleSelectLinkBandwidth extends SimpleExample {
+public abstract class DataGenerator extends SimpleExample {
+	// abstract 
+	
+	
+	
+	
 	protected static String physicalTopologyFile 	= "dataset-energy/energy-physical.json";
 	protected static String deploymentFile 		= "dataset-energy/energy-virtual.json";
 	protected static String [] workload_files 			= { 
@@ -53,8 +58,7 @@ public class SimpleExampleSelectLinkBandwidth extends SimpleExample {
 	
 	protected static List<String> workloads;
 	
-	// private static boolean logEnabled = true;
-	public static boolean logEnabled = true;
+	private  static boolean logEnabled = true;
 
 	public interface VmAllocationPolicyFactory {
 		public VmAllocationPolicy create(List<? extends Host> list);

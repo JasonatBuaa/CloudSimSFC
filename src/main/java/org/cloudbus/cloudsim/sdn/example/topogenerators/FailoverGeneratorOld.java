@@ -8,10 +8,10 @@
 
 package org.cloudbus.cloudsim.sdn.example.topogenerators;
 
-import org.apache.commons.math3.distribution.NormalDistribution;
-import org.apache.commons.math3.exception.NotFiniteNumberException;
+// import org.apache.commons.math3.distribution.NormalDistribution;
+// import org.apache.commons.math3.exception.NotFiniteNumberException;
 import org.cloudbus.cloudsim.Host;
-import org.cloudbus.cloudsim.Log;
+// import org.cloudbus.cloudsim.Log;
 import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.distributions.ExponentialDistr;
 import org.cloudbus.cloudsim.distributions.PoiDistribution;
@@ -19,24 +19,24 @@ import org.cloudbus.cloudsim.distributions.UniformDistr;
 import org.cloudbus.cloudsim.sdn.LogWriter;
 import org.cloudbus.cloudsim.sdn.parsers.PhysicalTopologyParser;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
-import org.hamcrest.core.IsInstanceOf;
-import org.junit.internal.runners.statements.Fail;
+// import org.hamcrest.core.IsInstanceOf;
+// import org.junit.internal.runners.statements.Fail;
 
-import java.lang.reflect.Array;
+// import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
+// import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
+// import java.util.HashMap;
+// import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 // import org.cloudbus.cloudsim.sdn.example.topogenerators.VirtualTopologyGeneratorVmTypesSFC;
-import java.util.Map;
-import java.util.Random;
-import java.util.TooManyListenersException;
-import java.util.stream.Collectors;
+// import java.util.Map;
+// import java.util.Random;
+// import java.util.TooManyListenersException;
+// import java.util.stream.Collectors;
 
-import javax.sql.rowset.WebRowSet;
+// import javax.sql.rowset.WebRowSet;
 
 /**
  * This class creates failOverEvents.
@@ -45,7 +45,7 @@ import javax.sql.rowset.WebRowSet;
  * @since 2020/12/07 // generate failover related information.
  * 
  */
-public class FailoverGenerator extends SFCWorkloadGenerator {
+public class FailoverGeneratorOld extends SFCWorkloadGenerator {
 
     // 固定配置： 最小时间单位、最短故障恢复时间、
     // 输入：VM的availability值， timeline开始节点、终止节点，
@@ -65,6 +65,9 @@ public class FailoverGenerator extends SFCWorkloadGenerator {
 
     private double timelineStart = 0;
     private double timelineEnd;
+
+    private double minMttr = 0;
+    private double minMtbf = 0;
 
     // private double mtbf = 0;
     // private double mttr = 0;
@@ -97,6 +100,7 @@ public class FailoverGenerator extends SFCWorkloadGenerator {
 
     }
 
+// 南屏晚钟、雷峰夕照、花港观鱼、双峰插云、断桥残雪、苏堤春晓、三潭印月、平湖秋月、柳浪闻莺、曲苑风荷
     public class FailoverEvent {
         String hostName = "";
         double eventArrivalTime;

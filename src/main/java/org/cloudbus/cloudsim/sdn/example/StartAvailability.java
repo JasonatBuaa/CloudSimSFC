@@ -9,6 +9,7 @@ package org.cloudbus.cloudsim.sdn.example;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -26,7 +27,7 @@ import org.cloudbus.cloudsim.sdn.Configuration;
 import org.cloudbus.cloudsim.sdn.HostFactory;
 import org.cloudbus.cloudsim.sdn.HostFactoryOverbookable;
 import org.cloudbus.cloudsim.sdn.SDNBroker;
-import org.cloudbus.cloudsim.sdn.example.topogenerators.FailoverGenerator;
+import org.cloudbus.cloudsim.sdn.example.topogenerators.FRGenerator;
 import org.cloudbus.cloudsim.sdn.monitor.power.PowerUtilizationMaxHostInterface;
 import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystem;
 import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystemSimple;
@@ -70,20 +71,20 @@ public class StartAvailability {
     // "SmallSFCDemo/4HostsPhysical.json"; //Jason: this file does not configure the
     // availability value
 
-    protected static String physicalTopologyFile = "SmallSFCDemo/4AvailabilityHostsPhysical.json"; // Jason: this file
+    protected static String physicalTopologyFile = "cloudsimsdn/SmallSFCDemo/4AvailabilityHostsPhysical.json"; // Jason: this file
                                                                                                    // configures the
                                                                                                    // availability value
 
     // protected static String deploymentFile = "SmallSFCDemo/SingleSF.json"; //
     // without queue
-    protected static String deploymentFile = "SmallSFCDemo/SingleQueuedSF.json";
+    protected static String deploymentFile = "cloudsimsdn/SmallSFCDemo/SingleQueuedSF.json";
 
     // protected static String workload_file = "SmallSFCDemo/TripleWL.csv";
     // protected static String workload_file = "SmallSFCDemo/WLQueue.csv";
 
-    protected static String workload_file = "SmallSFCDemo/jasontestFile.csv";
+    protected static String workload_file = "cloudsimsdn/SmallSFCDemo/jasontestFile.csv";
 
-    protected static String failOver_file = "SmallSFCDemo/FailureEvent.csv";
+    protected static String failOver_file = "cloudsimsdn/SmallSFCDemo/FailureEvent.csv";
 
     protected static String[] workload_files = {};
 
@@ -143,6 +144,10 @@ public class StartAvailability {
 
         StartAvailability.printArgs(args, args.length);
         int n = 0;
+        System.out.println(System.getProperty("user.dir"));
+        File directory =new File("physicalTopologyFile");  
+        // System.out.println(directory.getCanonicalPath());//获取标准的路径
+        System.out.println(directory.getAbsolutePath());
 
         // 1. Policy: MFF, LFF, ...
         String policy = args[n++];
@@ -332,7 +337,7 @@ public class StartAvailability {
             submitAvailabilityEvent(broker); // Jason: submit failOVer (Availability) into the cloudsim simulation
                                              // system.
 
-            FailoverGenerator fg = new FailoverGenerator("failover_file.csv");
+            FRGenerator fg = new FRGenerator("failover_file.csv");
             fg.test();
 
             // Sixth step: Starts the simulation
