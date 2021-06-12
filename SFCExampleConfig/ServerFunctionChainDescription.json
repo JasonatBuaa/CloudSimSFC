@@ -1,0 +1,11 @@
+{
+  "Name": "chain1",
+  "Chain": [
+    "SF-A",
+    "SF-B",
+    "SF-C",
+    "SF-D"],
+  "AverageInputSize": 100,
+  "CreateTime": 3700,
+  "DestroyTime":10001
+}

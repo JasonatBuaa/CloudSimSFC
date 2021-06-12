@@ -71,20 +71,20 @@ public class StartAvailability {
     // "SmallSFCDemo/4HostsPhysical.json"; //Jason: this file does not configure the
     // availability value
 
-    protected static String physicalTopologyFile = "cloudsimsdn/SmallSFCDemo/4AvailabilityHostsPhysical.json"; // Jason: this file
+    protected static String physicalTopologyFile = "SmallSFCDemo/4AvailabilityHostsPhysical.json"; // Jason: this file
                                                                                                    // configures the
                                                                                                    // availability value
 
     // protected static String deploymentFile = "SmallSFCDemo/SingleSF.json"; //
     // without queue
-    protected static String deploymentFile = "cloudsimsdn/SmallSFCDemo/SingleQueuedSF.json";
+    protected static String deploymentFile = "SmallSFCDemo/SingleQueuedSF.json";
 
     // protected static String workload_file = "SmallSFCDemo/TripleWL.csv";
     // protected static String workload_file = "SmallSFCDemo/WLQueue.csv";
 
-    protected static String workload_file = "cloudsimsdn/SmallSFCDemo/jasontestFile.csv";
+    protected static String workload_file = "SmallSFCDemo/jasontestFile.csv";
 
-    protected static String failOver_file = "cloudsimsdn/SmallSFCDemo/FailureEvent.csv";
+    protected static String failOver_file = "SmallSFCDemo/FailureEvent.csv";
 
     protected static String[] workload_files = {};
 

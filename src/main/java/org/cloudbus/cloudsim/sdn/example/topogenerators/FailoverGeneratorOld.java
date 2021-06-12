@@ -72,14 +72,14 @@ public class FailoverGeneratorOld extends SFCWorkloadGenerator {
     // private double mtbf = 0;
     // private double mttr = 0;
 
-    public FailoverGenerator(String filename, List<Host> hosts, double timelineEnd) {
+    public FailoverGeneratorOld(String filename, List<Host> hosts, double timelineEnd) {
 
         out = LogWriter.getLogger(filename);
         this.hosts = hosts;
         this.timelineEnd = timelineEnd;
     }
 
-    public FailoverGenerator(String filename) {
+    public FailoverGeneratorOld(String filename) {
         out = LogWriter.getLogger(filename);
     }
 
@@ -276,7 +276,7 @@ public class FailoverGeneratorOld extends SFCWorkloadGenerator {
     // }
 
     public void test() {
-        FailoverGenerator fg = new FailoverGenerator("FailoverFile.csv");
+        FailoverGeneratorOld fg = new FailoverGeneratorOld("FailoverFile.csv");
         List<Host> host_list = new ArrayList<>(PhysicalTopologyParser.deployedHosts.get("dc1"));
 
         double mttr_min = 1.5;
@@ -293,7 +293,7 @@ public class FailoverGeneratorOld extends SFCWorkloadGenerator {
 
     public static void main(String[] argv) {
 
-        FailoverGenerator fg = new FailoverGenerator("FailoverFile.csv");
+        FailoverGeneratorOld fg = new FailoverGeneratorOld("FailoverFile.csv");
         List<Host> host_list = new ArrayList<>(PhysicalTopologyParser.deployedHosts.get("dc1"));
 
         double mttr_min = 1.5;
@@ -322,14 +322,7 @@ public class FailoverGeneratorOld extends SFCWorkloadGenerator {
         return requestAmountEverySecond;
     }
 
-    /**
-     * Jason: Generate one line of workload.
-     * 
-     * @param mu
-     * @param sigma
-     * @param sampleSize
-     * @return
-     */
+
 
     public double randomDouble(Double min, Double max) {
         UniformDistr dis = new UniformDistr(min, max);
