@@ -60,6 +60,8 @@ public class ServiceFunction extends QueuedVM {
 	 */
 	private long mipOper = 0;
 
+	private long miperUnitWorkload;
+
 	// private int queueRam;
 
 	public static ServiceFunction findSFById(int id) {
@@ -122,12 +124,20 @@ public class ServiceFunction extends QueuedVM {
 		}
 	}
 
-	public void setMIperOperation(long mipOperation) {
-		this.mipOper = mipOperation; // MI per operation.
+	// public void setMIperOperation(long mipOperation) {
+	// 	this.mipOper = mipOperation; // MI per operation.
+	// }
+
+	// public long getMIperOperation() {
+	// 	return this.mipOper;
+	// }
+
+	public void setMIperUnitWorkload(long miperUnitWorkload) {
+		this.miperUnitWorkload = miperUnitWorkload; // MI per operation.
 	}
 
-	public long getMIperOperation() {
-		return this.mipOper;
+	public long getMIperUnitWorkload(){
+		return this.miperUnitWorkload;
 	}
 
 	public double getInitialMips() {

@@ -22,7 +22,7 @@ import java.util.Queue;
 import org.cloudbus.cloudsim.ParameterException;
 import org.cloudbus.cloudsim.sdn.Configuration;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
-import org.cloudbus.cloudsim.sdn.workload.FailOverEvent;
+import org.cloudbus.cloudsim.sdn.workload.FREvent;
 import org.cloudbus.cloudsim.sdn.workload.WorkloadResultWriter;
 
 /**
@@ -35,7 +35,7 @@ import org.cloudbus.cloudsim.sdn.workload.WorkloadResultWriter;
  * @since 20201111 v1.0
  */
 
-public class FailOverEventParser {
+public class FREventParser {
     private static final int NUM_PARSE_EACHTIME = 200;
 
     private double forcedStartTime = -1;
@@ -45,7 +45,7 @@ public class FailOverEventParser {
     private String file;
     private int userId;
 
-    private List<FailOverEvent> parsedFailOverEvents;
+    private List<FREvent> parsedFailOverEvents;
 
     private WorkloadResultWriter resultWriter = null;
 
@@ -59,7 +59,7 @@ public class FailOverEventParser {
      * @param userId
      * @param hostIdMap
      */
-    public FailOverEventParser(String file) {
+    public FREventParser(String file) {
         this.file = file;
         String result_file = getResultFileName(this.file);
         resultWriter = new WorkloadResultWriter(result_file);
@@ -99,7 +99,7 @@ public class FailOverEventParser {
     }
 
     public void parseNextFailOverEvents() {
-        this.parsedFailOverEvents = new ArrayList<FailOverEvent>();
+        this.parsedFailOverEvents = new ArrayList<FREvent>();
         try {
             parseNext(NUM_PARSE_EACHTIME);
         } catch (Exception e) {
@@ -108,7 +108,7 @@ public class FailOverEventParser {
         }
     }
 
-    public List<FailOverEvent> getParsedFailOverEvents() {
+    public List<FREvent> getParsedFailOverEvents() {
         return this.parsedFailOverEvents;
     }
 
@@ -149,7 +149,7 @@ public class FailOverEventParser {
         try {
             while (((line = bufReader.readLine()) != null) && (parsedFailOverEvents.size() < numPerBatch)) {
                 // System.out.println("parsing:"+line);
-                FailOverEvent ae = new FailOverEvent(failOverEventNum++);
+                FREvent ae = new FREvent(failOverEventNum++);
 
                 String[] splitLine = line.split(",");
                 Queue<String> lineitems = new LinkedList<String>(Arrays.asList(splitLine));

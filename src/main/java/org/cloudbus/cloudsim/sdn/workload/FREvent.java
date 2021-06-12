@@ -14,8 +14,8 @@ package org.cloudbus.cloudsim.sdn.workload;
  * @author Jungmin Son
  * @since CloudSimSDN 1.0
  */
-public class FailOverEvent implements Comparable<FailOverEvent> {
-    public int failOverEventId;
+public class FREvent implements Comparable<FREvent> {
+    public int fREventId;
 
     public double time;
     public double failureTime;
@@ -24,8 +24,8 @@ public class FailOverEvent implements Comparable<FailOverEvent> {
     public int hostID;
     // public AvailabilityEventType type;
 
-    public FailOverEvent(int failOverEventId) {
-        this.failOverEventId = failOverEventId;
+    public FREvent(int fREventId) {
+        this.fREventId = fREventId;
         // this.resultWriter = writer;
     }
 
@@ -50,13 +50,13 @@ public class FailOverEvent implements Comparable<FailOverEvent> {
     // }
 
     @Override
-    public int compareTo(FailOverEvent that) {
-        return this.failOverEventId - that.failOverEventId;
+    public int compareTo(FREvent that) {
+        return this.fREventId - that.fREventId;
     }
 
     @Override
     public String toString() {
-        return "FailOverEventId (ID:" + failOverEventId + "/" + "HostID:" + hostID + ", Eventtime:" + time
+        return "FailOverEventId (ID:" + fREventId + "/" + "HostID:" + hostID + ", Eventtime:" + time
                 + "Failure Time:" + failureTime + "Recovery Time:" + recoveryTime;
     }
 

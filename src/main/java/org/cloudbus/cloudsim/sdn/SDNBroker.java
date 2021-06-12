@@ -23,7 +23,7 @@ import org.cloudbus.cloudsim.core.SimEntity;
 import org.cloudbus.cloudsim.core.SimEvent;
 import org.cloudbus.cloudsim.sdn.example.StartAvailability;
 import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystem;
-import org.cloudbus.cloudsim.sdn.parsers.FailOverEventParser;
+import org.cloudbus.cloudsim.sdn.parsers.FREventParser;
 import org.cloudbus.cloudsim.sdn.parsers.PhysicalTopologyParser;
 import org.cloudbus.cloudsim.sdn.parsers.VirtualTopologyParser;
 import org.cloudbus.cloudsim.sdn.parsers.WorkloadParser;
@@ -34,7 +34,7 @@ import org.cloudbus.cloudsim.sdn.sfc.ServiceFunction;
 import org.cloudbus.cloudsim.sdn.sfc.ServiceFunctionChainPolicy;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.FlowConfig;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm;
-import org.cloudbus.cloudsim.sdn.workload.FailOverEvent;
+import org.cloudbus.cloudsim.sdn.workload.FREvent;
 import org.cloudbus.cloudsim.sdn.workload.Request;
 import org.cloudbus.cloudsim.sdn.workload.Workload;
 import org.cloudbus.cloudsim.sdn.workload.WorkloadResultWriter;
@@ -59,7 +59,7 @@ public class SDNBroker extends SimEntity {
 	private String applicationFileName = null;
 	private HashMap<WorkloadParser, Integer> workloadId = null;
 
-	private HashMap<FailOverEventParser, Integer> failOverIds = null; // Jason: For failOver Events
+	private HashMap<FREventParser, Integer> failOverIds = null; // Jason: For failOver Events
 	private HashMap<Long, Workload> requestMap = null;
 	private List<String> workloadFileNames = null;
 
@@ -72,7 +72,7 @@ public class SDNBroker extends SimEntity {
 
 		this.failOverFileNames = new ArrayList<String>();
 		workloadId = new HashMap<WorkloadParser, Integer>();
-		failOverIds = new HashMap<FailOverEventParser, Integer>();
+		failOverIds = new HashMap<FREventParser, Integer>();
 		requestMap = new HashMap<Long, Workload>();
 
 	}
@@ -269,7 +269,7 @@ public class SDNBroker extends SimEntity {
 		if (StartAvailability.failOverDebug)
 			return;
 		for (String filename : this.failOverFileNames) {
-			FailOverEventParser foEventParser = startFailOverEventParser(filename);
+			FREventParser foEventParser = startFailOverEventParser(filename);
 			failOverIds.put(foEventParser, SDNBroker.lastAppId);
 			SDNBroker.lastAppId++;
 
@@ -358,9 +358,9 @@ public class SDNBroker extends SimEntity {
 	 * @param failOverEventFile
 	 * @return
 	 */
-	private FailOverEventParser startFailOverEventParser(String failOverEventFile) {
+	private FREventParser startFailOverEventParser(String failOverEventFile) {
 		Map<String, Integer> hostIdMap = new HashMap<>(); // Jason:Todo! finish this part!!
-		FailOverEventParser failOverEventParser = new FailOverEventParser(failOverEventFile);
+		FREventParser failOverEventParser = new FREventParser(failOverEventFile);
 		// (failOverEventFile,
 
 		for (SDNDatacenter datacenter : datacenters.values()) {
@@ -426,14 +426,14 @@ public class SDNBroker extends SimEntity {
 	 * 
 	 * @param failOverEventParser
 	 */
-	private void injectFailOverEvents(FailOverEventParser failOverEventParser) {
+	private void injectFailOverEvents(FREventParser failOverEventParser) {
 		int failOverId = this.failOverIds.get(failOverEventParser);
 		failOverEventParser.parseNextFailOverEvents();
-		List<FailOverEvent> parsedFailOverEvents = failOverEventParser.getParsedFailOverEvents();
+		List<FREvent> parsedFailOverEvents = failOverEventParser.getParsedFailOverEvents();
 
 		if (parsedFailOverEvents.size() > 0) {
 			// Schedule the parsed workloads
-			for (FailOverEvent fow : parsedFailOverEvents) {
+			for (FREvent fow : parsedFailOverEvents) {
 				double injectTime = fow.getTime() - CloudSim.clock();
 				if (injectTime < 0) {
 					// throw new IllegalArgumentException("SDNBroker.scheduleRequest(): Workload's
@@ -442,7 +442,7 @@ public class SDNBroker extends SimEntity {
 							"**" + CloudSim.clock() + ": SDNBroker.scheduleRequest(): abnormal start time." + fow);
 					continue;
 				}
-				fow.failOverEventId = failOverId;
+				fow.fREventId = failOverId;
 				int hostId = fow.getHostID();
 
 				double failureTime = fow.getFailureTime();
