@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.math3.analysis.function.Max;
 import org.cloudbus.cloudsim.sdn.HostFactory;
 import org.cloudbus.cloudsim.sdn.HostFactorySimple;
 import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystem;
@@ -49,6 +50,8 @@ import com.google.common.collect.Multimap;
 public class PhysicalTopologyParser {
 	private String filename;
 
+	private long LINK_BW_MAX = Long.MAX_VALUE;
+	private long SW_IOPS_MAX = Long.MAX_VALUE;
 	private Multimap<String, SDNHost> sdnHosts;
 	private Multimap<String, Switch> switches;
 	private List<Link> links = new ArrayList<Link>();
@@ -220,14 +223,20 @@ public class PhysicalTopologyParser {
 
 					int MAX_PORTS = 256;
 
-					long bw = new BigDecimal((Long) node.get("bw")).longValueExact();
-					long iops = (Long) node.get("iops");
+					// long bw = new BigDecimal((Long) node.get("bw")).longValueExact();
+					// long iops = (Long) node.get("iops");
+					long bw = new BigDecimal(LINK_BW_MAX).longValueExact();
+					long iops = SW_IOPS_MAX;
 					int upports = MAX_PORTS;
 					int downports = MAX_PORTS;
 					if (node.get("upports") != null)
 						upports = new BigDecimal((Long) node.get("upports")).intValueExact();
 					if (node.get("downports") != null)
 						downports = new BigDecimal((Long) node.get("downports")).intValueExact();
+
+					upports = MAX_PORTS;
+					downports = MAX_PORTS;
+					
 					Switch sw = null;
 
 					if (nodeType.equalsIgnoreCase("core")) {

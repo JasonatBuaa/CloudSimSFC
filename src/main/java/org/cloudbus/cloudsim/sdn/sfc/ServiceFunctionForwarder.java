@@ -41,6 +41,10 @@ import org.cloudbus.cloudsim.sdn.workload.Transmission;
  */
 public class ServiceFunctionForwarder {
 
+
+// Jason: Todo!! apply multiple entry points for any SFCs. i.e., Multi - Access Point
+
+
 	/** NOS which will call this forwarder. One forwarder per NOS */
 	protected NetworkOperatingSystem nos;
 
@@ -112,6 +116,10 @@ public class ServiceFunctionForwarder {
 
 	}
 
+	/**
+	* Jason: This function is only called when new sf creation failed in current DC.
+	* @param newSf
+	 */
 	private void createDuplicatedSFMultiDataCenter(ServiceFunction newSf) {
 		ServiceFunction orgSf = sfOriginalMap.get(newSf.getId());
 		List<String> optDc = orgSf.getOptionalDatacenters();
@@ -163,8 +171,12 @@ public class ServiceFunctionForwarder {
 		// " for policy: "+policy);
 
 		// Create the latter request (SF -> DestVM)
-		long sfProcessingSize = sf.getMIperOperation();
+		// long sfProcessingSize = sf.getMIperOperation();
+		
+		
+		//Jason: fix! get sf workload for current service function.
 
+		long sfProcessingSize = 0;
 		Processing sfProc = createRequestActivityProcessing((int) encapsulatedReq.getRequestId(), sf.getId(), userId,
 				sfProcessingSize);
 		Transmission sfToDst = createRequestActivityTransmission(sf.getId(), dstVmId, flowId, packetSize, orgPayload,

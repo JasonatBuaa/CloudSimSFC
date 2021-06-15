@@ -191,12 +191,14 @@ public class VirtualTopologyParser {
 						sf = new ServiceFunction(vmId, userId, mips, pes, ram, bw, size, "VMM", clSch, starttime,
 								endtime, initialAvail, queueSize);
 
-						long mipOperation = (Long) node.get("mipoper");
+						// long mipOperation = (Long) node.get("mipoper");
+						long miperUnitWorkload = (Long) node.get("impperunitworkload");
 
 						sf.setName(nodeName2);
 						sf.setHostName(hostName);
 						sf.setOptionalDatacenters(optionalDatacenter);
-						sf.setMIperOperation(mipOperation);
+						// sf.setMIperOperation(mipOperation);
+						sf.setMIperUnitWorkload(miperUnitWorkload);
 
 						sf.setMiddleboxType(nodeType);
 						vmList.put(dcName, sf);
