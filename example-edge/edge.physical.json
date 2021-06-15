@@ -213,7 +213,6 @@
     {
       "name": "edgeuser3",
       "type" : "host",
-      "type" : "host",
       "pes" : 1,
       "mips" : 1000,
       "ram" : 512,

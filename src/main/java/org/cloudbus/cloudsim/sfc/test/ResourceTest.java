@@ -1,8 +1,11 @@
 package org.cloudbus.cloudsim.sfc.test;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.cloudbus.cloudsim.sfc.parser.Resource;
+import org.cloudbus.cloudsim.sfc.parser.configGenerator.CustomPhysicalTopologyGenerator;
 
 import java.util.List;
 
@@ -116,9 +119,15 @@ class ResourceTest {
 
         List<Resource> resourceParsers =
                 JSONObject.parseObject(jsonStr,new TypeReference<List<Resource>>(){});
+        CustomPhysicalTopologyGenerator physicalTopologyGenerator = new CustomPhysicalTopologyGenerator();
+        physicalTopologyGenerator.generate(resourceParsers);
+
+        JSON.DEFAULT_GENERATE_FEATURE = JSON.DEFAULT_GENERATE_FEATURE &~ SerializerFeature.SortField.getMask();
+        String jsonstr = JSON.toJSONString(physicalTopologyGenerator, SerializerFeature.PrettyFormat);
         for(Resource resourceParser : resourceParsers){
             System.out.println(resourceParser.toString());
         }
+        System.out.println(jsonstr);
     }
 
 }
