@@ -1,7 +1,10 @@
 package org.cloudbus.cloudsim.sfc.parser;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import org.cloudbus.cloudsim.sfc.parser.configGenerator.CustomPhysicalTopologyGenerator;
 
 import java.io.*;
 import java.util.List;
@@ -19,6 +22,7 @@ public class FileParser {
     public FileParser(){
 
     }
+
     public FileParser(String rootPath){
         this.rootPath = rootPath;
     }
@@ -28,6 +32,14 @@ public class FileParser {
         parserServerFunction();
         parserServerFunctionChain();
         sfcWorkload = new SFCWorkload(serverFunctionChain);
+    }
+
+    public void generate(){
+        CustomPhysicalTopologyGenerator physicalTopologyGenerator = new CustomPhysicalTopologyGenerator();
+        physicalTopologyGenerator.generate(resources);
+        JSON.DEFAULT_GENERATE_FEATURE = JSON.DEFAULT_GENERATE_FEATURE &~ SerializerFeature.SortField.getMask();
+        String jsonstr = JSON.toJSONString(physicalTopologyGenerator, SerializerFeature.PrettyFormat);
+        jsonWrite(rootPath+ "PhysicalResource.json", jsonstr);
     }
 
     public void parserResource(){
@@ -66,6 +78,19 @@ public class FileParser {
         }catch (IOException e){
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void jsonWrite(String path, String jsonStr){
+        try{
+            File jsonFile = new File(path);
+            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(jsonFile));
+            writer.write(jsonStr);
+            writer.flush();
+            writer.close();
+
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 
