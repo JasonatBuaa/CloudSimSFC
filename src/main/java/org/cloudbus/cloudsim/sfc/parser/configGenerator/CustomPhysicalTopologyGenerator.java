@@ -34,6 +34,9 @@ public class CustomPhysicalTopologyGenerator {
         double latency = 1.0;
         for(PhysicalTopologyNode node_s : nodes){
             for(PhysicalTopologyNode node_d : nodes){
+                if(node_d == node_s){
+                    continue;
+                }
                 links.add(new PhysicalTopologyLink(node_s.name, node_d.name, latency));
                 count ++;
                 if(count>=50){
@@ -62,7 +65,7 @@ public class CustomPhysicalTopologyGenerator {
                     PhysicalResource physicalResource = physicalResources.get(i);
                     int size = physicalResource.getServerNumber();
                     for(int j =0; j< size; j++){
-                        String name = physicalResource.getName()+(j+1);
+                        String name = resource.getName() + '-' + physicalResource.getName() + '-' + (j+1);
                         String type = "host";
                         String datacenter = resource.getName();
                         //todo need pes config
@@ -81,6 +84,16 @@ public class CustomPhysicalTopologyGenerator {
     }
 
     private void generateSwitchNode(){
+        String datacenter = "intercloud";
+        String name = "gateway";
+        String type = "gateway";
+        long iops = Long.MAX_VALUE;
+        int upports = 1;
+        int downports = 2;
+        long bw = Long.MAX_VALUE;
+        for(int i = 0; i < 20; i++){
+            nodes.add(new Switch(name + "-" + (i+1), type, datacenter, iops, upports, downports, bw));
+        }
 
     }
 
