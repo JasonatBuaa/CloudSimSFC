@@ -1,13 +1,12 @@
 package org.cloudbus.cloudsim.sfc.parser.configGenerator;
 
 public class Switch extends PhysicalTopologyNode{
-    public int iops;
+    public long iops;
     public int upports;
     public int downports;
-    public int bw;
+    public long bw;
 
-
-    public Switch(String name, String type, String datacenter,  int iops, int upports, int downports, int bw) {
+    public Switch(String name, String type, String datacenter, long iops, int upports, int downports, long bw) {
         super(name, type, datacenter);
         this.iops = iops;
         this.upports = upports;
@@ -15,11 +14,11 @@ public class Switch extends PhysicalTopologyNode{
         this.bw = bw;
     }
 
-    public int getIops() {
+    public long getIops() {
         return iops;
     }
 
-    public void setIops(int iops) {
+    public void setIops(long iops) {
         this.iops = iops;
     }
 
@@ -39,11 +38,11 @@ public class Switch extends PhysicalTopologyNode{
         this.downports = downports;
     }
 
-    public int getBw() {
+    public long getBw() {
         return bw;
     }
 
-    public void setBw(int bw) {
+    public void setBw(long bw) {
         this.bw = bw;
     }
 }
