@@ -326,6 +326,7 @@ public class ServiceFunctionAutoScaler {
 
 			newSF.setName(orgSf.getName() + "-dup" + newSF.getId());
 			newSF.setMIperOperation(orgSf.getMIperOperation());
+			
 			newSF.setMiddleboxType(orgSf.getMiddleboxType());
 
 			return newSF;

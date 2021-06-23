@@ -107,6 +107,9 @@ public class SDNHost extends Host implements Node {
 			// Change MIPS share proportion depending on the remaining Cloudlets.
 			adjustMipsShare();
 
+			// Todo: Jason! Computation Performance Jitter Injection
+			injectComputationJitter();
+
 			// Check the next event time based on the updated MIPS share proportion
 			for (SDNVm vm : this.<SDNVm>getVmList()) {
 				List<Double> mipsAllocatedAfter = getVmScheduler().getAllocatedMipsForVm(vm);
@@ -169,6 +172,23 @@ public class SDNHost extends Host implements Node {
 			}
 		}
 	}
+
+	public void injectComputationJitter() {
+		
+		for (SDNVm vm: this.<SDNVm>getVmList()){
+			
+		}
+		if (getVmScheduler() instanceof VmSchedulerTimeSharedOverSubscriptionDynamicVM) {
+			VmSchedulerTimeSharedOverSubscriptionDynamicVM sch = (VmSchedulerTimeSharedOverSubscriptionDynamicVM) getVmScheduler();
+			double scaleFactor = sch.redistributeMipsDueToOverSubscriptionDynamic();
+
+			logOverloadLogger(scaleFactor);
+			for (SDNVm vm : this.<SDNVm>getVmList()) {
+				vm.logOverloadLogger(scaleFactor);
+			}
+		}
+	}
+
 
 	// Check how long this Host is overloaded (The served capacity is less than the
 	// required capacity)
