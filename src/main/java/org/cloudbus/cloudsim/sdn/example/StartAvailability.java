@@ -82,7 +82,8 @@ public class StartAvailability {
     // protected static String workload_file = "SmallSFCDemo/TripleWL.csv";
     // protected static String workload_file = "SmallSFCDemo/WLQueue.csv";
 
-    protected static String workload_file = "SmallSFCDemo/jasontestFile.csv";
+    // protected static String workload_file = "SmallSFCDemo/jasontestFile.csv";
+    protected static String workload_file = "SmallSFCDemo/demoWorkload.csv";
 
     protected static String failOver_file = "SmallSFCDemo/FailureEvent.csv";
 
