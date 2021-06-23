@@ -38,10 +38,10 @@ public class ServiceFunctionChainPolicy {
 	/** End time to finish enforcing this policy. */
 	private double finishTime = Double.POSITIVE_INFINITY;
 
-	/** Source VM ID. */
+	/** Ingress VM ID. */
 	private int srcId;
 
-	/** Destination VM ID. */
+	/** Egress VM ID. */
 	private int dstId;
 
 	/** Virtual flow ID from Src -> to Dest. */

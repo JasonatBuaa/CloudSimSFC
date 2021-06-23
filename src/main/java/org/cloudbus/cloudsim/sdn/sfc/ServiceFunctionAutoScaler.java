@@ -325,8 +325,9 @@ public class ServiceFunctionAutoScaler {
 					orgSf.getStartTime(), orgSf.getFinishTime(), orgSf.getAvailability(), orgSf.getQueueSize());
 
 			newSF.setName(orgSf.getName() + "-dup" + newSF.getId());
-			newSF.setMIperOperation(orgSf.getMIperOperation());
-			
+
+			//Todo! Jason: Fix Bug!!
+			// newSF.setMIperOperation(orgSf.getMIperOperation());
 			newSF.setMiddleboxType(orgSf.getMiddleboxType());
 
 			return newSF;
