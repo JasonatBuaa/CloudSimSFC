@@ -308,7 +308,7 @@ public class VirtualTopologyParser {
 			}
 
 			ServiceFunctionChainPolicy pol = new ServiceFunctionChainPolicy(srcId, dstId, flowId, sfcList,
-					expectedTime);
+					expected_duration);
 			if (name != null)
 				pol.setName(name);
 
