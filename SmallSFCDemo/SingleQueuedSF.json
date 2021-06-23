@@ -3,6 +3,8 @@
         {
             "name": "sfc1_Ingress",
             "type": "Ingress",
+            "pes": 0,
+            "mips":0,
             "DC": "Edge1"
         },
         {
@@ -53,6 +55,8 @@
             "source": "sfc1_Ingress",
             "destination": "sfc1_Egress",
             "flowname": "flow_sfc1",
+            "starttime":0,
+            "expectedduration":100,
             "sfc": [
                 "sf1",
                 "sf2"

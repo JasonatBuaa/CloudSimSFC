@@ -23,6 +23,7 @@ import org.cloudbus.cloudsim.core.SimEntity;
 import org.cloudbus.cloudsim.core.SimEvent;
 import org.cloudbus.cloudsim.sdn.example.StartAvailability;
 import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystem;
+import org.cloudbus.cloudsim.sdn.parsers.DeploymentFileParser;
 import org.cloudbus.cloudsim.sdn.parsers.FREventParser;
 import org.cloudbus.cloudsim.sdn.parsers.PhysicalTopologyParser;
 import org.cloudbus.cloudsim.sdn.parsers.VirtualTopologyParser;
@@ -286,7 +287,7 @@ public class SDNBroker extends SimEntity {
 	 */
 	private void processApplication(int userId, String vmsFileName) {
 		SDNDatacenter defaultDC = SDNBroker.datacenters.entrySet().iterator().next().getValue();
-		VirtualTopologyParser parser = new VirtualTopologyParser(defaultDC.getName(), vmsFileName, userId);
+		DeploymentFileParser parser = new DeploymentFileParser(defaultDC.getName(), vmsFileName, userId);
 
 		for (String dcName : SDNBroker.datacenters.keySet()) {
 			SDNDatacenter dc = SDNBroker.datacenters.get(dcName);

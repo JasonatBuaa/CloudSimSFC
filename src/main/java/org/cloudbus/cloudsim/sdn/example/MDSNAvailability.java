@@ -51,7 +51,7 @@ import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationPolicyMipsMos
 public class MDSNAvailability {
 
 	protected static String physicalTopologyFile = "SFCExampleConfig/PhysicalResource.json";
-	protected static String deploymentFile = "SFCExampleConfig/jasontestFile.csv";
+	protected static String deploymentFile = "SmallSFCDemo/jasontestFile.csv";
 	protected static String workload_file = "";
 	protected static String[] workload_files = { };
 

@@ -6,8 +6,7 @@ import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
 public class QueuedVM extends SDNVm {
 
     // public TheQueue theQueue;
-    public long queueSize;
-    public double availability;
+
 
     /**
      * Jason: when holding a {@link TheQueue} instance
@@ -49,7 +48,7 @@ public class QueuedVM extends SDNVm {
      * @param cloudletScheduler
      * @param startTime
      * @param finishTime
-     * @param avail
+     * @param availability
      * @param queueSize
      */
     // public QueuedVM(int id, int userId, double mips, int numberOfPes, int ram,

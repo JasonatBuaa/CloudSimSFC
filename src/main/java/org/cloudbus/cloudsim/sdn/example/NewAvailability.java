@@ -15,6 +15,9 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
+// import java.util.Map;dList;
+import java.util.List;
+import java.util.Map;
 
 import org.cloudbus.cloudsim.DatacenterCharacteristics;
 import org.cloudbus.cloudsim.Host;
@@ -83,7 +86,7 @@ public class NewAvailability {
     // protected static String workload_file = "SmallSFCDemo/TripleWL.csv";
     // protected static String workload_file = "SmallSFCDemo/WLQueue.csv";
 
-    protected static String workload_file = "SFCExampleConfig/jasontestFile.csv";
+    protected static String workload_file = "SmallSFCDemo/jasontestFile.csv";
 
     protected static String failOver_file = "SmallSFCDemo/FailureEvent.csv";
 

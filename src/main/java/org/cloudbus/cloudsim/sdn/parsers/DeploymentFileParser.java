@@ -30,6 +30,7 @@ import org.cloudbus.cloudsim.sdn.sfc.ServiceFunctionChainPolicy;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.FlowConfig;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.QueuedVM;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm;
+import org.cloudbus.cloudsim.sdn.virtualcomponents.SFCDumyNode;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -46,12 +47,14 @@ import com.google.common.collect.Multimap;
  * @author Jungmin Son
  * @since CloudSimSDN 1.0
  */
-public class VirtualTopologyParser {
+public class DeploymentFileParser {
 
 	private static int flowNumbers = 0;
 
 	private Multimap<String, SDNVm> vmList; // the SDNVm has been updated into the class of QueuedVM
-	private List<ServiceFunction> sfList = new LinkedList<ServiceFunction>(); // SFs are added in both VM list and SF
+	private List<ServiceFunction> sfList = new 
+	// private List<>
+	LinkedList<ServiceFunction>(); // SFs are added in both VM list and SF
 																				// list
 	private List<FlowConfig> arcList = new LinkedList<FlowConfig>();
 	private List<ServiceFunctionChainPolicy> policyList = new LinkedList<ServiceFunctionChainPolicy>();
@@ -61,7 +64,7 @@ public class VirtualTopologyParser {
 
 	private String defaultDatacenter;
 
-	public VirtualTopologyParser(String datacenterName, String topologyFileName, int userId) {
+	public DeploymentFileParser(String datacenterName, String topologyFileName, int userId) {
 		vmList = HashMultimap.create();
 		this.vmsFileName = topologyFileName;
 		this.userId = userId;
@@ -112,6 +115,7 @@ public class VirtualTopologyParser {
 
 			double starttime = 0;
 			double endtime = Double.POSITIVE_INFINITY;
+			
 			if (node.get("starttime") != null)
 				starttime = (Double) node.get("starttime");
 			if (node.get("endtime") != null)
@@ -167,7 +171,31 @@ public class VirtualTopologyParser {
 
 				QueuedVM newVM = null;
 
-				if (nodeType.equalsIgnoreCase("vm")) {
+				if(nodeType.equalsIgnoreCase("Ingress") || nodeType.equalsIgnoreCase("Egress"))
+				{
+						SFCDumyNode dumyNode;
+					try {
+						dumyNode = new SFCDumyNode(0,0,null,starttime,endtime,nodeType);
+
+						// long mipOperation = (Long) node.get("mipoper");
+						long miperUnitWorkload = (Long) node.get("impperunitworkload");
+
+						dumyNode.setName(nodeName2);
+						dumyNode.setHostName(hostName);
+						dumyNode.setOptionalDatacenters(optionalDatacenter);
+						// sf.setMIperOperation(mipOperation);
+
+						vmList.put(dcName, dumyNode);
+						sfList.add(dumyNode);
+
+						newVM = dumyNode;
+					}
+					catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else if (nodeType.equalsIgnoreCase("vm")) {
 					// Create VM objects
 					// Jason: Todo! update the vm into queuedVM
 					// SDNVm vm = new SDNVm(vmId, userId, mips, pes, ram, bw, size, "VMM", clSch,
@@ -215,6 +243,7 @@ public class VirtualTopologyParser {
 					}
 				}
 
+				// Jason: ???
 				if (clSch instanceof CloudletSchedulerSpaceSharedQueueAwareMonitor) {
 					((CloudletSchedulerSpaceSharedQueueAwareMonitor) clSch).setQueuedVM(newVM);
 				}
@@ -290,6 +319,7 @@ public class VirtualTopologyParser {
 			String src = (String) policy.get("source");
 			String dst = (String) policy.get("destination");
 			String flowname = (String) policy.get("flowname");
+			Double start_time = (Double) policy.get("starttime");
 			Double expected_duration = (Double) policy.get("expectedduration");
 			if (expected_duration == null) {
 				expected_duration = Double.POSITIVE_INFINITY;
@@ -308,7 +338,7 @@ public class VirtualTopologyParser {
 			}
 
 			ServiceFunctionChainPolicy pol = new ServiceFunctionChainPolicy(srcId, dstId, flowId, sfcList,
-					expectedTime);
+					expected_duration);
 			if (name != null)
 				pol.setName(name);
 
