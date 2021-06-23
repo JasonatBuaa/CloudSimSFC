@@ -1,11 +1,28 @@
-{
-  "Name": "chain1",
-  "Chain": [
-    "SF-A",
-    "SF-B",
-    "SF-C",
-    "SF-D"],
-  "AverageInputSize": 100,
-  "CreateTime": 3700,
-  "DestroyTime":10001
-}
+[
+  {
+    "Name": "chain1",
+    "Chain": [
+      "SF-A",
+      "SF-B",
+      "SF-C",
+      "SF-D"],
+    "Ingress_DCs": {"Ingress1":"0.5", "Ingress2": "0.5"},
+    "Egress_DC": {"Egress1":1},
+    "AverageInputSize": 100,
+    "CreateTime": 3700,
+    "DestroyTime":10001
+  },
+
+  {
+    "Name": "chain2",
+    "Chain": [
+      "SF-A",
+      "SF-B",
+      "SF-D"],
+    "Ingress_DCs": {"Ingress3": "0.7" ,"Ingress4": "0.3" },
+    "Egress_DC": "Egress2",
+    "AverageInputSize": 110,
+    "CreateTime": 0,
+    "DestroyTime":10001
+  }
+]

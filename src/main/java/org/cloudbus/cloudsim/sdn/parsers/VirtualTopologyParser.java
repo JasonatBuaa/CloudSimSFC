@@ -290,9 +290,9 @@ public class VirtualTopologyParser {
 			String src = (String) policy.get("source");
 			String dst = (String) policy.get("destination");
 			String flowname = (String) policy.get("flowname");
-			Double expectedTime = (Double) policy.get("expected_time");
-			if (expectedTime == null) {
-				expectedTime = Double.POSITIVE_INFINITY;
+			Double expected_duration = (Double) policy.get("expectedduration");
+			if (expected_duration == null) {
+				expected_duration = Double.POSITIVE_INFINITY;
 			}
 
 			int srcId = vmNameIdTable.get(src);
@@ -308,7 +308,7 @@ public class VirtualTopologyParser {
 			}
 
 			ServiceFunctionChainPolicy pol = new ServiceFunctionChainPolicy(srcId, dstId, flowId, sfcList,
-					expectedTime);
+					expected_duration);
 			if (name != null)
 				pol.setName(name);
 
