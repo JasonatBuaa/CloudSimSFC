@@ -4,55 +4,83 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SFCRequest {
-    private int startTime;
-    private List<Integer> inputSizes;
-    private List<Integer> performanceNeeds;
-    private List<Integer> outputSizes;
+    private float startTime;
+    private String ingress;
+    private List<Integer> transmissions;
+    private List<Integer> cloudletLengths;
+    private String egress;
 
-    public SFCRequest(int startTime){
+    public SFCRequest(float startTime) {
         this.startTime = startTime;
-        inputSizes = new ArrayList<>();
-        performanceNeeds = new ArrayList<>();
-        outputSizes = new ArrayList<>();
+        transmissions = new ArrayList<>();
+        cloudletLengths = new ArrayList<>();
     }
 
-    public int getStartTime() {
+    public float getStartTime() {
         return startTime;
     }
 
-    private void addInputSizes(int inputSize) {
-        inputSizes.add(inputSize);
+    public void setStartTime(float startTime) {
+        this.startTime = startTime;
     }
 
-    private void addPerformanceNeeds(int performance) {
-        performanceNeeds.add(performance);
+    public String getIngress() {
+        return ingress;
     }
 
-    private void addOutputSizes(int outputSize) {
-        outputSizes.add(outputSize);
+    public void setIngress(String ingress) {
+        this.ingress = ingress;
     }
 
-    public void fillRequest(int inputSize, int performance, int outputSize){
-        inputSizes.add(inputSize);
-        performanceNeeds.add(performance);
-        outputSizes.add(outputSize);
+    public List<Integer> getTransmissions() {
+        return transmissions;
     }
 
+    public void setTransmissions(List<Integer> transmissions) {
+        this.transmissions = transmissions;
+    }
+
+    public List<Integer> getCloudletLengths() {
+        return cloudletLengths;
+    }
+
+    public void setCloudletLengths(List<Integer> cloudletLengths) {
+        this.cloudletLengths = cloudletLengths;
+    }
+
+    public String getEgress() {
+        return egress;
+    }
+
+    public void setEgress(String egress) {
+        this.egress = egress;
+    }
+
+    public void fillRequest(int inputSize, int performance){
+        transmissions.add(inputSize);
+        cloudletLengths.add(performance);
+    }
+
+    public String requestsToString(){
+        String request = "";
+        for(int index = 0;index < transmissions.size(); index++){
+            request += "," + transmissions.get(index) + "," + cloudletLengths.get(index) ;
+        }
+        return request;
+
+    }
     @Override
     public String toString() {
         String request = "";
-        int index = 0;
-        for(;index < inputSizes.size(); index++){
-            request += "{" + inputSizes.get(index)
-                        + "," + performanceNeeds.get(index)
-                        + "," + outputSizes.get(index)
+        for(int index = 0;index < transmissions.size(); index++){
+            request += "{" + transmissions.get(index)
+                        + "," + cloudletLengths.get(index)
                         +"},";
-
         }
         request = "[" + request + "]";
         return "SFCRequest{" +
                 "startTime=" + startTime +
-                ", Request(inputSizes=,performanceNeeds,,outputSizes)=" + request +
+                ", Request(transmissions,cloudletLengths)=" + request +
                 '}';
     }
 }

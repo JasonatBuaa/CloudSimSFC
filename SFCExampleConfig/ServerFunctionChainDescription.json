@@ -6,8 +6,8 @@
       "SF-B",
       "SF-C",
       "SF-D"],
-    "Ingress_DCs": {"Ingress1":"0.5", "Ingress2": "0.5"},
-    "Egress_DC": {"Egress1":1},
+    "IngressDCs": [{"Name":"Ingress1","Weight":0.5},{"Name":"Ingress2","Weight":0.5}],
+    "EgressDCs": [{"Name":"Egress1","Weight":1}],
     "AverageInputSize": 100,
     "CreateTime": 3700,
     "DestroyTime":10001
@@ -19,8 +19,8 @@
       "SF-A",
       "SF-B",
       "SF-D"],
-    "Ingress_DCs": {"Ingress3": "0.7" ,"Ingress4": "0.3" },
-    "Egress_DC": "Egress2",
+    "IngressDCs": [{"Name":"Ingress3","Weight":0.3},{"Name":"Ingress4","Weight":0.7}],
+    "EgressDCs": [{"Name":"Egress2","Weight":1}],
     "AverageInputSize": 110,
     "CreateTime": 0,
     "DestroyTime":10001
