@@ -6,12 +6,15 @@ import java.util.List;
 public class SFCRequest {
     private float startTime;
     private String ingress;
+    private List<String> vms;
     private List<Integer> transmissions;
     private List<Integer> cloudletLengths;
     private String egress;
+    public int output;
 
     public SFCRequest(float startTime) {
         this.startTime = startTime;
+        vms = new ArrayList<>();
         transmissions = new ArrayList<>();
         cloudletLengths = new ArrayList<>();
     }
@@ -56,16 +59,27 @@ public class SFCRequest {
         this.egress = egress;
     }
 
-    public void fillRequest(int inputSize, int performance){
+    public int getOutput() {
+        return output;
+    }
+
+    public void setOutput(int output) {
+        this.output = output;
+    }
+
+    public void fillRequest(String vm,int inputSize, int performance){
+        vms.add(vm);
         transmissions.add(inputSize);
         cloudletLengths.add(performance);
     }
 
     public String requestsToString(){
         String request = "";
-        for(int index = 0;index < transmissions.size(); index++){
-            request += "," + transmissions.get(index) + "," + cloudletLengths.get(index) ;
+        for(int index = 0;index < cloudletLengths.size(); index++){
+            request += "," + transmissions.get(index) + "," + vms.get(index) + "," + cloudletLengths.get(index) ;
         }
+        request += "," + output;
+
         return request;
 
     }

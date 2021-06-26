@@ -45,8 +45,11 @@ public class FileParser {
         JSON.DEFAULT_GENERATE_FEATURE = JSON.DEFAULT_GENERATE_FEATURE &~ SerializerFeature.SortField.getMask();
         String jsonstr = JSON.toJSONString(physicalTopologyGenerator, SerializerFeature.PrettyFormat);
         jsonWrite(rootPath+ "PhysicalResource.json", jsonstr);
+        for(SFCWorkload sfcWorkload : sfcWorkloads){
+            workloadsCsvWriter(rootPath+ "workloads_"+ sfcWorkload.getTargetChainName()+".csv",sfcWorkload);
+        }
 
-        workloadsCsvWriter(rootPath+ "workloads.csv");
+
     }
 
     public void parserResource(){
@@ -101,24 +104,27 @@ public class FileParser {
         }
     }
 
-    public void workloadsCsvWriter(String path){
+    public void workloadsCsvWriter(String path,SFCWorkload sfcWorkload){
         try{
             File file = new File(path);
             OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file));
             String line = "";
-            writer.write("time(s),target_sfc,Ingress,Egress,latency_demand(s),Transmission1(MB),cloudlet.1(MI),Transmission2(MB),cloudlet.2(MI),Transmission3(MB),cloudlet.3(MI),Transmission4(MB),cloudlet.4(MI)");
-            for(SFCWorkload sfcWorkload : sfcWorkloads){
-                for(SFCRequest sfcRequest : sfcWorkload.getSfcRequestList()){
-                    line =  sfcRequest.getStartTime()+ ","+
-                            sfcWorkload.getTargetChainName() + "," +
-                            sfcRequest.getIngress() + "," +
-                            sfcRequest.getEgress() + "," +
-                            sfcWorkload.getLatencyDemand() +
-                            sfcRequest.requestsToString()
-                            +"\n";
-                    writer.write(line);
-                }
+            String head = "time(s),target_sfc,Ingress";
+            for(int i = 1; i <= sfcWorkload.getChainLength(); i++){
+                head+= ","  +"Transmission"+ i + "(MB),"+"VM"+i +",cloudlet." + i + "(MI)";
+            }
+            head += ",Transmission"+ (sfcWorkload.getChainLength()+1) + "(MB),Egress,latency_demand(s)\n";
 
+            writer.write(head);
+            for(SFCRequest sfcRequest : sfcWorkload.getSfcRequestList()){
+                line =  sfcRequest.getStartTime()+ ","+
+                        sfcWorkload.getTargetChainName() + "," +
+                        sfcRequest.getIngress()  +
+                        sfcRequest.requestsToString() + "," +
+                        sfcRequest.getOutput() + "," +
+                        sfcRequest.getEgress() + "," +
+                        sfcWorkload.getLatencyDemand() +"\n";
+                writer.write(line);
             }
             writer.flush();
             writer.close();
