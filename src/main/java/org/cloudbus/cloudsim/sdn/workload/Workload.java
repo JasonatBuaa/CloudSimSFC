@@ -18,6 +18,7 @@ public class Workload implements Comparable<Workload> {
 	public int workloadId;
 	public int appId;
 	public double time;
+	public String sfcName;
 	public int submitVmId;
 	public int submitPktSize;
 	public Request request;

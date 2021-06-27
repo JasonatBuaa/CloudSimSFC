@@ -7,26 +7,17 @@
  */
 package org.cloudbus.cloudsim.sdn.parsers;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.UtilizationModel;
 import org.cloudbus.cloudsim.sdn.Configuration;
 import org.cloudbus.cloudsim.sdn.example.StartAvailability;
-import org.cloudbus.cloudsim.sdn.workload.Processing;
-import org.cloudbus.cloudsim.sdn.workload.Request;
-import org.cloudbus.cloudsim.sdn.workload.Transmission;
-import org.cloudbus.cloudsim.sdn.workload.Workload;
-import org.cloudbus.cloudsim.sdn.workload.WorkloadResultWriter;
+import org.cloudbus.cloudsim.sdn.workload.*;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * Parse [request].csv file.
@@ -148,39 +139,50 @@ public class WorkloadParser {
 			return null;
 		}
 
-		long cloudletLen = Long.parseLong(lineitems.poll());
-		cloudletLen *= Configuration.CPU_SIZE_MULTIPLY;
+		Request req = new Request(userId);;
 
-		Request req = new Request(userId);
-		Cloudlet cl = generateCloudlet(req.getRequestId(), fromVmId, (int) cloudletLen);
-		// this.parsedCloudlets.add(cl);
-
-		Processing proc = new Processing(cl);
-		req.addActivity(proc);
-
-		if (lineitems.size() != 0) {
-			// Has more requests after this. Create a transmission and add
-			String linkName = lineitems.poll();
-			Integer flowId = this.flowNames.get(linkName);
-
-			if (flowId == null) {
-				throw new IllegalArgumentException("No such link name in virtual.json:" + linkName);
-			}
-
-			String vmName = lineitems.poll();
-			int toVmId = getVmId(vmName);
-
+		if(lineitems.size() > 3){
 			long pktSize = Long.parseLong(lineitems.poll());
 			pktSize *= Configuration.NETWORK_PACKET_SIZE_MULTIPLY;
 			if (pktSize < 0)
 				pktSize = 0;
 
+			String vmName = lineitems.poll();
+			int toVmId = getVmId(vmName);
+
+			long cloudletLen = Long.parseLong(lineitems.poll());
+			cloudletLen *= Configuration.CPU_SIZE_MULTIPLY;
+
+
+			Cloudlet cl = generateCloudlet(req.getRequestId(), fromVmId, (int) cloudletLen);
+			// this.parsedCloudlets.add(cl);
+
+			Processing proc = new Processing(cl);
+			req.addActivity(proc);
+
+			//in this version,there is no flowId,set to default value;
+			Integer flowId = 10;
+
 			Request nextReq = parseRequest(toVmId, lineitems);
 
 			Transmission trans = new Transmission(fromVmId, toVmId, pktSize, flowId, nextReq);
 			req.addActivity(trans);
+
 		} else {
-			// this is the last request.
+			// this is the last transimission task.
+			long pktSize = Long.parseLong(lineitems.poll());
+			pktSize *= Configuration.NETWORK_PACKET_SIZE_MULTIPLY;
+			if (pktSize < 0)
+				pktSize = 0;
+
+			String vmName = lineitems.poll();
+			int toVmId = getVmId(vmName);
+
+			//in this version,there is no flowId,set to default value;
+			Integer flowId = 10;
+
+			Transmission trans = new Transmission(fromVmId, toVmId, pktSize, flowId, null);
+			req.addActivity(trans);
 		}
 		return req;
 	}
@@ -216,6 +218,8 @@ public class WorkloadParser {
 				if (tr.time < this.forcedStartTime || tr.time > this.forcedFinishTime) // Skip Workloads before the set
 																						// start time
 					continue;
+
+				tr.sfcName = lineitems.poll();
 
 				String vmName = lineitems.poll();
 				tr.submitVmId = getVmId(vmName);

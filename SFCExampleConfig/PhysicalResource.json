@@ -13,9 +13,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-1",
 			"type":"host",
 			"datacenter":"DC1"
@@ -23,9 +23,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-2",
 			"type":"host",
 			"datacenter":"DC1"
@@ -33,9 +33,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-3",
 			"type":"host",
 			"datacenter":"DC1"
@@ -43,9 +43,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-4",
 			"type":"host",
 			"datacenter":"DC1"
@@ -53,9 +53,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-5",
 			"type":"host",
 			"datacenter":"DC1"
@@ -63,9 +63,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-6",
 			"type":"host",
 			"datacenter":"DC1"
@@ -73,9 +73,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-7",
 			"type":"host",
 			"datacenter":"DC1"
@@ -83,9 +83,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-8",
 			"type":"host",
 			"datacenter":"DC1"
@@ -93,9 +93,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-9",
 			"type":"host",
 			"datacenter":"DC1"
@@ -103,9 +103,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-10",
 			"type":"host",
 			"datacenter":"DC1"
@@ -113,9 +113,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-11",
 			"type":"host",
 			"datacenter":"DC1"
@@ -123,9 +123,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-12",
 			"type":"host",
 			"datacenter":"DC1"
@@ -133,9 +133,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-13",
 			"type":"host",
 			"datacenter":"DC1"
@@ -143,9 +143,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-14",
 			"type":"host",
 			"datacenter":"DC1"
@@ -153,9 +153,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-15",
 			"type":"host",
 			"datacenter":"DC1"
@@ -163,9 +163,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-16",
 			"type":"host",
 			"datacenter":"DC1"
@@ -173,9 +173,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-17",
 			"type":"host",
 			"datacenter":"DC1"
@@ -183,9 +183,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-18",
 			"type":"host",
 			"datacenter":"DC1"
@@ -193,9 +193,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-19",
 			"type":"host",
 			"datacenter":"DC1"
@@ -203,9 +203,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG1-20",
 			"type":"host",
 			"datacenter":"DC1"
@@ -213,9 +213,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-1",
 			"type":"host",
 			"datacenter":"DC1"
@@ -223,9 +223,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-2",
 			"type":"host",
 			"datacenter":"DC1"
@@ -233,9 +233,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-3",
 			"type":"host",
 			"datacenter":"DC1"
@@ -243,9 +243,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-4",
 			"type":"host",
 			"datacenter":"DC1"
@@ -253,9 +253,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-5",
 			"type":"host",
 			"datacenter":"DC1"
@@ -263,9 +263,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-6",
 			"type":"host",
 			"datacenter":"DC1"
@@ -273,9 +273,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-7",
 			"type":"host",
 			"datacenter":"DC1"
@@ -283,9 +283,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-8",
 			"type":"host",
 			"datacenter":"DC1"
@@ -293,9 +293,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-9",
 			"type":"host",
 			"datacenter":"DC1"
@@ -303,9 +303,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-10",
 			"type":"host",
 			"datacenter":"DC1"
@@ -313,9 +313,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-11",
 			"type":"host",
 			"datacenter":"DC1"
@@ -323,9 +323,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-12",
 			"type":"host",
 			"datacenter":"DC1"
@@ -333,9 +333,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-13",
 			"type":"host",
 			"datacenter":"DC1"
@@ -343,9 +343,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-14",
 			"type":"host",
 			"datacenter":"DC1"
@@ -353,9 +353,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-15",
 			"type":"host",
 			"datacenter":"DC1"
@@ -363,9 +363,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-16",
 			"type":"host",
 			"datacenter":"DC1"
@@ -373,9 +373,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-17",
 			"type":"host",
 			"datacenter":"DC1"
@@ -383,9 +383,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-18",
 			"type":"host",
 			"datacenter":"DC1"
@@ -393,9 +393,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-19",
 			"type":"host",
 			"datacenter":"DC1"
@@ -403,9 +403,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG2-20",
 			"type":"host",
 			"datacenter":"DC1"
@@ -413,9 +413,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-1",
 			"type":"host",
 			"datacenter":"DC1"
@@ -423,9 +423,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-2",
 			"type":"host",
 			"datacenter":"DC1"
@@ -433,9 +433,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-3",
 			"type":"host",
 			"datacenter":"DC1"
@@ -443,9 +443,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-4",
 			"type":"host",
 			"datacenter":"DC1"
@@ -453,9 +453,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-5",
 			"type":"host",
 			"datacenter":"DC1"
@@ -463,9 +463,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-6",
 			"type":"host",
 			"datacenter":"DC1"
@@ -473,9 +473,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-7",
 			"type":"host",
 			"datacenter":"DC1"
@@ -483,9 +483,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-8",
 			"type":"host",
 			"datacenter":"DC1"
@@ -493,9 +493,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-9",
 			"type":"host",
 			"datacenter":"DC1"
@@ -503,9 +503,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-10",
 			"type":"host",
 			"datacenter":"DC1"
@@ -513,9 +513,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-11",
 			"type":"host",
 			"datacenter":"DC1"
@@ -523,9 +523,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-12",
 			"type":"host",
 			"datacenter":"DC1"
@@ -533,9 +533,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-13",
 			"type":"host",
 			"datacenter":"DC1"
@@ -543,9 +543,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-14",
 			"type":"host",
 			"datacenter":"DC1"
@@ -553,9 +553,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-15",
 			"type":"host",
 			"datacenter":"DC1"
@@ -563,9 +563,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-16",
 			"type":"host",
 			"datacenter":"DC1"
@@ -573,9 +573,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-17",
 			"type":"host",
 			"datacenter":"DC1"
@@ -583,9 +583,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-18",
 			"type":"host",
 			"datacenter":"DC1"
@@ -593,9 +593,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-19",
 			"type":"host",
 			"datacenter":"DC1"
@@ -603,9 +603,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG3-20",
 			"type":"host",
 			"datacenter":"DC1"
@@ -613,9 +613,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-1",
 			"type":"host",
 			"datacenter":"DC1"
@@ -623,9 +623,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-2",
 			"type":"host",
 			"datacenter":"DC1"
@@ -633,9 +633,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-3",
 			"type":"host",
 			"datacenter":"DC1"
@@ -643,9 +643,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-4",
 			"type":"host",
 			"datacenter":"DC1"
@@ -653,9 +653,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-5",
 			"type":"host",
 			"datacenter":"DC1"
@@ -663,9 +663,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-6",
 			"type":"host",
 			"datacenter":"DC1"
@@ -673,9 +673,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-7",
 			"type":"host",
 			"datacenter":"DC1"
@@ -683,9 +683,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-8",
 			"type":"host",
 			"datacenter":"DC1"
@@ -693,9 +693,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-9",
 			"type":"host",
 			"datacenter":"DC1"
@@ -703,9 +703,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-10",
 			"type":"host",
 			"datacenter":"DC1"
@@ -713,9 +713,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-11",
 			"type":"host",
 			"datacenter":"DC1"
@@ -723,9 +723,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-12",
 			"type":"host",
 			"datacenter":"DC1"
@@ -733,9 +733,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-13",
 			"type":"host",
 			"datacenter":"DC1"
@@ -743,9 +743,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-14",
 			"type":"host",
 			"datacenter":"DC1"
@@ -753,9 +753,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-15",
 			"type":"host",
 			"datacenter":"DC1"
@@ -763,9 +763,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-16",
 			"type":"host",
 			"datacenter":"DC1"
@@ -773,9 +773,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-17",
 			"type":"host",
 			"datacenter":"DC1"
@@ -783,9 +783,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-18",
 			"type":"host",
 			"datacenter":"DC1"
@@ -793,9 +793,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-19",
 			"type":"host",
 			"datacenter":"DC1"
@@ -803,9 +803,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC1-HRG4-20",
 			"type":"host",
 			"datacenter":"DC1"
@@ -813,9 +813,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-1",
 			"type":"host",
 			"datacenter":"DC2"
@@ -823,9 +823,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-2",
 			"type":"host",
 			"datacenter":"DC2"
@@ -833,9 +833,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-3",
 			"type":"host",
 			"datacenter":"DC2"
@@ -843,9 +843,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-4",
 			"type":"host",
 			"datacenter":"DC2"
@@ -853,9 +853,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-5",
 			"type":"host",
 			"datacenter":"DC2"
@@ -863,9 +863,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-6",
 			"type":"host",
 			"datacenter":"DC2"
@@ -873,9 +873,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-7",
 			"type":"host",
 			"datacenter":"DC2"
@@ -883,9 +883,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-8",
 			"type":"host",
 			"datacenter":"DC2"
@@ -893,9 +893,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-9",
 			"type":"host",
 			"datacenter":"DC2"
@@ -903,9 +903,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-10",
 			"type":"host",
 			"datacenter":"DC2"
@@ -913,9 +913,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-11",
 			"type":"host",
 			"datacenter":"DC2"
@@ -923,9 +923,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-12",
 			"type":"host",
 			"datacenter":"DC2"
@@ -933,9 +933,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-13",
 			"type":"host",
 			"datacenter":"DC2"
@@ -943,9 +943,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-14",
 			"type":"host",
 			"datacenter":"DC2"
@@ -953,9 +953,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-15",
 			"type":"host",
 			"datacenter":"DC2"
@@ -963,9 +963,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-16",
 			"type":"host",
 			"datacenter":"DC2"
@@ -973,9 +973,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-17",
 			"type":"host",
 			"datacenter":"DC2"
@@ -983,9 +983,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-18",
 			"type":"host",
 			"datacenter":"DC2"
@@ -993,9 +993,9 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-19",
 			"type":"host",
 			"datacenter":"DC2"
@@ -1003,189 +1003,189 @@
 		{
 			"ram":1000,
 			"bw":10000000,
-			"pes":1,
 			"storage":100000,
 			"mips":100000,
+			"pes":1,
 			"name":"DC2-HRG5-20",
 			"type":"host",
 			"datacenter":"DC2"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-1",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-2",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-3",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-4",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-5",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-6",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-7",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-8",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-9",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-10",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-11",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-12",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-13",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-14",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-15",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-16",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-17",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-18",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-19",
 			"type":"gateway",
 			"datacenter":"intercloud"
 		},
 		{
 			"bw":9223372036854775807,
+			"upports":1,
 			"downports":2,
 			"iops":9223372036854775807,
-			"upports":1,
 			"name":"gateway-20",
 			"type":"gateway",
 			"datacenter":"intercloud"
@@ -1194,253 +1194,253 @@
 	"links":[
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-2",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-2"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-3",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-3"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-4",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-4"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-5",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-5"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-6",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-6"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-7",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-7"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-8",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-8"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-9",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-9"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-10",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-10"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-11",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-11"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-12",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-12"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-13",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-13"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-14",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-14"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-15",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-15"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-16",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-16"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-17",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-17"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-18",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-18"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-19",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-19"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG1-20",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG1-20"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-1",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-1"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-2",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-2"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-3",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-3"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-4",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-4"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-5",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-5"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-6",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-6"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-7",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-7"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-8",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-8"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-9",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-9"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-10",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-10"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-11",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-11"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-12",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-12"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-13",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-13"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-14",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-14"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-15",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-15"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-16",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-16"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-17",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-17"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-18",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-18"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-19",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-19"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG2-20",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG2-20"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG3-1",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG3-1"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG3-2",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG3-2"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG3-3",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG3-3"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG3-4",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG3-4"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG3-5",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG3-5"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG3-6",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG3-6"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG3-7",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG3-7"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG3-8",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG3-8"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG3-9",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG3-9"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG3-10",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG3-10"
 		},
 		{
 			"source":"DC1-HRG1-1",
-			"destination":"DC1-HRG3-11",
-			"latency":1.0
+			"latency":1.0,
+			"destination":"DC1-HRG3-11"
 		}
 	]
 }

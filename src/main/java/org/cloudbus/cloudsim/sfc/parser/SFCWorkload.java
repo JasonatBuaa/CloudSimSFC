@@ -13,6 +13,7 @@ public class SFCWorkload {
     private double latencyDemand = 10;
     private LinkedList<InEgressNode> inEgressNodes;
     private int baseWeight;
+    private int chainLength;
 
     public SFCWorkload(ServerFunctionChain serverFunctionChain){
         startTime = serverFunctionChain.getCreateTime();
@@ -21,6 +22,7 @@ public class SFCWorkload {
         egress = serverFunctionChain.getEgressDCs();
         targetChainName = serverFunctionChain.getName();
         chainInputSize = serverFunctionChain.getAverageInputSize();
+        chainLength = serverFunctionChain.getChain().size();
         inEgressNodes = new LinkedList<>();
         sfcRequestList = new ArrayList<>();
         initInEgressNode();
@@ -36,17 +38,18 @@ public class SFCWorkload {
             int time = count * 10 + startTime;
             SFCRequest sfcRequest = new SFCRequest(time);
             setInEgress(sfcRequest,count);
-            int index = 0,performance,outputSize;
+            int index = 0,performance,outputSize=0;
             int inputSize = chainInputSize + random.nextInt(2)*10;
 
             for(;index < chain.size();index++){
                 ServerFunction serverFunction = ServerFunction.serverFunctionMap.get(chain.get(index));
                 performance = serverFunction.getPerformance()*inputSize;
                 outputSize = serverFunction.getOutputSize(inputSize);
-                sfcRequest.fillRequest(inputSize, performance);
+                sfcRequest.fillRequest(chain.get(index),inputSize, performance);
                 inputSize = outputSize;
             }
-
+            //transmission to Egress
+            sfcRequest.setOutput(outputSize);
             sfcRequestList.add(sfcRequest);
             count++;
         }
@@ -184,6 +187,14 @@ public class SFCWorkload {
 
     public void setBaseWeight(int baseWeight) {
         this.baseWeight = baseWeight;
+    }
+
+    public int getChainLength() {
+        return chainLength;
+    }
+
+    public void setChainLength(int chainLength) {
+        this.chainLength = chainLength;
     }
 
     class InEgressNode{
