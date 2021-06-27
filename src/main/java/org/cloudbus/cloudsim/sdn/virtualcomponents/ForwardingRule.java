@@ -30,6 +30,8 @@ import com.google.common.collect.Table;
  * @author Rodrigo N. Calheiros
  * @since CloudSimSDN 1.0
  */
+
+//  Jason: The ForwardingRule controls the flow-based routing for all the vms
 public class ForwardingRule {
 	
 	Table<Integer, Integer, Map<Integer,Node>> table;

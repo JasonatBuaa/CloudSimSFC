@@ -23,6 +23,8 @@ import java.util.Set;
  * @author Rodrigo N. Calheiros
  * @since CloudSimSDN 1.0
  */
+
+//  Jason: Default route with a null key
 public class RoutingTable {
 	
 	Map<Node, List<Link>> table;
@@ -35,6 +37,11 @@ public class RoutingTable {
 		table.clear();
 	}
 	
+	/**
+	 * Jason: allows for multi-path routing, what a brilliant design!!
+	 * @param destHost
+	 * @param to
+	 */
 	public void addRoute(Node destHost, Link to){
 		// Default route with destHost == null
 		List<Link> links = table.get(destHost);

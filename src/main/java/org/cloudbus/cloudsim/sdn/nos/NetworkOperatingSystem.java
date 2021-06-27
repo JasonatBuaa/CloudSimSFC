@@ -287,6 +287,7 @@ public abstract class NetworkOperatingSystem extends SimEntity {
 		channelManager.adjustAllChannel();
 	}
 
+	// Jason: this part should be important. mark.
 	public boolean startDeployApplicatoin() {
 		List<Vm> vms = new ArrayList<Vm>(vmMapId2Vm.values());
 		List<ServiceFunctionChainPolicy> sfcPolicies = new ArrayList<ServiceFunctionChainPolicy>(
