@@ -2,6 +2,7 @@
   {
     "Type": "Cloud",
     "Name": "DC1",
+    "InterCloudBW" : 1000,
     "HomogeneousResourceGroups": [
       {
         "Name": "HRG1",
@@ -80,6 +81,7 @@
   {
     "Type": "Edge",
     "Name": "DC2",
+    "InterCloudBW" : 1000,
     "HomogeneousResourceGroups": [
       {
         "Name": "HRG5",

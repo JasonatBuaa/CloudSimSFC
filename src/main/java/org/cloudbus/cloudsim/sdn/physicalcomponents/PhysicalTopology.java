@@ -42,13 +42,18 @@ public abstract class PhysicalTopology {
 		Aggr,
 		Edge,
 		Host,
+		// Local,
 	};
 	protected final int RANK_INTERCLOUD = 5; // This switch type belongs to multiple Datacenters / network operators
 	protected final int RANK_GATEWAY = 10; // This switch type belongs to multiple Datacenters / network operators
 	protected final int RANK_CORE = 100;
 	protected final int RANK_AGGR = 200;
 	protected final int RANK_EDGE = 300;
+
+	// protected final int RANK_LOCAL = 500;
+
 	protected final int RANK_HOST = 1000;
+
 	
 	protected Hashtable<Integer,Node> nodesTable;	// Address -> Node
 	protected Table<Integer, Integer, Link> linkTable; 	// From : To -> Link

@@ -36,6 +36,7 @@ import org.cloudbus.cloudsim.sdn.physicalcomponents.Link;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.Node;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.PhysicalTopology;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.PhysicalTopologyInterCloud;
+import org.cloudbus.cloudsim.sdn.physicalcomponents.PhysicalTopologySimpleInterCloud;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNDatacenter;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.switches.Switch;
@@ -123,7 +124,8 @@ public abstract class NetworkOperatingSystem extends SimEntity {
 
 		this.sfcScaler = new ServiceFunctionAutoScaler(this, sfcForwarder);
 
-		this.topology = new PhysicalTopologyInterCloud();
+		// this.topology = new PhysicalTopologyInterCloud();
+		this.topology = new PhysicalTopologySimpleInterCloud();
 	}
 
 	public void setLinkSelectionPolicy(LinkSelectionPolicy linkSelectionPolicy) {
