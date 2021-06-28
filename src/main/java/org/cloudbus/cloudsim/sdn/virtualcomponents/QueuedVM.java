@@ -6,6 +6,8 @@ import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
 public class QueuedVM extends SDNVm {
 
     // public TheQueue theQueue;
+    public long queueSize;
+    public double availability;
 
 
     /**

@@ -15,6 +15,15 @@ import org.cloudbus.cloudsim.sdn.physicalcomponents.Node;
 
 public interface LinkSelectionPolicy {
 	// This function decides which link to select among links collection.
+	/**
+	 * 
+	 * @param links
+	 * @param flowId
+	 * @param srcHost
+	 * @param destHost
+	 * @param prevNode Jason: This parameter actually means the current node!
+	 * @return
+	 */
 	public abstract Link selectLink(List<Link> links, int flowId, Node srcHost, Node destHost, Node prevNode);
 
 	public abstract boolean isDynamicRoutingEnabled();
