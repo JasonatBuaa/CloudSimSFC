@@ -11,12 +11,22 @@ import java.util.List;
 public class Resource {
     private String Type;
     private String Name;
+    private int InterCloudBW;
     private List<HomogeneousResourceGroup> HomogeneousResourceGroups;
 
-    public Resource(String type, String name, List<HomogeneousResourceGroup> homogeneousResourceGroups) {
+    public Resource(String type, String name, int interCloudBW, List<HomogeneousResourceGroup> homogeneousResourceGroups) {
         Type = type;
         Name = name;
+        InterCloudBW = interCloudBW;
         HomogeneousResourceGroups = homogeneousResourceGroups;
+    }
+
+    public int getInterCloudBW() {
+        return InterCloudBW;
+    }
+
+    public void setInterCloudBW(int interCloudBW) {
+        InterCloudBW = interCloudBW;
     }
 
     public String getType() {
@@ -56,6 +66,7 @@ public class Resource {
         return "Resource{" +
                 "Type='" + Type + '\'' +
                 ", Name='" + Name + '\'' +
+                ", InterCloudBW='"+ InterCloudBW + '\'' +
                 ", HomogeneousResourceGroups=" + groups +
                 '}';
     }

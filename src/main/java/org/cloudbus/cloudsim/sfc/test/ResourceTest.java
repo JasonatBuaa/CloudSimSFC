@@ -16,6 +16,7 @@ class ResourceTest {
                 "  {\n" +
                 "    \"Type\": \"Cloud\",\n" +
                 "    \"Name\": \"DC1\",\n" +
+                "    \"InterCloudBW\" : 1000,\n" +
                 "    \"HomogeneousResourceGroups\": [\n" +
                 "      {\n" +
                 "        \"Name\": \"HRG1\",\n" +
@@ -94,6 +95,7 @@ class ResourceTest {
                 "  {\n" +
                 "    \"Type\": \"Edge\",\n" +
                 "    \"Name\": \"DC2\",\n" +
+                "    \"InterCloudBW\" : 1000,\n" +
                 "    \"HomogeneousResourceGroups\": [\n" +
                 "      {\n" +
                 "        \"Name\": \"HRG5\",\n" +
@@ -115,7 +117,7 @@ class ResourceTest {
                 "      }\n" +
                 "    ]\n" +
                 "  }\n" +
-                "]";
+                "]\n";
 
         List<Resource> resourceParsers =
                 JSONObject.parseObject(jsonStr,new TypeReference<List<Resource>>(){});
