@@ -142,6 +142,11 @@ public class Configuration {
 	public static final double SFC_UNDERLOAD_THRESHOLD_BW = 0.4;
 	public static final double SFC_UNDERLOAD_THRESHOLD_VM = 0.4;
 
+
+	public static boolean ENABLE_TRANSMISSION_JITTER = true;
+	public static boolean ENABLE_COMPUTATION_JITTER = true;
+	public static final double NETWORK_JITTER_SIGMA = 1;
+
 	public static final double TIME_OUT = 100; // Double.POSITIVE_INFINITY; //
 
 	public static boolean ENABLE_SFC = true;
@@ -158,6 +163,8 @@ public class Configuration {
 	public static boolean DEBUG_RESULT_WRITE_DETAIL = true;
 	public static boolean DEBUG_PRINT_DETAIL_SIZE_TIME = true;
 	public static boolean DEBUG_CHECK_OVER_TIME_REQUESTS = false;
+
+	
 
 	// */
 }

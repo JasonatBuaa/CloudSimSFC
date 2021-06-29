@@ -32,6 +32,8 @@ import org.cloudbus.cloudsim.sdn.workload.Transmission;
  * @author Rodrigo N. Calheiros
  * @since CloudSimSDN 1.0
  */
+
+ // Jason : Simulate Network Performance Jitter Here
 public class Channel {
 	private List<Node> nodes;
 	private List<Link> links;

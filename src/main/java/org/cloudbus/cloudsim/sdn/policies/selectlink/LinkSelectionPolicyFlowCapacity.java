@@ -15,6 +15,9 @@ import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.Link;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.Node;
 
+
+// Jason : Here they calculate the capacity based on flow-count, not bandwidth !!
+
 public class LinkSelectionPolicyFlowCapacity implements LinkSelectionPolicy {
 	// Compare the total amount of dedicated bandwidth in links, and choose the least full one.
 	public Link selectLink(List<Link> links, int flowId, Node src, Node dest, Node prevNode) {

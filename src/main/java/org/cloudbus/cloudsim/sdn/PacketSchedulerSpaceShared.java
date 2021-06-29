@@ -5,8 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.cloudbus.cloudsim.core.CloudSim;
+import org.cloudbus.cloudsim.distributions.NormalDistr;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.Channel;
 import org.cloudbus.cloudsim.sdn.workload.Transmission;
+import org.cloudbus.cloudsim.sdn.nos.PerformanceJitter;
 
 /**
  * Network packet scheduler implementing space shared approach. Physical
@@ -25,12 +27,14 @@ public class PacketSchedulerSpaceShared implements PacketScheduler {
 	protected double timeoutLimit = Double.POSITIVE_INFINITY; // INFINITE = Never timeout
 
 	protected Channel channel;
+	protected PerformanceJitter jitter;
 
 	public PacketSchedulerSpaceShared(Channel ch) {
 		this.channel = ch;
 		this.inTransmission = new LinkedList<Transmission>();
 		this.completed = new LinkedList<Transmission>();
 		this.timeoutTransmission = new LinkedList<Transmission>();
+		jitter = new PerformanceJitter();
 	}
 
 	/*
@@ -48,7 +52,7 @@ public class PacketSchedulerSpaceShared implements PacketScheduler {
 			return 0; // Nothing changed
 
 		// update the amount of transmission
-		long processedThisRound = Math.round(timeSpent * getAllocatedBandwidthPerTransmission());
+		long processedThisRound = Math.round(timeSpent * getAllocatedBandwidthPerTransmissionWithJitter());
 		long processedTotal = processedThisRound * inTransmission.size();
 
 		// update transmission table; remove finished transmission
@@ -194,7 +198,7 @@ public class PacketSchedulerSpaceShared implements PacketScheduler {
 	// Estimated finish time of one transmission
 	@Override
 	public double estimateFinishTime(Transmission t) {
-		double bw = getAllocatedBandwidthPerTransmission();
+		double bw = getAllocatedBandwidthPerTransmissionWithJitter();
 
 		if (bw == 0) {
 			return Double.POSITIVE_INFINITY;
@@ -212,5 +216,10 @@ public class PacketSchedulerSpaceShared implements PacketScheduler {
 		}
 
 		return channel.getAllocatedBandwidth() / inTransmission.size();
+	}
+
+	private double getAllocatedBandwidthPerTransmissionWithJitter(){
+		double basicBW = this.getAllocatedBandwidthPerTransmission();
+		return jitter.sampleTransmissionPerformance(basicBW);
 	}
 }
