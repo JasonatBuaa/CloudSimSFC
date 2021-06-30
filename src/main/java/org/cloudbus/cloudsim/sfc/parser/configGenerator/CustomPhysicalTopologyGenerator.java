@@ -60,6 +60,8 @@ public class CustomPhysicalTopologyGenerator {
                 }
             }
         }
+
+        System.out.println(links.size());
     }
 
     private void generateDatacenter(List<Resource> resources){

@@ -3,17 +3,17 @@ package org.cloudbus.cloudsim.sfc.parser;
 import java.util.*;
 
 public class SFCWorkload {
-    private String targetChainName;
-    private List<ServerFunctionChain.InOutDc> ingress;
-    private List<ServerFunctionChain.InOutDc> egress;
-    private int chainInputSize;
-    private int startTime;
-    private int endTime;
-    private List<SFCRequest> sfcRequestList;
-    private double latencyDemand = 10;
-    private LinkedList<InEgressNode> inEgressNodes;
-    private int baseWeight;
-    private int chainLength;
+    public String targetChainName;
+    public List<ServerFunctionChain.InOutDc> ingress;
+    public List<ServerFunctionChain.InOutDc> egress;
+    public int chainInputSize;
+    public int startTime;
+    public int endTime;
+    public List<SFCRequest> sfcRequestList;
+    public double latencyDemand = 10;
+    public LinkedList<InEgressNode> inEgressNodes;
+    public int baseWeight;
+    public int chainLength;
 
     public SFCWorkload(ServerFunctionChain serverFunctionChain){
         startTime = serverFunctionChain.getCreateTime();
