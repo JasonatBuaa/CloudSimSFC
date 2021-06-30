@@ -51,21 +51,18 @@ import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationPolicyMipsMos
 public class MDSNAvailability {
 
 	protected static String physicalTopologyFile = "SFCExampleConfig/PhysicalResource.json";
-	protected static String deploymentFile = "SmallSFCDemo/jasontestFile.csv";
+	protected static String deploymentFile = "SmallSFCDemo/jasontestFile.csv"; // virtual topology
 	protected static String workload_file = "";
-	protected static String[] workload_files = { };
+	protected static String[] workload_files = {};
 
-	protected static String failOver_file = "SmallSFCDemo/FailureEvent.csv";
+	protected static String FR_file = "SmallSFCDemo/FailureEvent.csv";
 
-	 private static String[] argString = { "LFF", physicalTopologyFile, deploymentFile, "./", workload_file,
-            failOver_file };
+	private static String[] argString = { "LFF", physicalTopologyFile, deploymentFile, "./" };
 
-	protected static List<String> failOverEvents;
+	protected static List<String> FREvents;
 	protected static List<String> workloads;
 
 	private static boolean logEnabled = true;
-	public static boolean failOverDebug = true; // True: Do not injuct fail over event.
-    public static boolean queueDebug = true; // True: Do not use MemoryQueue.
 
 	public interface VmAllocationPolicyFactory {
 		public VmAllocationPolicy create(List<? extends Host> list);
@@ -94,15 +91,6 @@ public class MDSNAvailability {
 		workloads = new ArrayList<String>();
 
 		args = argString;
-		// Parse system arguments
-		// if (args.length < 1) {
-		// 	printUsage();
-		// 	System.exit(1);
-		// }
-
-
-	//  private static String[] argString = { "LFF", physicalTopologyFile, deploymentFile, "./", workload_file, failOver_file };
-
 
 		VmAllocationPolicyEnum vmAllocPolicy = VmAllocationPolicyEnum.valueOf(args[0]);
 		// if (args.length > 1)
@@ -113,19 +101,20 @@ public class MDSNAvailability {
 
 		printArguments(physicalTopologyFile, deploymentFile, workloads);
 		System.out.println(System.getProperty("user.dir"));
-		failOverEvents = new ArrayList<>();
-        failOverEvents.add(failOver_file);
+		FREvents = new ArrayList<>();
+		FREvents.add(FR_file);
 
-        String outputFileName = Configuration.workingDirectory + Configuration.experimentName
-                + (failOverDebug ? "" : "Failover") + (!queueDebug ? "" : "Queue") + "log.out.txt";
-        FileOutputStream output = new FileOutputStream(outputFileName);
-        Log.setOutput(output);
+		String outputFileName = Configuration.workingDirectory + Configuration.experimentName
+				+ (Configuration.DISABLE_FAILURE_RECOVERY ? "" : "-with_FR_events-")
+				+ (Configuration.DISABLE_MEMORY_QUEUE ? "" : "-with_Queue-") + "log.out.txt";
+		FileOutputStream output = new FileOutputStream(outputFileName);
+		Log.setOutput(output);
 
-        Log.enable();
+		Log.enable();
 
-        // printArguments(physicalTopologyFile, deploymentFile, Configuration.workingDirectory, workloads);
-        Log.printLine("Starting CloudSim SDN...");
-
+		// printArguments(physicalTopologyFile, deploymentFile,
+		// Configuration.workingDirectory, workloads);
+		Log.printLine("Starting CloudSim SDN...");
 
 		Log.printLine("Starting CloudSim SDN...");
 
@@ -203,10 +192,10 @@ public class MDSNAvailability {
 			submitWorkloads(broker);
 
 			submitAvailabilityEvent(broker); // Jason: submit failOVer (Availability) into the cloudsim simulation
-									// system.
+			// system.
 
-            FRGenerator fg = new FRGenerator("failover_file.csv");
-            fg.test();
+			FRGenerator fg = new FRGenerator("failover_file.csv");
+			fg.test();
 
 			// Sixth step: Starts the simulation
 			if (!MDSNAvailability.logEnabled)
@@ -290,14 +279,13 @@ public class MDSNAvailability {
 		// WORKLOAD_GROUP_FILENAME, WORKLOAD_GROUP_FILENAME_BG);
 	}
 
-    public static void submitAvailabilityEvent(SDNBroker broker) {
-        // Submit workload files individually
-        if (failOverEvents != null) {
-            for (String failOverEvent : failOverEvents)
-                broker.submitFailOverEvents(failOverEvent);
-        }
-    }
-
+	public static void submitAvailabilityEvent(SDNBroker broker) {
+		// Submit workload files individually
+		if (FREvents != null) {
+			for (String frEvent : FREvents)
+				broker.submitFailOverEvents(frEvent);
+		}
+	}
 
 	public static void printArguments(String physical, String virtual, List<String> workloads) {
 		System.out.println("Data center infrastructure (Physical Topology) : " + physical);
@@ -375,10 +363,12 @@ public class MDSNAvailability {
 		return broker;
 	}
 
-	static String WORKLOAD_GROUP_FILENAME = "workload_10sec_100_default.csv"; // group 0~9
-	static String WORKLOAD_GROUP_FILENAME_BG = "workload_10sec_100.csv"; // group 10~29
-	static int WORKLOAD_GROUP_NUM = 50;
-	static int WORKLOAD_GROUP_PRIORITY = 1;
+	// static String WORKLOAD_GROUP_FILENAME = "workload_10sec_100_default.csv"; //
+	// group 0~9
+	// static String WORKLOAD_GROUP_FILENAME_BG = "workload_10sec_100.csv"; // group
+	// 10~29
+	// static int WORKLOAD_GROUP_NUM = 50;
+	// static int WORKLOAD_GROUP_PRIORITY = 1;
 
 	public static void submitGroupWorkloads(SDNBroker broker, int workloadsNum, int groupSeperateNum,
 			String filename_suffix_group1, String filename_suffix_group2) {
@@ -391,33 +381,4 @@ public class MDSNAvailability {
 			broker.submitRequests(filename);
 		}
 	}
-
-	/// Under development
-	/*
-	 * static class WorkloadGroup { static int autoIdGenerator = 0; final int
-	 * groupId;
-	 * 
-	 * String groupFilenamePrefix; int groupFilenameStart; int groupFileNum;
-	 * 
-	 * WorkloadGroup(int id, String groupFilenamePrefix, int groupFileNum, int
-	 * groupFilenameStart) { this.groupId = id; this.groupFilenamePrefix =
-	 * groupFilenamePrefix; this.groupFileNum = groupFileNum; }
-	 * 
-	 * List<String> getFileList() { List<String> filenames = new
-	 * LinkedList<String>();
-	 * 
-	 * for(int fileId=groupFilenameStart; fileId<
-	 * this.groupFilenameStart+this.groupFileNum; fileId++) { String filename =
-	 * groupFilenamePrefix + fileId; filenames.add(filename); } return filenames; }
-	 * 
-	 * public static WorkloadGroup createWorkloadGroup(String groupFilenamePrefix,
-	 * int groupFileNum) { return new WorkloadGroup(autoIdGenerator++,
-	 * groupFilenamePrefix, groupFileNum, 0); } public static WorkloadGroup
-	 * createWorkloadGroup(String groupFilenamePrefix, int groupFileNum, int
-	 * groupFilenameStart) { return new WorkloadGroup(autoIdGenerator++,
-	 * groupFilenamePrefix, groupFileNum, groupFilenameStart); } }
-	 * 
-	 * static LinkedList<WorkloadGroup> workloadGroups = new
-	 * LinkedList<WorkloadGroup>();
-	 */
 }
