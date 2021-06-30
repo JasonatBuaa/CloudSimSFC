@@ -7,50 +7,33 @@
  */
 package org.cloudbus.cloudsim.sdn.example;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.LinkedList;
-import java.util.List;
-// import java.util.Map;dList;
-import java.util.List;
-import java.util.Map;
-
-import org.cloudbus.cloudsim.DatacenterCharacteristics;
-import org.cloudbus.cloudsim.Host;
-import org.cloudbus.cloudsim.Log;
-import org.cloudbus.cloudsim.Storage;
-import org.cloudbus.cloudsim.VmAllocationPolicy;
+import org.cloudbus.cloudsim.*;
 import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.sdn.CloudSimEx;
 import org.cloudbus.cloudsim.sdn.Configuration;
 import org.cloudbus.cloudsim.sdn.HostFactory;
-import org.cloudbus.cloudsim.sdn.HostFactoryOverbookable;
 import org.cloudbus.cloudsim.sdn.SDNBroker;
 import org.cloudbus.cloudsim.sdn.example.topogenerators.FRGenerator;
 import org.cloudbus.cloudsim.sdn.monitor.power.PowerUtilizationMaxHostInterface;
 import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystem;
-import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystemSimple;
-import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystemGroupAware;
-import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystemGroupPriority;
 import org.cloudbus.cloudsim.sdn.parsers.PhysicalTopologyParser;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNDatacenter;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.switches.Switch;
 import org.cloudbus.cloudsim.sdn.policies.selecthost.HostSelectionPolicy;
-import org.cloudbus.cloudsim.sdn.policies.selecthost.HostSelectionPolicyMostFull;
 import org.cloudbus.cloudsim.sdn.policies.selectlink.LinkSelectionPolicy;
 import org.cloudbus.cloudsim.sdn.policies.selectlink.LinkSelectionPolicyBandwidthAllocation;
 import org.cloudbus.cloudsim.sdn.policies.selectlink.LinkSelectionPolicyDestinationAddress;
 import org.cloudbus.cloudsim.sdn.policies.selectlink.LinkSelectionPolicyFlowCapacity;
-import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationPolicyCombinedLeastFullFirst;
 import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationPolicyCombinedMostFullFirst;
-import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationPolicyGroupConnectedFirst;
-import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationPolicyPriorityFirst;
 import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmMigrationPolicy;
 import org.cloudbus.cloudsim.sdn.workload.Workload;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.*;
+
+// import java.util.Map;dList;
 
 /**
  * CloudSimSDN example main program. It loads physical topology file,
@@ -325,7 +308,7 @@ public class NewAvailability {
                     break;
             }
 
-            nos.setLinkSelectionPolicy(ls);
+            //nos.setLinkSelectionPolicy(ls);
             // snos.setMonitorEnable(false);
 
             // Create a Datacenter
@@ -333,8 +316,8 @@ public class NewAvailability {
             // physicalTopologyFile, nos, vmAllocationFac,
             // hostSelectionPolicy, vmMigrationPolicy);
 
-            SDNDatacenter datacenter = createSDNDatacenter("dc1", physicalTopologyFile, nos, vmAllocationFac,
-                    hostSelectionPolicy, vmMigrationPolicy);
+            SDNDatacenter datacenter = null ;//createSDNDatacenter("dc1", physicalTopologyFile, nos, vmAllocationFac,
+                    //hostSelectionPolicy, vmMigrationPolicy);
 
             // Broker
             SDNBroker broker = createBroker();
@@ -369,7 +352,7 @@ public class NewAvailability {
 
             // Print hosts' and switches' total utilization.
             List<Host> hostList = datacenter.getHostList();
-            List<Switch> switchList = nos.getSwitchList();
+            List<Switch> switchList = null;//= nos.getSwitchList();
             LogPrinter.printEnergyConsumption(hostList, switchList, finishTime);
 
             LogPrinter.printConfiguration();

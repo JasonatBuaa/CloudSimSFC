@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.cloudbus.cloudsim.sfc.parser.configGenerator.CustomPhysicalTopologyGenerator;
+import org.cloudbus.cloudsim.sfc.parser.configGenerator.CustomVirtualTopologyGenerator;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -45,11 +46,16 @@ public class FileParser {
         JSON.DEFAULT_GENERATE_FEATURE = JSON.DEFAULT_GENERATE_FEATURE &~ SerializerFeature.SortField.getMask();
         String jsonstr = JSON.toJSONString(physicalTopologyGenerator, SerializerFeature.PrettyFormat);
         jsonWrite(rootPath+ "PhysicalResource.json", jsonstr);
+
         for(SFCWorkload sfcWorkload : sfcWorkloads){
             workloadsCsvWriter(rootPath+ "workloads_"+ sfcWorkload.getTargetChainName()+".csv",sfcWorkload);
         }
 
-
+        CustomVirtualTopologyGenerator customVirtualTopologyGenerator = new CustomVirtualTopologyGenerator(
+                serverFunctionChains, sfcWorkloads, resources
+        );
+        jsonstr = JSON.toJSONString(customVirtualTopologyGenerator, SerializerFeature.PrettyFormat);
+        jsonWrite(rootPath+ "virtualTopology.json", jsonstr);
     }
 
     public void parserResource(){

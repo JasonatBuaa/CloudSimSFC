@@ -124,6 +124,7 @@ class ResourceTest {
         CustomPhysicalTopologyGenerator physicalTopologyGenerator = new CustomPhysicalTopologyGenerator();
         physicalTopologyGenerator.generate(resourceParsers);
 
+
         JSON.DEFAULT_GENERATE_FEATURE = JSON.DEFAULT_GENERATE_FEATURE &~ SerializerFeature.SortField.getMask();
         String jsonstr = JSON.toJSONString(physicalTopologyGenerator, SerializerFeature.PrettyFormat);
         for(Resource resourceParser : resourceParsers){
