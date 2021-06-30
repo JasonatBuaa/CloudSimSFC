@@ -111,6 +111,8 @@ public class SDNVm extends Vm {
 			long totalProcessingPrevTime = cls.getTotalProcessingPreviousTime(currentTime, mipsShare);
 
 			// Monitoring this VM Jason: totalGivenPrevTime?? totalProcessingPrevTime??
+			// Jason : total processing is the real work, total given is the max capacity.
+			// The former divided by the latter gets the utilization.
 			this.increaseProcessedMIs(totalProcessingPrevTime, totalGivenPrevTime);
 
 			// Monitoring the host hosting this VM
@@ -158,7 +160,7 @@ public class SDNVm extends Vm {
 
 	private void updateMonitorCPU(double logTime, double timeUnit) {
 		// long capacity = (long) (getTotalMips() *timeUnit);
-		long capacity = monitoringGivenMIsPerUnit;
+		long capacity = monitoringGivenMIsPerUnit; // Jason: per what unit ???
 
 		double utilization = 0;
 
@@ -182,7 +184,7 @@ public class SDNVm extends Vm {
 	}
 
 	public void increaseProcessedMIs(long processedMIs, long totalGivenMIs) {
-		this.monitoringProcessedMIsPerUnit += processedMIs;
+		this.monitoringProcessedMIsPerUnit += processedMIs; // Jason: per what unit ???
 		this.monitoringGivenMIsPerUnit += totalGivenMIs;
 	}
 

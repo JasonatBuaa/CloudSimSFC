@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.cloudbus.cloudsim.sdn.nos.PerformanceJitter;
+
 /**
  * Represents a Virtual Machine (VM) that runs inside a Host, sharing a hostList
  * with other VMs. It processes cloudlets. This processing happens according to
@@ -83,6 +85,8 @@ public class Vm {
 	/** Indicates if the VM is being instantiated. */
 	private boolean beingInstantiated;
 
+	public PerformanceJitter perfJitter;
+
 	/**
 	 * The mips allocation history.
 	 * 
@@ -138,6 +142,8 @@ public class Vm {
 		setCurrentAllocatedMips(null);
 		setCurrentAllocatedRam(0);
 		setCurrentAllocatedSize(0);
+
+		perfJitter = new PerformanceJitter();
 	}
 
 	/**
@@ -156,6 +162,29 @@ public class Vm {
 		}
 		return 0.0;
 	}
+
+	// /**
+	// * Jason : The performance jitter is sampled per-PE.
+	// *
+	// * @param currentTime
+	// * @param mipsShare
+	// * @return
+	// */
+	// public double updateVmProcessingWithJitter(double currentTime, List<Double>
+	// mipsShare) {
+	// if (mipsShare != null) {
+	// List<Double> mipsShareWithJitter = new ArrayList<Double>();
+	// Host host = getHost();
+	// // double jitter_sigma = host.get
+	// for (double mips : mipsShare) {
+	// double jitterMips = perfJitter.sampleComputationPerformance(mips,
+	// jitter_sigma);
+	// }
+
+	// return getCloudletScheduler().updateVmProcessing(currentTime, mipsShare);
+	// }
+	// return 0.0;
+	// }
 
 	/**
 	 * Gets the current requested mips.

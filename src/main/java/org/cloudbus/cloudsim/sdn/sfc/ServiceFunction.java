@@ -8,13 +8,18 @@
 
 package org.cloudbus.cloudsim.sdn.sfc;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.common.util.concurrent.Service;
 
 import org.cloudbus.cloudsim.CloudletScheduler;
+import org.cloudbus.cloudsim.sdn.CloudletSchedulerMonitor;
 import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystem;
+import org.cloudbus.cloudsim.sdn.nos.PerformanceJitter;
+import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.QueuedVM;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm;
 
@@ -125,18 +130,18 @@ public class ServiceFunction extends QueuedVM {
 	}
 
 	// public void setMIperOperation(long mipOperation) {
-	// 	this.mipOper = mipOperation; // MI per operation.
+	// this.mipOper = mipOperation; // MI per operation.
 	// }
 
 	// public long getMIperOperation() {
-	// 	return this.mipOper;
+	// return this.mipOper;
 	// }
 
 	public void setMIperUnitWorkload(long miperUnitWorkload) {
 		this.miperUnitWorkload = miperUnitWorkload; // MI per operation.
 	}
 
-	public long getMIperUnitWorkload(){
+	public long getMIperUnitWorkload() {
 		return this.miperUnitWorkload;
 	}
 
@@ -154,6 +159,40 @@ public class ServiceFunction extends QueuedVM {
 
 	public NetworkOperatingSystem getNetworkOperatingSystem() {
 		return this.runningNOS;
+	}
+
+	// Jason: add performance jitter here!
+
+	@Override
+	public double updateVmProcessing(double currentTime, List<Double> mipsShare) {
+		double sumMips = 0;
+		for (double mips : mipsShare)
+			sumMips += mips;
+
+		if (getCloudletScheduler() instanceof CloudletSchedulerMonitor) {
+			CloudletSchedulerMonitor cls = (CloudletSchedulerMonitor) getCloudletScheduler();
+			long totalGivenPrevTime = (long) (cls.getTimeSpentPreviousMonitoredTime(currentTime) * sumMips);
+			long totalProcessingPrevTime = cls.getTotalProcessingPreviousTime(currentTime, mipsShare);
+
+			// Monitoring this VM Jason: totalGivenPrevTime?? totalProcessingPrevTime??
+			// Jason : total processing is the real work, total given is the max capacity.
+			// The former divided by the latter gets the utilization.
+			this.increaseProcessedMIs(totalProcessingPrevTime, totalGivenPrevTime);
+
+			// Monitoring the host hosting this VM
+			SDNHost sdnhost = (SDNHost) getHost();
+			if (sdnhost != null)
+				sdnhost.increaseProcessedMIs(totalProcessingPrevTime);
+		}
+
+		List<Double> realMIPSShareWithJitter = new ArrayList();
+		for (double mips : mipsShare) {
+			double jitterMIPS = perfJitter.sampleComputationPerformance(mips, getPerfJitterSigma());
+			realMIPSShareWithJitter.add(jitterMIPS);
+		}
+
+		// return super.updateVmProcessing(currentTime, mipsShare);
+		return super.updateVmProcessing(currentTime, realMIPSShareWithJitter);
 	}
 
 	// public int getQueueRam() {

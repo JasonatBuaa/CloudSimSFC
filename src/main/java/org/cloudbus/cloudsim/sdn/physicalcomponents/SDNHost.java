@@ -49,6 +49,16 @@ public class SDNHost extends Host implements Node {
 	private double mtbf = 0;
 	private double mttr = 0;
 
+	private double perfJitterSigma = 1.0;
+
+	public double getPerfJitterSigma() {
+		return this.perfJitterSigma;
+	}
+
+	public void setPerfJitterSigma(double perfJitterSigma) {
+		this.perfJitterSigma = perfJitterSigma;
+	}
+
 	private HashMap<Node, Link> linkToNextHop = new HashMap<Node, Link>();
 
 	public SDNHost(RamProvisioner ramProvisioner, BwProvisioner bwProvisioner, long storage, List<? extends Pe> peList,
@@ -79,6 +89,30 @@ public class SDNHost extends Host implements Node {
 		this.routingTable = new RoutingTable();
 		this.name = name;
 		this.availability = availability;
+	}
+
+	/**
+	 * Jason: host availability
+	 * 
+	 * @param ramProvisioner
+	 * @param bwProvisioner
+	 * @param storage
+	 * @param peList
+	 * @param vmScheduler
+	 * @param name
+	 * @param availability   host availability -- for calculating sfc availability
+	 * @param perfJitter     denote the performance jitter_sigma value
+	 */
+	public SDNHost(RamProvisioner ramProvisioner, BwProvisioner bwProvisioner, long storage, List<? extends Pe> peList,
+			VmScheduler vmScheduler, String name, int availability, double perfJitterSigma) {
+
+		super(NodeUtil.assignAddress(), ramProvisioner, bwProvisioner, storage, peList, vmScheduler);
+		this.forwardingTable = new ForwardingRule();
+		this.routingTable = new RoutingTable();
+		this.name = name;
+		this.availability = availability;
+		this.perfJitterSigma = perfJitterSigma;
+
 	}
 
 	/**
@@ -174,9 +208,9 @@ public class SDNHost extends Host implements Node {
 	}
 
 	public void injectComputationJitter() {
-		
-		for (SDNVm vm: this.<SDNVm>getVmList()){
-			
+
+		for (SDNVm vm : this.<SDNVm>getVmList()) {
+
 		}
 		if (getVmScheduler() instanceof VmSchedulerTimeSharedOverSubscriptionDynamicVM) {
 			VmSchedulerTimeSharedOverSubscriptionDynamicVM sch = (VmSchedulerTimeSharedOverSubscriptionDynamicVM) getVmScheduler();
@@ -188,7 +222,6 @@ public class SDNHost extends Host implements Node {
 			}
 		}
 	}
-
 
 	// Check how long this Host is overloaded (The served capacity is less than the
 	// required capacity)

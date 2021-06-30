@@ -14,29 +14,31 @@ import java.util.List;
 import org.cloudbus.cloudsim.core.CloudSim;
 
 /**
- * CloudletSchedulerSpaceShared implements a policy of scheduling performed by a virtual machine
- * to run its {@link Cloudlet Cloudlets}.
- * It consider there will be only one cloudlet per VM. Other cloudlets will be in a waiting list.
- * We consider that file transfer from cloudlets waiting happens before cloudlet execution. I.e.,
- * even though cloudlets must wait for CPU, data transfer happens as soon as cloudlets are
- * submitted.
+ * CloudletSchedulerSpaceShared implements a policy of scheduling performed by a
+ * virtual machine to run its {@link Cloudlet Cloudlets}. It consider there will
+ * be only one cloudlet per VM. Other cloudlets will be in a waiting list. We
+ * consider that file transfer from cloudlets waiting happens before cloudlet
+ * execution. I.e., even though cloudlets must wait for CPU, data transfer
+ * happens as soon as cloudlets are submitted.
  * 
  * @author Rodrigo N. Calheiros
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 1.0
  */
 public class CloudletSchedulerSpaceShared extends CloudletScheduler {
-	/** The number of PEs currently available for the VM using the scheduler,
-         * according to the mips share provided to it by
-         * {@link #updateVmProcessing(double, java.util.List)} method. */
+	/**
+	 * The number of PEs currently available for the VM using the scheduler,
+	 * according to the mips share provided to it by
+	 * {@link #updateVmProcessing(double, java.util.List)} method.
+	 */
 	protected int currentCpus;
 
 	/** The number of used PEs. */
 	protected int usedPes;
 
 	/**
-	 * Creates a new CloudletSchedulerSpaceShared object. This method must be invoked before
-	 * starting the actual simulation.
+	 * Creates a new CloudletSchedulerSpaceShared object. This method must be
+	 * invoked before starting the actual simulation.
 	 * 
 	 * @pre $none
 	 * @post $none
@@ -65,8 +67,7 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 
 		// each machine in the exec list has the same amount of cpu
 		for (ResCloudlet rcl : getCloudletExecList()) {
-			rcl.updateCloudletFinishedSoFar(
-                                (long) (capacity * timeSpam * rcl.getNumberOfPes() * Consts.MILLION));
+			rcl.updateCloudletFinishedSoFar((long) (capacity * timeSpam * rcl.getNumberOfPes() * Consts.MILLION));
 		}
 
 		// no more cloudlets in this scheduler
@@ -255,7 +256,7 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 				}
 
 				long size = rcl.getRemainingCloudletLength();
-				size *= rcl.getNumberOfPes();
+				size *= rcl.getNumberOfPes(); // Jason: ???
 				rcl.getCloudlet().setCloudletLength(size);
 
 				getCloudletExecList().add(rcl);
@@ -274,8 +275,7 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 				capacity /= cpus;
 
 				long remainingLength = rcl.getRemainingCloudletLength();
-				double estimatedFinishTime = CloudSim.clock()
-						+ (remainingLength / (capacity * rcl.getNumberOfPes()));
+				double estimatedFinishTime = CloudSim.clock() + (remainingLength / (capacity * rcl.getNumberOfPes()));
 
 				return estimatedFinishTime;
 			} else {// no enough free PEs: go to the waiting queue
@@ -291,7 +291,8 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 
 		}
 
-		// not found in the paused list: either it is in in the queue, executing or not exist
+		// not found in the paused list: either it is in in the queue, executing or not
+		// exist
 		return 0.0;
 
 	}
@@ -397,8 +398,8 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 	 * @return the first running cloudlet
 	 * @pre $none
 	 * @post $none
-         * 
-         * @todo it doesn't check if the list is empty
+	 * 
+	 * @todo it doesn't check if the list is empty
 	 */
 	@Override
 	public Cloudlet migrateCloudlet() {
@@ -422,7 +423,7 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 
 	@Override
 	public double getTotalCurrentAvailableMipsForCloudlet(ResCloudlet rcl, List<Double> mipsShare) {
-                /*@todo The param rcl is not being used.*/
+		/* @todo The param rcl is not being used. */
 		double capacity = 0.0;
 		int cpus = 0;
 		for (Double mips : mipsShare) { // count the cpus available to the vmm
@@ -437,29 +438,29 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 	}
 
 	@Override
-	public double getTotalCurrentAllocatedMipsForCloudlet(ResCloudlet rcl, double time) {   
-                //@todo the method isn't in fact implemented
+	public double getTotalCurrentAllocatedMipsForCloudlet(ResCloudlet rcl, double time) {
+		// @todo the method isn't in fact implemented
 		// TODO Auto-generated method stub
 		return 0.0;
 	}
 
 	@Override
 	public double getTotalCurrentRequestedMipsForCloudlet(ResCloudlet rcl, double time) {
-                //@todo the method isn't in fact implemented
+		// @todo the method isn't in fact implemented
 		// TODO Auto-generated method stub
 		return 0.0;
 	}
 
 	@Override
 	public double getCurrentRequestedUtilizationOfRam() {
-                //@todo the method isn't in fact implemented
+		// @todo the method isn't in fact implemented
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public double getCurrentRequestedUtilizationOfBw() {
-                //@todo the method isn't in fact implemented
+		// @todo the method isn't in fact implemented
 		// TODO Auto-generated method stub
 		return 0;
 	}
