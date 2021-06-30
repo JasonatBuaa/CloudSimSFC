@@ -10,7 +10,7 @@ package org.cloudbus.cloudsim;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.cloudbus.cloudsim.network.datacenter.NetworkCloudletSpaceSharedScheduler;
+// import org.cloudbus.cloudsim.network.datacenter.NetworkCloudletSpaceSharedScheduler;
 
 /**
  * CloudletScheduler is an abstract class that represents the policy of
