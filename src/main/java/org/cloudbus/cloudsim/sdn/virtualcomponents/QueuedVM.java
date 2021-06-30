@@ -1,6 +1,8 @@
 package org.cloudbus.cloudsim.sdn.virtualcomponents;
 
 import org.cloudbus.cloudsim.CloudletScheduler;
+import org.cloudbus.cloudsim.Host;
+import org.cloudbus.cloudsim.Log;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
 
 public class QueuedVM extends SDNVm {
@@ -8,7 +10,6 @@ public class QueuedVM extends SDNVm {
     // public TheQueue theQueue;
     public long queueSize;
     public double availability;
-
 
     /**
      * Jason: when holding a {@link TheQueue} instance
@@ -127,6 +128,16 @@ public class QueuedVM extends SDNVm {
 
     public void setQueueSize(long queueSize) {
         this.queueSize = queueSize;
+    }
+
+    public double getPerfJitterSigma() {
+        Host h = getHost();
+        if (h instanceof SDNHost) {
+            SDNHost sdn_h = (SDNHost) h;
+            return sdn_h.getPerfJitterSigma();
+        } else
+            Log.printLine("error!!!");
+        return 0.0;
     }
 
     // public TheQueue getTheQueue() {

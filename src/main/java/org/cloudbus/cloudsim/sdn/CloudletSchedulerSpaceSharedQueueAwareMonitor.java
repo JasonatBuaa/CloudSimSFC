@@ -135,9 +135,7 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
         // calculate the expected time for cloudlet completion
         double capacity = 0.0;
         int cpus = 0;
-        for (Double mips :
-
-        getCurrentMipsShare()) {
+        for (Double mips : getCurrentMipsShare()) {
             capacity += mips;
             if (mips > 0) {
                 cpus++;
@@ -185,6 +183,16 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
         GiveAWarningForDebug();
         boolean found = false;
         int position = 0;
+
+        // Jason: The Exception is Used For Debug Only.
+        try {
+            throw new Exception();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            System.out.println("check the cloudlet length calculation size *= rcl.getNumberOfPes");
+            e.printStackTrace();
+
+        }
 
         // look for the cloudlet in the paused list
         for (ResCloudlet rcl : getCloudletPausedList()) {

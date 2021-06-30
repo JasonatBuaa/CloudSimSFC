@@ -6,21 +6,19 @@ import org.apache.commons.math3.distribution.NormalDistribution;
 
 /**
  * 
- * @author 
- * @since 
+ * @author
+ * @since
  */
 public class NormalDistr implements ContinuousDistribution {
 
-	
 	/** The internal Log-normal pseudo random number generator. */
 	// private final LogNormalDistribution numGen;
 	private final NormalDistribution numGen;
 
-
 	/**
 	 * Instantiates a new Log-normal pseudo random number generator.
 	 * 
-	 * @param seed the seed
+	 * @param seed  the seed
 	 * @param shape the shape
 	 * @param scale the scale
 	 */
@@ -42,6 +40,21 @@ public class NormalDistr implements ContinuousDistribution {
 	@Override
 	public double sample() {
 		return numGen.sample();
+	}
+
+	/**
+	 * 
+	 * Jason: The sample result is controlled by the min/max threshold
+	 * 
+	 * @param min
+	 * @param max
+	 * @return
+	 */
+	public double sample(double min, double max) {
+		double result = numGen.sample();
+		while (result < min || result > max)
+			result = numGen.sample();
+		return result;
 	}
 
 }

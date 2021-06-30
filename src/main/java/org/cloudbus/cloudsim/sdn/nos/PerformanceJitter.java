@@ -20,8 +20,7 @@ public class PerformanceJitter {
 		double sigma = Configuration.NETWORK_JITTER_SIGMA;
 		if (Configuration.ENABLE_TRANSMISSION_JITTER) {
 			this.nd = new NormalDistr(link_bw, sigma);
-			return Math.min(nd.sample(), link_bw);
-
+			return nd.sample(link_bw / 1.5, link_bw * 1.2);
 		} else
 			return link_bw;
 	}
@@ -32,7 +31,8 @@ public class PerformanceJitter {
 	public double sampleComputationPerformance(double mips, double jitter_sigma) {
 		if (Configuration.ENABLE_COMPUTATION_JITTER) {
 			this.nd = new NormalDistr(mips, jitter_sigma);
-			return Math.min(nd.sample(), mips);
+			// return Math.min(nd.sample(), mips);
+			return nd.sample(mips / 1.5, mips * 1.2);
 		} else
 			return mips;
 	}
