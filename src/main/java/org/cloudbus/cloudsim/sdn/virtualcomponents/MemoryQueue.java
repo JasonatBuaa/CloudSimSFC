@@ -8,11 +8,6 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import org.apache.commons.lang3.ObjectUtils.Null;
-
-// import javax.naming.directory.InvalidAttributeValueException;
-
-// import com.google.common.collect.Queues;
-
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.Log;
 // import org.cloudbus.cloudsim.ResCloudlet;

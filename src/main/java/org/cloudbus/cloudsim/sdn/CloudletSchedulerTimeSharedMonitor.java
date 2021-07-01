@@ -16,13 +16,13 @@ import org.cloudbus.cloudsim.CloudletSchedulerTimeShared;
 import org.cloudbus.cloudsim.Consts;
 import org.cloudbus.cloudsim.ResCloudlet;
 
-public class CloudletSchedulerTimeSharedMonitor extends CloudletSchedulerTimeShared implements CloudletSchedulerMonitor {
+public class CloudletSchedulerTimeSharedMonitor extends CloudletSchedulerTimeShared
+		implements CloudletSchedulerMonitor {
 	private double timeoutLimit = Double.POSITIVE_INFINITY;
 	// For monitoring
 	private double prevMonitoredTime = 0;
 	private double vmMips = 0;
-	
-	
+
 	public CloudletSchedulerTimeSharedMonitor(long vmMipsPerPE, double timeout) {
 		vmMips = vmMipsPerPE;
 		timeoutLimit = timeout;
@@ -32,15 +32,15 @@ public class CloudletSchedulerTimeSharedMonitor extends CloudletSchedulerTimeSha
 		long totalProcessedMIs = 0;
 		double timeSpent = currentTime - prevMonitoredTime;
 		double capacity = getCapacity(mipsShare);
-		
+
 		for (ResCloudlet rcl : getCloudletExecList()) {
 			totalProcessedMIs += (long) (capacity * timeSpent * rcl.getNumberOfPes() * Consts.MILLION);
 		}
-		
+
 		prevMonitoredTime = currentTime;
 		return totalProcessedMIs;
 	}
-	
+
 	@Override
 	public double getTimeSpentPreviousMonitoredTime(double currentTime) {
 		double timeSpent = currentTime - prevMonitoredTime;
@@ -49,18 +49,18 @@ public class CloudletSchedulerTimeSharedMonitor extends CloudletSchedulerTimeSha
 
 	@Override
 	public boolean isVmIdle() {
-		if(runningCloudlets() > 0)
+		if (runningCloudlets() > 0)
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public double getCapacity(List<Double> mipsShare) {
 		double capacity = super.getCapacity(mipsShare);
 		double maxPeCapacityPerCloudlet = vmMips * Configuration.CPU_REQUIRED_MIPS_PER_WORKLOAD_PERCENT;
-		if(capacity > maxPeCapacityPerCloudlet) {
+		if (capacity > maxPeCapacityPerCloudlet) {
 			capacity = maxPeCapacityPerCloudlet;
-//			System.out.println("Capacity is limited to "+ capacity);
+			// System.out.println("Capacity is limited to "+ capacity);
 		}
 		return capacity;
 	}
@@ -80,11 +80,11 @@ public class CloudletSchedulerTimeSharedMonitor extends CloudletSchedulerTimeSha
 		processTimeout(currentTime);
 		return ret;
 	}
-	
+
 	@Override
 	public List<Cloudlet> getFailedCloudlet() {
 		List<Cloudlet> failed = new ArrayList<Cloudlet>();
-		for(ResCloudlet cl:getCloudletFailedList()) {
+		for (ResCloudlet cl : getCloudletFailedList()) {
 			failed.add(cl.getCloudlet());
 		}
 		getCloudletFailedList().clear();
@@ -93,18 +93,18 @@ public class CloudletSchedulerTimeSharedMonitor extends CloudletSchedulerTimeSha
 
 	protected void processTimeout(double currentTime) {
 		// Check if any cloudlet is timed out.
-		if(timeoutLimit > 0 && Double.isFinite(timeoutLimit)) {
+		if (timeoutLimit > 0 && Double.isFinite(timeoutLimit)) {
 			double timeout = currentTime - this.timeoutLimit;
 			List<ResCloudlet> timeoutCloudlet = new ArrayList<ResCloudlet>();
-			
+
 			for (ResCloudlet rcl : getCloudletExecList()) {
-				if(rcl.getCloudletArrivalTime() < timeout) {
+				if (rcl.getCloudletArrivalTime() < timeout) {
 					timeoutCloudlet.add(rcl);
 				}
 			}
 			getCloudletFailedList().addAll(timeoutCloudlet);
-			getCloudletExecList().removeAll(timeoutCloudlet);			
+			getCloudletExecList().removeAll(timeoutCloudlet);
 		}
-		
-	}	
+
+	}
 }
