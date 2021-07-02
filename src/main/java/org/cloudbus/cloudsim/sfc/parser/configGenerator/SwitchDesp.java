@@ -1,5 +1,8 @@
 package org.cloudbus.cloudsim.sfc.parser.configGenerator;
 
+import com.alibaba.fastjson.annotation.JSONType;
+
+@JSONType(orders = { "datacenter", "type", "name", "iops", "upports", "downports", "bw" })
 public class SwitchDesp extends PhysicalTopologyNode {
     public long iops;
     public int upports;

@@ -1,5 +1,10 @@
 package org.cloudbus.cloudsim.sfc.parser.configGenerator;
 
+import com.alibaba.fastjson.annotation.JSONType;
+
+@JSONType(orders = { "datacenter", "type", "name", "pes", "mips", "jitterSigma2", "ram", "storage", "bw",
+        "availability", "mtbf", "mttr", "priceRatio" })
+
 public class HostDesp extends PhysicalTopologyNode {
     public long pes;
     public long mips;
@@ -14,6 +19,23 @@ public class HostDesp extends PhysicalTopologyNode {
 
     public double priceRatio;
 
+    /**
+     * Jason: Users should provide the MTBF and MTTR parameters, and availability is
+     * calculated automatically.
+     * 
+     * @param name
+     * @param type
+     * @param datacenter
+     * @param pes
+     * @param mips
+     * @param ram
+     * @param storage
+     * @param bw
+     * @param mtbf
+     * @param mttr
+     * @param jitterSigma2
+     * @param priceRatio
+     */
     public HostDesp(String name, String type, String datacenter, long pes, long mips, long ram, long storage, long bw,
             double mtbf, double mttr, double jitterSigma2, double priceRatio) {
         super(name, type, datacenter);
@@ -23,6 +45,9 @@ public class HostDesp extends PhysicalTopologyNode {
         this.storage = storage;
         this.bw = bw;
         this.mttr = mttr;
+        this.mtbf = mtbf;
+        this.jitterSigma2 = jitterSigma2;
+        this.priceRatio = priceRatio;
         this.calcAvailability();
     }
 
