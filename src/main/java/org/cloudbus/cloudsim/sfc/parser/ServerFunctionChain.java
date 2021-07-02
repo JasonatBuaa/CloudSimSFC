@@ -110,6 +110,10 @@ public class ServerFunctionChain {
         private String Name;
         private float Weight;
 
+        public InOutDc(){
+
+        }
+
         public InOutDc(String name, float weight) {
             Name = name;
             Weight = weight;
