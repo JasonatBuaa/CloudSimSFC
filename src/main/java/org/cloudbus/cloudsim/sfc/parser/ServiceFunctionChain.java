@@ -2,7 +2,7 @@ package org.cloudbus.cloudsim.sfc.parser;
 
 import java.util.List;
 
-public class ServerFunctionChain {
+public class ServiceFunctionChain {
     private String Name;
     private List<String> Chain;
     private int AverageInputSize;
@@ -11,7 +11,7 @@ public class ServerFunctionChain {
     private int CreateTime;
     private int DestroyTime;
 
-    public ServerFunctionChain(String name, List<String> chain, int averageInputSize, List<InOutDc> ingressDCs,
+    public ServiceFunctionChain(String name, List<String> chain, int averageInputSize, List<InOutDc> ingressDCs,
             List<InOutDc> egressDCs, int createTime, int destroyTime) {
         Name = name;
         Chain = chain;
@@ -22,7 +22,7 @@ public class ServerFunctionChain {
         DestroyTime = destroyTime;
     }
 
-    public ServerFunctionChain() {
+    public ServiceFunctionChain() {
     }
 
     public List<InOutDc> getIngressDCs() {
@@ -101,16 +101,16 @@ public class ServerFunctionChain {
         }
         outDcs = '[' + outDcs + ']';
 
-        return "ServerFunctionChain{" + "\nName='" + Name + "'," + "\nChain=" + chainStr + ',' + "\nIngressDCs=" + inDcs
-                + ',' + "\nEgressDCs=" + outDcs + ',' + "\nAverageInputSize=" + AverageInputSize + ',' + "\nCreateTime="
-                + CreateTime + ',' + "\nDestroyTime=" + DestroyTime + ',' + "}\n";
+        return "ServiceFunctionChain{" + "\nName='" + Name + "'," + "\nChain=" + chainStr + ',' + "\nIngressDCs="
+                + inDcs + ',' + "\nEgressDCs=" + outDcs + ',' + "\nAverageInputSize=" + AverageInputSize + ','
+                + "\nCreateTime=" + CreateTime + ',' + "\nDestroyTime=" + DestroyTime + ',' + "}\n";
     }
 
     public class InOutDc {
         private String Name;
         private float Weight;
 
-        public InOutDc(){
+        public InOutDc() {
 
         }
 

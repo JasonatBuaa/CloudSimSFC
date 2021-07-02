@@ -2,21 +2,21 @@ package org.cloudbus.cloudsim.sfc.parser;
 
 import java.util.HashMap;
 
-public class ServerFunction {
+public class ServiceFunction {
     private String Name;
     private String Type;
     private double InputRate;
     private double OutputRate;
     private int Performance;
-    public static HashMap<String,ServerFunction> serverFunctionMap = new HashMap<>();
+    public static HashMap<String, ServiceFunction> serverFunctionMap = new HashMap<>();
 
-    public ServerFunction(String name, String type, double inputRate, double outputRate, int performance) {
+    public ServiceFunction(String name, String type, double inputRate, double outputRate, int performance) {
         Name = name;
         Type = type;
         InputRate = inputRate;
         OutputRate = outputRate;
         Performance = performance;
-        serverFunctionMap.put(Name,this);
+        serverFunctionMap.put(Name, this);
     }
 
     public String getName() {
@@ -59,18 +59,13 @@ public class ServerFunction {
         Performance = performance;
     }
 
-    public int getOutputSize(int inputSize){
+    public int getOutputSize(int inputSize) {
         return new Double(inputSize * (OutputRate / InputRate)).intValue();
     }
 
     @Override
     public String toString() {
-        return "ServerFunction{" +
-                "Name='" + Name + '\'' +
-                ", Type='" + Type + '\'' +
-                ", InputRate=" + InputRate +
-                ", OutputRate=" + OutputRate +
-                ", Performance=" + Performance +
-                '}';
+        return "ServiceFunction{" + "Name='" + Name + '\'' + ", Type='" + Type + '\'' + ", InputRate=" + InputRate
+                + ", OutputRate=" + OutputRate + ", Performance=" + Performance + '}';
     }
 }

@@ -4,8 +4,8 @@ import java.util.*;
 
 public class SFCWorkload {
     public String targetChainName;
-    public List<ServerFunctionChain.InOutDc> ingress;
-    public List<ServerFunctionChain.InOutDc> egress;
+    public List<ServiceFunctionChain.InOutDc> ingress;
+    public List<ServiceFunctionChain.InOutDc> egress;
     public int chainInputSize;
     public int startTime;
     public int endTime;
@@ -15,7 +15,7 @@ public class SFCWorkload {
     public int baseWeight;
     public int chainLength;
 
-    public SFCWorkload(ServerFunctionChain serverFunctionChain){
+    public SFCWorkload(ServiceFunctionChain serverFunctionChain) {
         startTime = serverFunctionChain.getCreateTime();
         endTime = serverFunctionChain.getDestroyTime();
         ingress = serverFunctionChain.getIngressDCs();
@@ -29,78 +29,73 @@ public class SFCWorkload {
         generateRequest(serverFunctionChain);
     }
 
-    private void generateRequest(ServerFunctionChain serverFunctionChain){
-        int requestSize = (endTime - startTime)/10;
+    private void generateRequest(ServiceFunctionChain serverFunctionChain) {
+        int requestSize = (endTime - startTime) / 10;
         int count = 0;
         Random random = new Random();
         List<String> chain = serverFunctionChain.getChain();
-        while(count <= requestSize){
+        while (count <= requestSize) {
             int time = count * 10 + startTime;
             SFCRequest sfcRequest = new SFCRequest(time);
-            setInEgress(sfcRequest,count);
-            int index = 0,performance,outputSize=0;
-            int inputSize = chainInputSize + random.nextInt(2)*10;
+            setInEgress(sfcRequest, count);
+            int index = 0, performance, outputSize = 0;
+            int inputSize = chainInputSize + random.nextInt(2) * 10;
 
-            for(;index < chain.size();index++){
-                ServerFunction serverFunction = ServerFunction.serverFunctionMap.get(chain.get(index));
-                performance = serverFunction.getPerformance()*inputSize;
+            for (; index < chain.size(); index++) {
+                ServiceFunction serverFunction = ServiceFunction.serverFunctionMap.get(chain.get(index));
+                performance = serverFunction.getPerformance() * inputSize;
                 outputSize = serverFunction.getOutputSize(inputSize);
-                sfcRequest.fillRequest(chain.get(index),inputSize, performance);
+                sfcRequest.fillRequest(chain.get(index), inputSize, performance);
                 inputSize = outputSize;
             }
-            //transmission to Egress
+            // transmission to Egress
             sfcRequest.setOutput(outputSize);
             sfcRequestList.add(sfcRequest);
             count++;
         }
 
-
     }
-
 
     @Override
     public String toString() {
         Random random = new Random();
         String sfcRequests = "";
-        for(int i =0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             int index = random.nextInt(sfcRequestList.size());
             sfcRequests += sfcRequestList.get(index).toString() + ',';
         }
         sfcRequests = '{' + sfcRequests + '}';
 
-        return "SFCWorkload{" +
-                "targetChainName='" + targetChainName + '\'' +
-                ", chainInputSize=" + chainInputSize +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", sfcRequestList(ten of all)=" + sfcRequests +
-                '}';
+        return "SFCWorkload{" + "targetChainName='" + targetChainName + '\'' + ", chainInputSize=" + chainInputSize
+                + ", startTime=" + startTime + ", endTime=" + endTime + ", sfcRequestList(ten of all)=" + sfcRequests
+                + '}';
     }
 
-    public void initInEgressNode(){
+    public void initInEgressNode() {
         float inWeight = 0, outWeight = 0;
-        for(ServerFunctionChain.InOutDc in : ingress){
+        for (ServiceFunctionChain.InOutDc in : ingress) {
             inWeight += in.getWeight() * 10;
         }
-        for(ServerFunctionChain.InOutDc out : egress){
+        for (ServiceFunctionChain.InOutDc out : egress) {
             outWeight += out.getWeight() * 10;
         }
         baseWeight = new Float(inWeight * outWeight).intValue();
 
-        int  ingressSize = ingress.size();
+        int ingressSize = ingress.size();
         int egressSize = egress.size();
-        for(int i = 0; i < ingressSize; i++){
-            for(int j = 0; j < egressSize; j++){
-                inEgressNodes.addLast(new InEgressNode(ingress.get(i).getName(),egress.get(j).getName(),new Float(ingress.get(i).getWeight()* egress.get(j).getWeight()*100).intValue()));
+        for (int i = 0; i < ingressSize; i++) {
+            for (int j = 0; j < egressSize; j++) {
+                inEgressNodes.addLast(new InEgressNode(ingress.get(i).getName(), egress.get(j).getName(),
+                        new Float(ingress.get(i).getWeight() * egress.get(j).getWeight() * 100).intValue()));
             }
         }
     }
 
-    public void setInEgress(SFCRequest sfcRequest,int count){
+    public void setInEgress(SFCRequest sfcRequest, int count) {
         count %= baseWeight;
-        for(Iterator<InEgressNode> iterator = inEgressNodes.iterator();iterator.hasNext();){
+        for (Iterator<InEgressNode> iterator = inEgressNodes.iterator(); iterator.hasNext();) {
             InEgressNode now = iterator.next();
-            if(count<now.weight || count <= 0){
+            if (count < now.weight || count <= 0) {
                 sfcRequest.setIngress(now.ingress);
                 sfcRequest.setEgress(now.egress);
                 break;
@@ -117,19 +112,19 @@ public class SFCWorkload {
         this.targetChainName = targetChainName;
     }
 
-    public List<ServerFunctionChain.InOutDc> getIngress() {
+    public List<ServiceFunctionChain.InOutDc> getIngress() {
         return ingress;
     }
 
-    public void setIngress(List<ServerFunctionChain.InOutDc> ingress) {
+    public void setIngress(List<ServiceFunctionChain.InOutDc> ingress) {
         this.ingress = ingress;
     }
 
-    public List<ServerFunctionChain.InOutDc> getEgress() {
+    public List<ServiceFunctionChain.InOutDc> getEgress() {
         return egress;
     }
 
-    public void setEgress(List<ServerFunctionChain.InOutDc> egress) {
+    public void setEgress(List<ServiceFunctionChain.InOutDc> egress) {
         this.egress = egress;
     }
 
@@ -197,7 +192,7 @@ public class SFCWorkload {
         this.chainLength = chainLength;
     }
 
-    class InEgressNode{
+    class InEgressNode {
         private String ingress;
         private String egress;
         private int weight;

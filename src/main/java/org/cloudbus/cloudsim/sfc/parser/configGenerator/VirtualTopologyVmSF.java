@@ -3,11 +3,11 @@ package org.cloudbus.cloudsim.sfc.parser.configGenerator;
 /**
  * @author chengr
  * @version 1.0.0
- * @ClassName VirtualTopoployServerFunction.java
+ * @ClassName VirtualTopoployServiceFunction.java
  * @Description TODO
  * @createTime 2021-06-30 21:45
  */
-public class VirtualTopologyVmSF extends VirtualTopologyVM{
+public class VirtualTopologyVmSF extends VirtualTopologyVM {
    public int size;
    public int pes;
    public int mips;

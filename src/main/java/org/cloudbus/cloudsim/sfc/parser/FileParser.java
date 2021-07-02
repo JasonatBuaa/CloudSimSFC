@@ -15,9 +15,9 @@ public class FileParser {
     private String rootPath = "SFCExampleConfig2/";
     private String resourceFileName = "ResourceDesription.json";
     private String SFCDemandFileName = "SFCDemands.json";
-    private String serverFunctionFileName = "ServerFunctionDescription.json";
-    private List<ServerFunction> serverFunctions;
-    private List<ServerFunctionChain> serverFunctionChains;
+    private String serverFunctionFileName = "ServiceFunctionDescription.json";
+    private List<ServiceFunction> serverFunctions;
+    private List<ServiceFunctionChain> serverFunctionChains;
     private List<Resource> resources;
     private List<SFCWorkload> sfcWorkloads;
 
@@ -32,9 +32,9 @@ public class FileParser {
 
     public void parse() {
         parseResource();
-        parseServerFunction();
-        parseServerFunctionChain();
-        for (ServerFunctionChain serverFunctionChain : serverFunctionChains) {
+        parseServiceFunction();
+        parseServiceFunctionChain();
+        for (ServiceFunctionChain serverFunctionChain : serverFunctionChains) {
             sfcWorkloads.add(new SFCWorkload(serverFunctionChain));
         }
 
@@ -64,18 +64,18 @@ public class FileParser {
         });
     }
 
-    public void parseServerFunctionChain() {
+    public void parseServiceFunctionChain() {
         String path = rootPath + SFCDemandFileName;
         String jsonStr = jsonRead(path);
-        serverFunctionChains = JSONObject.parseObject(jsonStr, new TypeReference<List<ServerFunctionChain>>() {
+        serverFunctionChains = JSONObject.parseObject(jsonStr, new TypeReference<List<ServiceFunctionChain>>() {
         });
 
     }
 
-    public void parseServerFunction() {
+    public void parseServiceFunction() {
         String path = rootPath + serverFunctionFileName;
         String jsonStr = jsonRead(path);
-        serverFunctions = JSONObject.parseObject(jsonStr, new TypeReference<List<ServerFunction>>() {
+        serverFunctions = JSONObject.parseObject(jsonStr, new TypeReference<List<ServiceFunction>>() {
         });
     }
 
@@ -147,13 +147,13 @@ public class FileParser {
         }
         System.out.println();
 
-        System.out.println("====================ServerFunction=================");
-        for (ServerFunction serverFunction : serverFunctions) {
+        System.out.println("====================ServiceFunction=================");
+        for (ServiceFunction serverFunction : serverFunctions) {
             System.out.println(serverFunction.toString());
         }
         System.out.println();
 
-        System.out.println("====================ServerFunctionChain=================");
+        System.out.println("====================ServiceFunctionChain=================");
         // System.out.println(serverFunctionChain.toString());
         System.out.println();
 
