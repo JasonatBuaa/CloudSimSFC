@@ -1,19 +1,25 @@
 package org.cloudbus.cloudsim.sfc.parser.configGenerator;
 
-public class Host extends PhysicalTopologyNode{
+public class HostDesp extends PhysicalTopologyNode {
     public long pes;
     public long mips;
     public long ram;
     public long storage;
     public long bw;
+    public double mtbf;
 
-    public Host(String name, String type, String datacenter, long pes, long mips, long ram, long storage, long bw) {
+    public double mttr;
+
+    public HostDesp(String name, String type, String datacenter, long pes, long mips, long ram, long storage, long bw,
+            double availability, double mtbf, double mttr) {
         super(name, type, datacenter);
         this.pes = pes;
         this.mips = mips;
         this.ram = ram;
         this.storage = storage;
         this.bw = bw;
+        this.mtbf = mtbf;
+        this.mttr = mttr;
     }
 
     public long getPes() {
@@ -54,5 +60,21 @@ public class Host extends PhysicalTopologyNode{
 
     public void setBw(long bw) {
         this.bw = bw;
+    }
+
+    public double getMtbf() {
+        return mtbf;
+    }
+
+    public void setMtbf(double mtbf) {
+        this.mtbf = mtbf;
+    }
+
+    public double getMttr() {
+        return mttr;
+    }
+
+    public void setMttr(double mttr) {
+        this.mttr = mttr;
     }
 }

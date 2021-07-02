@@ -8,8 +8,6 @@
 
 package org.cloudbus.cloudsim.sdn.example.topogenerators;
 
-// import org.apache.commons.math3.distribution.NormalDistribution;
-// import org.apache.commons.math3.exception.NotFiniteNumberException;
 import org.cloudbus.cloudsim.Host;
 // import org.cloudbus.cloudsim.Log;
 import org.cloudbus.cloudsim.core.CloudSim;
@@ -19,30 +17,20 @@ import org.cloudbus.cloudsim.distributions.UniformDistr;
 import org.cloudbus.cloudsim.sdn.LogWriter;
 import org.cloudbus.cloudsim.sdn.parsers.PhysicalTopologyParser;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
-// import org.hamcrest.core.IsInstanceOf;
-// import org.junit.internal.runners.statements.Fail;
 
-// import java.lang.reflect.Array;
 import java.util.ArrayList;
-// import java.util.Arrays;
+
 import java.util.Comparator;
-// import java.util.HashMap;
-// import java.util.Iterator;
+
 import java.util.LinkedList;
 import java.util.List;
 // import org.cloudbus.cloudsim.sdn.example.topogenerators.VirtualTopologyGeneratorVmTypesSFC;
-// import java.util.Map;
-// import java.util.Random;
-// import java.util.TooManyListenersException;
-// import java.util.stream.Collectors;
-
-// import javax.sql.rowset.WebRowSet;
 
 /**
- * This class creates failOverEvents.
+ * This class creates FailureRecoveryEvents.
  * 
  * @author Jason Sun
- * @since 2020/12/07 // generate failover related information.
+ * @since 2020/12/07 // generate FailureRecoveryEvents related information.
  * 
  */
 public class FRGenerator extends SFCWorkloadGenerator {
@@ -68,9 +56,6 @@ public class FRGenerator extends SFCWorkloadGenerator {
 
     private double minMttr = 0;
     private double maxMttr = 0;
-
-    // private double mtbf = 0;
-    // private double mttr = 0;
 
     public FRGenerator(String filename, List<Host> hosts, double timelineEnd) {
 
@@ -100,7 +85,7 @@ public class FRGenerator extends SFCWorkloadGenerator {
 
     }
 
-// 南屏晚钟、雷峰夕照、花港观鱼、双峰插云、断桥残雪、苏堤春晓、三潭印月、平湖秋月、柳浪闻莺、曲苑风荷
+    // 南屏晚钟、雷峰夕照、花港观鱼、双峰插云、断桥残雪、苏堤春晓、三潭印月、平湖秋月、柳浪闻莺、曲苑风荷
     public class FREvent {
         String hostName = "";
         double eventArrivalTime;
@@ -119,7 +104,6 @@ public class FRGenerator extends SFCWorkloadGenerator {
             String str = this.eventArrivalTime + "," + this.hostName + "," + this.failureTime + "," + this.recoveryTime;
             return str;
         }
-
     }
 
     /**
@@ -132,14 +116,14 @@ public class FRGenerator extends SFCWorkloadGenerator {
      * @return
      * @throws Exception
      */
-    public List<FREvent> genHostFREByAvailability(Host host, double start, double end,
-            double total_failure_time, int remainingFailureCount) throws Exception {
+    public List<FREvent> genHostFREventByAvailability(Host host, double start, double end, double total_failure_time,
+            int remainingFailureCount) throws Exception {
         double avail = 0;
         List<FREvent> fre_list = null;
         if (host instanceof SDNHost) {
             SDNHost sdn_host = (SDNHost) host;
             FREvent fre = new FREvent(sdn_host.getName(), CloudSim.clock(), 0, 0); // Jason: todo! change
-                                                                                               // time
+                                                                                   // time
             double totalTimeLine = end - start;
 
             avail = sdn_host.getAvailability();
@@ -160,7 +144,7 @@ public class FRGenerator extends SFCWorkloadGenerator {
                 recovery_time = end;
             } else if (time_interval < total_failure_time && --remainingFailureCount > 0) // 总时间足够，但是失效时间不够
             {
-                fre_list.addAll(genHostFREByAvailability(host, recovery_time, end,
+                fre_list.addAll(genHostFREventByAvailability(host, recovery_time, end,
                         total_failure_time - time_interval, --remainingFailureCount));
             }
 
@@ -170,10 +154,9 @@ public class FRGenerator extends SFCWorkloadGenerator {
             fre_list.add(fre);
         }
 
+        else {
+            throw new Exception();
 
-        else{
-        throw new Exception();
-        
         }
         return fre_list;
         // int flowSizeSeed = 5000;
@@ -183,7 +166,6 @@ public class FRGenerator extends SFCWorkloadGenerator {
         // System.out.println("==================");
         // System.out.println("flowSize = " + flowSize + ", SFClength= " + SFClength);
         // }
-
     }
 
     public boolean genMTBFMTTRWithAvailability(Host host, double mttr_min, double mttr_max) {
@@ -192,10 +174,6 @@ public class FRGenerator extends SFCWorkloadGenerator {
 
             double availability = sdn_host.getAvailability();
             double mttr = this.randomDouble(mttr_min, mttr_max);
-            // mtbf/(mttr+mtbf) = availability
-            // mtbf = (mttr + mtbf) * availability
-            // mttr = (mtbf - mtbf * availability)/availability
-            // mttr = (mtbf / availability) - mtbf;
 
             double mtbf = mttr / (1 - availability);
 
@@ -206,7 +184,7 @@ public class FRGenerator extends SFCWorkloadGenerator {
         return false;
     }
 
-    public List<FREvent> genHostFREWithMTBF(Host host, double start, double end, double mttr_min, double mttr_max) {
+    public List<FREvent> genHostFREventWithMTBF(Host host, double start, double end, double mttr_min, double mttr_max) {
 
         List<FREvent> fre_list = null;
         if (host instanceof SDNHost) {
@@ -217,8 +195,7 @@ public class FRGenerator extends SFCWorkloadGenerator {
             // double remaining_failure_time =
             ExponentialDistr failure_expdis = new ExponentialDistr(mtbf);
             ExponentialDistr recovery_expdis = new ExponentialDistr(mttr);
-            // if(recovery_expdis> mttr_max || mttr< mttr_min)
-            // ExponentialDistr recovery_expdis = new ExponentialDistr(mttr);
+
             double time_to_failure = failure_expdis.sample();
             double time_to_recovery = recovery_expdis.sample(mttr_min, mttr_max);
 
@@ -233,8 +210,7 @@ public class FRGenerator extends SFCWorkloadGenerator {
             while (current_time < end) {
                 if (next_recovery_time > end)
                     next_recovery_time = end;
-                fre_list.add(
-                        new FREvent(sdn_host.getName(), CloudSim.clock(), next_failure_time, next_recovery_time));
+                fre_list.add(new FREvent(sdn_host.getName(), CloudSim.clock(), next_failure_time, next_recovery_time));
                 time_to_failure = failure_expdis.sample();
 
                 // time_to_recovery = recovery_expdis.sample();
@@ -250,12 +226,10 @@ public class FRGenerator extends SFCWorkloadGenerator {
                 next_recovery_time = current_time + time_to_recovery;
             }
         }
-
         return fre_list;
     }
 
-
-    public List<FREvent> genHostFREWithAvaMTBF(Host host, double start, double end) {
+    public List<FREvent> genHostFREventWithAvaMTBF(Host host, double start, double end) {
 
         List<FREvent> fre_list = null;
         if (host instanceof SDNHost) {
@@ -269,9 +243,7 @@ public class FRGenerator extends SFCWorkloadGenerator {
             double recovery_min = mttr * 0.8;
             double recovery_max = mttr * 1.2;
             UniformDistr recovery_expdis = new UniformDistr(recovery_min, recovery_max);
-            
-            // if(recovery_expdis> mttr_max || mttr< mttr_min)
-            // ExponentialDistr recovery_expdis = new ExponentialDistr(mttr);
+
             double time_to_failure = failure_expdis.sample();
             // double time_to_recovery = recovery_expdis.sample(mttr_min, mttr_max);
 
@@ -286,17 +258,12 @@ public class FRGenerator extends SFCWorkloadGenerator {
             while (current_time < end) {
                 if (next_recovery_time > end)
                     next_recovery_time = end;
-                fre_list.add(
-                        new FREvent(sdn_host.getName(), CloudSim.clock(), next_failure_time, next_recovery_time));
+                fre_list.add(new FREvent(sdn_host.getName(), CloudSim.clock(), next_failure_time, next_recovery_time));
                 time_to_failure = failure_expdis.sample();
 
                 // time_to_recovery = recovery_expdis.sample();
 
                 time_to_recovery = recovery_expdis.sample();
-
-                // while (time_to_recovery > mttr_max || time_to_recovery < mttr_min)
-                // time_to_recovery = recovery_expdis.sample(); // Jason:
-                // 控制time_to_recovery的上限下限值
 
                 next_failure_time = current_time + time_to_failure;
                 current_time = next_failure_time;
@@ -307,17 +274,15 @@ public class FRGenerator extends SFCWorkloadGenerator {
         return fre_list;
     }
 
-
-
-    public List<FREvent> genFREForAllHosts(List<Host> host_list, double start, double end) {
+    public List<FREvent> genFREventForAllHosts(List<Host> host_list, double start, double end) {
         List<FREvent> allfre_list = new LinkedList();
 
         for (Host host : host_list) {
-            List<FREvent> fre_list = genHostFREWithAvaMTBF(host, start, end);
+            List<FREvent> fre_list = genHostFREventWithAvaMTBF(host, start, end);
             if (fre_list != null)
                 allfre_list.addAll(fre_list);
             else
-                System.out.println("Warning!!! empty failover list detected!!!");
+                System.out.println("Warning!!! empty FailureRecoveryEvents list detected!!!");
         }
 
         allfre_list.sort(new FREventSortor());
@@ -326,19 +291,8 @@ public class FRGenerator extends SFCWorkloadGenerator {
 
     }
 
-    // public double[] newFailoverTime(double availability, double start, double
-    // end) {
-    // NormalDistribution nd = new NormalDistribution(mu, sigma);
-
-    // List<Integer> workload = Arrays.stream(nd.sample(sampleSize)).map(x ->
-    // Math.round(x)).boxed()
-    // .map(Double::intValue).collect(Collectors.toList());
-
-    // return workload;
-    // }
-
     public void test() {
-        FRGenerator fg = new FRGenerator("FailoverFile.csv");
+        FRGenerator fg = new FRGenerator("FREvents.csv");
         List<Host> host_list = new ArrayList<>(PhysicalTopologyParser.deployedHosts.get("dc1"));
 
         double mttr_min = 1.5;
@@ -349,24 +303,24 @@ public class FRGenerator extends SFCWorkloadGenerator {
 
         double start = 0;
         double end = 100;
-        List<FREvent> allfre_list = fg.genFREForAllHosts(host_list, start, end);
+        List<FREvent> allfre_list = fg.genFREventForAllHosts(host_list, start, end);
         fg.writeFREventIntoFile(allfre_list);
     }
 
     public static void main(String[] argv) {
 
-        FRGenerator fg = new FRGenerator("FailoverFile.csv");
+        FRGenerator fg = new FRGenerator("FREvents.csv");
         List<Host> host_list = new ArrayList<>(PhysicalTopologyParser.deployedHosts.get("dc1"));
 
         // double mttr_min = 1.5;
         // double mttr_max = 3;
         // for (Host host : host_list) {
-        //     fg.genMTBFMTTRWithAvailability(host, mttr_min, mttr_max);
+        // fg.genMTBFMTTRWithAvailability(host, mttr_min, mttr_max);
         // }
 
         double start = 0;
         double end = 100;
-        List<FREvent> allfre_list = fg.genFREForAllHosts(host_list, start, end);
+        List<FREvent> allfre_list = fg.genFREventForAllHosts(host_list, start, end);
         fg.writeFREventIntoFile(allfre_list);
     }
 
@@ -407,25 +361,16 @@ public class FRGenerator extends SFCWorkloadGenerator {
         return (int) Math.round(randomDouble(min, max));
     }
 
-    // private Map<String, FailoverEvent> genFailoverEventForAll(Host host) {
-    // Map<String, FailoverEvent> failoverEvents = new HashMap<>();
-
-    // return failoverEvents;
-    // }
-
-    private String printFailoverHeadForDebug() {
+    private String printFREventHeadForDebug() {
         String headString = "event_arrival_time,HostName,failure_time,recovery_time";
         out.printLine(headString);
         return headString;
 
     }
 
-    // private void writeFailoverIntoFile(List<Double> timePoints, Map<Integer,
-    // List<Integer>> clWorkload,
-    // Map<Integer, List<Integer>> wlTransmission, List<String> SFC) {
     private void writeFREventIntoFile(List<FREvent> allfre_list) {
         if (!isHeadPrinted) {
-            printFailoverHeadForDebug();
+            printFREventHeadForDebug();
             isHeadPrinted = true;
         }
 

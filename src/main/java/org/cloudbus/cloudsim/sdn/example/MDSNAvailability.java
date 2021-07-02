@@ -191,7 +191,7 @@ public class MDSNAvailability {
 			// Submit individual workloads
 			submitWorkloads(broker);
 
-			submitAvailabilityEvent(broker); // Jason: submit failOVer (Availability) into the cloudsim simulation
+			submitFailueRecoveryEvent(broker); // Jason: submit failOVer (Availability) into the cloudsim simulation
 			// system.
 
 			FRGenerator fg = new FRGenerator("failover_file.csv");
@@ -279,7 +279,7 @@ public class MDSNAvailability {
 		// WORKLOAD_GROUP_FILENAME, WORKLOAD_GROUP_FILENAME_BG);
 	}
 
-	public static void submitAvailabilityEvent(SDNBroker broker) {
+	public static void submitFailueRecoveryEvent(SDNBroker broker) {
 		// Submit workload files individually
 		if (FREvents != null) {
 			for (String frEvent : FREvents)

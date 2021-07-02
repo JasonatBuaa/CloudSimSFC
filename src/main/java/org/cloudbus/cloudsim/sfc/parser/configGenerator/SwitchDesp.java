@@ -1,12 +1,12 @@
 package org.cloudbus.cloudsim.sfc.parser.configGenerator;
 
-public class Switch extends PhysicalTopologyNode{
+public class SwitchDesp extends PhysicalTopologyNode {
     public long iops;
     public int upports;
     public int downports;
     public long bw;
 
-    public Switch(String name, String type, String datacenter, long iops, int upports, int downports, long bw) {
+    public SwitchDesp(String name, String type, String datacenter, long iops, int upports, int downports, long bw) {
         super(name, type, datacenter);
         this.iops = iops;
         this.upports = upports;
