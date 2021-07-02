@@ -86,8 +86,11 @@ public class WorkloadParser {
 			String path_file = fileName.substring(indexSlash + 1);
 			// result_file = path_folder + "result_" + path_file;
 			result_file = path_folder + "result_";
-			result_file += (StartAvailability.failOverDebug ? "" : "Availability");
-			result_file += (StartAvailability.queueDebug ? "" : "Queue");
+			// result_file += (StartAvailability.failOverDebug ? "" : "Availability");
+			// result_file += (StartAvailability.queueDebug ? "" : "Queue");
+
+			result_file += (Configuration.DISABLE_FAILURE_RECOVERY ? "" : "FailureRecovery");
+			result_file += (Configuration.DISABLE_MEMORY_QUEUE ? "" : "Queue");
 
 			result_file += path_file;
 
@@ -139,9 +142,10 @@ public class WorkloadParser {
 			return null;
 		}
 
-		Request req = new Request(userId);;
+		Request req = new Request(userId);
+		;
 
-		if(lineitems.size() > 3){
+		if (lineitems.size() > 3) {
 			long pktSize = Long.parseLong(lineitems.poll());
 			pktSize *= Configuration.NETWORK_PACKET_SIZE_MULTIPLY;
 			if (pktSize < 0)
@@ -153,14 +157,13 @@ public class WorkloadParser {
 			long cloudletLen = Long.parseLong(lineitems.poll());
 			cloudletLen *= Configuration.CPU_SIZE_MULTIPLY;
 
-
 			Cloudlet cl = generateCloudlet(req.getRequestId(), fromVmId, (int) cloudletLen);
 			// this.parsedCloudlets.add(cl);
 
 			Processing proc = new Processing(cl);
 			req.addActivity(proc);
 
-			//in this version,there is no flowId,set to default value;
+			// in this version,there is no flowId,set to default value;
 			Integer flowId = 10;
 
 			Request nextReq = parseRequest(toVmId, lineitems);
@@ -178,7 +181,7 @@ public class WorkloadParser {
 			String vmName = lineitems.poll();
 			int toVmId = getVmId(vmName);
 
-			//in this version,there is no flowId,set to default value;
+			// in this version,there is no flowId,set to default value;
 			Integer flowId = 10;
 
 			Transmission trans = new Transmission(fromVmId, toVmId, pktSize, flowId, null);

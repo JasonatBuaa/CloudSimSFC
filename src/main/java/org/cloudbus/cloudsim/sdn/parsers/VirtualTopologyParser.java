@@ -152,7 +152,8 @@ public class VirtualTopologyParser {
 				// Jason: this one is hard coding presently.
 				// I can not figure out a more deligated way to accomplish the queue.
 				CloudletScheduler clSch;
-				if (!StartAvailability.queueDebug)
+				// if (!StartAvailability.queueDebug)
+				if (!Configuration.DISABLE_MEMORY_QUEUE)
 					// CloudletScheduler clSch = new
 					// CloudletSchedulerSpaceSharedQueueAwareMonitor(queueSize,
 					// Configuration.TIME_OUT);

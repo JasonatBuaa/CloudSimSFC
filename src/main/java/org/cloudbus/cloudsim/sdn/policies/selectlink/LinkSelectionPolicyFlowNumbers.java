@@ -13,6 +13,10 @@ import java.util.List;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.Link;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.Node;
 
+/**
+ * Jason: This policy select the link based on the number of flows from the same
+ * src.
+ */
 public class LinkSelectionPolicyFlowNumbers implements LinkSelectionPolicy {
 	public LinkSelectionPolicyFlowNumbers() {
 	}
@@ -20,10 +24,10 @@ public class LinkSelectionPolicyFlowNumbers implements LinkSelectionPolicy {
 	// Choose the least full link by comparing the number of flows inside
 	public Link selectLink(List<Link> links, int flowId, Node src, Node dest, Node prevNode) {
 		Link lighter = links.get(0);
-		for(Link l:links) {
-			if(l.getChannelCount(src) < lighter.getChannelCount(src)) {
+		for (Link l : links) {
+			if (l.getChannelCount(src) < lighter.getChannelCount(src)) {
 				// Less traffic flows using this link
-				lighter = l; 
+				lighter = l;
 			}
 		}
 		return lighter;

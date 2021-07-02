@@ -52,10 +52,10 @@ public class DeploymentFileParser {
 	private static int flowNumbers = 0;
 
 	private Multimap<String, SDNVm> vmList; // the SDNVm has been updated into the class of QueuedVM
-	private List<ServiceFunction> sfList = new 
+	private List<ServiceFunction> sfList = new
 	// private List<>
 	LinkedList<ServiceFunction>(); // SFs are added in both VM list and SF
-																				// list
+									// list
 	private List<FlowConfig> arcList = new LinkedList<FlowConfig>();
 	private List<ServiceFunctionChainPolicy> policyList = new LinkedList<ServiceFunctionChainPolicy>();
 
@@ -115,7 +115,7 @@ public class DeploymentFileParser {
 
 			double starttime = 0;
 			double endtime = Double.POSITIVE_INFINITY;
-			
+
 			if (node.get("starttime") != null)
 				starttime = (Double) node.get("starttime");
 			if (node.get("endtime") != null)
@@ -156,7 +156,8 @@ public class DeploymentFileParser {
 				// Jason: this one is hard coding presently.
 				// I can not figure out a more deligated way to accomplish the queue.
 				CloudletScheduler clSch;
-				if (!StartAvailability.queueDebug)
+				// if (!StartAvailability.queueDebug)
+				if (!Configuration.DISABLE_MEMORY_QUEUE)
 					// CloudletScheduler clSch = new
 					// CloudletSchedulerSpaceSharedQueueAwareMonitor(queueSize,
 					// Configuration.TIME_OUT);
@@ -171,11 +172,10 @@ public class DeploymentFileParser {
 
 				QueuedVM newVM = null;
 
-				if(nodeType.equalsIgnoreCase("Ingress") || nodeType.equalsIgnoreCase("Egress"))
-				{
-						SFCDumyNode dumyNode;
+				if (nodeType.equalsIgnoreCase("Ingress") || nodeType.equalsIgnoreCase("Egress")) {
+					SFCDumyNode dumyNode;
 					try {
-						dumyNode = new SFCDumyNode(0,0,null,starttime,endtime,nodeType);
+						dumyNode = new SFCDumyNode(0, 0, null, starttime, endtime, nodeType);
 
 						// long mipOperation = (Long) node.get("mipoper");
 						long miperUnitWorkload = (Long) node.get("impperunitworkload");
@@ -189,13 +189,11 @@ public class DeploymentFileParser {
 						sfList.add(dumyNode);
 
 						newVM = dumyNode;
-					}
-					catch (Exception e) {
+					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				}
-				else if (nodeType.equalsIgnoreCase("vm")) {
+				} else if (nodeType.equalsIgnoreCase("vm")) {
 					// Create VM objects
 					// Jason: Todo! update the vm into queuedVM
 					// SDNVm vm = new SDNVm(vmId, userId, mips, pes, ram, bw, size, "VMM", clSch,

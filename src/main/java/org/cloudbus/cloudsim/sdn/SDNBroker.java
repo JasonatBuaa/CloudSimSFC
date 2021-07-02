@@ -65,13 +65,13 @@ public class SDNBroker extends SimEntity {
 	private List<String> workloadFileNames = null;
 
 	// private List<String> availEventFileNames = null;
-	private List<String> failOverFileNames = null;
+	private List<String> FRFileNames = null;
 
 	public SDNBroker(String name) throws Exception {
 		super(name);
 		this.workloadFileNames = new ArrayList<String>();
 
-		this.failOverFileNames = new ArrayList<String>();
+		this.FRFileNames = new ArrayList<String>();
 		workloadId = new HashMap<WorkloadParser, Integer>();
 		failOverIds = new HashMap<FREventParser, Integer>();
 		requestMap = new HashMap<Long, Workload>();
@@ -194,7 +194,7 @@ public class SDNBroker extends SimEntity {
 	}
 
 	public void submitFailOverEvents(String filename) {
-		this.failOverFileNames.add(filename);
+		this.FRFileNames.add(filename);
 	}
 
 	@Override
@@ -267,14 +267,15 @@ public class SDNBroker extends SimEntity {
 	 */
 	private void hostFailOver(SimEvent ev) {
 
-		if (StartAvailability.failOverDebug)
+		// if (StartAvailability.failOverDebug)
+		if (Configuration.DISABLE_FAILURE_RECOVERY)
 			return;
-		for (String filename : this.failOverFileNames) {
-			FREventParser foEventParser = startFailOverEventParser(filename);
-			failOverIds.put(foEventParser, SDNBroker.lastAppId);
+		for (String filename : this.FRFileNames) {
+			FREventParser frEventParser = startFailOverEventParser(filename);
+			failOverIds.put(frEventParser, SDNBroker.lastAppId);
 			SDNBroker.lastAppId++;
 
-			injectFailOverEvents(foEventParser);
+			injectFailOverEvents(frEventParser);
 		}
 	}
 
