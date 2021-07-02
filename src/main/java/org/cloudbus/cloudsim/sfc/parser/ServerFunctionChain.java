@@ -11,7 +11,8 @@ public class ServerFunctionChain {
     private int CreateTime;
     private int DestroyTime;
 
-    public ServerFunctionChain(String name, List<String> chain, int averageInputSize, List<InOutDc> ingressDCs, List<InOutDc> egressDCs, int createTime, int destroyTime) {
+    public ServerFunctionChain(String name, List<String> chain, int averageInputSize, List<InOutDc> ingressDCs,
+            List<InOutDc> egressDCs, int createTime, int destroyTime) {
         Name = name;
         Chain = chain;
         AverageInputSize = averageInputSize;
@@ -19,6 +20,9 @@ public class ServerFunctionChain {
         EgressDCs = egressDCs;
         CreateTime = createTime;
         DestroyTime = destroyTime;
+    }
+
+    public ServerFunctionChain() {
     }
 
     public List<InOutDc> getIngressDCs() {
@@ -80,32 +84,26 @@ public class ServerFunctionChain {
     @Override
     public String toString() {
         String chainStr = "";
-        for(String c : Chain) {
+        for (String c : Chain) {
             chainStr += c + ",";
         }
         chainStr = "{" + chainStr + "}";
 
         String inDcs = "";
-        for(InOutDc inDc : IngressDCs){
+        for (InOutDc inDc : IngressDCs) {
             inDcs += inDc.toString() + ",";
         }
         inDcs = '[' + inDcs + ']';
 
         String outDcs = "";
-        for(InOutDc outDc : EgressDCs){
+        for (InOutDc outDc : EgressDCs) {
             outDcs += outDc.toString() + ",";
         }
         outDcs = '[' + outDcs + ']';
 
-        return "ServerFunctionChain{" +
-                "\nName='" + Name + "'," +
-                "\nChain=" + chainStr +','+
-                "\nIngressDCs=" + inDcs +',' +
-                "\nEgressDCs=" + outDcs +',' +
-                "\nAverageInputSize=" + AverageInputSize + ',' +
-                "\nCreateTime=" + CreateTime +  ',' +
-                "\nDestroyTime=" + DestroyTime + ',' +
-                "}\n";
+        return "ServerFunctionChain{" + "\nName='" + Name + "'," + "\nChain=" + chainStr + ',' + "\nIngressDCs=" + inDcs
+                + ',' + "\nEgressDCs=" + outDcs + ',' + "\nAverageInputSize=" + AverageInputSize + ',' + "\nCreateTime="
+                + CreateTime + ',' + "\nDestroyTime=" + DestroyTime + ',' + "}\n";
     }
 
     public class InOutDc {
@@ -135,10 +133,7 @@ public class ServerFunctionChain {
 
         @Override
         public String toString() {
-            return "InOutDc{" +
-                    "Name='" + Name + '\'' +
-                    ", Weight=" + Weight +
-                    '}';
+            return "InOutDc{" + "Name='" + Name + '\'' + ", Weight=" + Weight + '}';
         }
     }
 }

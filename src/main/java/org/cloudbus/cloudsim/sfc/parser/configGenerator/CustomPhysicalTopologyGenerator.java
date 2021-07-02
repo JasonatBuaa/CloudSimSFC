@@ -99,9 +99,14 @@ public class CustomPhysicalTopologyGenerator {
                         // todo need storage config
                         long storage = physicalResource.getFastMem() * 100;
                         long bw = physicalResource.getBW();
-                        HostDesp newHost = new HostDesp(name, type, datacenter, pes, mips, ram, storage, bw);
-                        nodes.add(newHost);
-                        nodeMap.get(homogeneousResourceGroup.getName()).add(newHost);
+                        double mtbf = physicalResource.getMTBF();
+                        double mttr = physicalResource.getMTTR();
+                        double jitter_sigma2 = physicalResource.getSIGMA2();
+                        double priceRatio = physicalResource.getPriceRatio();
+                        HostDesp newHostDesp = new HostDesp(name, type, datacenter, pes, mips, ram, storage, bw, mtbf,
+                                mttr, jitter_sigma2, priceRatio);
+                        nodes.add(newHostDesp);
+                        nodeMap.get(homogeneousResourceGroup.getName()).add(newHostDesp);
                     }
                 }
             }

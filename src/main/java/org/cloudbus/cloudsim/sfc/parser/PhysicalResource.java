@@ -13,18 +13,19 @@ public class PhysicalResource {
     private int MinMIPS;
     private double PriceRatio;
 
-    public PhysicalResource(String name, int serverNumber, int MIPS, int SIGMA2, int fastMem, int BW, double availability, double MTTR, double MTBF, int minMIPS, double priceRatio) {
-        Name = name;
+    public PhysicalResource(String name, int serverNumber, int MIPS, int SIGMA2, int fastMem, int BW,
+            double availability, double MTTR, double MTBF, int minMIPS, double priceRatio) {
+        this.Name = name;
         this.serverNumber = serverNumber;
         this.MIPS = MIPS;
         this.SIGMA2 = SIGMA2;
-        FastMem = fastMem;
+        this.FastMem = fastMem;
         this.BW = BW;
-        Availability = availability;
+        this.Availability = availability;
         this.MTTR = MTTR;
         this.MTBF = MTBF;
-        MinMIPS = minMIPS;
-        PriceRatio = priceRatio;
+        this.MinMIPS = minMIPS;
+        this.PriceRatio = priceRatio;
     }
 
     public String getName() {
@@ -117,18 +118,8 @@ public class PhysicalResource {
 
     @Override
     public String toString() {
-        return "PhysicalResource{" +
-                "Name='" + Name + '\'' +
-                ", serverNumber=" + serverNumber +
-                ", MIPS=" + MIPS +
-                ", SIGMA2=" + SIGMA2 +
-                ", FastMem=" + FastMem +
-                ", BW=" + BW +
-                ", Availability=" + Availability +
-                ", MTTR=" + MTTR +
-                ", MTBF=" + MTBF +
-                ", MinMIPS=" + MinMIPS +
-                ", PriceRatio=" + PriceRatio +
-                '}';
+        return "PhysicalResource{" + "Name='" + Name + '\'' + ", serverNumber=" + serverNumber + ", MIPS=" + MIPS
+                + ", SIGMA2=" + SIGMA2 + ", FastMem=" + FastMem + ", BW=" + BW + ", Availability=" + Availability
+                + ", MTTR=" + MTTR + ", MTBF=" + MTBF + ", MinMIPS=" + MinMIPS + ", PriceRatio=" + PriceRatio + '}';
     }
 }

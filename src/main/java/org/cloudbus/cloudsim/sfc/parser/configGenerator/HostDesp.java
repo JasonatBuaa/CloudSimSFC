@@ -7,19 +7,23 @@ public class HostDesp extends PhysicalTopologyNode {
     public long storage;
     public long bw;
     public double mtbf;
+    public double availability;
 
     public double mttr;
+    public double jitterSigma2;
+
+    public double priceRatio;
 
     public HostDesp(String name, String type, String datacenter, long pes, long mips, long ram, long storage, long bw,
-            double availability, double mtbf, double mttr) {
+            double mtbf, double mttr, double jitterSigma2, double priceRatio) {
         super(name, type, datacenter);
         this.pes = pes;
         this.mips = mips;
         this.ram = ram;
         this.storage = storage;
         this.bw = bw;
-        this.mtbf = mtbf;
         this.mttr = mttr;
+        this.calcAvailability();
     }
 
     public long getPes() {
@@ -62,6 +66,10 @@ public class HostDesp extends PhysicalTopologyNode {
         this.bw = bw;
     }
 
+    public void setMttr(double Mttr) {
+        this.mttr = Mttr;
+    }
+
     public double getMtbf() {
         return mtbf;
     }
@@ -70,11 +78,28 @@ public class HostDesp extends PhysicalTopologyNode {
         this.mtbf = mtbf;
     }
 
-    public double getMttr() {
-        return mttr;
+    public double getAvailability() {
+        return availability;
     }
 
-    public void setMttr(double mttr) {
-        this.mttr = mttr;
+    public void calcAvailability() {
+        this.availability = this.mtbf / (this.mtbf + this.mttr);
     }
+
+    public double getJitterSigma2() {
+        return jitterSigma2;
+    }
+
+    public void setJitterSigma2(double jitterSigma2) {
+        this.jitterSigma2 = jitterSigma2;
+    }
+
+    public double getPriceRatio() {
+        return priceRatio;
+    }
+
+    public void setPriceRatio(double priceRatio) {
+        this.priceRatio = priceRatio;
+    }
+
 }
