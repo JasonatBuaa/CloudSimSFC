@@ -2,57 +2,57 @@
   {
     "Type": "Cloud",
     "Name": "DC1",
-    "InterCloudBW" : 1000,
+    "InterCloudBW": 1000,
     "HomogeneousResourceGroups": [
-      {
-        "Name": "HRG1",
-        "PhysicalResources": [
-          {
-            "Name": "HRG1",
-            "ServerNumber": 20,
-            "MIPS": 100000,
-            "SIGMA2": 1,
-            "FastMem": 1000,
-            "BW": 10000000,
-            "Availability": 1.0,
-            "MTTR": 1.0,
-            "MTBF": 1.0,
-            "MinMIPS": 10000,
-            "PriceRatio": 1.0
-          }
-        ]
-      },
-      {
-        "Name": "HRG2",
-        "PhysicalResources": [
-          {
-            "Name": "HRG2",
-            "ServerNumber": 20,
-            "MIPS": 100000,
-            "SIGMA2": 1,
-            "FastMem": 1000,
-            "BW": 10000000,
-            "Availability": 1.0,
-            "MTTR": 1.0,
-            "MTBF": 1.0,
-            "MinMIPS": 10000,
-            "PriceRatio": 1.0
-          }
-        ]
-      },
+      // {
+      //   "Name": "HRG1",
+      //   "PhysicalResources": [
+      //     {
+      //       "Name": "HRG1",
+      //       "ServerNumber": 4,
+      //       "MIPS": 100000,
+      //       "SIGMA2": 1,
+      //       "FastMem": 1000,
+      //       "BW": 10000000,
+      //       "Availability": 0.99,
+      //       "MTTR": 100,
+      //       "MTBF": 9900,
+      //       "MinMIPS": 10000,
+      //       "PriceRatio": 1.0
+      //     }
+      //   ]
+      // },
+      // {
+      //   "Name": "HRG2",
+      //   "PhysicalResources": [
+      //     {
+      //       "Name": "HRG2",
+      //       "ServerNumber": 2,
+      //       "MIPS": 100000,
+      //       "SIGMA2": 1,
+      //       "FastMem": 1000,
+      //       "BW": 10000000,
+      //       "Availability": 0.98,
+      //       "MTTR": 2.0,
+      //       "MTBF": 9800,
+      //       "MinMIPS": 10000,
+      //       "PriceRatio": 1.0
+      //     }
+      //   ]
+      // },
       {
         "Name": "HRG3",
         "PhysicalResources": [
           {
             "Name": "HRG3",
-            "ServerNumber": 20,
+            "ServerNumber": 2,
             "MIPS": 100000,
-            "SIGMA2": 1,
+            "SIGMA2": 100,
             "FastMem": 1000,
             "BW": 10000000,
-            "Availability": 1.0,
-            "MTTR": 1.0,
-            "MTBF": 1.0,
+            "Availability": 0.99,
+            "MTTR": 100,
+            "MTBF": 9900,
             "MinMIPS": 10000,
             "PriceRatio": 1.0
           }
@@ -63,14 +63,14 @@
         "PhysicalResources": [
           {
             "Name": "HRG4",
-            "ServerNumber": 20,
+            "ServerNumber": 1,
             "MIPS": 100000,
-            "SIGMA2": 1,
+            "SIGMA2": 400,
             "FastMem": 1000,
             "BW": 10000000,
-            "Availability": 1.0,
-            "MTTR": 1.0,
-            "MTBF": 1.0,
+            "Availability": 0.97,
+            "MTTR": 300,
+            "MTBF": 9700,
             "MinMIPS": 10000,
             "PriceRatio": 1.0
           }
@@ -81,21 +81,21 @@
   {
     "Type": "Edge",
     "Name": "DC2",
-    "InterCloudBW" : 1000,
+    "InterCloudBW": 1000,
     "HomogeneousResourceGroups": [
       {
         "Name": "HRG5",
         "PhysicalResources": [
           {
             "Name": "HRG5",
-            "ServerNumber": 20,
+            "ServerNumber": 1,
             "MIPS": 100000,
-            "SIGMA2": 1,
+            "SIGMA2": 400,
             "FastMem": 1000,
             "BW": 10000000,
-            "Availability": 1.0,
-            "MTTR": 1.0,
-            "MTBF": 1.0,
+            "Availability": 0.98,
+            "MTTR": 200,
+            "MTBF": 9800,
             "MinMIPS": 10000,
             "PriceRatio": 1.0
           }
