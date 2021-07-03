@@ -50,6 +50,7 @@ public class SDNHost extends Host implements Node {
 	private double mttr = 0;
 
 	private double perfJitterSigma = 1.0;
+	private double priceRatio = 1.0;
 
 	public double getPerfJitterSigma() {
 		return this.perfJitterSigma;
@@ -528,5 +529,13 @@ public class SDNHost extends Host implements Node {
 
 	public void setMttr(double mttr) {
 		this.mttr = mttr;
+	}
+
+	public double getPriceRatio() {
+		return priceRatio;
+	}
+
+	public void setPriceRatio(double priceRatio) {
+		this.priceRatio = priceRatio;
 	}
 }

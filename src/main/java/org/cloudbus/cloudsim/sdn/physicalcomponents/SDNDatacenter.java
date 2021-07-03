@@ -11,8 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.lang.model.util.ElementScanner6;
-
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.CloudletScheduler;
 import org.cloudbus.cloudsim.Datacenter;

@@ -46,19 +46,19 @@ public class CustomPhysicalTopologyGenerator {
         for (String dc : DCSwitch.keySet()) {
             SwitchDesp sw = DCSwitch.get(dc);
             links.add(new PhysicalTopologyLink(sw.name, GlobalSwitch.name, latency));
-            links.add(new PhysicalTopologyLink(GlobalSwitch.name, sw.name, latency));
+            // links.add(new PhysicalTopologyLink(GlobalSwitch.name, sw.name, latency));
 
             // link coreSwitch and gatewaySwitch
             for (HomogeneousResourceGroup homogeneousResourceGroup : resourceHashMap.get(dc)
                     .getHomogeneousResourceGroups()) {
                 SwitchDesp core = CoreSwitch.get(homogeneousResourceGroup.getName());
                 links.add(new PhysicalTopologyLink(core.name, sw.name, latency));
-                links.add(new PhysicalTopologyLink(sw.name, core.name, latency));
+                // links.add(new PhysicalTopologyLink(sw.name, core.name, latency));
 
                 // link server and coreSwitch
                 for (HostDesp host : nodeMap.get(homogeneousResourceGroup.getName())) {
                     links.add(new PhysicalTopologyLink(host.name, core.name, latency));
-                    links.add(new PhysicalTopologyLink(core.name, host.name, latency));
+                    // links.add(new PhysicalTopologyLink(core.name, host.name, latency));
                 }
             }
         }
@@ -101,10 +101,10 @@ public class CustomPhysicalTopologyGenerator {
                         long bw = physicalResource.getBW();
                         double mtbf = physicalResource.getMTBF();
                         double mttr = physicalResource.getMTTR();
-                        double jitter_sigma2 = physicalResource.getSIGMA2();
+                        double jitter_sigma = physicalResource.getSIGMA();
                         double priceRatio = physicalResource.getPriceRatio();
                         HostDesp newHostDesp = new HostDesp(name, type, datacenter, pes, mips, ram, storage, bw, mtbf,
-                                mttr, jitter_sigma2, priceRatio);
+                                mttr, jitter_sigma, priceRatio);
                         nodes.add(newHostDesp);
                         nodeMap.get(homogeneousResourceGroup.getName()).add(newHostDesp);
                     }
@@ -126,8 +126,8 @@ public class CustomPhysicalTopologyGenerator {
         long bw = Long.MAX_VALUE;
         // Generate global unique InterCloud Switch
         datacenter = "Global";
-        name = "InterCloud";
-        type = "intercloud";
+        name = "intercloud";
+        type = "InterCloud";
         GlobalSwitch = new SwitchDesp(name, type, datacenter, iops, upports, downports, bw);
         nodes.add(GlobalSwitch);
 

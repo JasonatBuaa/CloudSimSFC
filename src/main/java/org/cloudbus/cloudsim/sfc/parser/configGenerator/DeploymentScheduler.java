@@ -14,13 +14,14 @@ import java.util.List;
  * @Description TODO
  * @createTime 2021-06-30 21:24
  */
-public class CustomVirtualTopologyGenerator {
+// public class CustomVirtualTopologyGenerator {
+public class DeploymentScheduler {
     public List<VirtualTopologyVM> nodes;
     public List<VirtualTopologyLink> links;
     public List<VirtualTopologyPolicy> policies;
 
-    public CustomVirtualTopologyGenerator(List<ServiceFunctionChain> serverFunctionChains,
-            List<SFCWorkload> sfcWorkloads, List<Resource> resources) {
+    public DeploymentScheduler(List<ServiceFunctionChain> serverFunctionChains, List<SFCWorkload> sfcWorkloads,
+            List<Resource> resources) {
         nodes = new ArrayList<>();
         links = new ArrayList<>();
         policies = new ArrayList<>();
@@ -48,20 +49,20 @@ public class CustomVirtualTopologyGenerator {
             }
         }
 
-        // Generate serverFunction
+        // Generate serviceFunction
         for (String sf : ServiceFunction.serverFunctionMap.keySet()) {
-            // generate two case for each serverFunction
+            // generate two case for each serviceFunction
             nodes.add(new VirtualTopologyVmSF(sf + "_1", sf, 1000, 1, 500, 128));
             nodes.add(new VirtualTopologyVmSF(sf + "_2", sf, 1000, 1, 500, 128));
         }
     }
 
     public void generateLinks(List<ServiceFunctionChain> serverFunctionChains) {
-        for (ServiceFunctionChain serverFunctionChain : serverFunctionChains) {
+        for (ServiceFunctionChain serviceFunctionChain : serverFunctionChains) {
             int count = 1;
-            for (ServiceFunctionChain.InOutDc ingress : serverFunctionChain.getIngressDCs()) {
+            for (ServiceFunctionChain.InOutDc ingress : serviceFunctionChain.getIngressDCs()) {
                 int count_ingress = 1;
-                for (ServiceFunctionChain.InOutDc egerss : serverFunctionChain.getEgressDCs()) {
+                for (ServiceFunctionChain.InOutDc egerss : serviceFunctionChain.getEgressDCs()) {
                     int count_egerss = 1;
                     VirtualTopologyLink virtualTopologyLink = new VirtualTopologyLink(
                             ingress.getName() + "-" + egerss.getName(), ingress.getName(), egerss.getName(), 1000);
@@ -74,16 +75,16 @@ public class CustomVirtualTopologyGenerator {
     }
 
     public void generatePolicies(List<ServiceFunctionChain> serverFunctionChains) {
-        for (ServiceFunctionChain serverFunctionChain : serverFunctionChains) {
+        for (ServiceFunctionChain serviceFunctionChain : serverFunctionChains) {
             int count = 1;
-            for (ServiceFunctionChain.InOutDc ingress : serverFunctionChain.getIngressDCs()) {
-                for (ServiceFunctionChain.InOutDc egerss : serverFunctionChain.getEgressDCs()) {
+            for (ServiceFunctionChain.InOutDc ingress : serviceFunctionChain.getIngressDCs()) {
+                for (ServiceFunctionChain.InOutDc egerss : serviceFunctionChain.getEgressDCs()) {
                     VirtualTopologyPolicy virtualTopologyPolicy = new VirtualTopologyPolicy(
-                            serverFunctionChain.getName() + "_" + count, ingress.getName(),
-                            serverFunctionChain.getName(), egerss.getName(), ingress.getName() + "-" + egerss.getName(),
-                            serverFunctionChain.getCreateTime(),
-                            serverFunctionChain.getDestroyTime() - serverFunctionChain.getCreateTime(),
-                            serverFunctionChain.getChain());
+                            serviceFunctionChain.getName() + "_" + count, ingress.getName(),
+                            serviceFunctionChain.getName(), egerss.getName(),
+                            ingress.getName() + "-" + egerss.getName(), serviceFunctionChain.getCreateTime(),
+                            serviceFunctionChain.getDestroyTime() - serviceFunctionChain.getCreateTime(),
+                            serviceFunctionChain.getChain());
                     policies.add(virtualTopologyPolicy);
                     count++;
                 }

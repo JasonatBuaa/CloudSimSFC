@@ -208,6 +208,27 @@ public class PhysicalTopologyParser {
 							Double availability = new Double(node.get("availability").toString());
 							sdnHost.setAvailability(availability);
 						}
+
+						if (node.get("jitterSigma") != null) {
+							Double jitterSigma = new Double(node.get("jitterSigma").toString());
+							sdnHost.setPerfJitterSigma(jitterSigma);
+						}
+
+						if (node.get("mtbf") != null) {
+							Double mtbf = new Double(node.get("mtbf").toString());
+							sdnHost.setMtbf(mtbf);
+						}
+
+						if (node.get("mttr") != null) {
+							Double mttr = new Double(node.get("mttr").toString());
+							sdnHost.setMttr(mttr);
+						}
+
+						if (node.get("priceRatio") != null) {
+							Double priceRatio = new Double(node.get("priceRatio").toString());
+							sdnHost.setPriceRatio(priceRatio);
+						}
+
 						nameNodeTable.put(nodeName2, sdnHost);
 						// hostId++;
 
@@ -236,7 +257,7 @@ public class PhysicalTopologyParser {
 
 					upports = MAX_PORTS;
 					downports = MAX_PORTS;
-					
+
 					Switch sw = null;
 
 					if (nodeType.equalsIgnoreCase("core")) {

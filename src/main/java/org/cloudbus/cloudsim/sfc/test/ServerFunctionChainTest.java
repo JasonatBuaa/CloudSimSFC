@@ -22,8 +22,8 @@ class ServiceFunctionChainTest {
         List<ServiceFunctionChain> serverFunctionChains = JSONObject.parseObject(jsonStr,
                 new TypeReference<List<ServiceFunctionChain>>() {
                 });
-        for (ServiceFunctionChain serverFunctionChain : serverFunctionChains) {
-            System.out.println(serverFunctionChain.toString());
+        for (ServiceFunctionChain serviceFunctionChain : serverFunctionChains) {
+            System.out.println(serviceFunctionChain.toString());
         }
 
     }

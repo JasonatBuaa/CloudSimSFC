@@ -20,8 +20,8 @@ class ServiceFunctionTest {
         List<ServiceFunction> serverFunctions = JSONObject.parseObject(jsonStr,
                 new TypeReference<List<ServiceFunction>>() {
                 });
-        for (ServiceFunction serverFunction : serverFunctions) {
-            System.out.println(serverFunction.toString());
+        for (ServiceFunction serviceFunction : serverFunctions) {
+            System.out.println(serviceFunction.toString());
         }
     }
 

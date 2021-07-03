@@ -50,10 +50,13 @@ import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationPolicyMipsMos
  */
 public class MDSNAvailability {
 
-	protected static String physicalTopologyFile = "";
-	protected static String deploymentFile = ""; // virtual topology
-	protected static String workload_file = "";
-	protected static String[] workload_files = {};
+	protected static String rootFolder = "SFCExampleConfig2/";
+	protected static String physicalTopologyFile = rootFolder + "PhysicalResource.json";
+	protected static String deploymentFile = rootFolder + "virtualTopology.json"; // virtual topology
+	protected static String workload_folder = rootFolder + "workloads/";
+	// protected static String[] workload_files = { "workloads_chain1.csv",
+	// "workloads_chain1.csv" };
+	protected static String[] workload_files;
 
 	protected static String FR_file = "";
 
@@ -78,6 +81,14 @@ public class MDSNAvailability {
 				runCmd);
 	}
 
+	public static String[] getWorkloadFile(String path) {
+		java.io.File file = new java.io.File(path);
+		String[] wfiles = file.list();
+		// for (String workload_file : wfiles)
+		// System.out.println(workload_file);
+		return wfiles;
+	}
+
 	/**
 	 * Creates main() to run this example.
 	 *
@@ -88,15 +99,18 @@ public class MDSNAvailability {
 	public static void main(String[] args) throws FileNotFoundException {
 		CloudSimEx.setStartTime();
 
-		workloads = new ArrayList<String>();
+		// workloads = new ArrayList<String>();
 
 		args = argString;
 
 		VmAllocationPolicyEnum vmAllocPolicy = VmAllocationPolicyEnum.valueOf(args[0]);
 		// if (args.length > 1)
-		physicalTopologyFile = args[1];
-		deploymentFile = args[2];
+		// physicalTopologyFile = args[1];
+		// deploymentFile = args[2];
 
+		// physicalTopologyFile =
+
+		workload_files = getWorkloadFile(workload_folder);
 		workloads = (List<String>) Arrays.asList(workload_files);
 
 		printArguments(physicalTopologyFile, deploymentFile, workloads);
@@ -195,7 +209,7 @@ public class MDSNAvailability {
 			// system.
 
 			FRGenerator fg = new FRGenerator("failover_file.csv");
-			fg.test();
+			fg.generate();
 
 			// Sixth step: Starts the simulation
 			if (!MDSNAvailability.logEnabled)

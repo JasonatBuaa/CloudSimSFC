@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import org.cloudbus.cloudsim.sfc.parser.*;
 import org.cloudbus.cloudsim.sfc.parser.configGenerator.CustomPhysicalTopologyGenerator;
-import org.cloudbus.cloudsim.sfc.parser.configGenerator.CustomVirtualTopologyGenerator;
+import org.cloudbus.cloudsim.sfc.parser.configGenerator.DeploymentScheduler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,8 +94,8 @@ class SFCWorkloadTest {
 
                 List<SFCWorkload> sfcWorkloadList = new ArrayList<>();
 
-                for (ServiceFunctionChain serverFunctionChain : serverFunctionChains) {
-                        SFCWorkload sfcWorkload = new SFCWorkload(serverFunctionChain);
+                for (ServiceFunctionChain serviceFunctionChain : serverFunctionChains) {
+                        SFCWorkload sfcWorkload = new SFCWorkload(serviceFunctionChain);
                         sfcWorkloadList.add(sfcWorkload);
                         for (SFCRequest sfcRequest : sfcWorkload.getSfcRequestList()) {
                                 System.out.println(sfcRequest.getStartTime() + "," + sfcWorkload.getTargetChainName()
@@ -105,8 +105,8 @@ class SFCWorkloadTest {
 
                 }
 
-                CustomVirtualTopologyGenerator customVirtualTopologyGenerator = new CustomVirtualTopologyGenerator(
-                                serverFunctionChains, sfcWorkloadList, resourceParsers);
+                DeploymentScheduler customVirtualTopologyGenerator = new DeploymentScheduler(serverFunctionChains,
+                                sfcWorkloadList, resourceParsers);
 
         }
 

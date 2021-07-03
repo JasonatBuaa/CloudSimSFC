@@ -18,13 +18,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.lang.model.util.ElementScanner6;
-
 import org.cloudbus.cloudsim.CloudletScheduler;
 import org.cloudbus.cloudsim.sdn.CloudletSchedulerSpaceSharedMonitor;
 import org.cloudbus.cloudsim.sdn.CloudletSchedulerSpaceSharedQueueAwareMonitor;
 import org.cloudbus.cloudsim.sdn.Configuration;
-import org.cloudbus.cloudsim.sdn.example.StartAvailability;
 import org.cloudbus.cloudsim.sdn.sfc.ServiceFunction;
 import org.cloudbus.cloudsim.sdn.sfc.ServiceFunctionChainPolicy;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.FlowConfig;
@@ -33,7 +30,6 @@ import org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.junit.rules.Timeout;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -192,13 +188,13 @@ public class VirtualTopologyParser {
 						sf = new ServiceFunction(vmId, userId, mips, pes, ram, bw, size, "VMM", clSch, starttime,
 								endtime, initialAvail, queueSize);
 
-						// long mipOperation = (Long) node.get("mipoper");
+						long mipOperation = (Long) node.get("mipoper");
 						long miperUnitWorkload = (Long) node.get("impperunitworkload");
 
 						sf.setName(nodeName2);
 						sf.setHostName(hostName);
 						sf.setOptionalDatacenters(optionalDatacenter);
-						// sf.setMIperOperation(mipOperation);
+						sf.setMIperOperation(mipOperation);
 						sf.setMIperUnitWorkload(miperUnitWorkload);
 
 						sf.setMiddleboxType(nodeType);

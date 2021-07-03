@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.cloudbus.cloudsim.sfc.parser.configGenerator.CustomPhysicalTopologyGenerator;
-import org.cloudbus.cloudsim.sfc.parser.configGenerator.CustomVirtualTopologyGenerator;
+import org.cloudbus.cloudsim.sfc.parser.configGenerator.DeploymentScheduler;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -13,6 +13,7 @@ import java.util.List;
 
 public class FileParser {
     private String rootPath = "SFCExampleConfig2/";
+    private String workloadFolder = rootPath + "workloads/";
     private String resourceFileName = "ResourceDesription.json";
     private String SFCDemandFileName = "SFCDemands.json";
     private String serverFunctionFileName = "ServiceFunctionDescription.json";
@@ -28,14 +29,15 @@ public class FileParser {
     public FileParser(String rootPath) {
         this.rootPath = rootPath;
         sfcWorkloads = new ArrayList<>();
+
     }
 
     public void parse() {
         parseResource();
         parseServiceFunction();
         parseServiceFunctionChain();
-        for (ServiceFunctionChain serverFunctionChain : serverFunctionChains) {
-            sfcWorkloads.add(new SFCWorkload(serverFunctionChain));
+        for (ServiceFunctionChain serviceFunctionChain : serverFunctionChains) {
+            sfcWorkloads.add(new SFCWorkload(serviceFunctionChain));
         }
 
     }
@@ -48,11 +50,13 @@ public class FileParser {
         jsonWrite(rootPath + "PhysicalResource.json", jsonstr);
 
         for (SFCWorkload sfcWorkload : sfcWorkloads) {
-            workloadsCsvWriter(rootPath + "workloads_" + sfcWorkload.getTargetChainName() + ".csv", sfcWorkload);
+            // workloadsCsvWriter(rootPath + "workloads_" + sfcWorkload.getTargetChainName()
+            // + ".csv", sfcWorkload);
+            workloadsCsvWriter(workloadFolder + "workloads_" + sfcWorkload.getTargetChainName() + ".csv", sfcWorkload);
         }
 
-        CustomVirtualTopologyGenerator customVirtualTopologyGenerator = new CustomVirtualTopologyGenerator(
-                serverFunctionChains, sfcWorkloads, resources);
+        DeploymentScheduler customVirtualTopologyGenerator = new DeploymentScheduler(serverFunctionChains, sfcWorkloads,
+                resources);
         jsonstr = JSON.toJSONString(customVirtualTopologyGenerator, SerializerFeature.PrettyFormat);
         jsonWrite(rootPath + "virtualTopology.json", jsonstr);
     }
@@ -148,13 +152,13 @@ public class FileParser {
         System.out.println();
 
         System.out.println("====================ServiceFunction=================");
-        for (ServiceFunction serverFunction : serverFunctions) {
-            System.out.println(serverFunction.toString());
+        for (ServiceFunction serviceFunction : serverFunctions) {
+            System.out.println(serviceFunction.toString());
         }
         System.out.println();
 
         System.out.println("====================ServiceFunctionChain=================");
-        // System.out.println(serverFunctionChain.toString());
+        // System.out.println(serviceFunctionChain.toString());
         System.out.println();
 
         System.out.println("====================SFCWorkload=================");

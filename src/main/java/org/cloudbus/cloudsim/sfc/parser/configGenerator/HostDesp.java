@@ -2,8 +2,8 @@ package org.cloudbus.cloudsim.sfc.parser.configGenerator;
 
 import com.alibaba.fastjson.annotation.JSONType;
 
-@JSONType(orders = { "datacenter", "type", "name", "pes", "mips", "jitterSigma2", "ram", "storage", "bw",
-        "availability", "mtbf", "mttr", "priceRatio" })
+@JSONType(orders = { "datacenter", "type", "name", "pes", "mips", "jitterSigma", "ram", "storage", "bw", "availability",
+        "mtbf", "mttr", "priceRatio" })
 
 public class HostDesp extends PhysicalTopologyNode {
     public long pes;
@@ -15,7 +15,7 @@ public class HostDesp extends PhysicalTopologyNode {
     public double availability;
 
     public double mttr;
-    public double jitterSigma2;
+    public double jitterSigma;
 
     public double priceRatio;
 
@@ -33,11 +33,11 @@ public class HostDesp extends PhysicalTopologyNode {
      * @param bw
      * @param mtbf
      * @param mttr
-     * @param jitterSigma2
+     * @param jitterSigma
      * @param priceRatio
      */
     public HostDesp(String name, String type, String datacenter, long pes, long mips, long ram, long storage, long bw,
-            double mtbf, double mttr, double jitterSigma2, double priceRatio) {
+            double mtbf, double mttr, double jitterSigma, double priceRatio) {
         super(name, type, datacenter);
         this.pes = pes;
         this.mips = mips;
@@ -46,7 +46,7 @@ public class HostDesp extends PhysicalTopologyNode {
         this.bw = bw;
         this.mttr = mttr;
         this.mtbf = mtbf;
-        this.jitterSigma2 = jitterSigma2;
+        this.jitterSigma = jitterSigma;
         this.priceRatio = priceRatio;
         this.calcAvailability();
     }
@@ -111,12 +111,12 @@ public class HostDesp extends PhysicalTopologyNode {
         this.availability = this.mtbf / (this.mtbf + this.mttr);
     }
 
-    public double getJitterSigma2() {
-        return jitterSigma2;
+    public double getJitterSigma() {
+        return jitterSigma;
     }
 
-    public void setJitterSigma2(double jitterSigma2) {
-        this.jitterSigma2 = jitterSigma2;
+    public void setJitterSigma(double jitterSigma) {
+        this.jitterSigma = jitterSigma;
     }
 
     public double getPriceRatio() {

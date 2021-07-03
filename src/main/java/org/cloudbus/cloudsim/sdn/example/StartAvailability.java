@@ -340,7 +340,7 @@ public class StartAvailability {
                                              // system.
 
             FRGenerator fg = new FRGenerator("failover_file.csv");
-            fg.test();
+            fg.generate();
 
             // Sixth step: Starts the simulation
             if (!StartAvailability.logEnabled)

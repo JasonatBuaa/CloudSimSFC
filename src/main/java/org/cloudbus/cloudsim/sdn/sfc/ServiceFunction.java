@@ -129,13 +129,13 @@ public class ServiceFunction extends QueuedVM {
 		}
 	}
 
-	// public void setMIperOperation(long mipOperation) {
-	// this.mipOper = mipOperation; // MI per operation.
-	// }
+	public void setMIperOperation(long mipOperation) {
+		this.mipOper = mipOperation; // MI per operation.
+	}
 
-	// public long getMIperOperation() {
-	// return this.mipOper;
-	// }
+	public long getMIperOperation() {
+		return this.mipOper;
+	}
 
 	public void setMIperUnitWorkload(long miperUnitWorkload) {
 		this.miperUnitWorkload = miperUnitWorkload; // MI per operation.

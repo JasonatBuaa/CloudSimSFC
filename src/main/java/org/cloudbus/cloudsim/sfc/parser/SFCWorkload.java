@@ -15,25 +15,25 @@ public class SFCWorkload {
     public int baseWeight;
     public int chainLength;
 
-    public SFCWorkload(ServiceFunctionChain serverFunctionChain) {
-        startTime = serverFunctionChain.getCreateTime();
-        endTime = serverFunctionChain.getDestroyTime();
-        ingress = serverFunctionChain.getIngressDCs();
-        egress = serverFunctionChain.getEgressDCs();
-        targetChainName = serverFunctionChain.getName();
-        chainInputSize = serverFunctionChain.getAverageInputSize();
-        chainLength = serverFunctionChain.getChain().size();
+    public SFCWorkload(ServiceFunctionChain serviceFunctionChain) {
+        startTime = serviceFunctionChain.getCreateTime();
+        endTime = serviceFunctionChain.getDestroyTime();
+        ingress = serviceFunctionChain.getIngressDCs();
+        egress = serviceFunctionChain.getEgressDCs();
+        targetChainName = serviceFunctionChain.getName();
+        chainInputSize = serviceFunctionChain.getAverageInputSize();
+        chainLength = serviceFunctionChain.getChain().size();
         inEgressNodes = new LinkedList<>();
         sfcRequestList = new ArrayList<>();
         initInEgressNode();
-        generateRequest(serverFunctionChain);
+        generateRequest(serviceFunctionChain);
     }
 
-    private void generateRequest(ServiceFunctionChain serverFunctionChain) {
+    private void generateRequest(ServiceFunctionChain serviceFunctionChain) {
         int requestSize = (endTime - startTime) / 10;
         int count = 0;
         Random random = new Random();
-        List<String> chain = serverFunctionChain.getChain();
+        List<String> chain = serviceFunctionChain.getChain();
         while (count <= requestSize) {
             int time = count * 10 + startTime;
             SFCRequest sfcRequest = new SFCRequest(time);
@@ -42,9 +42,9 @@ public class SFCWorkload {
             int inputSize = chainInputSize + random.nextInt(2) * 10;
 
             for (; index < chain.size(); index++) {
-                ServiceFunction serverFunction = ServiceFunction.serverFunctionMap.get(chain.get(index));
-                performance = serverFunction.getPerformance() * inputSize;
-                outputSize = serverFunction.getOutputSize(inputSize);
+                ServiceFunction serviceFunction = ServiceFunction.serverFunctionMap.get(chain.get(index));
+                performance = serviceFunction.getPerformance() * inputSize;
+                outputSize = serviceFunction.getOutputSize(inputSize);
                 sfcRequest.fillRequest(chain.get(index), inputSize, performance);
                 inputSize = outputSize;
             }

@@ -14,6 +14,7 @@ import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.distributions.ExponentialDistr;
 import org.cloudbus.cloudsim.distributions.PoiDistribution;
 import org.cloudbus.cloudsim.distributions.UniformDistr;
+import org.cloudbus.cloudsim.sdn.Configuration;
 import org.cloudbus.cloudsim.sdn.LogWriter;
 import org.cloudbus.cloudsim.sdn.parsers.PhysicalTopologyParser;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
@@ -25,6 +26,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 // import org.cloudbus.cloudsim.sdn.example.topogenerators.VirtualTopologyGeneratorVmTypesSFC;
+
+// import javax.security.auth.login.Configuration;
 
 /**
  * This class creates FailureRecoveryEvents.
@@ -291,9 +294,14 @@ public class FRGenerator extends SFCWorkloadGenerator {
 
     }
 
-    public void test() {
+    public void generate() {
         FRGenerator fg = new FRGenerator("FREvents.csv");
-        List<Host> host_list = new ArrayList<>(PhysicalTopologyParser.deployedHosts.get("dc1"));
+        List<Host> host_list = new ArrayList<>();
+        for (Host h : PhysicalTopologyParser.deployedHosts.values()) {
+            host_list.add(h);
+        }
+        // List<Host> host_list = new
+        // ArrayList<>(PhysicalTopologyParser.deployedHosts.get("dc1"));
 
         double mttr_min = 1.5;
         double mttr_max = 3;
@@ -302,7 +310,7 @@ public class FRGenerator extends SFCWorkloadGenerator {
         }
 
         double start = 0;
-        double end = 100;
+        double end = Configuration.SIMULATION_DURATION;
         List<FREvent> allfre_list = fg.genFREventForAllHosts(host_list, start, end);
         fg.writeFREventIntoFile(allfre_list);
     }
@@ -319,7 +327,7 @@ public class FRGenerator extends SFCWorkloadGenerator {
         // }
 
         double start = 0;
-        double end = 100;
+        double end = Configuration.SIMULATION_DURATION;
         List<FREvent> allfre_list = fg.genFREventForAllHosts(host_list, start, end);
         fg.writeFREventIntoFile(allfre_list);
     }
@@ -368,13 +376,13 @@ public class FRGenerator extends SFCWorkloadGenerator {
 
     }
 
-    private void writeFREventIntoFile(List<FREvent> allfre_list) {
+    private void writeFREventIntoFile(List<FREvent> FRE_list) {
         if (!isHeadPrinted) {
             printFREventHeadForDebug();
             isHeadPrinted = true;
         }
 
-        for (FREvent fre : allfre_list) {
+        for (FREvent fre : FRE_list) {
             this.out.printLine(fre.toString());
         }
 

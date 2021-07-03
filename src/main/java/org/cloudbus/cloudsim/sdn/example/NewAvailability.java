@@ -59,8 +59,8 @@ public class NewAvailability {
     // availability value
 
     protected static String physicalTopologyFile = "SFCExampleConfig/PhysicalResource.json"; // Jason: this file
-                                                                                                   // configures the
-                                                                                                   // availability value
+                                                                                             // configures the
+                                                                                             // availability value
 
     // protected static String deploymentFile = "SmallSFCDemo/SingleSF.json"; //
     // without queue
@@ -87,10 +87,11 @@ public class NewAvailability {
      */
 
     public interface VmAllocationPolicyFactory {
-        // public VmAllocationPolicy create(List<? extends Host> list, HostSelectionPolicy hostSelectionPolicy,
-        //         VmMigrationPolicy vmMigrationPolicy);
-		public VmAllocationPolicy create(List<? extends Host> list);
-	}
+        // public VmAllocationPolicy create(List<? extends Host> list,
+        // HostSelectionPolicy hostSelectionPolicy,
+        // VmMigrationPolicy vmMigrationPolicy);
+        public VmAllocationPolicy create(List<? extends Host> list);
+    }
 
     enum VmAllocationPolicyEnum {
         LFF, MFF, HPF, MFFGroup, LFFFlow, MFFFlow, HPFFlow, MFFGroupFlow, Random, RandomFlow, END
@@ -130,15 +131,16 @@ public class NewAvailability {
             System.exit(1);
         }
 
-        StartAvailability.printArgs(args, args.length);
+        // StartAvailability.printArgs(args, args.length);
         int n = 0;
         System.out.println(System.getProperty("user.dir"));
-        File directory =new File("physicalTopologyFile");  
+        File directory = new File("physicalTopologyFile");
         // System.out.println(directory.getCanonicalPath());//获取标准的路径
         System.out.println(directory.getAbsolutePath());
 
         // 1. Policy: MFF, LFF, ...
-        String policy = args[n++];
+        // String policy = args[n++];
+        String policy = "MFF";
 
         // Configuration.OVERBOOKING_RATIO_INIT = Double.parseDouble(args[n++]);
 
@@ -215,45 +217,51 @@ public class NewAvailability {
                 case Random:
                 case RandomFlow:
                     // vmAllocationFac = new VmAllocationPolicyFactory() {
-                    //     public VmAllocationPolicy create(List<? extends Host> list,
-                    //             HostSelectionPolicy hostSelectionPolicy, VmMigrationPolicy vmMigrationPolicy) {
-                    //         return new VmAllocationPolicyCombinedLeastFullFirst(list);
-                    //     }
+                    // public VmAllocationPolicy create(List<? extends Host> list,
+                    // HostSelectionPolicy hostSelectionPolicy, VmMigrationPolicy vmMigrationPolicy)
+                    // {
+                    // return new VmAllocationPolicyCombinedLeastFullFirst(list);
+                    // }
                     // };
                     // // nos = new NetworkOperatingSystemSimple();
                     // hsFac = new HostFactoryOverbookable();
-                    // PhysicalTopologyParser.loadPhysicalTopologySingleDC(physicalTopologyFile, nos, hsFac);
+                    // PhysicalTopologyParser.loadPhysicalTopologySingleDC(physicalTopologyFile,
+                    // nos, hsFac);
                     // break;
                 case MFF:
                     vmAllocationFac = new VmAllocationPolicyFactory() {
-						public VmAllocationPolicy create(List<? extends Host> hostList) {
-							return new VmAllocationPolicyCombinedMostFullFirst(hostList);
-						}
-					};
-					ls = new LinkSelectionPolicyBandwidthAllocation();
-					break;
+                        public VmAllocationPolicy create(List<? extends Host> hostList) {
+                            return new VmAllocationPolicyCombinedMostFullFirst(hostList);
+                        }
+                    };
+                    ls = new LinkSelectionPolicyBandwidthAllocation();
+                    break;
                 case MFFFlow:
                     // vmAllocationFac = new VmAllocationPolicyFactory() {
-                    //     public VmAllocationPolicy create(List<? extends Host> list,
-                    //             HostSelectionPolicy hostSelectionPolicy, VmMigrationPolicy vmMigrationPolicy) {
-                    //         return new VmAllocationPolicyCombinedMostFullFirst(list);
-                    //     }
+                    // public VmAllocationPolicy create(List<? extends Host> list,
+                    // HostSelectionPolicy hostSelectionPolicy, VmMigrationPolicy vmMigrationPolicy)
+                    // {
+                    // return new VmAllocationPolicyCombinedMostFullFirst(list);
+                    // }
                     // };
                     // // nos = new NetworkOperatingSystemSimple();
                     // hsFac = new HostFactoryOverbookable();
-                    // PhysicalTopologyParser.loadPhysicalTopologySingleDC(physicalTopologyFile, nos, hsFac);
+                    // PhysicalTopologyParser.loadPhysicalTopologySingleDC(physicalTopologyFile,
+                    // nos, hsFac);
                     // break;
                 case LFF:
                 case LFFFlow:
                     // vmAllocationFac = new VmAllocationPolicyFactory() {
-                    //     public VmAllocationPolicy create(List<? extends Host> list,
-                    //             HostSelectionPolicy hostSelectionPolicy, VmMigrationPolicy vmMigrationPolicy) {
-                    //         return new VmAllocationPolicyCombinedLeastFullFirst(list);
-                    //     }
+                    // public VmAllocationPolicy create(List<? extends Host> list,
+                    // HostSelectionPolicy hostSelectionPolicy, VmMigrationPolicy vmMigrationPolicy)
+                    // {
+                    // return new VmAllocationPolicyCombinedLeastFullFirst(list);
+                    // }
                     // };
                     // // nos = new NetworkOperatingSystemSimple();
                     // hsFac = new HostFactoryOverbookable();
-                    // PhysicalTopologyParser.loadPhysicalTopologySingleDC(physicalTopologyFile, nos, hsFac);
+                    // PhysicalTopologyParser.loadPhysicalTopologySingleDC(physicalTopologyFile,
+                    // nos, hsFac);
                     // break;
                 case MFFGroup:
                 case MFFGroupFlow:
@@ -261,15 +269,17 @@ public class NewAvailability {
                     // Initial placement connectivity: Connected VMs in one host
                     // Migration: none
                     // vmAllocationFac = new VmAllocationPolicyFactory() {
-                    //     public VmAllocationPolicy create(List<? extends Host> list,
-                    //             HostSelectionPolicy hostSelectionPolicy, VmMigrationPolicy vmMigrationPolicy) {
-                    //         return new VmAllocationPolicyGroupConnectedFirst(list, hostSelectionPolicy,
-                    //                 vmMigrationPolicy);
-                    //     }
+                    // public VmAllocationPolicy create(List<? extends Host> list,
+                    // HostSelectionPolicy hostSelectionPolicy, VmMigrationPolicy vmMigrationPolicy)
+                    // {
+                    // return new VmAllocationPolicyGroupConnectedFirst(list, hostSelectionPolicy,
+                    // vmMigrationPolicy);
+                    // }
                     // };
                     // // nos = new NetworkOperatingSystemGroupAware();
                     // hsFac = new HostFactoryOverbookable();
-                    // PhysicalTopologyParser.loadPhysicalTopologySingleDC(physicalTopologyFile, nos, hsFac);
+                    // PhysicalTopologyParser.loadPhysicalTopologySingleDC(physicalTopologyFile,
+                    // nos, hsFac);
                     // hostSelectionPolicy = new HostSelectionPolicyMostFull();
                     // vmMigrationPolicy = null;
                     // break;
@@ -279,14 +289,17 @@ public class NewAvailability {
                     // Initial placement connectivity: Connected VMs in one host
                     // Migration: none
                     // vmAllocationFac = new VmAllocationPolicyFactory() {
-                    //     public VmAllocationPolicy create(List<? extends Host> list,
-                    //             HostSelectionPolicy hostSelectionPolicy, VmMigrationPolicy vmMigrationPolicy) {
-                    //         return new VmAllocationPolicyPriorityFirst(list, hostSelectionPolicy, vmMigrationPolicy);
-                    //     }
+                    // public VmAllocationPolicy create(List<? extends Host> list,
+                    // HostSelectionPolicy hostSelectionPolicy, VmMigrationPolicy vmMigrationPolicy)
+                    // {
+                    // return new VmAllocationPolicyPriorityFirst(list, hostSelectionPolicy,
+                    // vmMigrationPolicy);
+                    // }
                     // };
                     // // nos = new NetworkOperatingSystemGroupPriority();
                     // hsFac = new HostFactoryOverbookable();
-                    // PhysicalTopologyParser.loadPhysicalTopologySingleDC(physicalTopologyFile, nos, hsFac);
+                    // PhysicalTopologyParser.loadPhysicalTopologySingleDC(physicalTopologyFile,
+                    // nos, hsFac);
                     // hostSelectionPolicy = new HostSelectionPolicyMostFull();
                     // vmMigrationPolicy = null;
                     // break;
@@ -308,7 +321,7 @@ public class NewAvailability {
                     break;
             }
 
-            //nos.setLinkSelectionPolicy(ls);
+            // nos.setLinkSelectionPolicy(ls);
             // snos.setMonitorEnable(false);
 
             // Create a Datacenter
@@ -316,8 +329,8 @@ public class NewAvailability {
             // physicalTopologyFile, nos, vmAllocationFac,
             // hostSelectionPolicy, vmMigrationPolicy);
 
-            SDNDatacenter datacenter = null ;//createSDNDatacenter("dc1", physicalTopologyFile, nos, vmAllocationFac,
-                    //hostSelectionPolicy, vmMigrationPolicy);
+            SDNDatacenter datacenter = null;// createSDNDatacenter("dc1", physicalTopologyFile, nos, vmAllocationFac,
+            // hostSelectionPolicy, vmMigrationPolicy);
 
             // Broker
             SDNBroker broker = createBroker();
@@ -333,7 +346,7 @@ public class NewAvailability {
                                              // system.
 
             FRGenerator fg = new FRGenerator("failover_file.csv");
-            fg.test();
+            fg.generate();
 
             // Sixth step: Starts the simulation
             if (!NewAvailability.logEnabled)
@@ -352,7 +365,7 @@ public class NewAvailability {
 
             // Print hosts' and switches' total utilization.
             List<Host> hostList = datacenter.getHostList();
-            List<Switch> switchList = null;//= nos.getSwitchList();
+            List<Switch> switchList = null;// = nos.getSwitchList();
             LogPrinter.printEnergyConsumption(hostList, switchList, finishTime);
 
             LogPrinter.printConfiguration();
@@ -374,7 +387,7 @@ public class NewAvailability {
     }
 
     public static Map<NetworkOperatingSystem, SDNDatacenter> createPhysicalTopology(String physicalTopologyFile,
-        LinkSelectionPolicy ls, VmAllocationPolicyFactory vmAllocationFac) {
+            LinkSelectionPolicy ls, VmAllocationPolicyFactory vmAllocationFac) {
         HashMap<NetworkOperatingSystem, SDNDatacenter> dcs = new HashMap<NetworkOperatingSystem, SDNDatacenter>();
         // This funciton creates Datacenters and NOS inside the data cetner.
         Map<String, NetworkOperatingSystem> dcNameNOS = PhysicalTopologyParser
@@ -386,9 +399,9 @@ public class NewAvailability {
             SDNDatacenter datacenter = createSDNDatacenter(dcName, nos, vmAllocationFac);
             dcs.put(nos, datacenter);
         }
- 
+
         return dcs;
-	}
+    }
 
     public static void submitWorkloads(SDNBroker broker) {
         // Submit workload files individually
@@ -424,83 +437,88 @@ public class NewAvailability {
     // protected static NetworkOperatingSystem nos;
     protected static PowerUtilizationMaxHostInterface maxHostHandler = null;
 
-	protected static SDNDatacenter createSDNDatacenter(String name, NetworkOperatingSystem nos,
-			VmAllocationPolicyFactory vmAllocationFactory) {
-		// In order to get Host information, pre-create NOS.
-		List<Host> hostList = nos.getHostList();
+    protected static SDNDatacenter createSDNDatacenter(String name, NetworkOperatingSystem nos,
+            VmAllocationPolicyFactory vmAllocationFactory) {
+        // In order to get Host information, pre-create NOS.
+        List<Host> hostList = nos.getHostList();
 
-		String arch = "x86"; // system architecture
-		String os = "Linux"; // operating system
-		String vmm = "Xen";
+        String arch = "x86"; // system architecture
+        String os = "Linux"; // operating system
+        String vmm = "Xen";
 
-		double time_zone = 10.0; // time zone this resource located
-		double cost = 3.0; // the cost of using processing in this resource
-		double costPerMem = 0.05; // the cost of using memory in this resource
-		double costPerStorage = 0.001; // the cost of using storage in this
-										// resource
-		double costPerBw = 0.0; // the cost of using bw in this resource
-		LinkedList<Storage> storageList = new LinkedList<Storage>(); // we are not adding SAN
-		// devices by now
+        double time_zone = 10.0; // time zone this resource located
+        double cost = 3.0; // the cost of using processing in this resource
+        double costPerMem = 0.05; // the cost of using memory in this resource
+        double costPerStorage = 0.001; // the cost of using storage in this
+                                       // resource
+        double costPerBw = 0.0; // the cost of using bw in this resource
+        LinkedList<Storage> storageList = new LinkedList<Storage>(); // we are not adding SAN
+        // devices by now
 
-		DatacenterCharacteristics characteristics = new DatacenterCharacteristics(arch, os, vmm, hostList, time_zone,
-				cost, costPerMem, costPerStorage, costPerBw);
+        DatacenterCharacteristics characteristics = new DatacenterCharacteristics(arch, os, vmm, hostList, time_zone,
+                cost, costPerMem, costPerStorage, costPerBw);
 
-		// Create Datacenter with previously set parameters
-		SDNDatacenter datacenter = null;
-		try {
-			VmAllocationPolicy vmPolicy = null;
-			// if(hostList.size() != 0)
-			{
-				vmPolicy = vmAllocationFactory.create(hostList);
-				maxHostHandler = (PowerUtilizationMaxHostInterface) vmPolicy;
-				datacenter = new SDNDatacenter(name, characteristics, vmPolicy, storageList, 0, nos);
-			}
+        // Create Datacenter with previously set parameters
+        SDNDatacenter datacenter = null;
+        try {
+            VmAllocationPolicy vmPolicy = null;
+            // if(hostList.size() != 0)
+            {
+                vmPolicy = vmAllocationFactory.create(hostList);
+                maxHostHandler = (PowerUtilizationMaxHostInterface) vmPolicy;
+                datacenter = new SDNDatacenter(name, characteristics, vmPolicy, storageList, 0, nos);
+            }
 
-			nos.setDatacenter(datacenter);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+            nos.setDatacenter(datacenter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-		return datacenter;
-	}
+        return datacenter;
+    }
 
+    // protected static SDNDatacenter createSDNDatacenter(String name, String
+    // physicalTopology,
+    // NetworkOperatingSystem snos, VmAllocationPolicyFactory vmAllocationFactory,
+    // HostSelectionPolicy hostSelectionPolicy, VmMigrationPolicy vmMigrationPolicy)
+    // {
+    // // In order to get Host information, pre-create NOS.
+    // nos = snos;
+    // List<Host> hostList = nos.getHostList();
 
-    // protected static SDNDatacenter createSDNDatacenter(String name, String physicalTopology,
-    //         NetworkOperatingSystem snos, VmAllocationPolicyFactory vmAllocationFactory,
-    //         HostSelectionPolicy hostSelectionPolicy, VmMigrationPolicy vmMigrationPolicy) {
-    //     // In order to get Host information, pre-create NOS.
-    //     nos = snos;
-    //     List<Host> hostList = nos.getHostList();
+    // String arch = "x86"; // system architecture
+    // String os = "Linux"; // operating system
+    // String vmm = "Xen";
 
-    //     String arch = "x86"; // system architecture
-    //     String os = "Linux"; // operating system
-    //     String vmm = "Xen";
+    // double time_zone = 10.0; // time zone this resource located
+    // double cost = 3.0; // the cost of using processing in this resource
+    // double costPerMem = 0.05; // the cost of using memory in this resource
+    // double costPerStorage = 0.001; // the cost of using storage in this
+    // // resource
+    // double costPerBw = 0.0; // the cost of using bw in this resource
+    // LinkedList<Storage> storageList = new LinkedList<Storage>(); // we are not
+    // adding SAN
+    // // devices by now
 
-    //     double time_zone = 10.0; // time zone this resource located
-    //     double cost = 3.0; // the cost of using processing in this resource
-    //     double costPerMem = 0.05; // the cost of using memory in this resource
-    //     double costPerStorage = 0.001; // the cost of using storage in this
-    //                                    // resource
-    //     double costPerBw = 0.0; // the cost of using bw in this resource
-    //     LinkedList<Storage> storageList = new LinkedList<Storage>(); // we are not adding SAN
-    //     // devices by now
+    // DatacenterCharacteristics characteristics = new
+    // DatacenterCharacteristics(arch, os, vmm, hostList, time_zone,
+    // cost, costPerMem, costPerStorage, costPerBw);
 
-    //     DatacenterCharacteristics characteristics = new DatacenterCharacteristics(arch, os, vmm, hostList, time_zone,
-    //             cost, costPerMem, costPerStorage, costPerBw);
+    // // Create Datacenter with previously set parameters
+    // SDNDatacenter datacenter = null;
+    // try {
+    // VmAllocationPolicy vmPolicy = vmAllocationFactory.create(hostList,
+    // hostSelectionPolicy, vmMigrationPolicy);
+    // maxHostHandler = (PowerUtilizationMaxHostInterface) vmPolicy;
+    // datacenter = new SDNDatacenter(name, characteristics, vmPolicy, storageList,
+    // 0, nos);
 
-    //     // Create Datacenter with previously set parameters
-    //     SDNDatacenter datacenter = null;
-    //     try {
-    //         VmAllocationPolicy vmPolicy = vmAllocationFactory.create(hostList, hostSelectionPolicy, vmMigrationPolicy);
-    //         maxHostHandler = (PowerUtilizationMaxHostInterface) vmPolicy;
-    //         datacenter = new SDNDatacenter(name, characteristics, vmPolicy, storageList, 0, nos);
+    // nos.setDatacenter(datacenter);
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // }
 
-    //         nos.setDatacenter(datacenter);
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //     }
-
-    //     return datacenter;
+    // return datacenter;
     // }
 
     // We strongly encourage users to develop their own broker policies, to
