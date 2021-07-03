@@ -1,5 +1,7 @@
 package org.cloudbus.cloudsim.sfc.parser.configGenerator;
 
+import com.alibaba.fastjson.annotation.JSONType;
+
 /**
  * @author chengr
  * @version 1.0.0
@@ -7,6 +9,8 @@ package org.cloudbus.cloudsim.sfc.parser.configGenerator;
  * @Description TODO
  * @createTime 2021-06-30 21:25
  */
+
+@JSONType(orders = { "name", "source", "destination", "bandwidth" })
 public class VirtualTopologyLink {
    public String name;
    public String source;

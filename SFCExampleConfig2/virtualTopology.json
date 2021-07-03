@@ -31,66 +31,66 @@
 			"type":"Egress"
 		},
 		{
-			"size":1000,
 			"pes":1,
 			"mips":500,
 			"queuesize":128,
+			"size":1000,
 			"name":"SF-A_1",
 			"type":"SF-A"
 		},
 		{
-			"size":1000,
 			"pes":1,
 			"mips":500,
 			"queuesize":128,
+			"size":1000,
 			"name":"SF-A_2",
 			"type":"SF-A"
 		},
 		{
-			"size":1000,
 			"pes":1,
 			"mips":500,
 			"queuesize":128,
+			"size":1000,
 			"name":"SF-D_1",
 			"type":"SF-D"
 		},
 		{
-			"size":1000,
 			"pes":1,
 			"mips":500,
 			"queuesize":128,
+			"size":1000,
 			"name":"SF-D_2",
 			"type":"SF-D"
 		},
 		{
-			"size":1000,
 			"pes":1,
 			"mips":500,
 			"queuesize":128,
+			"size":1000,
 			"name":"SF-B_1",
 			"type":"SF-B"
 		},
 		{
-			"size":1000,
 			"pes":1,
 			"mips":500,
 			"queuesize":128,
+			"size":1000,
 			"name":"SF-B_2",
 			"type":"SF-B"
 		},
 		{
-			"size":1000,
 			"pes":1,
 			"mips":500,
 			"queuesize":128,
+			"size":1000,
 			"name":"SF-C_1",
 			"type":"SF-C"
 		},
 		{
-			"size":1000,
 			"pes":1,
 			"mips":500,
 			"queuesize":128,
+			"size":1000,
 			"name":"SF-C_2",
 			"type":"SF-C"
 		}
@@ -98,10 +98,8 @@
 	"links":[],
 	"policies":[
 		{
-			"name":"chain1_1",
 			"source":"Ingress1",
 			"destination":"Egress1",
-			"flowname":"Ingress1-Egress1",
 			"sfc":[
 				"SF-A",
 				"SF-B",
@@ -109,14 +107,14 @@
 				"SF-D"
 			],
 			"sfc_Demand":"chain1",
+			"flowname":"Ingress1-Egress1",
 			"starttime":3700,
-			"expectedduration":6301
+			"expectedduration":6301,
+			"name":"chain1_1"
 		},
 		{
-			"name":"chain1_2",
 			"source":"Ingress2",
 			"destination":"Egress1",
-			"flowname":"Ingress2-Egress1",
 			"sfc":[
 				"SF-A",
 				"SF-B",
@@ -124,36 +122,38 @@
 				"SF-D"
 			],
 			"sfc_Demand":"chain1",
+			"flowname":"Ingress2-Egress1",
 			"starttime":3700,
-			"expectedduration":6301
+			"expectedduration":6301,
+			"name":"chain1_2"
 		},
 		{
-			"name":"chain2_1",
 			"source":"Ingress3",
 			"destination":"Egress2",
-			"flowname":"Ingress3-Egress2",
 			"sfc":[
 				"SF-A",
 				"SF-B",
 				"SF-D"
 			],
 			"sfc_Demand":"chain2",
+			"flowname":"Ingress3-Egress2",
 			"starttime":0,
-			"expectedduration":10001
+			"expectedduration":10001,
+			"name":"chain2_1"
 		},
 		{
-			"name":"chain2_2",
 			"source":"Ingress4",
 			"destination":"Egress2",
-			"flowname":"Ingress4-Egress2",
 			"sfc":[
 				"SF-A",
 				"SF-B",
 				"SF-D"
 			],
 			"sfc_Demand":"chain2",
+			"flowname":"Ingress4-Egress2",
 			"starttime":0,
-			"expectedduration":10001
+			"expectedduration":10001,
+			"name":"chain2_2"
 		}
 	]
 }

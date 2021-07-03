@@ -2,6 +2,8 @@ package org.cloudbus.cloudsim.sfc.parser.configGenerator;
 
 import java.util.List;
 
+import com.alibaba.fastjson.annotation.JSONType;
+
 /**
  * @author chengr
  * @version 1.0.0
@@ -9,6 +11,8 @@ import java.util.List;
  * @Description TODO
  * @createTime 2021-06-30 21:25
  */
+@JSONType(orders = { "name", "flowname", "source", "destination", "sfc_Demand", "starttime", "expectedduration",
+        "sfc" })
 public class VirtualTopologyPolicy {
     public String name;
     public String source;
@@ -19,7 +23,8 @@ public class VirtualTopologyPolicy {
     public int expectedduration;
     public List<String> sfc;
 
-    public VirtualTopologyPolicy(String name, String source, String sfc_Demand, String destination, String flowname, int starttime, int expectedduration, List<String> sfc) {
+    public VirtualTopologyPolicy(String name, String source, String sfc_Demand, String destination, String flowname,
+            int starttime, int expectedduration, List<String> sfc) {
         this.name = name;
         this.source = source;
         this.sfc_Demand = sfc_Demand;

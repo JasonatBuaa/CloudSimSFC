@@ -66,6 +66,54 @@ public class VirtualTopologyParser {
 		parse();
 	}
 
+	private void parseDummyNode(JSONObject node, Hashtable<String, Integer> vmNameIdTable) {
+		String nodeType = (String) node.get("type");
+		String nodeName = (String) node.get("name");
+		int pes = new BigDecimal((Long) node.get("pes")).intValueExact();
+		long mips = (Long) node.get("mips");
+		int ram = new BigDecimal((Long) node.get("ram")).intValueExact();
+		long size = (Long) node.get("size");
+		long bw = 0;
+
+		if (node.get("bw") != null)
+			bw = (Long) node.get("bw");
+
+		int queueSize = 0;
+		if (node.get("queuesize") != null)
+			queueSize = new BigDecimal((Long) node.get("queuesize")).intValueExact();
+
+		double starttime = 0;
+		double endtime = Double.POSITIVE_INFINITY;
+		if (node.get("starttime") != null)
+			starttime = (Double) node.get("starttime");
+		if (node.get("endtime") != null)
+			endtime = (Double) node.get("endtime");
+
+		String dcName = this.defaultDatacenter;
+		if (node.get("datacenter") != null)
+			dcName = (String) node.get("datacenter");
+
+		// Optional datacenter specifies the alternative data center if 'data center'
+		// has no more resource.
+		ArrayList<String> optionalDatacenter = null;
+		if (node.get("subdatacenters") != null) {
+			optionalDatacenter = new ArrayList<>();
+			JSONArray subDCs = (JSONArray) node.get("subdatacenters");
+
+			for (int i = 0; i < subDCs.size(); i++) {
+				String subdc = subDCs.get(i).toString();
+				optionalDatacenter.add(subdc);
+			}
+		}
+
+		String hostName = "";
+		if (node.get("host") != null)
+			hostName = (String) node.get("host");
+		int vmId = QueuedVM.getUniqueVmId();
+
+		vmNameIdTable.put(nodeName, vmId);
+	}
+
 	private void parse() {
 
 		try {
@@ -93,6 +141,12 @@ public class VirtualTopologyParser {
 
 			String nodeType = (String) node.get("type");
 			String nodeName = (String) node.get("name");
+
+			if (nodeType.equalsIgnoreCase("Ingress") || nodeType.equalsIgnoreCase("Egress")) {
+				parseDummyNode(node, vmNameIdTable);
+				continue;
+			}
+
 			int pes = new BigDecimal((Long) node.get("pes")).intValueExact();
 			long mips = (Long) node.get("mips");
 			int ram = new BigDecimal((Long) node.get("ram")).intValueExact();

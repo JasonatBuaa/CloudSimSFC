@@ -74,6 +74,12 @@ public class CustomPhysicalTopologyGenerator {
             datacenters.add(physicalTopologyDatacenter);
             resourceHashMap.put(name, resource);
         }
+
+        // Jason: generate the Global Network Datacenter for the compatibility with the
+        // original parsers.
+        PhysicalTopologyDatacenter physicalTopologyDatacenter = new PhysicalTopologyDatacenter("Global", "network");
+        datacenters.add(physicalTopologyDatacenter);
+
     }
 
     private void generateHostNode(List<Resource> resources) {

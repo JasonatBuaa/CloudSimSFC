@@ -576,7 +576,11 @@ public abstract class SimEntity implements Cloneable {
 		int srcId = getId();
 		if (entityId != srcId) {// only delay messages between different entities
 			// delay += getNetworkDelay(srcId, entityId);
-			throw new IllegalArgumentException("not implemented");
+			// Jason: this delay is not the network delay.
+			// I guess it's the network design of the original CloudSim toolkit. The design
+			// and implementation is kind of simple.
+
+			// throw new IllegalArgumentException("not implemented");
 		}
 
 		schedule(entityId, delay, cloudSimTag, data);

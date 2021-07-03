@@ -202,14 +202,14 @@ public class MDSNAvailability {
 			// Submit virtual topology
 			broker.submitDeployApplication(dcs.values(), deploymentFile);
 
+			FRGenerator fg = new FRGenerator("failures_and_recoveries_file.csv");
+			fg.generate();
+
 			// Submit individual workloads
 			submitWorkloads(broker);
 
 			submitFailueRecoveryEvent(broker); // Jason: submit failOVer (Availability) into the cloudsim simulation
 			// system.
-
-			FRGenerator fg = new FRGenerator("failover_file.csv");
-			fg.generate();
 
 			// Sixth step: Starts the simulation
 			if (!MDSNAvailability.logEnabled)
