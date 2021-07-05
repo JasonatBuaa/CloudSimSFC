@@ -122,7 +122,7 @@ public class MDSNAvailability {
 		FREvents = new ArrayList<>();
 		FREvents.add(FR_file);
 
-		String outputFileName = Configuration.workingDirectory + Configuration.experimentName
+		String outputFileName = Configuration.workingDirectory + rootFolder + "results/" + Configuration.experimentName
 				+ (Configuration.DISABLE_FAILURE_RECOVERY ? "" : "-with_FR_events-")
 				+ (Configuration.DISABLE_MEMORY_QUEUE ? "" : "-with_Queue-") + "log.out.txt";
 		FileOutputStream output = new FileOutputStream(outputFileName);

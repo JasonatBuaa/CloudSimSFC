@@ -204,7 +204,7 @@ public class DeploymentFileParser {
 				// I can not figure out a more deligated way to accomplish the queue.
 				CloudletScheduler clSch;
 				// if (!StartAvailability.queueDebug)
-				if (!Configuration.DISABLE_MEMORY_QUEUE)
+				if (!Configuration.DISABLE_MEMORY_QUEUE) // enable memory queue
 					// CloudletScheduler clSch = new
 					// CloudletSchedulerSpaceSharedQueueAwareMonitor(queueSize,
 					// Configuration.TIME_OUT);

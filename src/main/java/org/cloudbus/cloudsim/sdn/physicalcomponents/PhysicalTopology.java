@@ -133,6 +133,8 @@ public abstract class PhysicalTopology {
 	public void addLink(Link link) {
 		Node highNode = link.getHighOrder();
 		Node lowNode = link.getLowOrder();
+		// if (lowNode.getRank() == RANK_GATEWAY || highNode.getRank() == RANK_GATEWAY)
+		// System.out.println("This is a debug information");
 
 		if (getNode(highNode.getAddress()) != null && getNode(lowNode.getAddress()) != null) {
 
@@ -144,6 +146,9 @@ public abstract class PhysicalTopology {
 			}
 			double latency = link.getLatency();
 			addLink(highNode, lowNode, latency);
+
+			// if (lowNode.getRank() == RANK_GATEWAY)
+			// System.out.println("This is a debug information");
 		}
 	}
 
@@ -176,6 +181,10 @@ public abstract class PhysicalTopology {
 
 		nodeLinks.put(fromNode, l);
 		nodeLinks.put(toNode, l);
+
+		// if (fromNode.getRank() == RANK_GATEWAY || toNode.getRank() == RANK_GATEWAY) {
+		// System.out.println("seems alright");
+		// }
 
 		fromNode.addLink(l);
 		toNode.addLink(l);

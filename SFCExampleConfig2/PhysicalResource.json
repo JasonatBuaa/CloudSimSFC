@@ -93,6 +93,15 @@
 			"bw":9223372036854775807
 		},
 		{
+			"datacenter":"Global",
+			"type":"gateway",
+			"name":"DC1-gateway",
+			"iops":9223372036854775807,
+			"upports":1,
+			"downports":2,
+			"bw":9223372036854775807
+		},
+		{
 			"datacenter":"DC1",
 			"type":"core",
 			"name":"DC1-HRG3-core1",
@@ -112,6 +121,15 @@
 		},
 		{
 			"datacenter":"DC2",
+			"type":"gateway",
+			"name":"DC2-gateway",
+			"iops":9223372036854775807,
+			"upports":1,
+			"downports":2,
+			"bw":9223372036854775807
+		},
+		{
+			"datacenter":"Global",
 			"type":"gateway",
 			"name":"DC2-gateway",
 			"iops":9223372036854775807,

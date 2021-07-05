@@ -124,7 +124,8 @@ public class Packet {
 
 	public void setPacketFailedTime(double currentTime) {
 		setPacketFinishTime(currentTime);
-		getPayload().setFailedTime(currentTime);
+		if (getPayload() != null)
+			getPayload().setFailedTime(currentTime);
 		if (pktEncapsulated != null) {
 			pktEncapsulated.setPacketFailedTime(currentTime);
 		}

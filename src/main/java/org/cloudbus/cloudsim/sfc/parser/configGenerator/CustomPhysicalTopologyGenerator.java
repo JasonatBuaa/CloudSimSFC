@@ -145,6 +145,14 @@ public class CustomPhysicalTopologyGenerator {
             type = "gateway";
             newSwitch = new SwitchDesp(name, type, datacenter, iops, upports, downports, bw);
             nodes.add(newSwitch);
+
+            // Jason: to be compatible with CloudSimSDN-NFV original design, each gateway
+            // switch should appear twice in the physical resource file. The first time in
+            // its datacenter, the second time in the global network datacenter.
+            String datacenter2 = "Global";
+            newSwitch = new SwitchDesp(name, type, datacenter2, iops, upports, downports, bw);
+            nodes.add(newSwitch);
+
             DCSwitch.put(datacenter, newSwitch);
             for (int i = 0; i < resource.getHomogeneousResourceGroups().size(); i++) {
                 HomogeneousResourceGroup homogeneousResourceGroup = resource.getHomogeneousResourceGroups().get(i);
@@ -156,6 +164,7 @@ public class CustomPhysicalTopologyGenerator {
                 CoreSwitch.put(homogeneousResourceGroup.getName(), newSwitch);
 
             }
+
         }
     }
 
