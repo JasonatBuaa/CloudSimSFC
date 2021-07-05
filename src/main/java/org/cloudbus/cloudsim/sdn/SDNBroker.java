@@ -245,6 +245,7 @@ public class SDNBroker extends SimEntity {
 	}
 
 	private void applicationSubmitCompleted(SimEvent ev) {
+
 		for (String filename : this.workloadFileNames) {
 			WorkloadParser wParser = startWorkloadParser(filename);
 			workloadId.put(wParser, SDNBroker.lastAppId);
@@ -302,6 +303,7 @@ public class SDNBroker extends SimEntity {
 				}
 				SDNBroker.vmIdToDc.put(vm.getId(), dc);
 			}
+			System.out.println("test");
 		}
 
 		for (FlowConfig arc : parser.getArcList()) {

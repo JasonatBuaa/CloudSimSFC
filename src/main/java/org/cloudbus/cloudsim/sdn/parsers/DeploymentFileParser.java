@@ -17,14 +17,12 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.lang.model.util.ElementScanner6;
+import java.util.Map;
 
 import org.cloudbus.cloudsim.CloudletScheduler;
 import org.cloudbus.cloudsim.sdn.CloudletSchedulerSpaceSharedMonitor;
 import org.cloudbus.cloudsim.sdn.CloudletSchedulerSpaceSharedQueueAwareMonitor;
 import org.cloudbus.cloudsim.sdn.Configuration;
-import org.cloudbus.cloudsim.sdn.example.StartAvailability;
 import org.cloudbus.cloudsim.sdn.sfc.ServiceFunction;
 import org.cloudbus.cloudsim.sdn.sfc.ServiceFunctionChainPolicy;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.FlowConfig;
@@ -34,10 +32,13 @@ import org.cloudbus.cloudsim.sdn.virtualcomponents.SFCDumyNode;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.junit.jupiter.params.aggregator.ArgumentAccessException;
 import org.junit.rules.Timeout;
 
+import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.google.common.collect.Table;
 
 /**
  * This class parses Virtual Topology (VMs, Network flows between VMs, and
@@ -64,6 +65,8 @@ public class DeploymentFileParser {
 
 	private String defaultDatacenter;
 
+	private static Table<String, String, ServiceFunctionChainPolicy> logicalSFC2PhisicalSFC = HashBasedTable.create();
+
 	public DeploymentFileParser(String datacenterName, String topologyFileName, int userId) {
 		vmList = HashMultimap.create();
 		this.vmsFileName = topologyFileName;
@@ -71,6 +74,42 @@ public class DeploymentFileParser {
 		this.defaultDatacenter = datacenterName;
 
 		parse();
+	}
+
+	private void parseDummyNode(JSONObject node, Hashtable<String, Integer> vmNameIdTable) {
+		String nodeType = (String) node.get("type");
+		String nodeName = (String) node.get("name");
+
+		double starttime = 0;
+		double endtime = Double.POSITIVE_INFINITY;
+		if (node.get("starttime") != null)
+			starttime = (Double) node.get("starttime");
+		if (node.get("endtime") != null)
+			endtime = (Double) node.get("endtime");
+
+		String dcName = this.defaultDatacenter;
+		if (node.get("datacenter") != null)
+			dcName = (String) node.get("datacenter");
+
+		// Optional datacenter specifies the alternative data center if 'data center'
+		// has no more resource.
+		ArrayList<String> optionalDatacenter = null;
+		if (node.get("subdatacenters") != null) {
+			optionalDatacenter = new ArrayList<>();
+			JSONArray subDCs = (JSONArray) node.get("subdatacenters");
+
+			for (int i = 0; i < subDCs.size(); i++) {
+				String subdc = subDCs.get(i).toString();
+				optionalDatacenter.add(subdc);
+			}
+		}
+
+		String hostName = "";
+		if (node.get("host") != null)
+			hostName = (String) node.get("host");
+		int vmId = QueuedVM.getUniqueVmId();
+
+		vmNameIdTable.put(nodeName, vmId);
 	}
 
 	private void parse() {
@@ -100,9 +139,17 @@ public class DeploymentFileParser {
 
 			String nodeType = (String) node.get("type");
 			String nodeName = (String) node.get("name");
+
+			// if (nodeType.equalsIgnoreCase("Ingress") ||
+			// nodeType.equalsIgnoreCase("Egress")) {
+			// parseDummyNode(node, vmNameIdTable);
+			// continue;
+			// }
+
 			int pes = new BigDecimal((Long) node.get("pes")).intValueExact();
 			long mips = (Long) node.get("mips");
-			int ram = new BigDecimal((Long) node.get("ram")).intValueExact();
+			// int ram = new BigDecimal((Long) node.get("ram")).intValueExact();
+			int ram = 0;
 			long size = (Long) node.get("size");
 			long bw = 0;
 
@@ -175,10 +222,16 @@ public class DeploymentFileParser {
 				if (nodeType.equalsIgnoreCase("Ingress") || nodeType.equalsIgnoreCase("Egress")) {
 					SFCDumyNode dumyNode;
 					try {
-						dumyNode = new SFCDumyNode(0, 0, null, starttime, endtime, nodeType);
+						// dumyNode = new SFCDumyNode(vmId, 0, null, starttime, endtime, nodeType);
+						dumyNode = new SFCDumyNode(vmId, userId, mips, pes, ram, bw, size, "VMM", clSch, starttime,
+								endtime, initialAvail, queueSize, nodeType);
+
+						// sf = new ServiceFunction(vmId, userId, mips, pes, ram, bw, size, "VMM",
+						// clSch, starttime,
+						// endtime, initialAvail, queueSize);
 
 						// long mipOperation = (Long) node.get("mipoper");
-						long miperUnitWorkload = (Long) node.get("impperunitworkload");
+						// long miperUnitWorkload = (Long) node.get("impperunitworkload");
 
 						dumyNode.setName(nodeName2);
 						dumyNode.setHostName(hostName);
@@ -207,6 +260,8 @@ public class DeploymentFileParser {
 					vmList.put(dcName, vm);
 					newVM = vm;
 
+					throw new ArgumentAccessException("this branch is invalid");
+
 					// Jason: Check: 1. here use the new
 					// CloudletSchedulerSpaceSharedQueueAwareMonitor as the new scheduler.
 
@@ -218,13 +273,13 @@ public class DeploymentFileParser {
 								endtime, initialAvail, queueSize);
 
 						// long mipOperation = (Long) node.get("mipoper");
-						long miperUnitWorkload = (Long) node.get("impperunitworkload");
+						// long miperUnitWorkload = (Long) node.get("impperunitworkload");
 
 						sf.setName(nodeName2);
 						sf.setHostName(hostName);
 						sf.setOptionalDatacenters(optionalDatacenter);
 						// sf.setMIperOperation(mipOperation);
-						sf.setMIperUnitWorkload(miperUnitWorkload);
+						// sf.setMIperUnitWorkload(miperUnitWorkload);
 
 						sf.setMiddleboxType(nodeType);
 						vmList.put(dcName, sf);
@@ -316,11 +371,12 @@ public class DeploymentFileParser {
 			String name = (String) policy.get("name");
 			String src = (String) policy.get("source");
 			String dst = (String) policy.get("destination");
+			String logicalSFC = (String) policy.get("sfc_Demand");
 			String flowname = (String) policy.get("flowname");
-			Double start_time = (Double) policy.get("starttime");
-			Double expected_duration = (Double) policy.get("expectedduration");
+			Long start_time = (Long) policy.get("starttime");
+			Long expected_duration = (Long) policy.get("expectedduration");
 			if (expected_duration == null) {
-				expected_duration = Double.POSITIVE_INFINITY;
+				expected_duration = Long.MAX_VALUE;
 			}
 
 			int srcId = vmNameIdTable.get(src);
@@ -341,7 +397,17 @@ public class DeploymentFileParser {
 				pol.setName(name);
 
 			policyList.add(pol);
+			logicalSFC2PhisicalSFC.put(logicalSFC, src, pol);
 		}
+		for (String str : logicalSFC2PhisicalSFC.columnKeySet()) {
+			Map<String, ServiceFunctionChainPolicy> aColumn = logicalSFC2PhisicalSFC.column(str);
+			for (String str2 : aColumn.keySet()) {
+				ServiceFunctionChainPolicy sfcPolicy = logicalSFC2PhisicalSFC.get(str2, str);
+				System.out.println(str + "," + str2 + "," + sfcPolicy);
+
+			}
+		}
+		System.out.println("test");
 	}
 
 	public Collection<SDNVm> getVmList(String dcName) {
@@ -359,4 +425,13 @@ public class DeploymentFileParser {
 	public List<ServiceFunctionChainPolicy> getSFCPolicyList() {
 		return policyList;
 	}
+
+	public static Table<String, String, ServiceFunctionChainPolicy> getLogicalSFC2PhisicalSFC() {
+		return logicalSFC2PhisicalSFC;
+	}
+
+	// public void setLogicalSFC2PhisicalSFC(Table<String, String,
+	// ServiceFunctionChainPolicy> logicalSFC2PhisicalSFC) {
+	// this.logicalSFC2PhisicalSFC = logicalSFC2PhisicalSFC;
+	// }
 }

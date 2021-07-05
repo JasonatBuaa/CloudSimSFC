@@ -121,7 +121,7 @@ public class FileParser {
             File file = new File(path);
             OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file));
             String line = "";
-            String head = "time(s),target_sfc,Ingress";
+            String head = "time(s),target_sfc,Ingress,InitialRequestSize";
             for (int i = 1; i <= sfcWorkload.getChainLength(); i++) {
                 head += "," + "Transmission" + i + "(MB)," + "VM" + i + ",cloudlet." + i + "(MI)";
             }
@@ -129,10 +129,21 @@ public class FileParser {
 
             writer.write(head);
             for (SFCRequest sfcRequest : sfcWorkload.getSfcRequestList()) {
+                // line = sfcRequest.getStartTime() + "," + sfcWorkload.getTargetChainName() +
+                // ","
+                // + sfcRequest.getIngress() + sfcRequest.requestsToString() + "," +
+                // sfcRequest.getOutput() + ","
+                // + sfcRequest.getEgress() + "," + sfcWorkload.getLatencyDemand() + "\n";
+
                 line = sfcRequest.getStartTime() + "," + sfcWorkload.getTargetChainName() + ","
-                        + sfcRequest.getIngress() + sfcRequest.requestsToString() + "," + sfcRequest.getOutput() + ","
-                        + sfcRequest.getEgress() + "," + sfcWorkload.getLatencyDemand() + "\n";
+                        + sfcRequest.getIngress() + sfcRequest.requestsToString() + "," + sfcRequest.getEgress() + ","
+                        + sfcWorkload.getLatencyDemand() + "\n";
                 writer.write(line);
+                // System.out.println(line);
+                // System.out.println(line);
+                // System.out.println(sfcRequest.getOutput());
+                // System.out.println(sfcRequest.getEgress());
+
             }
             writer.flush();
             writer.close();

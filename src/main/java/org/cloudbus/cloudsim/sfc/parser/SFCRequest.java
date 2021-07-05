@@ -67,34 +67,30 @@ public class SFCRequest {
         this.output = output;
     }
 
-    public void fillRequest(String vm,int inputSize, int performance){
+    public void fillRequest(String vm, int inputSize, int performance) {
         vms.add(vm);
         transmissions.add(inputSize);
         cloudletLengths.add(performance);
     }
 
-    public String requestsToString(){
-        String request = "";
-        for(int index = 0;index < cloudletLengths.size(); index++){
-            request += "," + transmissions.get(index) + "," + vms.get(index) + "," + cloudletLengths.get(index) ;
+    public String requestsToString() {
+        String request = "," + transmissions.get(0); // Jason: initial uploaded workload size
+        for (int index = 0; index < cloudletLengths.size(); index++) {
+            request += "," + transmissions.get(index) + "," + vms.get(index) + "," + cloudletLengths.get(index);
         }
         request += "," + output;
 
         return request;
 
     }
+
     @Override
     public String toString() {
-        String request = "";
-        for(int index = 0;index < transmissions.size(); index++){
-            request += "{" + transmissions.get(index)
-                        + "," + cloudletLengths.get(index)
-                        +"},";
+        String request = "," + transmissions.get(0); // Jason: initial uploaded workload size
+        for (int index = 0; index < transmissions.size(); index++) {
+            request += "{" + transmissions.get(index) + "," + cloudletLengths.get(index) + "},";
         }
         request = "[" + request + "]";
-        return "SFCRequest{" +
-                "startTime=" + startTime +
-                ", Request(transmissions,cloudletLengths)=" + request +
-                '}';
+        return "SFCRequest{" + "startTime=" + startTime + ", Request(transmissions,cloudletLengths)=" + request + '}';
     }
 }

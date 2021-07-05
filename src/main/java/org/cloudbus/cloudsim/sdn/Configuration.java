@@ -9,7 +9,8 @@
 package org.cloudbus.cloudsim.sdn;
 
 public class Configuration {
-	public static String workingDirectory = "./jason";
+	// public static String workingDirectory = "./jason";
+	public static String workingDirectory = "./";
 	public static String experimentName = "";
 
 	// public static double minTimeBetweenEvents = 0.01;//0.01; // in sec

@@ -12,12 +12,16 @@ import org.cloudbus.cloudsim.UtilizationModel;
 import org.cloudbus.cloudsim.sdn.Configuration;
 import org.cloudbus.cloudsim.sdn.example.StartAvailability;
 import org.cloudbus.cloudsim.sdn.workload.*;
+import org.omg.Messaging.SyncScopeHelper;
+import org.cloudbus.cloudsim.sdn.sfc.ServiceFunctionChainPolicy;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+
+import com.google.common.collect.Table;
 
 /**
  * Parse [request].csv file.
@@ -102,7 +106,7 @@ public class WorkloadParser {
 
 	public void parseNextWorkloads() {
 		this.parsedWorkloads = new ArrayList<Workload>();
-		parseNext(NUM_PARSE_EACHTIME);
+		parseNextBatch(NUM_PARSE_EACHTIME);
 	}
 
 	public List<Workload> getParsedWorkloads() {
@@ -136,7 +140,7 @@ public class WorkloadParser {
 
 	// Cloud_Len -> /FlowId/ -> ToVmId -> PktSize
 	// Iterative calling this function
-	private Request parseRequest(int fromVmId, Queue<String> lineitems) {
+	private Request parseRequest(int fromVmId, Queue<String> lineitems, List<Integer> physicalVMs) {
 		if (lineitems.size() <= 0) {
 			System.err.println("No REQUEST! ERROR");
 			return null;
@@ -151,8 +155,13 @@ public class WorkloadParser {
 			if (pktSize < 0)
 				pktSize = 0;
 
-			String vmName = lineitems.poll();
-			int toVmId = getVmId(vmName);
+			String virtualVmName = lineitems.poll();
+			// int virtualVmId = getVmId(virtualVmName);
+			int physicalVmId = physicalVMs.remove(0);
+			int toVmId = physicalVmId;
+
+			// Table<String, String, ServiceFunctionChainPolicy> test =
+			// DeploymentFileParser.getLogicalSFC2PhisicalSFC();
 
 			long cloudletLen = Long.parseLong(lineitems.poll());
 			cloudletLen *= Configuration.CPU_SIZE_MULTIPLY;
@@ -166,7 +175,7 @@ public class WorkloadParser {
 			// in this version,there is no flowId,set to default value;
 			Integer flowId = 10;
 
-			Request nextReq = parseRequest(toVmId, lineitems);
+			Request nextReq = parseRequest(toVmId, lineitems, physicalVMs);
 
 			Transmission trans = new Transmission(fromVmId, toVmId, pktSize, flowId, nextReq);
 			req.addActivity(trans);
@@ -205,33 +214,43 @@ public class WorkloadParser {
 		}
 	}
 
-	private void parseNext(int numRequests) {
+	private void parseNextBatch(int numRequests) {
 		String line;
 
 		try {
 			while (((line = bufReader.readLine()) != null) && (parsedWorkloads.size() < numRequests)) {
 				// System.out.println("parsing:"+line);
-				Workload tr = new Workload(workloadNum++, this.resultWriter);
+				Workload wl = new Workload(workloadNum++, this.resultWriter);
 
 				String[] splitLine = line.split(",");
 				Queue<String> lineitems = new LinkedList<String>(Arrays.asList(splitLine));
 
-				tr.time = Double.parseDouble(lineitems.poll());
+				wl.time = Double.parseDouble(lineitems.poll());
+				// String targetChain = "";
 				// For debug only
-				if (tr.time < this.forcedStartTime || tr.time > this.forcedFinishTime) // Skip Workloads before the set
+				if (wl.time < this.forcedStartTime || wl.time > this.forcedFinishTime) // Skip Workloads before the
+																						// set
 																						// start time
 					continue;
 
-				tr.sfcName = lineitems.poll();
+				wl.sfcName = lineitems.poll();
 
-				String vmName = lineitems.poll();
-				tr.submitVmId = getVmId(vmName);
+				String ingress = lineitems.poll();
+				wl.submitVmId = getVmId(ingress);
 
-				tr.submitPktSize = Integer.parseInt(lineitems.poll());
+				// wl.submitPktSize = Integer.parseInt(lineitems.poll());
+				wl.submitPktSize = Integer.parseInt(lineitems.poll());
 
-				tr.request = parseRequest(tr.submitVmId, lineitems);
+				List<Integer> physicalVmList = DeploymentFileParser.getLogicalSFC2PhisicalSFC().get(wl.sfcName, ingress)
+						.getServiceFunctionChain();
+				System.out.println(physicalVmList.size());
+				// Queue<Integer>
 
-				parsedWorkloads.add(tr);
+				List<Integer> physicalVmListCopy = new LinkedList<>(physicalVmList);
+
+				wl.request = parseRequest(wl.submitVmId, lineitems, physicalVmListCopy);
+
+				parsedWorkloads.add(wl);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

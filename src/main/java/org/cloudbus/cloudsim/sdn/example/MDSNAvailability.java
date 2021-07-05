@@ -63,7 +63,7 @@ public class MDSNAvailability {
 	private static String[] argString = { "LFF", physicalTopologyFile, deploymentFile, "./" };
 
 	protected static List<String> FREvents;
-	protected static List<String> workloads;
+	protected static List<String> workloads = new ArrayList<>();
 
 	private static boolean logEnabled = true;
 
@@ -111,7 +111,11 @@ public class MDSNAvailability {
 		// physicalTopologyFile =
 
 		workload_files = getWorkloadFile(workload_folder);
-		workloads = (List<String>) Arrays.asList(workload_files);
+		// workloads = (List<String>) Arrays.asList(workload_files);
+
+		for (String str : workload_files) {
+			workloads.add(workload_folder + str);
+		}
 
 		printArguments(physicalTopologyFile, deploymentFile, workloads);
 		System.out.println(System.getProperty("user.dir"));

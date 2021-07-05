@@ -69,18 +69,6 @@ public class VirtualTopologyParser {
 	private void parseDummyNode(JSONObject node, Hashtable<String, Integer> vmNameIdTable) {
 		String nodeType = (String) node.get("type");
 		String nodeName = (String) node.get("name");
-		int pes = new BigDecimal((Long) node.get("pes")).intValueExact();
-		long mips = (Long) node.get("mips");
-		int ram = new BigDecimal((Long) node.get("ram")).intValueExact();
-		long size = (Long) node.get("size");
-		long bw = 0;
-
-		if (node.get("bw") != null)
-			bw = (Long) node.get("bw");
-
-		int queueSize = 0;
-		if (node.get("queuesize") != null)
-			queueSize = new BigDecimal((Long) node.get("queuesize")).intValueExact();
 
 		double starttime = 0;
 		double endtime = Double.POSITIVE_INFINITY;
@@ -242,13 +230,13 @@ public class VirtualTopologyParser {
 						sf = new ServiceFunction(vmId, userId, mips, pes, ram, bw, size, "VMM", clSch, starttime,
 								endtime, initialAvail, queueSize);
 
-						long mipOperation = (Long) node.get("mipoper");
+						// long mipOperation = (Long) node.get("mipoper");
 						long miperUnitWorkload = (Long) node.get("impperunitworkload");
 
 						sf.setName(nodeName2);
 						sf.setHostName(hostName);
 						sf.setOptionalDatacenters(optionalDatacenter);
-						sf.setMIperOperation(mipOperation);
+						// sf.setMIperOperation(mipOperation);
 						sf.setMIperUnitWorkload(miperUnitWorkload);
 
 						sf.setMiddleboxType(nodeType);

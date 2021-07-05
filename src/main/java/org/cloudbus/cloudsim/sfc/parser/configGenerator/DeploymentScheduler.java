@@ -30,12 +30,13 @@ public class DeploymentScheduler {
 
     public void generate(List<ServiceFunctionChain> serverFunctionChains, List<SFCWorkload> sfcWorkloads,
             List<Resource> resources) {
-        generateNodes(sfcWorkloads, resources);
+        generateNodes(sfcWorkloads, resources, serverFunctionChains);
         generateLinks(serverFunctionChains);
         generatePolicies(serverFunctionChains);
     }
 
-    public void generateNodes(List<SFCWorkload> sfcWorkloads, List<Resource> resources) {
+    public void generateNodes(List<SFCWorkload> sfcWorkloads, List<Resource> resources,
+            List<ServiceFunctionChain> serviceFunctionChains) {
         // Generate Ingress,Egress
         String inDc = resources.get(0).getName();
         String outDc = resources.get(resources.size() - 1).getName();
@@ -49,12 +50,27 @@ public class DeploymentScheduler {
             }
         }
 
-        // Generate serviceFunction
-        for (String sf : ServiceFunction.serverFunctionMap.keySet()) {
-            // generate two case for each serviceFunction
-            nodes.add(new VirtualTopologyVmSF(sf + "_1", sf, 1000, 1, 500, 128));
-            nodes.add(new VirtualTopologyVmSF(sf + "_2", sf, 1000, 1, 500, 128));
+        for (ServiceFunctionChain sfc : serviceFunctionChains) {
+
+            List<String> sfs = sfc.getChain();
+            int count = 1;
+            for (ServiceFunctionChain.InOutDc ingress : sfc.getIngressDCs()) {
+                String physicalChainName = sfc.getName() + "_psfc" + count;
+                for (String sf : sfs) {
+                    String sfInstanceName = physicalChainName + sf;
+                    nodes.add(new VirtualTopologyVmSF(sfInstanceName, sf, 1000, 1, 500, 128));
+                }
+                count++;
+            }
         }
+
+        // Generate serviceFunction
+        // for (String sf : ServiceFunction.serverFunctionMap.keySet()) {
+        // // generate two case for each serviceFunction
+        // nodes.add(new VirtualTopologyVmSF(sf + "_1", sf, 1000, 1, 500, 128));
+        // nodes.add(new VirtualTopologyVmSF(sf + "_2", sf, 1000, 1, 500, 128));
+        // }
+
     }
 
     public void generateLinks(List<ServiceFunctionChain> serverFunctionChains) {
@@ -67,6 +83,7 @@ public class DeploymentScheduler {
                     VirtualTopologyLink virtualTopologyLink = new VirtualTopologyLink(
                             ingress.getName() + "-" + egerss.getName(), ingress.getName(), egerss.getName(), 1000);
                     count_egerss++;
+                    links.add(virtualTopologyLink);
                 }
                 count_ingress++;
             }
@@ -78,13 +95,18 @@ public class DeploymentScheduler {
         for (ServiceFunctionChain serviceFunctionChain : serverFunctionChains) {
             int count = 1;
             for (ServiceFunctionChain.InOutDc ingress : serviceFunctionChain.getIngressDCs()) {
+                String physicalChainName = serviceFunctionChain.getName() + "_psfc" + count;
                 for (ServiceFunctionChain.InOutDc egerss : serviceFunctionChain.getEgressDCs()) {
-                    VirtualTopologyPolicy virtualTopologyPolicy = new VirtualTopologyPolicy(
-                            serviceFunctionChain.getName() + "_" + count, ingress.getName(),
-                            serviceFunctionChain.getName(), egerss.getName(),
+                    List<String> includedSFs = new ArrayList<>();
+                    for (String logicalSF : serviceFunctionChain.getChain()) {
+                        String sfInstanceName = physicalChainName + logicalSF;
+                        includedSFs.add(sfInstanceName);
+                    }
+
+                    VirtualTopologyPolicy virtualTopologyPolicy = new VirtualTopologyPolicy(physicalChainName,
+                            ingress.getName(), serviceFunctionChain.getName(), egerss.getName(),
                             ingress.getName() + "-" + egerss.getName(), serviceFunctionChain.getCreateTime(),
-                            serviceFunctionChain.getDestroyTime() - serviceFunctionChain.getCreateTime(),
-                            serviceFunctionChain.getChain());
+                            serviceFunctionChain.getDestroyTime() - serviceFunctionChain.getCreateTime(), includedSFs);
                     policies.add(virtualTopologyPolicy);
                     count++;
                 }
