@@ -103,10 +103,23 @@ public class Request {
 		return null;
 	}
 
+	// Jason: our workload ends with a transmission mission. so here need modify.
+	/// Original:
+	// public Request getTerminalRequest() {
+	// // The request that processes at last.
+	// Transmission t = getLastTransmission();
+	// if (t == null)
+	// return this;
+
+	// Packet p = t.getPacket();
+	// Request lastReq = p.getPayload();
+	// return lastReq.getTerminalRequest();
+	// }
+	/// Modified:
 	public Request getTerminalRequest() {
 		// The request that processes at last.
 		Transmission t = getLastTransmission();
-		if (t == null)
+		if (t.getPacket().getPayload() == null)
 			return this;
 
 		Packet p = t.getPacket();
