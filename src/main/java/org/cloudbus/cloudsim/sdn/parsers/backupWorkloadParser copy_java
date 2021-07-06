@@ -147,42 +147,55 @@ public class WorkloadParser {
 		}
 
 		Request req = new Request(userId);
-		// if (lineitems.size() > 3) {
+		;
 
-		String logicalSFName = lineitems.poll();
+		if (lineitems.size() > 3) {
+			long pktSize = Long.parseLong(lineitems.poll());
+			pktSize *= Configuration.NETWORK_PACKET_SIZE_MULTIPLY;
+			if (pktSize < 0)
+				pktSize = 0;
 
-		long cloudletLen = Long.parseLong(lineitems.poll());
-		cloudletLen *= Configuration.CPU_SIZE_MULTIPLY;
+			String virtualVmName = lineitems.poll();
+			// int virtualVmId = getVmId(virtualVmName);
+			int physicalVmId = physicalVMs.remove(0);
+			int toVmId = physicalVmId;
 
-		Cloudlet cl = generateCloudlet(req.getRequestId(), fromVmId, (int) cloudletLen);
-		// this.parsedCloudlets.add(cl);
+			// Table<String, String, ServiceFunctionChainPolicy> test =
+			// DeploymentFileParser.getLogicalSFC2PhisicalSFC();
 
-		Processing proc = new Processing(cl);
-		req.addActivity(proc);
+			long cloudletLen = Long.parseLong(lineitems.poll());
+			cloudletLen *= Configuration.CPU_SIZE_MULTIPLY;
 
-		// in this version,there is no flowId,set to default value;
-		Integer flowId = 10;
+			Cloudlet cl = generateCloudlet(req.getRequestId(), fromVmId, (int) cloudletLen);
+			// this.parsedCloudlets.add(cl);
 
-		long pktSize = Long.parseLong(lineitems.poll());
-		pktSize *= Configuration.NETWORK_PACKET_SIZE_MULTIPLY;
-		if (pktSize < 0)
-			pktSize = 0;
+			Processing proc = new Processing(cl);
+			req.addActivity(proc);
 
-		Request nextReq = null;
-		int toVmId;
-		if (physicalVMs.size() > 0) {
-			int nextPhysicalVmId = physicalVMs.remove(0);
-			toVmId = nextPhysicalVmId;
-			nextReq = parseRequest(toVmId, lineitems, physicalVMs);
-		} else // the next request is the last transmission to the egress node.
-		{
-			toVmId = this.getVmId(lineitems.poll());
-			System.out.println(
-					"next request is the final transmission, currently the lineitems size is :" + lineitems.size());
+			// in this version,there is no flowId,set to default value;
+			Integer flowId = 10;
+
+			Request nextReq = parseRequest(toVmId, lineitems, physicalVMs);
+
+			Transmission trans = new Transmission(fromVmId, toVmId, pktSize, flowId, nextReq);
+			req.addActivity(trans);
+
+		} else {
+			// this is the last transimission task.
+			long pktSize = Long.parseLong(lineitems.poll());
+			pktSize *= Configuration.NETWORK_PACKET_SIZE_MULTIPLY;
+			if (pktSize < 0)
+				pktSize = 0;
+
+			String vmName = lineitems.poll();
+			int toVmId = getVmId(vmName);
+
+			// in this version,there is no flowId,set to default value;
+			Integer flowId = 10;
+
+			Transmission trans = new Transmission(fromVmId, toVmId, pktSize, flowId, null);
+			req.addActivity(trans);
 		}
-		Transmission trans = new Transmission(fromVmId, toVmId, pktSize, flowId, nextReq);
-		req.addActivity(trans);
-
 		return req;
 	}
 
@@ -192,6 +205,7 @@ public class WorkloadParser {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+
 		try {
 			@SuppressWarnings("unused")
 			String head = bufReader.readLine();
@@ -219,7 +233,7 @@ public class WorkloadParser {
 																						// start time
 					continue;
 
-				wl.sfcName = lineitems.poll(); // Jason: Logical sfc name
+				wl.sfcName = lineitems.poll();
 
 				String ingress = lineitems.poll();
 				wl.submitVmId = getVmId(ingress);
@@ -229,12 +243,12 @@ public class WorkloadParser {
 
 				List<Integer> physicalVmList = DeploymentFileParser.getLogicalSFC2PhisicalSFC().get(wl.sfcName, ingress)
 						.getServiceFunctionChain();
-				// System.out.println(physicalVmList.size());
+				System.out.println(physicalVmList.size());
 				// Queue<Integer>
 
 				List<Integer> physicalVmListCopy = new LinkedList<>(physicalVmList);
 
-				wl.request = parseHeadRequest(wl.submitVmId, lineitems, physicalVmListCopy);
+				wl.request = parseRequest(wl.submitVmId, lineitems, physicalVmListCopy);
 
 				parsedWorkloads.add(wl);
 			}
@@ -248,37 +262,6 @@ public class WorkloadParser {
 		// // TODO Auto-generated catch block
 		// e.printStackTrace();
 		// }
-	}
-
-	public Request parseHeadRequest(int ingressVmId, Queue<String> lineitems, List<Integer> physicalVMs) {
-		// return new Request(1);
-		if (lineitems.size() <= 0) {
-			System.err.println("No REQUEST! ERROR");
-			return null;
-		}
-
-		Request req = new Request(userId);
-		;
-
-		long headPktSize = Long.parseLong(lineitems.poll());
-		headPktSize *= Configuration.NETWORK_PACKET_SIZE_MULTIPLY;
-		if (headPktSize < 0)
-			headPktSize = 0;
-
-		// String firstLogicalSFName = lineitems.poll();
-		// int virtualVmId = getVmId(virtualVmName);
-		int firstPhysicalSFId = physicalVMs.remove(0);
-
-		// in this version,there is no flowId,set to default value;
-		Integer flowId = 10;
-
-		Request nextReq = parseRequest(firstPhysicalSFId, lineitems, physicalVMs);
-
-		Transmission trans = new Transmission(ingressVmId, firstPhysicalSFId, headPktSize, flowId, nextReq);
-		req.addActivity(trans);
-
-		return req;
-
 	}
 
 	/*

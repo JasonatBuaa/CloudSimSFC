@@ -407,11 +407,21 @@ public class SDNDatacenter extends Datacenter {
 	private void processRequestSubmit(Request req) {
 		Activity ac = req.getNextActivity();
 
-		if (ac instanceof Processing) {
+		// if (ac instanceof Processing) {
+		// processNextActivity(req);
+		// } else {
+		// System.err.println("Request should start with Processing!!"); // Jason !!!
+		// This is not true in our scenario
+		// // !!!
+		// }
+
+		if (ac instanceof Transmission) {
 			processNextActivity(req);
 		} else {
-			System.err.println("Request should start with Processing!!");
+			System.err.println("Request should start with Transmission!!"); // Jason !!! This is not true in our
+																			// scenario !!!
 		}
+
 	}
 
 	private void processCloudletFailed(Cloudlet cl) {

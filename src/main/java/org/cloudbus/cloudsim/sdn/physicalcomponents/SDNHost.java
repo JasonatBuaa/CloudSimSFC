@@ -383,6 +383,7 @@ public class SDNHost extends Host implements Node {
 	public Node getVMRoute(int src, int dest, int flowId) {
 		Node route = this.forwardingTable.getRoute(src, dest, flowId);
 		if (route == null) {
+			System.out.println("Here is the forwarding table: ");
 			this.printVMRoute();
 			System.err.println(
 					toString() + " getVMRoute(): ERROR: Cannot find route:" + src + "->" + dest + ", flow =" + flowId);

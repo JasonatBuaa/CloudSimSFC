@@ -1,0 +1,946 @@
+Starting CloudSim SDN...
+Starting CloudSim SDN...
+Initialising...
+Global: inter-cloud networking topology created...
+Starting CloudSim version 3.0
+DC2 is starting...
+DC1 is starting...
+Global is starting...
+Entities started.
+0.0: NOS_DC2: Starting deploying application..
+0.0: NOS_DC2: Trying to Create VM #6 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #7 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #8 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #9 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #10 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #11 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #12 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #13 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #14 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #15 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #16 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #17 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #18 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #19 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #2 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #5 in DC2, (0.0~Infinity)
+0.0: NOS_DC1: Starting deploying application..
+0.0: NOS_DC1: Trying to Create VM #0 in DC1, (0.0~Infinity)
+0.0: NOS_DC1: Trying to Create VM #1 in DC1, (0.0~Infinity)
+0.0: NOS_DC1: Trying to Create VM #3 in DC1, (0.0~Infinity)
+0.0: NOS_DC1: Trying to Create VM #4 in DC1, (0.0~Infinity)
+0.0: NOS_Global: Starting deploying application..
+0.0: NOS_DC2: VM Created: VM #6 (chain1_psfc1SF-A) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #7 (chain1_psfc1SF-B) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #8 (chain1_psfc1SF-C) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #9 (chain1_psfc1SF-D) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #10 (chain1_psfc2SF-A) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #11 (chain1_psfc2SF-B) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #12 (chain1_psfc2SF-C) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #13 (chain1_psfc2SF-D) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #14 (chain2_psfc1SF-A) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #15 (chain2_psfc1SF-B) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #16 (chain2_psfc1SF-D) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #17 (chain2_psfc2SF-A) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #18 (chain2_psfc2SF-B) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #19 (chain2_psfc2SF-D) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #2 (Egress1) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #5 (Egress2) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC1: VM Created: VM #0 (Ingress1) in (DC1-HRG4-1) in DC1-HRG4-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC1: VM Created: VM #1 (Ingress2) in (DC1-HRG4-1) in DC1-HRG4-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC1: VM Created: VM #3 (Ingress3) in (DC1-HRG4-1) in DC1-HRG4-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC1: VM Created: VM #4 (Ingress4) in (DC1-HRG4-1) in DC1-HRG4-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(5)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(5)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(6)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(1)->DC2-HRG5-1(10)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(3)->DC2-HRG5-1(14)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(4)->DC2-HRG5-1(17)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #6 (chain1_psfc1SF-A) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #15 (chain2_psfc1SF-B) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #8 (chain1_psfc1SF-C) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #18 (chain2_psfc2SF-B) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #17 (chain2_psfc2SF-A) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #14 (chain2_psfc1SF-A) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #10 (chain1_psfc2SF-A) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #7 (chain1_psfc1SF-B) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #13 (chain1_psfc2SF-D) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #16 (chain2_psfc1SF-D) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #11 (chain1_psfc2SF-B) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #19 (chain2_psfc2SF-D) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #9 (chain1_psfc1SF-D) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #12 (chain1_psfc2SF-C) in (DC2-HRG5-1)) is underutilized!!! util =0.0
