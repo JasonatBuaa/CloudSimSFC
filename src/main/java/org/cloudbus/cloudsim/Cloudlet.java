@@ -389,9 +389,19 @@ public class Cloudlet {
         netToS = 0;
 
         // Cloudlet length, Input and Output size should be at least 1 byte.
-        this.cloudletLength = Math.max(1, cloudletLength);
-        this.cloudletFileSize = Math.max(1, cloudletFileSize);
-        this.cloudletOutputSize = Math.max(1, cloudletOutputSize);
+        if (cloudletLength == 0) { // Jason: to use the original modules of CloudSimSDN-NFV, we allows for an
+                                   // exception of 0 size cloudlet, which is excuted on the final egress node to
+                                   // generate a workload completion signal. Otherwise we will need to modify the
+                                   // workload completion signal which is relatively time-consuming.
+            this.cloudletLength = 0; // Jason: Workload for Dummy node (Egress)
+            this.cloudletFileSize = 0;
+            this.cloudletOutputSize = 0;
+            System.out.println("this is a cloudlet for dummy node!");
+        } else {
+            this.cloudletLength = Math.max(1, cloudletLength);
+            this.cloudletFileSize = Math.max(1, cloudletFileSize);
+            this.cloudletOutputSize = Math.max(1, cloudletOutputSize);
+        }
 
         // Normally, a Cloudlet is only executed on a resource without being
         // migrated to others. Hence, to reduce memory consumption, set the

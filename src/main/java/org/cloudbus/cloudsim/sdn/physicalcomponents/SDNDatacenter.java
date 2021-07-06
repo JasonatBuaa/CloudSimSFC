@@ -453,7 +453,13 @@ public class SDNDatacenter extends Datacenter {
 														// completed
 		pkt.setPacketFinishTime(CloudSim.clock());
 		Request req = pkt.getPayload();
-		processNextActivity(req);
+		if (req == null || req.isFinished()) {
+			// All requests are finished, no more activities to do. Return to user
+			send(req.getUserId(), CloudSim.getMinTimeBetweenEvents(), CloudSimTagsSDN.REQUEST_COMPLETED, req);
+		} else {
+			// consume the next activity from request. It should be a transmission.
+			processNextActivity(req);
+		}
 	}
 
 	private void processNextActivity(Request req) {
@@ -490,6 +496,9 @@ public class SDNDatacenter extends Datacenter {
 		// Set the requested MIPS for this cloudlet.
 		int userId = cl.getUserId();
 		int vmId = cl.getVmId();
+
+		// if (cl.getCloudletLength() == 0)
+		// cl.setCloudletLength(1);
 
 		Host host = getVmAllocationPolicy().getHost(vmId, userId);
 		if (host == null) {

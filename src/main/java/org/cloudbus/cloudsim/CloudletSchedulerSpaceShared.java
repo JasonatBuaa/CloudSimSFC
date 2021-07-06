@@ -11,6 +11,8 @@ package org.cloudbus.cloudsim;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.lang.model.util.ElementScanner6;
+
 import org.cloudbus.cloudsim.core.CloudSim;
 
 /**
@@ -63,7 +65,10 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 			}
 		}
 		currentCpus = cpus;
-		capacity /= cpus; // average capacity of each cpu
+		if (!(cpus == 0))
+			capacity /= cpus; // average capacity of each cpu
+		else
+			capacity = 0;
 
 		// each machine in the exec list has the same amount of cpu
 		for (ResCloudlet rcl : getCloudletExecList()) {
@@ -300,6 +305,13 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 	@Override
 	public double cloudletSubmit(Cloudlet cloudlet, double fileTransferTime) {
 		// it can go to the exec list
+		if (cloudlet.getCloudletLength() == 0) {
+			ResCloudlet rcl = new ResCloudlet(cloudlet);
+			rcl.setCloudletStatus(Cloudlet.INEXEC);
+			getCloudletExecList().add(rcl);
+			return 0.0;
+		}
+
 		if ((currentCpus - usedPes) >= cloudlet.getNumberOfPes()) {
 			ResCloudlet rcl = new ResCloudlet(cloudlet);
 			rcl.setCloudletStatus(Cloudlet.INEXEC);
