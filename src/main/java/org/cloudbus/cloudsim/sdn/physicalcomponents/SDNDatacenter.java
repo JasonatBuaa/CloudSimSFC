@@ -449,7 +449,8 @@ public class SDNDatacenter extends Datacenter {
 		send(req.getUserId(), CloudSim.getMinTimeBetweenEvents(), CloudSimTagsSDN.REQUEST_FAILED, lastReq);
 	}
 
-	private void processPacketCompleted(Packet pkt) { // Jason: ? what is packet completed?
+	private void processPacketCompleted(Packet pkt) { // Jason: ? what is packet completed? Answer: transmission
+														// completed
 		pkt.setPacketFinishTime(CloudSim.clock());
 		Request req = pkt.getPayload();
 		processNextActivity(req);

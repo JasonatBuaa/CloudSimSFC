@@ -161,7 +161,7 @@ public class WorkloadParser {
 		req.addActivity(proc);
 
 		// in this version,there is no flowId,set to default value;
-		Integer flowId = 10;
+		Integer flowId = Configuration.DEFAULT_FLOW_ID;
 
 		long pktSize = Long.parseLong(lineitems.poll());
 		pktSize *= Configuration.NETWORK_PACKET_SIZE_MULTIPLY;
@@ -270,7 +270,7 @@ public class WorkloadParser {
 		int firstPhysicalSFId = physicalVMs.remove(0);
 
 		// in this version,there is no flowId,set to default value;
-		Integer flowId = 10;
+		int flowId = Configuration.DEFAULT_FLOW_ID;
 
 		Request nextReq = parseRequest(firstPhysicalSFId, lineitems, physicalVMs);
 

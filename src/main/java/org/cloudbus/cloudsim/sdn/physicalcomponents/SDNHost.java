@@ -142,7 +142,7 @@ public class SDNHost extends Host implements Node {
 			// Change MIPS share proportion depending on the remaining Cloudlets.
 			adjustMipsShare();
 
-			// Todo: Jason! Computation Performance Jitter Injection
+			// Todo: Jason! Computation Performance Jitter Injection. Done
 			injectComputationJitter();
 
 			// Check the next event time based on the updated MIPS share proportion
