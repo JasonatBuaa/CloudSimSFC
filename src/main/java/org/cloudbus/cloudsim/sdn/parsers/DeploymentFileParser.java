@@ -342,7 +342,8 @@ public class DeploymentFileParser {
 				// default flow.
 				flowId = -1;
 			} else {
-				flowId = flowNumbers++;
+				// flowId = flowNumbers++;
+				flowId = 0;
 			}
 
 			FlowConfig arc = new FlowConfig(srcId, dstId, flowId, bw, lat);

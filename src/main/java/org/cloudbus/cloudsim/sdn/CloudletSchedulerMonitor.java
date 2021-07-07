@@ -12,11 +12,15 @@ import java.util.List;
 
 import org.cloudbus.cloudsim.Cloudlet;
 
+// Jason: This is the monitoring interface for accessing the cloudlet tasks.
 public interface CloudletSchedulerMonitor {
 	public long getTotalProcessingPreviousTime(double currentTime, List<Double> mipsShare);
+
 	public boolean isVmIdle();
+
 	public double getTimeSpentPreviousMonitoredTime(double currentTime);
-	
+
 	public int getCloudletTotalPesRequested();
+
 	public List<Cloudlet> getFailedCloudlet();
 }

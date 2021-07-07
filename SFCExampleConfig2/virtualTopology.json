@@ -10,8 +10,44 @@
 			"queuesize":0
 		},
 		{
+			"datacenter":"DC1",
+			"name":"Ingress2",
+			"type":"Ingress",
+			"size":0,
+			"pes":0,
+			"mips":0,
+			"queuesize":0
+		},
+		{
 			"datacenter":"DC2",
 			"name":"Egress1",
+			"type":"Egress",
+			"size":0,
+			"pes":0,
+			"mips":0,
+			"queuesize":0
+		},
+		{
+			"datacenter":"DC1",
+			"name":"Ingress3",
+			"type":"Ingress",
+			"size":0,
+			"pes":0,
+			"mips":0,
+			"queuesize":0
+		},
+		{
+			"datacenter":"DC1",
+			"name":"Ingress4",
+			"type":"Ingress",
+			"size":0,
+			"pes":0,
+			"mips":0,
+			"queuesize":0
+		},
+		{
+			"datacenter":"DC2",
+			"name":"Egress2",
 			"type":"Egress",
 			"size":0,
 			"pes":0,
@@ -33,6 +69,102 @@
 			"pes":1,
 			"mips":500,
 			"queuesize":128
+		},
+		{
+			"name":"chain1_psfc1SF-C",
+			"type":"SF-C",
+			"size":1000,
+			"pes":1,
+			"mips":500,
+			"queuesize":128
+		},
+		{
+			"name":"chain1_psfc1SF-D",
+			"type":"SF-D",
+			"size":1000,
+			"pes":1,
+			"mips":500,
+			"queuesize":128
+		},
+		{
+			"name":"chain1_psfc2SF-A",
+			"type":"SF-A",
+			"size":1000,
+			"pes":1,
+			"mips":500,
+			"queuesize":128
+		},
+		{
+			"name":"chain1_psfc2SF-B",
+			"type":"SF-B",
+			"size":1000,
+			"pes":1,
+			"mips":500,
+			"queuesize":128
+		},
+		{
+			"name":"chain1_psfc2SF-C",
+			"type":"SF-C",
+			"size":1000,
+			"pes":1,
+			"mips":500,
+			"queuesize":128
+		},
+		{
+			"name":"chain1_psfc2SF-D",
+			"type":"SF-D",
+			"size":1000,
+			"pes":1,
+			"mips":500,
+			"queuesize":128
+		},
+		{
+			"name":"chain2_psfc1SF-A",
+			"type":"SF-A",
+			"size":1000,
+			"pes":1,
+			"mips":500,
+			"queuesize":128
+		},
+		{
+			"name":"chain2_psfc1SF-B",
+			"type":"SF-B",
+			"size":1000,
+			"pes":1,
+			"mips":500,
+			"queuesize":128
+		},
+		{
+			"name":"chain2_psfc1SF-D",
+			"type":"SF-D",
+			"size":1000,
+			"pes":1,
+			"mips":500,
+			"queuesize":128
+		},
+		{
+			"name":"chain2_psfc2SF-A",
+			"type":"SF-A",
+			"size":1000,
+			"pes":1,
+			"mips":500,
+			"queuesize":128
+		},
+		{
+			"name":"chain2_psfc2SF-B",
+			"type":"SF-B",
+			"size":1000,
+			"pes":1,
+			"mips":500,
+			"queuesize":128
+		},
+		{
+			"name":"chain2_psfc2SF-D",
+			"type":"SF-D",
+			"size":1000,
+			"pes":1,
+			"mips":500,
+			"queuesize":128
 		}
 	],
 	"links":[
@@ -40,6 +172,24 @@
 			"name":"Ingress1-Egress1",
 			"source":"Ingress1",
 			"destination":"Egress1",
+			"bandwidth":1000
+		},
+		{
+			"name":"Ingress2-Egress1",
+			"source":"Ingress2",
+			"destination":"Egress1",
+			"bandwidth":1000
+		},
+		{
+			"name":"Ingress3-Egress2",
+			"source":"Ingress3",
+			"destination":"Egress2",
+			"bandwidth":1000
+		},
+		{
+			"name":"Ingress4-Egress2",
+			"source":"Ingress4",
+			"destination":"Egress2",
 			"bandwidth":1000
 		}
 	],
@@ -54,7 +204,52 @@
 			"expectedduration":6301,
 			"sfc":[
 				"chain1_psfc1SF-A",
-				"chain1_psfc1SF-B"
+				"chain1_psfc1SF-B",
+				"chain1_psfc1SF-C",
+				"chain1_psfc1SF-D"
+			]
+		},
+		{
+			"name":"chain1_psfc2",
+			"flowname":"Ingress2-Egress1",
+			"source":"Ingress2",
+			"destination":"Egress1",
+			"sfc_Demand":"chain1",
+			"starttime":3700,
+			"expectedduration":6301,
+			"sfc":[
+				"chain1_psfc2SF-A",
+				"chain1_psfc2SF-B",
+				"chain1_psfc2SF-C",
+				"chain1_psfc2SF-D"
+			]
+		},
+		{
+			"name":"chain2_psfc1",
+			"flowname":"Ingress3-Egress2",
+			"source":"Ingress3",
+			"destination":"Egress2",
+			"sfc_Demand":"chain2",
+			"starttime":0,
+			"expectedduration":10001,
+			"sfc":[
+				"chain2_psfc1SF-A",
+				"chain2_psfc1SF-B",
+				"chain2_psfc1SF-D"
+			]
+		},
+		{
+			"name":"chain2_psfc2",
+			"flowname":"Ingress4-Egress2",
+			"source":"Ingress4",
+			"destination":"Egress2",
+			"sfc_Demand":"chain2",
+			"starttime":0,
+			"expectedduration":10001,
+			"sfc":[
+				"chain2_psfc2SF-A",
+				"chain2_psfc2SF-B",
+				"chain2_psfc2SF-D"
 			]
 		}
 	]

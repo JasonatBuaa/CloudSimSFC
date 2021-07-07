@@ -133,7 +133,8 @@ public class Configuration {
 	public static final double UNDERLOAD_THRESHOLD_HOST_BW = 0.3;
 	public static final double UNDERLOAD_THRESHOLD_VM = 0.3;
 
-	public static final double DECIDE_SLA_VIOLATION_GRACE_ERROR = 1.0; // Expected time + 5% is accepted as SLA provided
+	public static final double DECIDE_SLA_VIOLATION_GRACE_ERROR = 100.0; // Expected time + 5% is accepted as SLA
+																			// provided
 
 	public static final double OVERBOOKING_RATIO_UTIL_PORTION = (OVERBOOKING_RATIO_MAX - OVERBOOKING_RATIO_MIN) * 0.2;
 	public static final double OVERLOAD_HOST_PERCENTILE_THRESHOLD = 0.0; // If 5% of time is overloaded, host is
@@ -156,7 +157,7 @@ public class Configuration {
 	public static boolean DISABLE_FAILURE_RECOVERY = true; // True: Do not injuct fail over event.
 	public static boolean DISABLE_MEMORY_QUEUE = true; // True: Do not use MemoryQueue.
 
-	public static final double TIME_OUT = 500; // Double.POSITIVE_INFINITY; //
+	public static final double TIME_OUT = 100; // Double.POSITIVE_INFINITY; //
 
 	public static final int DEFAULT_FLOW_ID = 0;
 
