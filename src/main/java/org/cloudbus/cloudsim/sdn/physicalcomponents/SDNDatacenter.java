@@ -453,7 +453,7 @@ public class SDNDatacenter extends Datacenter {
 														// completed
 		pkt.setPacketFinishTime(CloudSim.clock());
 		Request req = pkt.getPayload();
-		if (req == null || req.isFinished()) {
+		if (req.getNextActivity() == null) {
 			// All requests are finished, no more activities to do. Return to user
 			send(req.getUserId(), CloudSim.getMinTimeBetweenEvents(), CloudSimTagsSDN.REQUEST_COMPLETED, req);
 		} else {

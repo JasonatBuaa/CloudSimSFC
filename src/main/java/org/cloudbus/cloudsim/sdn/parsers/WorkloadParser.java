@@ -179,16 +179,7 @@ public class WorkloadParser {
 			toVmId = this.getVmId(lineitems.poll());
 			System.out.println(
 					"next request is the final transmission, currently the lineitems size is :" + lineitems.size());
-
 			nextReq = new Request(userId);
-			Cloudlet terminalCl = generateCloudlet(nextReq.getRequestId(), toVmId, 0); // add a Dummy node workload (for
-																						// Egress) so that original
-																						// CloudSimSDN-NFV models could
-																						// be used to deal with workload
-																						// completion.
-			Processing terminalProc = new Processing(terminalCl);
-			nextReq.addActivity(terminalProc);
-			// nextReq.addActivity();
 		}
 		Transmission trans = new Transmission(fromVmId, toVmId, pktSize, flowId, nextReq);
 		req.addActivity(trans);
