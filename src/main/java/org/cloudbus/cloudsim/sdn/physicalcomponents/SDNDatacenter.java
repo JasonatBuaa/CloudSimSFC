@@ -497,7 +497,8 @@ public class SDNDatacenter extends Datacenter {
 		int userId = cl.getUserId();
 		int vmId = cl.getVmId();
 
-		// if (cl.getCloudletLength() == 0)
+		if (cl.getCloudletLength() == 0)
+			System.out.println("Jason: this is the request terminal");
 		// cl.setCloudletLength(1);
 
 		Host host = getVmAllocationPolicy().getHost(vmId, userId);

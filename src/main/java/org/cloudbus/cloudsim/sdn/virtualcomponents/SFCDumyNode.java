@@ -1,5 +1,7 @@
 package org.cloudbus.cloudsim.sdn.virtualcomponents;
 
+import java.util.List;
+
 import org.cloudbus.cloudsim.CloudletScheduler;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
 import org.cloudbus.cloudsim.sdn.sfc.ServiceFunction;
@@ -71,4 +73,10 @@ public class SFCDumyNode extends ServiceFunction {
         // theQueue = new TheQueue(this, queueSize);
         // TODO Auto-generated constructor stub
     }
+
+    // @Override
+    // public double updateVmProcessing(double currentTime, List<Double>
+    // ) {
+    // return 0.0;
+    // }
 }

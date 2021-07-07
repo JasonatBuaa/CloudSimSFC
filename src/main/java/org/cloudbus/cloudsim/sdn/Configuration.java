@@ -154,7 +154,15 @@ public class Configuration {
 	public static boolean ENABLE_COMPUTATION_JITTER = true;
 	public static final double NETWORK_JITTER_SIGMA = 1;
 
+	// public static boolean DISABLE_FAILURE_RECOVERY = true; // True: Do not injuct
+	// fail over event.
 	public static boolean DISABLE_FAILURE_RECOVERY = true; // True: Do not injuct fail over event.
+
+	// Jason: Do not use queue
+	// public static boolean DISABLE_MEMORY_QUEUE = true; // True: Do not use
+	// MemoryQueue.
+
+	// Jason: Use queue
 	public static boolean DISABLE_MEMORY_QUEUE = true; // True: Do not use MemoryQueue.
 
 	public static final double TIME_OUT = 100; // Double.POSITIVE_INFINITY; //

@@ -1,0 +1,54 @@
+Starting CloudSim SDN...
+Starting CloudSim SDN...
+Initialising...
+Global: inter-cloud networking topology created...
+Starting CloudSim version 3.0
+DC2 is starting...
+DC1 is starting...
+Global is starting...
+Entities started.
+0.0: NOS_DC2: Starting deploying application..
+0.0: NOS_DC2: Trying to Create VM #2 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #3 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #1 in DC2, (0.0~Infinity)
+0.0: NOS_DC1: Starting deploying application..
+0.0: NOS_DC1: Trying to Create VM #0 in DC1, (0.0~Infinity)
+0.0: NOS_Global: Starting deploying application..
+0.0: NOS_DC2: VM Created: VM #2 (chain1_psfc1SF-A) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #3 (chain1_psfc1SF-B) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #1 (Egress1) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC1: VM Created: VM #0 (Ingress1) in (DC1-HRG4-1) in DC1-HRG4-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (chain1_psfc1SF-A) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (chain1_psfc1SF-B) in (DC2-HRG5-1)) is underutilized!!! util =0.0

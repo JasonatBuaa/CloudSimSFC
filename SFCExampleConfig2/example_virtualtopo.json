@@ -16,7 +16,7 @@
                 "size": 1000,
                 "pes": 1,
                 "mips": 500,
-                "queuesize": 128
+                "queuesize": 12800
             },
             {
                 "name": "chain1_psfc1-SF-B",
@@ -24,7 +24,7 @@
                 "size": 1000,
                 "pes": 1,
                 "mips": 500,
-                "queuesize": 128
+                "queuesize": 12800
             }
         ],
         "links": [
