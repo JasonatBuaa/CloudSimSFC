@@ -61,7 +61,7 @@ public class WorkloadParser {
 		this.vmNames = vmNameIdMap;
 		this.flowNames = flowNameIdMap;
 
-		String result_file = getResultFileName(this.file);
+		String result_file = Configuration.RESULT_FOLDER + getResultFileName(this.file);
 		resultWriter = new WorkloadResultWriter(result_file);
 		openFile();
 	}
@@ -89,7 +89,10 @@ public class WorkloadParser {
 			String path_folder = fileName.substring(0, indexSlash + 1);
 			String path_file = fileName.substring(indexSlash + 1);
 			// result_file = path_folder + "result_" + path_file;
-			result_file = path_folder + "result_";
+
+			String now = String.valueOf(new Date().getTime());
+			// Long date = new Long
+			result_file = path_folder + now.substring(now.length() / 2) + "result_";
 			// result_file += (StartAvailability.failOverDebug ? "" : "Availability");
 			// result_file += (StartAvailability.queueDebug ? "" : "Queue");
 

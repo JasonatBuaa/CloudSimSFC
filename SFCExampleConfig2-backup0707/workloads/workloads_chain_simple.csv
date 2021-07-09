@@ -1,3 +1,0 @@
-time(s),target_sfc,Ingress,InitialRequestSize,Transmission1(MB),VM1,cloudlet.1(MI),Transmission2(MB),VM2,cloudlet.2(MI),Transmission3(MB),Egress,latency_demand(s)
-1.0,chain1,Ingress1,100,100,SF-A,110,150,SF-B,750,100,Egress1,10.0
-100.0,chain1,Ingress1,110,110,SF-A,101,165,SF-B,825,110,Egress1,10.0

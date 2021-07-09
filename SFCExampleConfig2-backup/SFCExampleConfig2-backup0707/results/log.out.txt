@@ -1,0 +1,120 @@
+Starting CloudSim SDN...
+Starting CloudSim SDN...
+Initialising...
+Global: inter-cloud networking topology created...
+Starting CloudSim version 3.0
+DC2 is starting...
+DC1 is starting...
+Global is starting...
+Entities started.
+0.0: NOS_DC2: Starting deploying application..
+0.0: NOS_DC2: Trying to Create VM #2 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #3 in DC2, (0.0~Infinity)
+0.0: NOS_DC2: Trying to Create VM #1 in DC2, (0.0~Infinity)
+0.0: NOS_DC1: Starting deploying application..
+0.0: NOS_DC1: Trying to Create VM #0 in DC1, (0.0~Infinity)
+0.0: NOS_Global: Starting deploying application..
+0.0: NOS_DC2: VM Created: VM #2 (chain1_psfc1SF-A) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #3 (chain1_psfc1SF-B) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC2: VM Created: VM #1 (Egress1) in (DC2-HRG5-1) in DC2-HRG5-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: NOS_DC1: VM Created: VM #0 (Ingress1) in (DC1-HRG4-1) in DC1-HRG4-1
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(1)
+0.0: VMs are in different hosts:DC1-HRG4-1(0)->DC2-HRG5-1(2)
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+0.0: Source SDN Host is same as Destination. Go loopback
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (chain1_psfc1SF-B) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+1.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (chain1_psfc1SF-A) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+100.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (chain1_psfc1SF-B) in (DC2-HRG5-1)) is underutilized!!! util =0.012904950824309034
+100.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (chain1_psfc1SF-A) in (DC2-HRG5-1)) is underutilized!!! util =0.0028876225755616615
+101.0: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (chain1_psfc1SF-A) in (DC2-HRG5-1)) is underutilized!!! util =0.19468151903807615
+102.25646823475721: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (chain1_psfc1SF-A) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+103.25646823475721: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #3 (chain1_psfc1SF-B) in (DC2-HRG5-1)) is underutilized!!! util =0.3033225050301811
+103.25646823475721: ServiceFunctionAutoScaler.scaleSFC(): SF(VM #2 (chain1_psfc1SF-A) in (DC2-HRG5-1)) is underutilized!!! util =0.0
+103.25646823475721: Simulation: No more future events
+CloudInformationService: Notify all CloudSim entities for shutting down.
+DC2 is shutting down...
+DC1 is shutting down...
+Global is shutting down...
+103.25646823475721: Broker: Shuttingdown.. VM:2
+103.25646823475721: Broker: Shuttingdown.. VM:3
+103.25646823475721: Broker: Shuttingdown.. VM:1
+103.25646823475721: Broker: Shuttingdown.. VM:0
+Simulation completed.
+Simulation completed.
+============= SDNBroker.printResult() =============================
+Workloads Num: 2
+Workloads CPU Num: 6
+Workloads Network Num: 6
+Workloads Timed Out Num: 0
+Total serve time: 4.365302971564961
+Total serve time CPU: 3.840330261441554
+Total serve time Network: 0.7469687810700743
+Avg serve time: 2.1826514857824804
+Overall overtime percentage: 0.0
+Avg serve time CPU: 0.6400550435735923
+CPU overtime percentage: 0.0
+Avg serve time Network: 0.12449479684501237
+Network overtime percentage: 1.0
+============= SDNBroker.printResult() Group analysis =======================
+Group num: 0, groupNumWorkloads:2
+Group num: 0, groupTotalServetime:4.365302971564961
+Group num: 0, groupTotalServetimeCPU:3.840330261441554
+Group num: 0, groupTotalServetimeNetwork:0.7469687810700743
+Group num: 0, group avg Serve time:2.1826514857824804
+Group num: 0, group avg Serve time CPU:1.920165130720777
+Group num: 0, group avg Serve time Network:0.3734843905350371
+103.25646823475721: ========== EXPERIMENT FINISHED ===========
+========== HOST POWER CONSUMPTION based on Actual Workload processing ===========
+Host #5: 0.0
+Host #4: 0.0
+Host #3: 0.0
+Host #0: 3.4422085800334017
+========== SWITCH POWER CONSUMPTION AND DETAILED UTILIZATION ===========
+Switch:DC1-HRG4-core2: 0.004007425020565568
+Switch:DC1-HRG3-core1: 0.0
+Switch:DC1-gateway: 0.004007425020565568
+Switch:intercloud: 0.004007425020565568
+Switch:DC1-gateway: 0.004007425020565568
+Switch:DC2-gateway: 0.004007425020565568
+Switch:DC2-HRG5-core1: 0.004007425020565568
+Switch:DC2-gateway: 0.004007425020565568
+========== HOST Overload percentage ===========
+Overload Host #5: 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Overload Host #4: 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Overload Host #3: 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Overload Host #0: 0.0/0.0=0.0... Scaled Overload duration= 0.0
+========== VM Overload percentage ===========
+Vm(VM #0 (Ingress1) in (DC1-HRG4-1)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Vm(VM #2 (chain1_psfc1SF-A) in (DC2-HRG5-1)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Vm(VM #3 (chain1_psfc1SF-B) in (DC2-HRG5-1)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Vm(VM #1 (Egress1) in (DC2-HRG5-1)): 0.0/0.0=0.0... Scaled Overload duration= 0.0
+Simultanously used hosts:0
+CloudSim SDN finished!

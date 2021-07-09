@@ -7,11 +7,14 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+// import javax.security.auth.login.Configuration;
+
 import org.apache.commons.lang3.ObjectUtils.Null;
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.Log;
 // import org.cloudbus.cloudsim.ResCloudlet;
 import org.cloudbus.cloudsim.core.CloudSim;
+import org.cloudbus.cloudsim.sdn.Configuration;
 
 /**
  * 
@@ -35,7 +38,7 @@ public class MemoryQueue {
      */
     private long queueRemainingSpace; // KB
     private long queueTotalSpace;
-    private int multiplerUnit = 1000;
+    private int multiplerUnit = Configuration.QUEUE_SPACE_MULTIPLY;
 
     private QueuedVM vmInfotoDebug = null;
     // private QueuedVM owner = null;
@@ -85,6 +88,7 @@ public class MemoryQueue {
                     + (this.vmInfotoDebug == null ? "" : ": " + this.vmInfotoDebug));
             System.out.println("Not enough queue size!!! Queue in: " + currentTime()
                     + (this.vmInfotoDebug == null ? "" : ": " + this.vmInfotoDebug));
+
             return ENQUEUE_FAILURE;
         }
         if (cacheQueue.add(ercl)) {

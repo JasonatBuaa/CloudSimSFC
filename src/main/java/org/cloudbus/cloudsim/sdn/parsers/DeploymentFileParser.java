@@ -50,8 +50,6 @@ import com.google.common.collect.Table;
  */
 public class DeploymentFileParser {
 
-	private static int flowNumbers = 0;
-
 	private Multimap<String, SDNVm> vmList; // the SDNVm has been updated into the class of QueuedVM
 	private List<ServiceFunction> sfList = new
 	// private List<>

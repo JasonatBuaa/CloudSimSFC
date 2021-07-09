@@ -12,6 +12,8 @@ public class Configuration {
 	// public static String workingDirectory = "./jason";
 	public static String workingDirectory = "./";
 	public static String experimentName = "";
+	public static String ROOT_FOLDER = "SFCExampleConfig2/";
+	public static String RESULT_FOLDER = ROOT_FOLDER + "results/";
 
 	// public static double minTimeBetweenEvents = 0.01;//0.01; // in sec
 	// public static int resolutionPlaces = 1;
@@ -106,6 +108,8 @@ public class Configuration {
 	public static final double CPU_SIZE_MULTIPLY = 1; // Multiply all the CPU size for scale. Default =1 (No amplify)
 	public static final double NETWORK_PACKET_SIZE_MULTIPLY = 1; // Multiply all the network packet size. Default =1 (No
 																	// amplify)
+	public static final int QUEUE_SPACE_MULTIPLY = 20;
+	// public static final int WORKLOAD_MULTIPLY = 10;
 
 	public static double monitoringTimeInterval = 5; // every 1800 seconds, polling utilization.
 
@@ -163,7 +167,7 @@ public class Configuration {
 	// MemoryQueue.
 
 	// Jason: Use queue
-	public static boolean DISABLE_MEMORY_QUEUE = true; // True: Do not use MemoryQueue.
+	public static boolean DISABLE_MEMORY_QUEUE = false; // True: Do not use MemoryQueue.
 
 	public static final double TIME_OUT = 100; // Double.POSITIVE_INFINITY; //
 
