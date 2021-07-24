@@ -736,6 +736,7 @@ public class Datacenter extends SimEntity {
 					// unique tag = operation tag
 					int tag = CloudSimTags.CLOUDLET_SUBMIT_ACK;
 					sendNow(cl.getUserId(), tag, data);
+
 				}
 
 				sendNow(cl.getUserId(), CloudSimTags.CLOUDLET_RETURN, cl);
