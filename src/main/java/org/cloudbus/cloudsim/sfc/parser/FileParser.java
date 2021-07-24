@@ -6,6 +6,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.cloudbus.cloudsim.sfc.parser.configGenerator.CustomPhysicalTopologyGenerator;
 import org.cloudbus.cloudsim.sfc.parser.configGenerator.DeploymentScheduler;
+import org.cloudbus.cloudsim.util.JsonUtils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -29,7 +30,6 @@ public class FileParser {
     public FileParser(String rootPath) {
         this.rootPath = rootPath;
         sfcWorkloads = new ArrayList<>();
-
     }
 
     public void parse() {
@@ -47,7 +47,7 @@ public class FileParser {
         physicalTopologyGenerator.generate(resources);
         JSON.DEFAULT_GENERATE_FEATURE = JSON.DEFAULT_GENERATE_FEATURE & ~SerializerFeature.SortField.getMask();
         String jsonstr = JSON.toJSONString(physicalTopologyGenerator, SerializerFeature.PrettyFormat);
-        jsonWrite(rootPath + "PhysicalResource.json", jsonstr);
+        JsonUtils.jsonWrite(rootPath + "PhysicalResource.json", jsonstr);
 
         for (SFCWorkload sfcWorkload : sfcWorkloads) {
             // workloadsCsvWriter(rootPath + "workloads_" + sfcWorkload.getTargetChainName()
@@ -58,19 +58,19 @@ public class FileParser {
         DeploymentScheduler customVirtualTopologyGenerator = new DeploymentScheduler(serverFunctionChains, sfcWorkloads,
                 resources);
         jsonstr = JSON.toJSONString(customVirtualTopologyGenerator, SerializerFeature.PrettyFormat);
-        jsonWrite(rootPath + "virtualTopology.json", jsonstr);
+        JsonUtils.jsonWrite(rootPath + "virtualTopology.json", jsonstr);
     }
 
     public void parseResource() {
         String path = rootPath + resourceFileName;
-        String jsonStr = jsonRead(path);
+        String jsonStr = JsonUtils.jsonRead(path);
         resources = JSONObject.parseObject(jsonStr, new TypeReference<List<Resource>>() {
         });
     }
 
     public void parseServiceFunctionChain() {
         String path = rootPath + SFCDemandFileName;
-        String jsonStr = jsonRead(path);
+        String jsonStr = JsonUtils.jsonRead(path);
         serverFunctionChains = JSONObject.parseObject(jsonStr, new TypeReference<List<ServiceFunctionChain>>() {
         });
 
@@ -78,43 +78,13 @@ public class FileParser {
 
     public void parseServiceFunction() {
         String path = rootPath + serverFunctionFileName;
-        String jsonStr = jsonRead(path);
+        String jsonStr = JsonUtils.jsonRead(path);
         serverFunctions = JSONObject.parseObject(jsonStr, new TypeReference<List<ServiceFunction>>() {
         });
     }
 
-    public String jsonRead(String path) {
-        String jsonStr = "";
-        try {
-            File jsonFile = new File(path);
-            Reader reader = new InputStreamReader(new FileInputStream(jsonFile));
-            int ch = 0;
-            StringBuffer sb = new StringBuffer();
-            while ((ch = reader.read()) != -1) {
-                sb.append((char) ch);
-            }
-            reader.close();
-            jsonStr = sb.toString();
 
-            return jsonStr;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
-    public void jsonWrite(String path, String jsonStr) {
-        try {
-            File jsonFile = new File(path);
-            OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(jsonFile));
-            writer.write(jsonStr);
-            writer.flush();
-            writer.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void workloadsCsvWriter(String path, SFCWorkload sfcWorkload) {
         try {

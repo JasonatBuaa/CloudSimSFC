@@ -4,8 +4,8 @@ import java.util.*;
 
 public class SFCWorkload {
     public String targetChainName;
-    public List<ServiceFunctionChain.InOutDc> ingress;
-    public List<ServiceFunctionChain.InOutDc> egress;
+    public List<InOutDc> ingress;
+    public List<InOutDc> egress;
     public int chainInputSize;
     public int startTime;
     public int endTime;
@@ -73,10 +73,10 @@ public class SFCWorkload {
 
     public void initInEgressNode() {
         float inWeight = 0, outWeight = 0;
-        for (ServiceFunctionChain.InOutDc in : ingress) {
+        for (InOutDc in : ingress) {
             inWeight += in.getWeight() * 10;
         }
-        for (ServiceFunctionChain.InOutDc out : egress) {
+        for (InOutDc out : egress) {
             outWeight += out.getWeight() * 10;
         }
         baseWeight = new Float(inWeight * outWeight).intValue();
@@ -112,19 +112,19 @@ public class SFCWorkload {
         this.targetChainName = targetChainName;
     }
 
-    public List<ServiceFunctionChain.InOutDc> getIngress() {
+    public List<InOutDc> getIngress() {
         return ingress;
     }
 
-    public void setIngress(List<ServiceFunctionChain.InOutDc> ingress) {
+    public void setIngress(List<InOutDc> ingress) {
         this.ingress = ingress;
     }
 
-    public List<ServiceFunctionChain.InOutDc> getEgress() {
+    public List<InOutDc> getEgress() {
         return egress;
     }
 
-    public void setEgress(List<ServiceFunctionChain.InOutDc> egress) {
+    public void setEgress(List<InOutDc> egress) {
         this.egress = egress;
     }
 

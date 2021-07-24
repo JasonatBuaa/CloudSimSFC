@@ -1,8 +1,8 @@
 package org.cloudbus.cloudsim.sfc.parser.configGenerator;
 
+import org.cloudbus.cloudsim.sfc.parser.InOutDc;
 import org.cloudbus.cloudsim.sfc.parser.Resource;
 import org.cloudbus.cloudsim.sfc.parser.SFCWorkload;
-import org.cloudbus.cloudsim.sfc.parser.ServiceFunction;
 import org.cloudbus.cloudsim.sfc.parser.ServiceFunctionChain;
 
 import java.util.ArrayList;
@@ -41,11 +41,11 @@ public class DeploymentScheduler {
         String inDc = resources.get(0).getName();
         String outDc = resources.get(resources.size() - 1).getName();
         for (SFCWorkload sfcWorkload : sfcWorkloads) {
-            for (ServiceFunctionChain.InOutDc inOutDc : sfcWorkload.getIngress()) {
+            for (InOutDc inOutDc : sfcWorkload.getIngress()) {
                 nodes.add(new VirtualTopologyVmIE(inOutDc.getName(), "Ingress", inDc));
             }
 
-            for (ServiceFunctionChain.InOutDc inOutDc : sfcWorkload.getEgress()) {
+            for (InOutDc inOutDc : sfcWorkload.getEgress()) {
                 nodes.add(new VirtualTopologyVmIE(inOutDc.getName(), "Egress", outDc));
             }
         }
@@ -54,7 +54,7 @@ public class DeploymentScheduler {
 
             List<String> sfs = sfc.getChain();
             int count = 1;
-            for (ServiceFunctionChain.InOutDc ingress : sfc.getIngressDCs()) {
+            for (InOutDc ingress : sfc.getIngressDCs()) {
                 String physicalChainName = sfc.getName() + "_psfc" + count;
                 for (String sf : sfs) {
                     String sfInstanceName = physicalChainName + sf;
@@ -76,9 +76,9 @@ public class DeploymentScheduler {
     public void generateLinks(List<ServiceFunctionChain> serverFunctionChains) {
         for (ServiceFunctionChain serviceFunctionChain : serverFunctionChains) {
             int count = 1;
-            for (ServiceFunctionChain.InOutDc ingress : serviceFunctionChain.getIngressDCs()) {
+            for (InOutDc ingress : serviceFunctionChain.getIngressDCs()) {
                 int count_ingress = 1;
-                for (ServiceFunctionChain.InOutDc egerss : serviceFunctionChain.getEgressDCs()) {
+                for (InOutDc egerss : serviceFunctionChain.getEgressDCs()) {
                     int count_egerss = 1;
                     VirtualTopologyLink virtualTopologyLink = new VirtualTopologyLink(
                             ingress.getName() + "-" + egerss.getName(), ingress.getName(), egerss.getName(), 1000);
@@ -94,9 +94,9 @@ public class DeploymentScheduler {
     public void generatePolicies(List<ServiceFunctionChain> serverFunctionChains) {
         for (ServiceFunctionChain serviceFunctionChain : serverFunctionChains) {
             int count = 1;
-            for (ServiceFunctionChain.InOutDc ingress : serviceFunctionChain.getIngressDCs()) {
+            for (InOutDc ingress : serviceFunctionChain.getIngressDCs()) {
                 String physicalChainName = serviceFunctionChain.getName() + "_psfc" + count;
-                for (ServiceFunctionChain.InOutDc egerss : serviceFunctionChain.getEgressDCs()) {
+                for (InOutDc egerss : serviceFunctionChain.getEgressDCs()) {
                     List<String> includedSFs = new ArrayList<>();
                     for (String logicalSF : serviceFunctionChain.getChain()) {
                         String sfInstanceName = physicalChainName + logicalSF;

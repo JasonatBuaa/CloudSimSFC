@@ -1,5 +1,6 @@
 package org.cloudbus.cloudsim.sfc.parser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceFunctionChain {
@@ -23,6 +24,9 @@ public class ServiceFunctionChain {
     }
 
     public ServiceFunctionChain() {
+        Chain = new ArrayList<>();
+        IngressDCs = new ArrayList<>();
+        EgressDCs = new ArrayList<>();
     }
 
     public List<InOutDc> getIngressDCs() {
@@ -31,6 +35,10 @@ public class ServiceFunctionChain {
 
     public void setIngressDCs(List<InOutDc> ingressDCs) {
         IngressDCs = ingressDCs;
+    }
+
+    public void addIngressDCs(){
+
     }
 
     public List<InOutDc> getEgressDCs() {
@@ -106,38 +114,5 @@ public class ServiceFunctionChain {
                 + "\nCreateTime=" + CreateTime + ',' + "\nDestroyTime=" + DestroyTime + ',' + "}\n";
     }
 
-    public class InOutDc {
-        private String Name;
-        private float Weight;
 
-        public InOutDc() {
-
-        }
-
-        public InOutDc(String name, float weight) {
-            Name = name;
-            Weight = weight;
-        }
-
-        public String getName() {
-            return Name;
-        }
-
-        public void setName(String name) {
-            Name = name;
-        }
-
-        public float getWeight() {
-            return Weight;
-        }
-
-        public void setWeight(float weight) {
-            Weight = weight;
-        }
-
-        @Override
-        public String toString() {
-            return "InOutDc{" + "Name='" + Name + '\'' + ", Weight=" + Weight + '}';
-        }
-    }
 }
