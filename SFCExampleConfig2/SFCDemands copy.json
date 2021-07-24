@@ -19,12 +19,6 @@
         "DC": "edge2"
       }
     ],
-    "EgressDCs": [
-      {
-        "Name": "Egress1",
-        "Weight": 1
-      }
-    ],
     "AverageInputSize": 100,
     "CreateTime": 3700,
     "DestroyTime": 10001
@@ -39,11 +33,7 @@
     "IngressDCs": [
       {
         "Name": "Ingress3",
-        "Weight": 0.3
-      },
-      {
-        "Name": "Ingress4",
-        "Weight": 0.7
+        "Weight": 1
       }
     ],
     "EgressDCs": [
