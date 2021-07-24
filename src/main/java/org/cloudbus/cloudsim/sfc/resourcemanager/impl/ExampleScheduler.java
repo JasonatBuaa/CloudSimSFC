@@ -1,4 +1,4 @@
-package org.cloudbus.cloudsim.sfc.monitor;
+package org.cloudbus.cloudsim.sfc.resourcemanager.impl;
 
 import org.cloudbus.cloudsim.Host;
 import org.cloudbus.cloudsim.sfc.monitor.impl.MonitorImpl;

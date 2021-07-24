@@ -54,7 +54,7 @@ public class SDNBroker extends SimEntity {
 
 	public static int lastAppId = 0;
 
-	private static Map<String, SDNDatacenter> datacenters = new HashMap<String, SDNDatacenter>();
+	public static Map<String, SDNDatacenter> datacenters = new HashMap<String, SDNDatacenter>();
 	private static Map<Integer, SDNDatacenter> vmIdToDc = new HashMap<Integer, SDNDatacenter>();
 
 	private String applicationFileName = null;
@@ -303,7 +303,7 @@ public class SDNBroker extends SimEntity {
 				}
 				SDNBroker.vmIdToDc.put(vm.getId(), dc);
 			}
-			System.out.println("test");
+			// System.out.println("test");
 		}
 
 		for (FlowConfig arc : parser.getArcList()) {

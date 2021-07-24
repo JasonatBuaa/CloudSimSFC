@@ -1,7 +1,7 @@
-package org.cloudbus.cloudsim.sfc.monitor.impl;
+package org.cloudbus.cloudsim.sfc.resourcemanager.impl;
 
 import org.cloudbus.cloudsim.Host;
-import org.cloudbus.cloudsim.sfc.monitor.MonitorInterface;
+import org.cloudbus.cloudsim.sfc.resourcemanager.MonitorInterface;
 
 import java.util.List;
 import java.util.Map;
