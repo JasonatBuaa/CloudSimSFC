@@ -16,6 +16,7 @@ public class VirtualTopologyVmSF extends VirtualTopologyVM {
    public int pes;
    public int mips;
    public int queuesize;
+   public String dc;
 
    public VirtualTopologyVmSF(String name, String type, int size, int pes, int mips, int queuesize) {
       super(name, type);
@@ -23,6 +24,14 @@ public class VirtualTopologyVmSF extends VirtualTopologyVM {
       this.pes = pes;
       this.mips = mips;
       this.queuesize = queuesize;
+   }
+   public VirtualTopologyVmSF(String name, String type, int size, int pes, int mips, int queuesize, String dc) {
+      super(name, type);
+      this.size = size;
+      this.pes = pes;
+      this.mips = mips;
+      this.queuesize = queuesize;
+      this.dc = dc;
    }
 
    public int getSize() {
@@ -55,5 +64,13 @@ public class VirtualTopologyVmSF extends VirtualTopologyVM {
 
    public void setQueuesize(int queuesize) {
       this.queuesize = queuesize;
+   }
+
+   public String getDc() {
+      return dc;
+   }
+
+   public void setDc(String dc) {
+      this.dc = dc;
    }
 }

@@ -30,12 +30,12 @@ public class SFCWorkload {
     }
 
     private void generateRequest(ServiceFunctionChain serviceFunctionChain) {
-        int requestSize = (endTime - startTime) / 10;
+        int requestSize = (endTime - startTime) / 1;
         int count = 0;
         Random random = new Random();
         List<String> chain = serviceFunctionChain.getChain();
         while (count <= requestSize) {
-            int time = count * 10 + startTime;
+            int time = count * 1 + startTime;
             SFCRequest sfcRequest = new SFCRequest(time);
             setInEgress(sfcRequest, count);
             int index = 0, performance, outputSize = 0;
