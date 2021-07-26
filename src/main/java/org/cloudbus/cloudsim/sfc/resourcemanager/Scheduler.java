@@ -1,4 +1,4 @@
-package org.cloudbus.cloudsim.sfc.schedule;
+package org.cloudbus.cloudsim.sfc.resourcemanager;
 
 import org.cloudbus.cloudsim.Host;
 
@@ -12,8 +12,8 @@ public class Scheduler {
         this.monitor = monitor;
     }
 
-    public void parseSFCDemand(){
-    
+    public void parseSFCDemand() {
+
     }
     // public List<Host>
 }

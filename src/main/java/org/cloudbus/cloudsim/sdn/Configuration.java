@@ -167,7 +167,7 @@ public class Configuration {
 	// MemoryQueue.
 
 	// Jason: Use queue
-	public static boolean DISABLE_MEMORY_QUEUE = false; // True: Do not use MemoryQueue.
+	public static boolean DISABLE_MEMORY_QUEUE = true; // True: Do not use MemoryQueue.
 
 	public static final double TIME_OUT = 100; // Double.POSITIVE_INFINITY; //
 

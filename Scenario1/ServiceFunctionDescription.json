@@ -1,0 +1,37 @@
+[
+  {
+    "Name": "SF-A",
+    "Type": "FireWall",
+    "InputRate": 1.0,
+    "OutputRate": 1.5,
+    "Performance": 10
+  },
+  {
+    "Name": "SF-B",
+    "Type": "LoadBalance",
+    "InputRate": 2.0,
+    "OutputRate": 1.0,
+    "Performance": 5
+  },
+  {
+    "Name": "SF-C",
+    "Type": "ApacheServer",
+    "InputRate": 1.5,
+    "OutputRate": 1.0,
+    "Performance": 10
+  },
+  {
+    "Name": "SF-D",
+    "Type": "Other",
+    "InputRate": 1.8,
+    "OutputRate": 1.0,
+    "Performance": 30
+  },
+  {
+    "Name": "SF-E",
+    "Type": "Other",
+    "InputRate": 1.2,
+    "OutputRate": 1.0,
+    "Performance": 30
+  }
+]

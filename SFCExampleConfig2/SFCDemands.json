@@ -10,13 +10,11 @@
     "IngressDCs": [
       {
         "Name": "Ingress1",
-        "Weight": 0.5,
-        "DC": "edge1"
+        "Weight": 0.5
       },
       {
         "Name": "Ingress2",
-        "Weight": 0.5,
-        "DC": "edge2"
+        "Weight": 0.5
       }
     ],
     "EgressDCs": [

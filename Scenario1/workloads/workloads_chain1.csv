@@ -1,0 +1,11 @@
+time(s),target_sfc,Ingress,InitialRequestSize,Transmission1(MB),VM1,cloudlet.1(MI),Transmission2(MB),VM2,cloudlet.2(MI),Transmission3(MB),VM3,cloudlet.3(MI),Transmission4(MB),VM4,cloudlet.4(MI),Transmission5(MB),Egress,latency_demand(s)
+3700.0,chain1,Ingress1,110,110,SF-A,1100,165,SF-B,825,110,SF-C,1100,91,SF-D,2730,91,Egress1,10.0
+3710.0,chain1,Ingress1,100,100,SF-A,1000,150,SF-B,750,100,SF-C,1000,83,SF-D,2490,83,Egress1,10.0
+3720.0,chain1,Ingress1,110,110,SF-A,1100,165,SF-B,825,110,SF-C,1100,91,SF-D,2730,91,Egress1,10.0
+3730.0,chain1,Ingress1,100,100,SF-A,1000,150,SF-B,750,100,SF-C,1000,83,SF-D,2490,83,Egress1,10.0
+3740.0,chain1,Ingress1,100,100,SF-A,1000,150,SF-B,750,100,SF-C,1000,83,SF-D,2490,83,Egress1,10.0
+3750.0,chain1,Ingress1,100,100,SF-A,1000,150,SF-B,750,100,SF-C,1000,83,SF-D,2490,83,Egress1,10.0
+3760.0,chain1,Ingress1,100,100,SF-A,1000,150,SF-B,750,100,SF-C,1000,83,SF-D,2490,83,Egress1,10.0
+3770.0,chain1,Ingress1,110,110,SF-A,1100,165,SF-B,825,110,SF-C,1100,91,SF-D,2730,91,Egress1,10.0
+3780.0,chain1,Ingress1,100,100,SF-A,1000,150,SF-B,750,100,SF-C,1000,83,SF-D,2490,83,Egress1,10.0
+3790.0,chain1,Ingress1,110,110,SF-A,1100,165,SF-B,825,110,SF-C,1100,91,SF-D,2730,91,Egress1,10.0
