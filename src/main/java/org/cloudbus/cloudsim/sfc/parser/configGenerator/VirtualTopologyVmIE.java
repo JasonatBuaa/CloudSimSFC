@@ -34,11 +34,11 @@ public class VirtualTopologyVmIE extends VirtualTopologyVmSF {
         this.datacenter = datacenter;
     }
 
-    public String getdc() {
+    public String getDatacenter() {
         return datacenter;
     }
 
-    public void setdc(String datacenter) {
+    public void setDatacenter(String datacenter) {
         this.datacenter = datacenter;
     }
 }

@@ -22,6 +22,8 @@ public class WorkloadResultWriter {
 	private String filename;
 	private LogWriter out = null;
 
+	private LogWriter abs_out = null;
+
 	// For statistics
 	private double totalServeTime; // All serve time
 	private double cpuServeTime; // CPU only
@@ -52,6 +54,43 @@ public class WorkloadResultWriter {
 		// workloadToPrint = new PriorityQueue<Workload>();
 		// thread = new WorkloadResultWriterThread(this);
 		// new Thread(thread).start();
+	}
+
+	public void setAbstractFile(String abs_file_name) {
+		abs_out = LogWriter.getLogger(abs_file_name);
+	}
+
+	public void writeAbsResult() {
+		abs_out.printLine("#======================================");
+		abs_out.printLine("#Number of workloads:" + printedWorkloadNum);
+		abs_out.printLine("#Timeout workloads:" + timeoutNum);
+		if (timeoutNum + printedWorkloadNum != 0)
+			abs_out.printLine("#Timeout workloads per cent:" + timeoutNum * 1.00 / (timeoutNum + printedWorkloadNum));
+
+		abs_out.printLine("#Over workloads:" + overNum);
+		if (printedWorkloadNum != 0)
+			abs_out.printLine("#Over workloads per cent:" + overNum * 1.00 / printedWorkloadNum);
+		abs_out.printLine("#Number of Cloudlets:" + cloudletNum);
+		abs_out.printLine("#Over Cloudlets:" + cloudletOverNum);
+		if (cloudletNum != 0)
+			abs_out.printLine("#Over Cloudlets per cent:" + cloudletOverNum * 1.00 / cloudletNum);
+		abs_out.printLine("#Number of transmissions:" + transmissionNum);
+		abs_out.printLine("#Over transmissions:" + transmissionOverNum);
+		if (transmissionNum != 0)
+			abs_out.printLine("#Over transmissions per cent:" + transmissionOverNum * 1.00 / transmissionNum);
+		abs_out.printLine("#======================================");
+		abs_out.printLine("#Total serve time:" + totalServeTime);
+		abs_out.printLine("#CPU serve time:" + cpuServeTime);
+		abs_out.printLine("#Network serve time:" + networkServeTime);
+		if (printedWorkloadNum != 0) {
+			abs_out.printLine("#Average total serve time:" + totalServeTime / printedWorkloadNum);
+			abs_out.printLine("#Average CPU serve time per workload:" + cpuServeTime / printedWorkloadNum);
+			abs_out.printLine("#Average network serve time per workload:" + networkServeTime / printedWorkloadNum);
+		}
+		if (cloudletNum != 0)
+			abs_out.printLine("#Average CPU serve time per Cloudlet:" + cpuServeTime / cloudletNum);
+		if (transmissionNum != 0)
+			abs_out.printLine("#Average network serve time per transmission:" + networkServeTime / transmissionNum);
 	}
 
 	public void writeResult(Workload wl) {
@@ -292,6 +331,8 @@ public class WorkloadResultWriter {
 		// threadExit();
 		printLine("#======================================");
 		flushWorkloadBuffer();
+
+		writeAbsResult();
 
 		printLine("#======================================");
 		printLine("#Number of workloads:" + printedWorkloadNum);

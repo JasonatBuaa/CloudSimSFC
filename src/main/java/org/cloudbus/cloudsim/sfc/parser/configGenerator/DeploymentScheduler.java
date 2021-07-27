@@ -28,6 +28,12 @@ public class DeploymentScheduler {
         generate(serverFunctionChains, sfcWorkloads, resources);
     }
 
+    public DeploymentScheduler() {
+        nodes = new ArrayList<>();
+        links = new ArrayList<>();
+        policies = new ArrayList<>();
+    }
+
     public void generate(List<ServiceFunctionChain> serverFunctionChains, List<SFCWorkload> sfcWorkloads,
             List<Resource> resources) {
         generateNodes(sfcWorkloads, resources, serverFunctionChains);
@@ -38,16 +44,27 @@ public class DeploymentScheduler {
     public void generateNodes(List<SFCWorkload> sfcWorkloads, List<Resource> resources,
             List<ServiceFunctionChain> serviceFunctionChains) {
         // Generate Ingress,Egress
-        String inDc = resources.get(0).getName();
-        String outDc = resources.get(resources.size() - 1).getName();
-        for (SFCWorkload sfcWorkload : sfcWorkloads) {
-            for (InOutDc inOutDc : sfcWorkload.getIngress()) {
-                nodes.add(new VirtualTopologyVmIE(inOutDc.getName(), "Ingress", inDc));
+        // String inDc = resources.get(0).getName();
+        // String outDc = resources.get(resources.size() - 1).getName();
+        // for (SFCWorkload sfcWorkload : sfcWorkloads) {
+        // for (InOutDc inOutDc : sfcWorkload.getIngress()) {
+        // nodes.add(new VirtualTopologyVmIE(inOutDc.getName(), "Ingress", inDc));
+        // }
+
+        // // for (InOutDc inOutDc : sfcWorkload.getEgress()) {
+        // // nodes.add(new VirtualTopologyVmIE(inOutDc.getName(), "Egress", outDc));
+        // // }
+        // nodes.add(new VirtualTopologyVmIE(sfcWorkload.getEgress().getName(),
+        // "Egress", outDc));
+        // }
+
+        // Jason: todo! finish this
+        for (ServiceFunctionChain sfc : serviceFunctionChains) {
+            for (InOutDc inDc : sfc.getIngressDCs()) {
+                System.out.println(inDc.getDC());
+                System.out.println(inDc.getName());
             }
 
-            for (InOutDc inOutDc : sfcWorkload.getEgress()) {
-                nodes.add(new VirtualTopologyVmIE(inOutDc.getName(), "Egress", outDc));
-            }
         }
 
         for (ServiceFunctionChain sfc : serviceFunctionChains) {
@@ -78,13 +95,22 @@ public class DeploymentScheduler {
             int count = 1;
             for (InOutDc ingress : serviceFunctionChain.getIngressDCs()) {
                 int count_ingress = 1;
-                for (InOutDc egerss : serviceFunctionChain.getEgressDCs()) {
-                    int count_egerss = 1;
-                    VirtualTopologyLink virtualTopologyLink = new VirtualTopologyLink(
-                            ingress.getName() + "-" + egerss.getName(), ingress.getName(), egerss.getName(), 1000);
-                    count_egerss++;
-                    links.add(virtualTopologyLink);
-                }
+                // for (InOutDc egerss : serviceFunctionChain.getEgressDCs()) {
+                // int count_egerss = 1;
+                // VirtualTopologyLink virtualTopologyLink = new VirtualTopologyLink(
+                // ingress.getName() + "-" + egerss.getName(), ingress.getName(),
+                // egerss.getName(), 1000);
+                // count_egerss++;
+                // links.add(virtualTopologyLink);
+                // }
+                InOutDc egress = serviceFunctionChain.getEgressDCs();
+                int requestSize = serviceFunctionChain.getAverageInputSize();
+                // VirtualTopologyLink virtualTopologyLink = new VirtualTopologyLink(
+                // ingress.getName() + "-" + egress.getName(), ingress.getName(),
+                // egress.getName(), 1000);
+                VirtualTopologyLink virtualTopologyLink = new VirtualTopologyLink(
+                        ingress.getName() + "-" + egress.getName(), ingress.getName(), egress.getName(), requestSize);
+                links.add(virtualTopologyLink);
                 count_ingress++;
             }
         }
@@ -96,20 +122,37 @@ public class DeploymentScheduler {
             int count = 1;
             for (InOutDc ingress : serviceFunctionChain.getIngressDCs()) {
                 String physicalChainName = serviceFunctionChain.getName() + "_psfc" + count;
-                for (InOutDc egerss : serviceFunctionChain.getEgressDCs()) {
-                    List<String> includedSFs = new ArrayList<>();
-                    for (String logicalSF : serviceFunctionChain.getChain()) {
-                        String sfInstanceName = physicalChainName + logicalSF;
-                        includedSFs.add(sfInstanceName);
-                    }
+                // for (InOutDc egerss : serviceFunctionChain.getEgressDCs()) {
+                // List<String> includedSFs = new ArrayList<>();
+                // for (String logicalSF : serviceFunctionChain.getChain()) {
+                // String sfInstanceName = physicalChainName + logicalSF;
+                // includedSFs.add(sfInstanceName);
+                // }
 
-                    VirtualTopologyPolicy virtualTopologyPolicy = new VirtualTopologyPolicy(physicalChainName,
-                            ingress.getName(), serviceFunctionChain.getName(), egerss.getName(),
-                            ingress.getName() + "-" + egerss.getName(), serviceFunctionChain.getCreateTime(),
-                            serviceFunctionChain.getDestroyTime() - serviceFunctionChain.getCreateTime(), includedSFs);
-                    policies.add(virtualTopologyPolicy);
-                    count++;
+                // VirtualTopologyPolicy virtualTopologyPolicy = new
+                // VirtualTopologyPolicy(physicalChainName,
+                // ingress.getName(), serviceFunctionChain.getName(), egerss.getName(),
+                // ingress.getName() + "-" + egerss.getName(),
+                // serviceFunctionChain.getCreateTime(),
+                // serviceFunctionChain.getDestroyTime() - serviceFunctionChain.getCreateTime(),
+                // includedSFs);
+                // policies.add(virtualTopologyPolicy);
+                // count++;
+                // }
+                // Jason : one egress for each SFC
+                InOutDc egerss = serviceFunctionChain.getEgressDCs();
+                List<String> includedSFs = new ArrayList<>();
+                for (String logicalSF : serviceFunctionChain.getChain()) {
+                    String sfInstanceName = physicalChainName + logicalSF;
+                    includedSFs.add(sfInstanceName);
                 }
+
+                VirtualTopologyPolicy virtualTopologyPolicy = new VirtualTopologyPolicy(physicalChainName,
+                        ingress.getName(), serviceFunctionChain.getName(), egerss.getName(),
+                        ingress.getName() + "-" + egerss.getName(), serviceFunctionChain.getCreateTime(),
+                        serviceFunctionChain.getDestroyTime() - serviceFunctionChain.getCreateTime(), includedSFs);
+                policies.add(virtualTopologyPolicy);
+
             }
         }
 

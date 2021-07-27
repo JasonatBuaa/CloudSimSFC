@@ -7,15 +7,15 @@ public class ServiceFunction {
     private String Type;
     private double InputRate;
     private double OutputRate;
-    private int Performance;
+    private int OperationalComplexity;
     public static HashMap<String, ServiceFunction> serverFunctionMap = new HashMap<>();
 
-    public ServiceFunction(String name, String type, double inputRate, double outputRate, int performance) {
+    public ServiceFunction(String name, String type, double inputRate, double outputRate, int operationalComplexity) {
         Name = name;
         Type = type;
         InputRate = inputRate;
         OutputRate = outputRate;
-        Performance = performance;
+        this.OperationalComplexity = operationalComplexity;
         serverFunctionMap.put(Name, this);
     }
 
@@ -51,12 +51,12 @@ public class ServiceFunction {
         OutputRate = outputRate;
     }
 
-    public int getPerformance() {
-        return Performance;
+    public int getOperationalComplexity() {
+        return OperationalComplexity;
     }
 
-    public void setPerformance(int performance) {
-        Performance = performance;
+    public void setOperationalComplexity(int OperationalComplexity) {
+        OperationalComplexity = OperationalComplexity;
     }
 
     public int getOutputSize(int inputSize) {
@@ -66,6 +66,6 @@ public class ServiceFunction {
     @Override
     public String toString() {
         return "ServiceFunction{" + "Name='" + Name + '\'' + ", Type='" + Type + '\'' + ", InputRate=" + InputRate
-                + ", OutputRate=" + OutputRate + ", Performance=" + Performance + '}';
+                + ", OutputRate=" + OutputRate + ", OperationalComplexity=" + OperationalComplexity + '}';
     }
 }

@@ -14,7 +14,7 @@ class FileParserTest {
         Calendar calendar = Calendar.getInstance();
         boolean trace_flag = false; // mean trace events
         // CloudSim.init(num_user, calendar, trace_flag);
-        String physicalTopologyFile = "SFCExampleConfig/PhysicalResource.json";
+        String physicalTopologyFile = "Scenario1/PhysicalResource.json";
 
         // Map<String, NetworkOperatingSystem> dcNameNOS = PhysicalTopologyParser
         // .loadPhysicalTopologyMultiDC(physicalTopologyFile);

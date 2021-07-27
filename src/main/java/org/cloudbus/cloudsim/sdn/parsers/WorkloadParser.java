@@ -40,7 +40,7 @@ public class WorkloadParser {
 	private double forcedFinishTime = Double.POSITIVE_INFINITY;
 
 	private final Map<String, Integer> vmNames;
-	private final Map<String, Integer> flowNames;
+	// private final Map<String, Integer> flowNames;
 	private String file;
 	private int userId;
 	private UtilizationModel utilizationModel;
@@ -59,10 +59,13 @@ public class WorkloadParser {
 		this.userId = userId;
 		this.utilizationModel = cloudletUtilModel;
 		this.vmNames = vmNameIdMap;
-		this.flowNames = flowNameIdMap;
+		// this.flowNames = flowNameIdMap;
 
 		String result_file = Configuration.RESULT_FOLDER + getResultFileName(this.file);
 		resultWriter = new WorkloadResultWriter(result_file);
+
+		String abstract_file = Configuration.RESULT_FOLDER + "_abs_" + getResultFileName(this.file);
+		resultWriter.setAbstractFile(abstract_file);
 		openFile();
 	}
 

@@ -32,25 +32,26 @@ public class ServiceFunctionChainGenerator {
     public ServiceFunctionChainGenerator() {
     }
 
-    public void loadServiceFunctions(){
+    public void loadServiceFunctions() {
         if (null != serverFunctions) {
             return;
         }
         String path = rootPath + serverFunctionFileName;
         String jsonStr = JsonUtils.jsonRead(path);
-        serverFunctions = JSONObject.parseObject(jsonStr, new TypeReference<List<ServiceFunction>>() {});
+        serverFunctions = JSONObject.parseObject(jsonStr, new TypeReference<List<ServiceFunction>>() {
+        });
     }
 
-    public List<ServiceFunctionChain> serverFunctionChainsGenerate(){
+    public List<ServiceFunctionChain> serverFunctionChainsGenerate() {
         List<ServiceFunctionChain> serviceFunctionChainList = new ArrayList<>();
-        int start = 3;//0x00000011
-        int end = 62;//0x00011110;
-        InOutDc ingress = new InOutDc("Ingress1",1,"edge1");
-        InOutDc egress  = new InOutDc("Egress1",1,"edge2");
+        int start = 3;// 0x00000011
+        int end = 62;// 0x00011110;
+        InOutDc ingress = new InOutDc("Ingress1", 1, "edge1");
+        InOutDc egress = new InOutDc("Egress1", 1, "edge2");
         for (; start < end; start++) {
             List<String> chain = new ArrayList<>();
             if ((start & 0x00000001) == 1) {
-                if (new Random().nextDouble() <= 0.5){
+                if (new Random().nextDouble() <= 0.5) {
                     chain.add(serverFunctions.get(0).getName());
                 }
             }
@@ -70,15 +71,16 @@ public class ServiceFunctionChainGenerator {
             if ((start & 0x000000010) == 16) {
                 chain.add(serverFunctions.get(4).getName());
             }
-            if(chain.size() < 2 || chain.size() > 4) {
+            if (chain.size() < 2 || chain.size() > 4) {
                 continue;
             }
             ServiceFunctionChain serviceFunctionChain = new ServiceFunctionChain();
-            serviceFunctionChain.setName("sfc-"+start);
+            serviceFunctionChain.setName("sfc-" + start);
             serviceFunctionChain.getChain().addAll(chain);
             serviceFunctionChain.setAverageInputSize(110);
             serviceFunctionChain.getIngressDCs().add(ingress);
-            serviceFunctionChain.getEgressDCs().add(egress);
+            // serviceFunctionChain.getEgressDCs().add(egress);
+            serviceFunctionChain.setEgressDCs(egress);
             serviceFunctionChain.setCreateTime(0);
             serviceFunctionChain.setDestroyTime(10000);
             serviceFunctionChainList.add(serviceFunctionChain);
@@ -86,11 +88,13 @@ public class ServiceFunctionChainGenerator {
         return serviceFunctionChainList;
     }
 
-    public void run(){
+    public void run() {
         loadServiceFunctions();
         List<ServiceFunctionChain> serviceFunctionChainList = serverFunctionChainsGenerate();
-        //JSON.DEFAULT_GENERATE_FEATURE = JSON.DEFAULT_GENERATE_FEATURE & ~SerializerFeature.SortField.getMask();
-        //String jsonStr = JSON.toJSONString(serviceFunctionChainList, SerializerFeature.PrettyFormat);
+        // JSON.DEFAULT_GENERATE_FEATURE = JSON.DEFAULT_GENERATE_FEATURE &
+        // ~SerializerFeature.SortField.getMask();
+        // String jsonStr = JSON.toJSONString(serviceFunctionChainList,
+        // SerializerFeature.PrettyFormat);
         String jsonStr = JSON.toJSONString(serviceFunctionChainList);
         JsonUtils.jsonWrite(rootPath + SFCDemandFileName, jsonStr);
     }

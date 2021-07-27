@@ -10,21 +10,17 @@
     "IngressDCs": [
       {
         "Name": "Ingress1",
-        "Weight": 0.5
-      },
-      {
-        "Name": "Ingress2",
-        "Weight": 0.5
+        "Weight": 1,
+        "DC": "DC2"
       }
     ],
-    "EgressDCs": [
-      {
-        "Name": "Egress1",
-        "Weight": 1
-      }
-    ],
-    "AverageInputSize": 100,
-    "CreateTime": 3700,
+    "EgressDCs": {
+      "Name": "Egress1",
+      "Weight": 1,
+      "DC": "DC1"
+    },
+    "AverageInputSize": 15,
+    "CreateTime": 0,
     "DestroyTime": 10001
   },
   {
@@ -37,20 +33,16 @@
     "IngressDCs": [
       {
         "Name": "Ingress3",
-        "Weight": 0.3
-      },
-      {
-        "Name": "Ingress4",
-        "Weight": 0.7
+        "Weight": 1,
+        "DC": "DC2"
       }
     ],
-    "EgressDCs": [
-      {
-        "Name": "Egress2",
-        "Weight": 1
-      }
-    ],
-    "AverageInputSize": 110,
+    "EgressDCs": {
+      "Name": "Egress2",
+      "Weight": 1,
+      "DC": "DC1"
+    },
+    "AverageInputSize": 10,
     "CreateTime": 0,
     "DestroyTime": 10001
   }

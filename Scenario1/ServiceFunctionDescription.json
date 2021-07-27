@@ -4,34 +4,34 @@
     "Type": "FireWall",
     "InputRate": 1.0,
     "OutputRate": 1.5,
-    "Performance": 10
+    "OperationalComplexity": 50
   },
   {
     "Name": "SF-B",
-    "Type": "LoadBalance",
+    "Type": "LoadBalancer",
     "InputRate": 2.0,
     "OutputRate": 1.0,
-    "Performance": 5
+    "OperationalComplexity": 80
   },
   {
     "Name": "SF-C",
     "Type": "ApacheServer",
     "InputRate": 1.5,
     "OutputRate": 1.0,
-    "Performance": 10
+    "OperationalComplexity": 150
   },
   {
     "Name": "SF-D",
-    "Type": "Other",
+    "Type": "DPI",
     "InputRate": 1.8,
     "OutputRate": 1.0,
-    "Performance": 30
+    "OperationalComplexity": 100
   },
   {
     "Name": "SF-E",
-    "Type": "Other",
+    "Type": "Filter",
     "InputRate": 1.2,
     "OutputRate": 1.0,
-    "Performance": 30
+    "OperationalComplexity": 200
   }
 ]

@@ -8,6 +8,8 @@ package org.cloudbus.cloudsim.sfc.parser;
  * @createTime 2021-07-24 16:49
  */
 public class InOutDc {
+
+    /** Jason: this is the ingress/egress node name */
     private String Name;
     private float Weight;
     private String DC;

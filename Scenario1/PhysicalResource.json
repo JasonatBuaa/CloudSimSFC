@@ -18,8 +18,8 @@
 			"datacenter":"DC1",
 			"type":"host",
 			"name":"DC1-HRG3-1",
-			"pes":1,
-			"mips":100000,
+			"pes":32,
+			"mips":32000,
 			"jitterSigma":100.0,
 			"ram":1000,
 			"storage":100000,
@@ -33,8 +33,8 @@
 			"datacenter":"DC1",
 			"type":"host",
 			"name":"DC1-HRG3-2",
-			"pes":1,
-			"mips":100000,
+			"pes":32,
+			"mips":32000,
 			"jitterSigma":100.0,
 			"ram":1000,
 			"storage":100000,
@@ -48,8 +48,8 @@
 			"datacenter":"DC1",
 			"type":"host",
 			"name":"DC1-HRG4-1",
-			"pes":1,
-			"mips":100000,
+			"pes":10,
+			"mips":10000,
 			"jitterSigma":400.0,
 			"ram":1000,
 			"storage":100000,
@@ -63,8 +63,8 @@
 			"datacenter":"DC2",
 			"type":"host",
 			"name":"DC2-HRG5-1",
-			"pes":1,
-			"mips":100000,
+			"pes":10,
+			"mips":10000,
 			"jitterSigma":400.0,
 			"ram":1000,
 			"storage":100000,
@@ -149,48 +149,48 @@
 	],
 	"links":[
 		{
+			"destination":"intercloud",
 			"source":"DC2-gateway",
-			"destination":"intercloud",
 			"latency":1.0
 		},
 		{
-			"source":"DC2-HRG5-core1",
 			"destination":"DC2-gateway",
+			"source":"DC2-HRG5-core1",
 			"latency":1.0
 		},
 		{
-			"source":"DC2-HRG5-1",
 			"destination":"DC2-HRG5-core1",
+			"source":"DC2-HRG5-1",
 			"latency":1.0
 		},
 		{
-			"source":"DC1-gateway",
 			"destination":"intercloud",
+			"source":"DC1-gateway",
 			"latency":1.0
 		},
 		{
+			"destination":"DC1-gateway",
 			"source":"DC1-HRG3-core1",
-			"destination":"DC1-gateway",
 			"latency":1.0
 		},
 		{
+			"destination":"DC1-HRG3-core1",
 			"source":"DC1-HRG3-1",
-			"destination":"DC1-HRG3-core1",
 			"latency":1.0
 		},
 		{
+			"destination":"DC1-HRG3-core1",
 			"source":"DC1-HRG3-2",
-			"destination":"DC1-HRG3-core1",
 			"latency":1.0
 		},
 		{
-			"source":"DC1-HRG4-core2",
 			"destination":"DC1-gateway",
+			"source":"DC1-HRG4-core2",
 			"latency":1.0
 		},
 		{
-			"source":"DC1-HRG4-1",
 			"destination":"DC1-HRG4-core2",
+			"source":"DC1-HRG4-1",
 			"latency":1.0
 		}
 	]

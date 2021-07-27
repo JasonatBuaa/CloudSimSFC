@@ -6,6 +6,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.cloudbus.cloudsim.sfc.parser.configGenerator.CustomPhysicalTopologyGenerator;
 import org.cloudbus.cloudsim.sfc.parser.configGenerator.DeploymentScheduler;
+import org.cloudbus.cloudsim.sfc.resourcemanager.StaticScheduler;
 import org.cloudbus.cloudsim.util.JsonUtils;
 
 import java.io.*;
@@ -13,13 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileParser {
-    private String rootPath = "SFCExampleConfig2/";
+    private String rootPath = "Scenario1/";
     private String workloadFolder = rootPath + "workloads/";
     private String resourceFileName = "ResourceDesription.json";
     private String SFCDemandFileName = "SFCDemands.json";
-    private String serverFunctionFileName = "ServiceFunctionDescription.json";
-    private List<ServiceFunction> serverFunctions;
-    private List<ServiceFunctionChain> serverFunctionChains;
+    private String serviceFunctionFileName = "ServiceFunctionDescription.json";
+    private List<ServiceFunction> serviceFunctions;
+    private List<ServiceFunctionChain> serviceFunctionChainDemands;
     private List<Resource> resources;
     private List<SFCWorkload> sfcWorkloads;
 
@@ -35,9 +36,9 @@ public class FileParser {
     public void parse() {
         parseResource();
         parseServiceFunction();
-        parseServiceFunctionChain();
-        for (ServiceFunctionChain serviceFunctionChain : serverFunctionChains) {
-            sfcWorkloads.add(new SFCWorkload(serviceFunctionChain));
+        parseServiceFunctionChainDemands();
+        for (ServiceFunctionChain serviceFunctionChainDemand : serviceFunctionChainDemands) {
+            sfcWorkloads.add(new SFCWorkload(serviceFunctionChainDemand));
         }
 
     }
@@ -55,10 +56,22 @@ public class FileParser {
             workloadsCsvWriter(workloadFolder + "workloads_" + sfcWorkload.getTargetChainName() + ".csv", sfcWorkload);
         }
 
-        DeploymentScheduler customVirtualTopologyGenerator = new DeploymentScheduler(serverFunctionChains, sfcWorkloads,
-                resources);
+        // DeploymentScheduler customVirtualTopologyGenerator = new
+        // DeploymentScheduler(serviceFunctionChainDemands,
+        // sfcWorkloads, resources);
+
+        DeploymentScheduler customVirtualTopologyGenerator = new StaticScheduler(serviceFunctionChainDemands,
+                sfcWorkloads, resources);
+
         jsonstr = JSON.toJSONString(customVirtualTopologyGenerator, SerializerFeature.PrettyFormat);
         JsonUtils.jsonWrite(rootPath + "virtualTopology.json", jsonstr);
+
+        // DeploymentScheduler customVirtualTopologyGenerator = new
+        // DeploymentScheduler(serviceFunctionChainDemands,
+        // sfcWorkloads, resources);
+        // jsonstr = JSON.toJSONString(customVirtualTopologyGenerator,
+        // SerializerFeature.PrettyFormat);
+        // JsonUtils.jsonWrite(rootPath + "virtualTopology.json", jsonstr);
     }
 
     public void parseResource() {
@@ -68,23 +81,20 @@ public class FileParser {
         });
     }
 
-    public void parseServiceFunctionChain() {
+    public void parseServiceFunctionChainDemands() {
         String path = rootPath + SFCDemandFileName;
         String jsonStr = JsonUtils.jsonRead(path);
-        serverFunctionChains = JSONObject.parseObject(jsonStr, new TypeReference<List<ServiceFunctionChain>>() {
+        serviceFunctionChainDemands = JSONObject.parseObject(jsonStr, new TypeReference<List<ServiceFunctionChain>>() {
         });
 
     }
 
     public void parseServiceFunction() {
-        String path = rootPath + serverFunctionFileName;
+        String path = rootPath + serviceFunctionFileName;
         String jsonStr = JsonUtils.jsonRead(path);
-        serverFunctions = JSONObject.parseObject(jsonStr, new TypeReference<List<ServiceFunction>>() {
+        serviceFunctions = JSONObject.parseObject(jsonStr, new TypeReference<List<ServiceFunction>>() {
         });
     }
-
-
-
 
     public void workloadsCsvWriter(String path, SFCWorkload sfcWorkload) {
         try {
@@ -133,7 +143,7 @@ public class FileParser {
         System.out.println();
 
         System.out.println("====================ServiceFunction=================");
-        for (ServiceFunction serviceFunction : serverFunctions) {
+        for (ServiceFunction serviceFunction : serviceFunctions) {
             System.out.println(serviceFunction.toString());
         }
         System.out.println();

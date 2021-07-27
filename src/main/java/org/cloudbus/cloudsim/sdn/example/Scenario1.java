@@ -48,7 +48,7 @@ import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationPolicyMipsMos
  * @author Jungmin Son
  * @since CloudSimSDN 3.0
  */
-public class MDSNTrafficChanging {
+public class Scenario1 {
 
 	protected static String rootFolder = "Scenario1/";
 	protected static String physicalTopologyFile = rootFolder + "PhysicalResource.json";

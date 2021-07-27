@@ -8,12 +8,12 @@ public class ServiceFunctionChain {
     private List<String> Chain;
     private int AverageInputSize;
     private List<InOutDc> IngressDCs;
-    private List<InOutDc> EgressDCs;
+    private InOutDc EgressDCs;
     private int CreateTime;
     private int DestroyTime;
 
     public ServiceFunctionChain(String name, List<String> chain, int averageInputSize, List<InOutDc> ingressDCs,
-            List<InOutDc> egressDCs, int createTime, int destroyTime) {
+            InOutDc egressDCs, int createTime, int destroyTime) {
         Name = name;
         Chain = chain;
         AverageInputSize = averageInputSize;
@@ -26,7 +26,7 @@ public class ServiceFunctionChain {
     public ServiceFunctionChain() {
         Chain = new ArrayList<>();
         IngressDCs = new ArrayList<>();
-        EgressDCs = new ArrayList<>();
+        // EgressDCs = new ArrayList<>();
     }
 
     public List<InOutDc> getIngressDCs() {
@@ -37,15 +37,15 @@ public class ServiceFunctionChain {
         IngressDCs = ingressDCs;
     }
 
-    public void addIngressDCs(){
+    public void addIngressDCs() {
 
     }
 
-    public List<InOutDc> getEgressDCs() {
+    public InOutDc getEgressDCs() {
         return EgressDCs;
     }
 
-    public void setEgressDCs(List<InOutDc> egressDCs) {
+    public void setEgressDCs(InOutDc egressDCs) {
         EgressDCs = egressDCs;
     }
 
@@ -103,16 +103,18 @@ public class ServiceFunctionChain {
         }
         inDcs = '[' + inDcs + ']';
 
-        String outDcs = "";
-        for (InOutDc outDc : EgressDCs) {
-            outDcs += outDc.toString() + ",";
-        }
-        outDcs = '[' + outDcs + ']';
+        // String outDcs = "";
+        // for (InOutDc outDc : EgressDCs) {
+        // outDcs += outDc.toString() + ",";
+        // }
+
+        // outDcs = '[' + outDcs + ']';
+
+        String outDcs = EgressDCs.toString();
 
         return "ServiceFunctionChain{" + "\nName='" + Name + "'," + "\nChain=" + chainStr + ',' + "\nIngressDCs="
                 + inDcs + ',' + "\nEgressDCs=" + outDcs + ',' + "\nAverageInputSize=" + AverageInputSize + ','
                 + "\nCreateTime=" + CreateTime + ',' + "\nDestroyTime=" + DestroyTime + ',' + "}\n";
     }
-
 
 }

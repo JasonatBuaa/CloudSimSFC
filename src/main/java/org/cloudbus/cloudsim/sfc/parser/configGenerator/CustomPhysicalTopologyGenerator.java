@@ -99,7 +99,7 @@ public class CustomPhysicalTopologyGenerator {
                         String type = "host";
                         String datacenter = resource.getName();
                         // todo need pes config
-                        long pes = 1;
+                        long pes = physicalResource.getMIPS() / physicalResource.getMinMIPS();
                         long mips = physicalResource.getMIPS();
                         long ram = physicalResource.getFastMem();
                         // todo need storage config

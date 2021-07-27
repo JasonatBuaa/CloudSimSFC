@@ -2,15 +2,19 @@ package org.cloudbus.cloudsim.sfc.parser;
 
 import java.util.*;
 
+import javax.swing.text.html.MinimalHTMLWriter;
+
+import org.cloudbus.cloudsim.distributions.UniformDistr;
+
 public class SFCWorkload {
     public String targetChainName;
     public List<InOutDc> ingress;
-    public List<InOutDc> egress;
+    public InOutDc egress;
     public int chainInputSize;
     public int startTime;
     public int endTime;
     public List<SFCRequest> sfcRequestList;
-    public double latencyDemand = 10;
+    public double latencyDemand = 1000;
     public LinkedList<InEgressNode> inEgressNodes;
     public int baseWeight;
     public int chainLength;
@@ -34,18 +38,25 @@ public class SFCWorkload {
         int count = 0;
         Random random = new Random();
         List<String> chain = serviceFunctionChain.getChain();
+
+        double minInputSize = chainInputSize * 0.5;
+        double maxInputSize = chainInputSize * 1.5;
+        UniformDistr inputSizeDistr = new UniformDistr(minInputSize, maxInputSize);
         while (count <= requestSize) {
             int time = count * 1 + startTime;
             SFCRequest sfcRequest = new SFCRequest(time);
             setInEgress(sfcRequest, count);
-            int index = 0, performance, outputSize = 0;
-            int inputSize = chainInputSize + random.nextInt(2) * 10;
+            int index = 0, cloudletLen, outputSize = 0;
+            // int inputSize = chainInputSize + random.nextInt(2) * 10;
+            double exactInputSize = inputSizeDistr.sample();
+
+            int inputSize = (int) exactInputSize;
 
             for (; index < chain.size(); index++) {
                 ServiceFunction serviceFunction = ServiceFunction.serverFunctionMap.get(chain.get(index));
-                performance = serviceFunction.getPerformance() * inputSize;
+                cloudletLen = (int) (serviceFunction.getOperationalComplexity() * exactInputSize);
                 outputSize = serviceFunction.getOutputSize(inputSize);
-                sfcRequest.fillRequest(chain.get(index), inputSize, performance);
+                sfcRequest.fillRequest(chain.get(index), inputSize, cloudletLen);
                 inputSize = outputSize;
             }
             // transmission to Egress
@@ -76,18 +87,38 @@ public class SFCWorkload {
         for (InOutDc in : ingress) {
             inWeight += in.getWeight() * 10;
         }
-        for (InOutDc out : egress) {
-            outWeight += out.getWeight() * 10;
-        }
-        baseWeight = new Float(inWeight * outWeight).intValue();
+        // for (InOutDc out : egress) {
+        // outWeight += out.getWeight() * 10;
+        // }
+        // baseWeight = new Float(inWeight * outWeight).intValue();
+
+        // for (int i = 0; i < ingressSize; i++) {
+        // for (int j = 0; j < egressSize; j++) {
+        // inEgressNodes.addLast(new InEgressNode(ingress.get(i).getName(),
+        // egress.get(j).getName(),
+        // new Float(ingress.get(i).getWeight() * egress.get(j).getWeight() *
+        // 100).intValue()));
+        // }
+        // }
+
+        // for (int i = 0; i < ingressSize; i++) {
+        // for (int j = 0; j < egressSize; j++) {
+        // inEgressNodes.addLast(new InEgressNode(ingress.get(i).getName(),
+        // egress.get(j).getName(),
+        // new Float(ingress.get(i).getWeight() * egress.get(j).getWeight() *
+        // 100).intValue()));
+        // }
+        // }
+
+        // outWeight += egress.getWeight() * 10;
+
+        baseWeight = new Float(inWeight).intValue();
 
         int ingressSize = ingress.size();
-        int egressSize = egress.size();
+
         for (int i = 0; i < ingressSize; i++) {
-            for (int j = 0; j < egressSize; j++) {
-                inEgressNodes.addLast(new InEgressNode(ingress.get(i).getName(), egress.get(j).getName(),
-                        new Float(ingress.get(i).getWeight() * egress.get(j).getWeight() * 100).intValue()));
-            }
+            inEgressNodes.addLast(new InEgressNode(ingress.get(i).getName(), egress.getName(),
+                    new Float(ingress.get(i).getWeight() * 100).intValue()));
         }
     }
 
@@ -120,11 +151,11 @@ public class SFCWorkload {
         this.ingress = ingress;
     }
 
-    public List<InOutDc> getEgress() {
+    public InOutDc getEgress() {
         return egress;
     }
 
-    public void setEgress(List<InOutDc> egress) {
+    public void setEgress(InOutDc egress) {
         this.egress = egress;
     }
 

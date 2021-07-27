@@ -631,7 +631,7 @@ public abstract class NetworkOperatingSystem extends SimEntity {
 
 	public void addSFCPolicy(ServiceFunctionChainPolicy policy) {
 		sfcForwarder.addPolicy(policy);
-		List<FlowConfig> extraFlows = createExtraFlowSFCPolicy(policy);
+		List<FlowConfig> extraFlows = createExtraFlowSFCPolicy(policy); // Jason ??
 		for (FlowConfig flow : extraFlows)
 			insertFlowToMap(flow);
 	}

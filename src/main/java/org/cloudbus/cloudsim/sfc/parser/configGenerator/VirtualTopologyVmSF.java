@@ -10,14 +10,32 @@ import com.alibaba.fastjson.annotation.JSONType;
  * @createTime 2021-06-30 21:45
  */
 
-@JSONType(orders = { "name", "type", "size", "pes", "mips", "ram", "queuesize" })
+@JSONType(orders = { "datacenter", "name", "type", "size", "pes", "mips", "ram", "queuesize" })
 public class VirtualTopologyVmSF extends VirtualTopologyVM {
    public int size;
    public int pes;
    public int mips;
    public int queuesize;
-   public String dc;
+   public String datacenter;
 
+   // Jason: this one is used for the attemptive scheduling
+   public VirtualTopologyVmSF(int size, int pes, int mips, int queuesize) {
+      super("attemptive_scheduling", null);
+      this.size = size;
+      this.pes = pes;
+      this.mips = mips;
+      this.queuesize = queuesize;
+   }
+
+   /**
+    * 
+    * @param name
+    * @param type
+    * @param size
+    * @param pes
+    * @param mips
+    * @param queuesize
+    */
    public VirtualTopologyVmSF(String name, String type, int size, int pes, int mips, int queuesize) {
       super(name, type);
       this.size = size;
@@ -25,13 +43,14 @@ public class VirtualTopologyVmSF extends VirtualTopologyVM {
       this.mips = mips;
       this.queuesize = queuesize;
    }
+
    public VirtualTopologyVmSF(String name, String type, int size, int pes, int mips, int queuesize, String dc) {
       super(name, type);
       this.size = size;
       this.pes = pes;
       this.mips = mips;
       this.queuesize = queuesize;
-      this.dc = dc;
+      this.datacenter = dc;
    }
 
    public int getSize() {
@@ -66,11 +85,11 @@ public class VirtualTopologyVmSF extends VirtualTopologyVM {
       this.queuesize = queuesize;
    }
 
-   public String getDc() {
-      return dc;
+   public String getDatacenter() {
+      return datacenter;
    }
 
-   public void setDc(String dc) {
-      this.dc = dc;
+   public void setDatacenter(String datacenter) {
+      this.datacenter = datacenter;
    }
 }

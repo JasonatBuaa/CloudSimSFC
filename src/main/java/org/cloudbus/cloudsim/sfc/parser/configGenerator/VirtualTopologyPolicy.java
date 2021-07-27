@@ -23,6 +23,17 @@ public class VirtualTopologyPolicy {
     public int expectedduration;
     public List<String> sfc;
 
+    /**
+     * 
+     * @param name
+     * @param source
+     * @param sfc_Demand
+     * @param destination
+     * @param flowname
+     * @param starttime
+     * @param expectedduration
+     * @param sfc
+     */
     public VirtualTopologyPolicy(String name, String source, String sfc_Demand, String destination, String flowname,
             int starttime, int expectedduration, List<String> sfc) {
         this.name = name;

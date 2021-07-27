@@ -12,7 +12,7 @@ public class Configuration {
 	// public static String workingDirectory = "./jason";
 	public static String workingDirectory = "./";
 	public static String experimentName = "";
-	public static String ROOT_FOLDER = "SFCExampleConfig2/";
+	public static String ROOT_FOLDER = "Scenario1/";
 	public static String RESULT_FOLDER = ROOT_FOLDER + "results/";
 
 	// public static double minTimeBetweenEvents = 0.01;//0.01; // in sec
@@ -169,7 +169,7 @@ public class Configuration {
 	// Jason: Use queue
 	public static boolean DISABLE_MEMORY_QUEUE = true; // True: Do not use MemoryQueue.
 
-	public static final double TIME_OUT = 100; // Double.POSITIVE_INFINITY; //
+	public static final double TIME_OUT = 10000; // Double.POSITIVE_INFINITY; //
 
 	public static final int DEFAULT_FLOW_ID = 0;
 

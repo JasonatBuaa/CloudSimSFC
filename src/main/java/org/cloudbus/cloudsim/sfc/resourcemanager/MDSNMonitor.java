@@ -34,5 +34,11 @@ public class MDSNMonitor implements MonitorInterface {
             return null;
     }
 
+    @Override
+    public boolean occupyResource(String dcName, int size, int pes, int mips, int queueSize) {
+
+        return true;
+    }
+
     // public List<Host>
 }

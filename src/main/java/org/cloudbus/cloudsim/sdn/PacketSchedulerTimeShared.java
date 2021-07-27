@@ -1,5 +1,6 @@
 package org.cloudbus.cloudsim.sdn;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.cloudbus.cloudsim.core.CloudSim;
@@ -33,11 +34,26 @@ public class PacketSchedulerTimeShared extends PacketSchedulerSpaceShared {
 		// update the amount of transmission
 		// long processedThisRound = Math.round(timeSpent *
 		// channel.getAllocatedBandwidth());
-		long processedThisRound = Math.round(timeSpent * getAllocatedBandwidthWithJitter());
+		double jitter_trans_perf = getAllocatedBandwidthWithJitter();
+		// long processedThisRound = Math.round(timeSpent *
+		// getAllocatedBandwidthWithJitter());
+		long processedThisRound = Math.round(timeSpent * jitter_trans_perf);
 
 		// update transmission table; remove finished transmission
 		Transmission transmission = inTransmission.get(0);
 		transmission.addCompletedLength(processedThisRound);
+
+		BigDecimal startT1 = new BigDecimal(transmission.getPacket().getStartTime());
+		BigDecimal breakPointTime = new BigDecimal(21.0);
+		if (transmission.getPacket().getOrigin() == 0 && startT1.compareTo(breakPointTime) == 0) {
+			System.out.println("breakpoint");
+		}
+
+		breakPointTime = new BigDecimal(41.0);
+
+		if (transmission.getPacket().getOrigin() == 0 && startT1.compareTo(breakPointTime) == 0) {
+			System.out.println("breakpoint");
+		}
 
 		if (transmission.isCompleted()) {
 			this.completed.add(transmission);
