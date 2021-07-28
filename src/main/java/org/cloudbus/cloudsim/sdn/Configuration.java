@@ -154,8 +154,8 @@ public class Configuration {
 	public static final double SFC_UNDERLOAD_THRESHOLD_BW = 0.4;
 	public static final double SFC_UNDERLOAD_THRESHOLD_VM = 0.4;
 
-	public static boolean ENABLE_TRANSMISSION_JITTER = true;
-	public static boolean ENABLE_COMPUTATION_JITTER = true;
+	public static boolean ENABLE_TRANSMISSION_JITTER = false;
+	public static boolean ENABLE_COMPUTATION_JITTER = false;
 	public static final double NETWORK_JITTER_SIGMA = 1;
 
 	// public static boolean DISABLE_FAILURE_RECOVERY = true; // True: Do not injuct

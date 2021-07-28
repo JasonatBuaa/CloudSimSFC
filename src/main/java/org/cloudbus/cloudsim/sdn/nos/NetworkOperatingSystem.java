@@ -53,8 +53,12 @@ import org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.VirtualNetworkMapper;
 import org.cloudbus.cloudsim.sdn.workload.Transmission;
 
+import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+
+// import com.google.common.collect.Multimap;
+// import org.apache.commons.collections4.map.MultiKeyMap;
 
 /**
  * NOS calculates and estimates network behaviour. It also mimics SDN Controller
@@ -87,7 +91,11 @@ public abstract class NetworkOperatingSystem extends SimEntity {
 	protected Multimap<Integer, FlowConfig> flowMapVmId2Flow = HashMultimap.create();
 
 	// Global map (static): Flow ID -> VM
-	protected static Map<Integer, FlowConfig> gFlowMapFlowId2Flow = new HashMap<Integer, FlowConfig>();
+	// protected static Map<Integer, FlowConfig> gFlowMapFlowId2Flow = new
+	// HashMap<Integer, FlowConfig>();
+	// private static MultiKeyMap gFlowMap = new MultiKeyMap();
+
+	private static HashBasedTable<Integer, Integer, FlowConfig> gFlowMapFlowId2Flow = HashBasedTable.create();
 
 	protected ServiceFunctionForwarder sfcForwarder;
 	protected ServiceFunctionAutoScaler sfcScaler;
@@ -506,8 +514,16 @@ public abstract class NetworkOperatingSystem extends SimEntity {
 		}
 	}
 
-	public long getRequestedBandwidth(int flowId) {
-		FlowConfig flow = gFlowMapFlowId2Flow.get(flowId);
+	// public long getRequestedBandwidth(int flowId) {
+	// FlowConfig flow = gFlowMapFlowId2Flow.get(flowId);
+	// if (flow != null)
+	// return flow.getBw();
+
+	// return 0L;
+	// }
+
+	public long getRequestedBandwidth(int srcVm, int dstVm) {
+		FlowConfig flow = gFlowMapFlowId2Flow.get(srcVm, dstVm);
 		if (flow != null)
 			return flow.getBw();
 
@@ -529,7 +545,7 @@ public abstract class NetworkOperatingSystem extends SimEntity {
 			return;
 		}
 
-		FlowConfig flow = gFlowMapFlowId2Flow.get(flowId);
+		FlowConfig flow = gFlowMapFlowId2Flow.get(srcVm, dstVm);
 		flow.updateReqiredBandwidth(newBw);
 	}
 
@@ -552,16 +568,16 @@ public abstract class NetworkOperatingSystem extends SimEntity {
 		return map;
 	}
 
-	public static Map<String, Integer> getFlowNameToIdMap() {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		for (FlowConfig flow : gFlowMapFlowId2Flow.values()) {
-			map.put(flow.getName(), flow.getFlowId());
-		}
+	// public static Map<String, Integer> getFlowNameToIdMap() {
+	// Map<String, Integer> map = new HashMap<String, Integer>();
+	// for (FlowConfig flow : gFlowMapFlowId2Flow.values()) {
+	// map.put(flow.getName(), flow.getFlowId());
+	// }
 
-		map.put("default", -1);
+	// map.put("default", -1);
 
-		return map;
-	}
+	// return map;
+	// }
 
 	public PhysicalTopology getPhysicalTopology() {
 		return this.topology;
@@ -625,7 +641,7 @@ public abstract class NetworkOperatingSystem extends SimEntity {
 		insertFlowToMap(flow);
 
 		if (flow.getFlowId() != -1) {
-			gFlowMapFlowId2Flow.put(flow.getFlowId(), flow);
+			gFlowMapFlowId2Flow.put(flow.getSrcId(), flow.getDstId(), flow);
 		}
 	}
 
@@ -646,7 +662,7 @@ public abstract class NetworkOperatingSystem extends SimEntity {
 		double latency = 0.0;
 
 		if (flowId != -1) {
-			FlowConfig orgFlow = gFlowMapFlowId2Flow.get(flowId);
+			FlowConfig orgFlow = gFlowMapFlowId2Flow.get(policy.getSrcId(), policy.getDstId());
 			bw = orgFlow.getBw();
 			latency = orgFlow.getLatency();
 		}

@@ -41,7 +41,8 @@ public class StaticScheduler extends DeploymentScheduler {
         generate(serverFunctionChains, sfcWorkloads, resources);
     }
 
-    public void generateLinksForScenario1A(List<ServiceFunctionChain> serverFunctionChains) {
+    @Override
+    public void generateLinks(List<ServiceFunctionChain> serverFunctionChains) {
         int count = 1;
         for (ServiceFunctionChain serviceFunctionChain : serverFunctionChains)
             for (InOutDc ingress : serviceFunctionChain.getIngressDCs()) {
@@ -94,24 +95,16 @@ public class StaticScheduler extends DeploymentScheduler {
                     serviceFunctions.get(serviceFunctions.size() - 1).getName() + "-" + egress.getName(),
                     serviceFunctions.get(serviceFunctions.size() - 1).getName(), egress.getName(), requestSize);
             links.add(egressLink);
+
         }
-    }
 
-    public void generateNodesForScenario1A(List<SFCWorkload> sfcWorkloads, List<Resource> resources,
-            List<ServiceFunctionChain> serviceFunctionChains) {
-        placeIngressEgressNodes(sfcWorkloads, resources, serviceFunctionChains);
-        scheduleByGreedy(serviceFunctionChains);
-    }
-
-    @Override
-    public void generateLinks(List<ServiceFunctionChain> serverFunctionChains) {
-        generateLinksForScenario1A(serverFunctionChains);
     }
 
     @Override
     public void generateNodes(List<SFCWorkload> sfcWorkloads, List<Resource> resources,
             List<ServiceFunctionChain> serviceFunctionChains) {
-        generateNodesForScenario1A(sfcWorkloads, resources, serviceFunctionChains);
+        placeIngressEgressNodes(sfcWorkloads, resources, serviceFunctionChains);
+        scheduleByGreedy(serviceFunctionChains);
     }
 
     public void placeIngressEgressNodes(List<SFCWorkload> sfcWorkloads, List<Resource> resources,

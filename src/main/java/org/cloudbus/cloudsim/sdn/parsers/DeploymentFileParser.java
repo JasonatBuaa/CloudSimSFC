@@ -331,6 +331,9 @@ public class DeploymentFileParser {
 			if (reqBw != null)
 				bw = (Long) reqBw;
 
+			if (bw == 0) {
+				System.out.println("Error!");
+			}
 			int srcId = vmNameIdTable.get(src);
 			int dstId = vmNameIdTable.get(dst);
 

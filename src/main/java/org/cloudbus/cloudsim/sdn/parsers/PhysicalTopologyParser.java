@@ -21,7 +21,7 @@ import java.util.Map;
 
 import org.apache.commons.math3.analysis.function.Max;
 import org.cloudbus.cloudsim.sdn.HostFactory;
-import org.cloudbus.cloudsim.sdn.HostFactorySimple;
+import org.cloudbus.cloudsim.sdn.HostFactoryTimeSharedPe;
 import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystem;
 import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystemSimple;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.Link;
@@ -75,7 +75,8 @@ public class PhysicalTopologyParser {
 	 * @return
 	 */
 	public static Map<String, NetworkOperatingSystem> loadPhysicalTopologyMultiDC(String physicalTopologyFilename) {
-		PhysicalTopologyParser parser = new PhysicalTopologyParser(physicalTopologyFilename, new HostFactorySimple());
+		PhysicalTopologyParser parser = new PhysicalTopologyParser(physicalTopologyFilename,
+				new HostFactoryTimeSharedPe());
 		Map<String, String> dcNameType = parser.parseDatacenters(); // DC Name -> DC Type
 		Map<String, NetworkOperatingSystem> netOsList = new HashMap<String, NetworkOperatingSystem>();
 

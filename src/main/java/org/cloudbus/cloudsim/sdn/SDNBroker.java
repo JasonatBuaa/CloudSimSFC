@@ -384,8 +384,12 @@ public class SDNBroker extends SimEntity {
 	}
 
 	private WorkloadParser startWorkloadParser(String workloadFile) {
+		// WorkloadParser workParser = new WorkloadParser(workloadFile, this.getId(),
+		// new UtilizationModelFull(),
+		// NetworkOperatingSystem.getVmNameToIdMap(),
+		// NetworkOperatingSystem.getFlowNameToIdMap());
 		WorkloadParser workParser = new WorkloadParser(workloadFile, this.getId(), new UtilizationModelFull(),
-				NetworkOperatingSystem.getVmNameToIdMap(), NetworkOperatingSystem.getFlowNameToIdMap());
+				NetworkOperatingSystem.getVmNameToIdMap());
 
 		// System.err.println("SDNBroker.startWorkloadParser : DEBUGGGGGGGGGGG REMOVE
 		// here!");

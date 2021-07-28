@@ -149,48 +149,48 @@
 	],
 	"links":[
 		{
-			"destination":"intercloud",
 			"source":"DC2-gateway",
-			"latency":1.0
-		},
-		{
-			"destination":"DC2-gateway",
-			"source":"DC2-HRG5-core1",
-			"latency":1.0
-		},
-		{
-			"destination":"DC2-HRG5-core1",
-			"source":"DC2-HRG5-1",
-			"latency":1.0
-		},
-		{
 			"destination":"intercloud",
+			"latency":1.0
+		},
+		{
+			"source":"DC2-HRG5-core1",
+			"destination":"DC2-gateway",
+			"latency":1.0
+		},
+		{
+			"source":"DC2-HRG5-1",
+			"destination":"DC2-HRG5-core1",
+			"latency":1.0
+		},
+		{
 			"source":"DC1-gateway",
+			"destination":"intercloud",
 			"latency":1.0
 		},
 		{
-			"destination":"DC1-gateway",
 			"source":"DC1-HRG3-core1",
-			"latency":1.0
-		},
-		{
-			"destination":"DC1-HRG3-core1",
-			"source":"DC1-HRG3-1",
-			"latency":1.0
-		},
-		{
-			"destination":"DC1-HRG3-core1",
-			"source":"DC1-HRG3-2",
-			"latency":1.0
-		},
-		{
 			"destination":"DC1-gateway",
-			"source":"DC1-HRG4-core2",
 			"latency":1.0
 		},
 		{
-			"destination":"DC1-HRG4-core2",
+			"source":"DC1-HRG3-1",
+			"destination":"DC1-HRG3-core1",
+			"latency":1.0
+		},
+		{
+			"source":"DC1-HRG3-2",
+			"destination":"DC1-HRG3-core1",
+			"latency":1.0
+		},
+		{
+			"source":"DC1-HRG4-core2",
+			"destination":"DC1-gateway",
+			"latency":1.0
+		},
+		{
 			"source":"DC1-HRG4-1",
+			"destination":"DC1-HRG4-core2",
 			"latency":1.0
 		}
 	]

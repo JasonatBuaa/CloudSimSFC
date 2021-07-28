@@ -21,7 +21,7 @@
     },
     "AverageInputSize": 15,
     "CreateTime": 0,
-    "DestroyTime": 10001
+    "DestroyTime": 500
   },
   {
     "Name": "chain2",
@@ -44,6 +44,6 @@
     },
     "AverageInputSize": 10,
     "CreateTime": 0,
-    "DestroyTime": 10001
+    "DestroyTime": 500
   }
 ]

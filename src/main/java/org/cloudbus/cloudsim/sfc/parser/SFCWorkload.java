@@ -39,8 +39,8 @@ public class SFCWorkload {
         Random random = new Random();
         List<String> chain = serviceFunctionChain.getChain();
 
-        double minInputSize = chainInputSize * 0.5;
-        double maxInputSize = chainInputSize * 1.5;
+        double minInputSize = chainInputSize * 0.8;
+        double maxInputSize = chainInputSize * 1.2;
         UniformDistr inputSizeDistr = new UniformDistr(minInputSize, maxInputSize);
         while (count <= requestSize) {
             int time = count * 1 + startTime;

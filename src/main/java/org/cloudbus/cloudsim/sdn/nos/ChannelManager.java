@@ -32,6 +32,7 @@ public class ChannelManager {
 	}
 
 	// Jason: if no channel exists, then create a new channel for them.
+	// Jason : src and dst are vms.
 	public Channel createChannel(int src, int dst, int flowId, Node srcNode) {
 		// For dynamic routing, rebuild forwarding table (select which link to use).
 		vnMapper.updateDynamicForwardingTableRec(srcNode, src, dst, flowId, false);
@@ -51,9 +52,12 @@ public class ChannelManager {
 		double lowestBw = Double.POSITIVE_INFINITY;
 		double reqBw = 0;
 		if (flowId != -1) {
-			reqBw = nos.getRequestedBandwidth(flowId);
-			if (reqBw == 0)
+			reqBw = nos.getRequestedBandwidth(src, dst);
+			if (reqBw == 0) {
+				System.out.println("src:" + src + "; dst:" + dst);
 				throw new RuntimeException("reqBW cannot be zero for dedicated channels!!" + flowId);
+			}
+
 		}
 
 		nodes.add(origin);

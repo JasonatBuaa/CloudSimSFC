@@ -53,8 +53,11 @@ public class WorkloadParser {
 
 	private BufferedReader bufReader = null;
 
-	public WorkloadParser(String file, int userId, UtilizationModel cloudletUtilModel, Map<String, Integer> vmNameIdMap,
-			Map<String, Integer> flowNameIdMap) {
+	// public WorkloadParser(String file, int userId, UtilizationModel
+	// cloudletUtilModel, Map<String, Integer> vmNameIdMap,
+	// Map<String, Integer> flowNameIdMap) {
+	public WorkloadParser(String file, int userId, UtilizationModel cloudletUtilModel,
+			Map<String, Integer> vmNameIdMap) {
 		this.file = file;
 		this.userId = userId;
 		this.utilizationModel = cloudletUtilModel;

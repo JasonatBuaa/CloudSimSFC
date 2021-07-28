@@ -112,6 +112,60 @@
 			"source":"Ingress3",
 			"destination":"Egress2",
 			"bandwidth":10
+		},
+		{
+			"name":"Ingress3-chain2_psfc1SF-A",
+			"source":"Ingress3",
+			"destination":"chain2_psfc1SF-A",
+			"bandwidth":10
+		},
+		{
+			"name":"chain2_psfc1SF-A-chain2_psfc1SF-B",
+			"source":"chain2_psfc1SF-A",
+			"destination":"chain2_psfc1SF-B",
+			"bandwidth":10
+		},
+		{
+			"name":"chain2_psfc1SF-B-chain2_psfc1SF-D",
+			"source":"chain2_psfc1SF-B",
+			"destination":"chain2_psfc1SF-D",
+			"bandwidth":10
+		},
+		{
+			"name":"chain2_psfc1SF-D-Egress2",
+			"source":"chain2_psfc1SF-D",
+			"destination":"Egress2",
+			"bandwidth":10
+		},
+		{
+			"name":"Ingress1-chain1_psfc1SF-A",
+			"source":"Ingress1",
+			"destination":"chain1_psfc1SF-A",
+			"bandwidth":15
+		},
+		{
+			"name":"chain1_psfc1SF-A-chain1_psfc1SF-B",
+			"source":"chain1_psfc1SF-A",
+			"destination":"chain1_psfc1SF-B",
+			"bandwidth":15
+		},
+		{
+			"name":"chain1_psfc1SF-B-chain1_psfc1SF-C",
+			"source":"chain1_psfc1SF-B",
+			"destination":"chain1_psfc1SF-C",
+			"bandwidth":15
+		},
+		{
+			"name":"chain1_psfc1SF-C-chain1_psfc1SF-D",
+			"source":"chain1_psfc1SF-C",
+			"destination":"chain1_psfc1SF-D",
+			"bandwidth":15
+		},
+		{
+			"name":"chain1_psfc1SF-D-Egress1",
+			"source":"chain1_psfc1SF-D",
+			"destination":"Egress1",
+			"bandwidth":15
 		}
 	],
 	"policies":[
@@ -122,7 +176,7 @@
 			"destination":"Egress1",
 			"sfc_Demand":"chain1",
 			"starttime":0,
-			"expectedduration":10001,
+			"expectedduration":500,
 			"sfc":[
 				"chain1_psfc1SF-A",
 				"chain1_psfc1SF-B",
@@ -137,7 +191,7 @@
 			"destination":"Egress2",
 			"sfc_Demand":"chain2",
 			"starttime":0,
-			"expectedduration":10001,
+			"expectedduration":500,
 			"sfc":[
 				"chain2_psfc1SF-A",
 				"chain2_psfc1SF-B",
