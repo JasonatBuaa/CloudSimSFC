@@ -97,7 +97,8 @@ public class Transmission implements Activity {
 	@Override
 	public double getExpectedTime() {
 		// TODO Auto-generated method stub
-		return 0;
+		// return 0;
+		return 10.0;
 	}
 
 	@Override

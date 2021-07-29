@@ -56,11 +56,15 @@ public class ServiceFunction {
     }
 
     public void setOperationalComplexity(int OperationalComplexity) {
-        OperationalComplexity = OperationalComplexity;
+        this.OperationalComplexity = OperationalComplexity;
     }
 
-    public int getOutputSize(int inputSize) {
+    public double getOutputSize(double inputSize) {
         return new Double(inputSize * (OutputRate / InputRate)).intValue();
+    }
+
+    public double getTrafficChangingRatio() {
+        return OutputRate / InputRate;
     }
 
     @Override

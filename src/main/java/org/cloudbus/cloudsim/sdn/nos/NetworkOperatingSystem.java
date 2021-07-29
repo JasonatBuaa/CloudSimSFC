@@ -218,9 +218,13 @@ public abstract class NetworkOperatingSystem extends SimEntity {
 
 					long numPackets = channelManager.getTotalNumPackets();
 
-					System.err.println(CloudSim.clock() + ": Elasped time=" + CloudSimEx.getElapsedTimeString() + ", "
-							+ CloudSimEx.getNumFutureEvents() + " more events," + " # packets=" + numPackets
-							+ ", next monitoring in " + nextMonitorDelay);
+					if (CloudSim.clock() % 100 < 1)
+						System.out.println(CloudSim.clock() + ": Elasped time=" + CloudSimEx.getElapsedTimeString());
+					// System.err.println(CloudSim.clock() + ": Elasped time=" +
+					// CloudSimEx.getElapsedTimeString() + ", "
+					// + CloudSimEx.getNumFutureEvents() + " more events," + " # packets=" +
+					// numPackets
+					// + ", next monitoring in " + nextMonitorDelay);
 					send(this.getId(), nextMonitorDelay, CloudSimTagsSDN.MONITOR_UPDATE_UTILIZATION);
 				}
 				break;
@@ -366,6 +370,8 @@ public abstract class NetworkOperatingSystem extends SimEntity {
 		for (Channel ch : channels) {
 			for (Transmission tr : ch.getArrivedPackets()) {
 				Packet pkt = tr.getPacket();
+				if (tr.getPacket().getSize() == 5L)
+					System.out.println("breakpoint");
 				int vmId = pkt.getDestination();
 				Datacenter dc = SDNDatacenter.findDatacenterGlobal(vmId);
 

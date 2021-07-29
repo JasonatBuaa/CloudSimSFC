@@ -8,17 +8,17 @@ public class ServiceFunctionChain {
     private List<String> Chain;
     private int AverageInputSize;
     private List<InOutDc> IngressDCs;
-    private InOutDc EgressDCs;
+    private InOutDc EgressDC;
     private int CreateTime;
     private int DestroyTime;
 
     public ServiceFunctionChain(String name, List<String> chain, int averageInputSize, List<InOutDc> ingressDCs,
-            InOutDc egressDCs, int createTime, int destroyTime) {
+            InOutDc egressDC, int createTime, int destroyTime) {
         Name = name;
         Chain = chain;
         AverageInputSize = averageInputSize;
         IngressDCs = ingressDCs;
-        EgressDCs = egressDCs;
+        EgressDC = egressDC;
         CreateTime = createTime;
         DestroyTime = destroyTime;
     }
@@ -26,7 +26,7 @@ public class ServiceFunctionChain {
     public ServiceFunctionChain() {
         Chain = new ArrayList<>();
         IngressDCs = new ArrayList<>();
-        // EgressDCs = new ArrayList<>();
+        // EgressDC = new ArrayList<>();
     }
 
     public List<InOutDc> getIngressDCs() {
@@ -41,12 +41,12 @@ public class ServiceFunctionChain {
 
     }
 
-    public InOutDc getEgressDCs() {
-        return EgressDCs;
+    public InOutDc getEgressDC() {
+        return EgressDC;
     }
 
-    public void setEgressDCs(InOutDc egressDCs) {
-        EgressDCs = egressDCs;
+    public void setEgressDC(InOutDc egressDC) {
+        EgressDC = egressDC;
     }
 
     public String getName() {
@@ -104,16 +104,16 @@ public class ServiceFunctionChain {
         inDcs = '[' + inDcs + ']';
 
         // String outDcs = "";
-        // for (InOutDc outDc : EgressDCs) {
+        // for (InOutDc outDc : EgressDC) {
         // outDcs += outDc.toString() + ",";
         // }
 
         // outDcs = '[' + outDcs + ']';
 
-        String outDcs = EgressDCs.toString();
+        String outDcs = EgressDC.toString();
 
         return "ServiceFunctionChain{" + "\nName='" + Name + "'," + "\nChain=" + chainStr + ',' + "\nIngressDCs="
-                + inDcs + ',' + "\nEgressDCs=" + outDcs + ',' + "\nAverageInputSize=" + AverageInputSize + ','
+                + inDcs + ',' + "\nEgressDC=" + outDcs + ',' + "\nAverageInputSize=" + AverageInputSize + ','
                 + "\nCreateTime=" + CreateTime + ',' + "\nDestroyTime=" + DestroyTime + ',' + "}\n";
     }
 

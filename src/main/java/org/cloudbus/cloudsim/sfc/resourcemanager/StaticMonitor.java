@@ -1,6 +1,7 @@
 package org.cloudbus.cloudsim.sfc.resourcemanager;
 
 import org.cloudbus.cloudsim.Host;
+import org.cloudbus.cloudsim.distributions.NormalDistr;
 import org.cloudbus.cloudsim.sdn.SDNBroker;
 import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNDatacenter;
 import org.cloudbus.cloudsim.sfc.parser.HomogeneousResourceGroup;

@@ -98,7 +98,17 @@ public class WorkloadParser {
 
 			String now = String.valueOf(new Date().getTime());
 			// Long date = new Long
-			result_file = path_folder + now.substring(now.length() / 2) + "result_";
+
+			Calendar nowtime = new GregorianCalendar();
+
+			String strDateTime = "[" + String.format("%02d", nowtime.get(Calendar.DATE)) + "-"
+					+ String.format("%02d", nowtime.get(Calendar.HOUR) + 12) + ":"
+					+ String.format("%02d", nowtime.get(Calendar.MINUTE)) + ":"
+					+ String.format("%02d", nowtime.get(Calendar.SECOND)) + "]";
+
+			// result_file = path_folder + now.substring(now.length() / 2) + "result_";
+			result_file = path_folder + strDateTime + "result_";
+
 			// result_file += (StartAvailability.failOverDebug ? "" : "Availability");
 			// result_file += (StartAvailability.queueDebug ? "" : "Queue");
 
@@ -186,8 +196,9 @@ public class WorkloadParser {
 		} else // the next request is the last transmission to the egress node.
 		{
 			toVmId = this.getVmId(lineitems.poll());
-			System.out.println(
-					"next request is the final transmission, currently the lineitems size is :" + lineitems.size());
+			// System.out.println(
+			// "next request is the final transmission, currently the lineitems size is :" +
+			// lineitems.size());
 			nextReq = new Request(userId);
 		}
 		Transmission trans = new Transmission(fromVmId, toVmId, pktSize, flowId, nextReq);

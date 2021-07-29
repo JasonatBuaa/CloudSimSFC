@@ -44,16 +44,18 @@ public class PacketSchedulerTimeShared extends PacketSchedulerSpaceShared {
 		transmission.addCompletedLength(processedThisRound);
 
 		BigDecimal startT1 = new BigDecimal(transmission.getPacket().getStartTime());
-		BigDecimal breakPointTime = new BigDecimal(21.0);
-		if (transmission.getPacket().getOrigin() == 0 && startT1.compareTo(breakPointTime) == 0) {
-			System.out.println("breakpoint");
-		}
+		// BigDecimal breakPointTime = new BigDecimal(21.0);
+		// if (transmission.getPacket().getOrigin() == 0 &&
+		// startT1.compareTo(breakPointTime) == 0) {
+		// System.out.println("breakpoint");
+		// }
 
-		breakPointTime = new BigDecimal(41.0);
+		// breakPointTime = new BigDecimal(41.0);
 
-		if (transmission.getPacket().getOrigin() == 0 && startT1.compareTo(breakPointTime) == 0) {
-			System.out.println("breakpoint");
-		}
+		// if (transmission.getPacket().getOrigin() == 0 &&
+		// startT1.compareTo(breakPointTime) == 0) {
+		// System.out.println("breakpoint");
+		// }
 
 		if (transmission.isCompleted()) {
 			this.completed.add(transmission);

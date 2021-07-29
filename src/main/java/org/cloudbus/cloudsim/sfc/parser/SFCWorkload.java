@@ -23,7 +23,7 @@ public class SFCWorkload {
         startTime = serviceFunctionChain.getCreateTime();
         endTime = serviceFunctionChain.getDestroyTime();
         ingress = serviceFunctionChain.getIngressDCs();
-        egress = serviceFunctionChain.getEgressDCs();
+        egress = serviceFunctionChain.getEgressDC();
         targetChainName = serviceFunctionChain.getName();
         chainInputSize = serviceFunctionChain.getAverageInputSize();
         chainLength = serviceFunctionChain.getChain().size();
@@ -46,21 +46,22 @@ public class SFCWorkload {
             int time = count * 1 + startTime;
             SFCRequest sfcRequest = new SFCRequest(time);
             setInEgress(sfcRequest, count);
-            int index = 0, cloudletLen, outputSize = 0;
+            int index = 0, cloudletLen = 0;
+            double outputSize = 0;
             // int inputSize = chainInputSize + random.nextInt(2) * 10;
             double exactInputSize = inputSizeDistr.sample();
 
-            int inputSize = (int) exactInputSize;
+            double inputSize = exactInputSize;
 
             for (; index < chain.size(); index++) {
                 ServiceFunction serviceFunction = ServiceFunction.serverFunctionMap.get(chain.get(index));
-                cloudletLen = (int) (serviceFunction.getOperationalComplexity() * exactInputSize);
+                cloudletLen = (int) (serviceFunction.getOperationalComplexity() * inputSize);
                 outputSize = serviceFunction.getOutputSize(inputSize);
-                sfcRequest.fillRequest(chain.get(index), inputSize, cloudletLen);
+                sfcRequest.fillRequest(chain.get(index), (int) inputSize, cloudletLen);
                 inputSize = outputSize;
             }
             // transmission to Egress
-            sfcRequest.setOutput(outputSize);
+            sfcRequest.setOutput((int) outputSize);
             sfcRequestList.add(sfcRequest);
             count++;
         }

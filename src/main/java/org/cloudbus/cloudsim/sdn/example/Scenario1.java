@@ -50,7 +50,8 @@ import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationPolicyMipsMos
  */
 public class Scenario1 {
 
-	protected static String rootFolder = "Scenario1/";
+	// protected static String rootFolder = "Scenario1-1/";
+	protected static String rootFolder = Configuration.ROOT_FOLDER;
 	protected static String physicalTopologyFile = rootFolder + "PhysicalResource.json";
 	protected static String deploymentFile = rootFolder + "virtualTopology.json"; // virtual topology
 	protected static String workload_folder = rootFolder + "workloads/";

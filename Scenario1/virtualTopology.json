@@ -1,202 +1,74 @@
-{
-	"nodes":[
-		{
-			"datacenter":"DC2",
-			"name":"Ingress1",
-			"type":"Ingress",
-			"size":0,
-			"pes":0,
-			"mips":0,
-			"queuesize":0
+[
+	{
+		"averageInputSize": 12,
+		"chain": [
+			"SF-B",
+			"SF-C",
+			"SF-D",
+			"SF-E"
+		],
+		"createTime": 0,
+		"destroyTime": 500,
+		"engressDC": {
+			"dC": "DC1",
+			"name": "Egress1",
+			"weight": 1
 		},
-		{
-			"datacenter":"DC1",
-			"name":"Egress1",
-			"type":"Egress",
-			"size":0,
-			"pes":0,
-			"mips":0,
-			"queuesize":0
+		"ingressDCs": [
+			{
+				"dC": "DC2",
+				"name": "Ingress1",
+				"weight": 1
+			}
+		],
+		"name": "chain1"
+	},
+	{
+		"averageInputSize": 15,
+		"chain": [
+			"SF-A",
+			"SF-B",
+			"SF-C",
+			"SF-E"
+		],
+		"createTime": 0,
+		"destroyTime": 500,
+		"engressDC": {
+			"dC": "DC1",
+			"name": "Egress2",
+			"weight": 1
 		},
-		{
-			"datacenter":"DC2",
-			"name":"Ingress3",
-			"type":"Ingress",
-			"size":0,
-			"pes":0,
-			"mips":0,
-			"queuesize":0
+		"ingressDCs": [
+			{
+				"dC": "DC2",
+				"name": "Ingress2",
+				"weight": 1
+			}
+		],
+		"name": "chain2"
+	},
+	{
+		"averageInputSize": 15,
+		"chain": [
+			"SF-A",
+			"SF-B",
+			"SF-C",
+			"SF-D"
+		],
+		"createTime": 0,
+		"destroyTime": 500,
+		"engressDC": {
+			"dC": "DC1",
+			"name": "Egress3",
+			"weight": 1
 		},
-		{
-			"datacenter":"DC1",
-			"name":"Egress2",
-			"type":"Egress",
-			"size":0,
-			"pes":0,
-			"mips":0,
-			"queuesize":0
-		},
-		{
-			"datacenter":"DC2",
-			"name":"chain1_psfc1SF-A",
-			"type":"SF-A",
-			"size":1000,
-			"pes":1,
-			"mips":1000,
-			"queuesize":128
-		},
-		{
-			"datacenter":"DC2",
-			"name":"chain1_psfc1SF-B",
-			"type":"SF-B",
-			"size":1000,
-			"pes":1,
-			"mips":1000,
-			"queuesize":128
-		},
-		{
-			"datacenter":"DC2",
-			"name":"chain1_psfc1SF-C",
-			"type":"SF-C",
-			"size":1000,
-			"pes":1,
-			"mips":1000,
-			"queuesize":128
-		},
-		{
-			"datacenter":"DC2",
-			"name":"chain1_psfc1SF-D",
-			"type":"SF-D",
-			"size":1000,
-			"pes":1,
-			"mips":1000,
-			"queuesize":128
-		},
-		{
-			"datacenter":"DC2",
-			"name":"chain2_psfc1SF-A",
-			"type":"SF-A",
-			"size":1000,
-			"pes":1,
-			"mips":1000,
-			"queuesize":128
-		},
-		{
-			"datacenter":"DC2",
-			"name":"chain2_psfc1SF-B",
-			"type":"SF-B",
-			"size":1000,
-			"pes":1,
-			"mips":1000,
-			"queuesize":128
-		},
-		{
-			"datacenter":"DC2",
-			"name":"chain2_psfc1SF-D",
-			"type":"SF-D",
-			"size":1000,
-			"pes":1,
-			"mips":1000,
-			"queuesize":128
-		}
-	],
-	"links":[
-		{
-			"name":"Ingress1-Egress1",
-			"source":"Ingress1",
-			"destination":"Egress1",
-			"bandwidth":15
-		},
-		{
-			"name":"Ingress3-Egress2",
-			"source":"Ingress3",
-			"destination":"Egress2",
-			"bandwidth":10
-		},
-		{
-			"name":"Ingress3-chain2_psfc1SF-A",
-			"source":"Ingress3",
-			"destination":"chain2_psfc1SF-A",
-			"bandwidth":10
-		},
-		{
-			"name":"chain2_psfc1SF-A-chain2_psfc1SF-B",
-			"source":"chain2_psfc1SF-A",
-			"destination":"chain2_psfc1SF-B",
-			"bandwidth":10
-		},
-		{
-			"name":"chain2_psfc1SF-B-chain2_psfc1SF-D",
-			"source":"chain2_psfc1SF-B",
-			"destination":"chain2_psfc1SF-D",
-			"bandwidth":10
-		},
-		{
-			"name":"chain2_psfc1SF-D-Egress2",
-			"source":"chain2_psfc1SF-D",
-			"destination":"Egress2",
-			"bandwidth":10
-		},
-		{
-			"name":"Ingress1-chain1_psfc1SF-A",
-			"source":"Ingress1",
-			"destination":"chain1_psfc1SF-A",
-			"bandwidth":15
-		},
-		{
-			"name":"chain1_psfc1SF-A-chain1_psfc1SF-B",
-			"source":"chain1_psfc1SF-A",
-			"destination":"chain1_psfc1SF-B",
-			"bandwidth":15
-		},
-		{
-			"name":"chain1_psfc1SF-B-chain1_psfc1SF-C",
-			"source":"chain1_psfc1SF-B",
-			"destination":"chain1_psfc1SF-C",
-			"bandwidth":15
-		},
-		{
-			"name":"chain1_psfc1SF-C-chain1_psfc1SF-D",
-			"source":"chain1_psfc1SF-C",
-			"destination":"chain1_psfc1SF-D",
-			"bandwidth":15
-		},
-		{
-			"name":"chain1_psfc1SF-D-Egress1",
-			"source":"chain1_psfc1SF-D",
-			"destination":"Egress1",
-			"bandwidth":15
-		}
-	],
-	"policies":[
-		{
-			"name":"chain1_psfc1",
-			"flowname":"Ingress1-Egress1",
-			"source":"Ingress1",
-			"destination":"Egress1",
-			"sfc_Demand":"chain1",
-			"starttime":0,
-			"expectedduration":500,
-			"sfc":[
-				"chain1_psfc1SF-A",
-				"chain1_psfc1SF-B",
-				"chain1_psfc1SF-C",
-				"chain1_psfc1SF-D"
-			]
-		},
-		{
-			"name":"chain2_psfc1",
-			"flowname":"Ingress3-Egress2",
-			"source":"Ingress3",
-			"destination":"Egress2",
-			"sfc_Demand":"chain2",
-			"starttime":0,
-			"expectedduration":500,
-			"sfc":[
-				"chain2_psfc1SF-A",
-				"chain2_psfc1SF-B",
-				"chain2_psfc1SF-D"
-			]
-		}
-	]
-}
+		"ingressDCs": [
+			{
+				"dC": "DC2",
+				"name": "Ingress3",
+				"weight": 1
+			}
+		],
+		"name": "chain3"
+	}
+]

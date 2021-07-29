@@ -80,7 +80,7 @@ public class ServiceFunctionChainGenerator {
             serviceFunctionChain.setAverageInputSize(110);
             serviceFunctionChain.getIngressDCs().add(ingress);
             // serviceFunctionChain.getEgressDCs().add(egress);
-            serviceFunctionChain.setEgressDCs(egress);
+            serviceFunctionChain.setEgressDC(egress);
             serviceFunctionChain.setCreateTime(0);
             serviceFunctionChain.setDestroyTime(10000);
             serviceFunctionChainList.add(serviceFunctionChain);

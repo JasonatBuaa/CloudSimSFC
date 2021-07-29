@@ -103,7 +103,7 @@ public class DeploymentScheduler {
                 // count_egerss++;
                 // links.add(virtualTopologyLink);
                 // }
-                InOutDc egress = serviceFunctionChain.getEgressDCs();
+                InOutDc egress = serviceFunctionChain.getEgressDC();
                 int requestSize = serviceFunctionChain.getAverageInputSize();
                 // VirtualTopologyLink virtualTopologyLink = new VirtualTopologyLink(
                 // ingress.getName() + "-" + egress.getName(), ingress.getName(),
@@ -140,7 +140,7 @@ public class DeploymentScheduler {
                 // count++;
                 // }
                 // Jason : one egress for each SFC
-                InOutDc egerss = serviceFunctionChain.getEgressDCs();
+                InOutDc egerss = serviceFunctionChain.getEgressDC();
                 List<String> includedSFs = new ArrayList<>();
                 for (String logicalSF : serviceFunctionChain.getChain()) {
                     String sfInstanceName = physicalChainName + logicalSF;

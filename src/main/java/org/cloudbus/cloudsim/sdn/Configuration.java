@@ -12,7 +12,7 @@ public class Configuration {
 	// public static String workingDirectory = "./jason";
 	public static String workingDirectory = "./";
 	public static String experimentName = "";
-	public static String ROOT_FOLDER = "Scenario1/";
+	public static String ROOT_FOLDER = "Scenario1-1/";
 	public static String RESULT_FOLDER = ROOT_FOLDER + "results/";
 
 	// public static double minTimeBetweenEvents = 0.01;//0.01; // in sec
@@ -106,7 +106,8 @@ public class Configuration {
 	public static final double SIMULATION_DURATION = 10001;
 
 	public static final double CPU_SIZE_MULTIPLY = 1; // Multiply all the CPU size for scale. Default =1 (No amplify)
-	public static final double NETWORK_PACKET_SIZE_MULTIPLY = 1; // Multiply all the network packet size. Default =1 (No
+	public static final double NETWORK_PACKET_SIZE_MULTIPLY = 1000; // Multiply all the network packet size. Default =1
+																	// (No
 																	// amplify)
 	public static final int QUEUE_SPACE_MULTIPLY = 20;
 	// public static final int WORKLOAD_MULTIPLY = 10;
