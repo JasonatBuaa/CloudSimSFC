@@ -10,7 +10,7 @@ import org.cloudbus.cloudsim.sdn.Configuration;
 import org.cloudbus.cloudsim.sfc.parser.configGenerator.CustomPhysicalTopologyGenerator;
 import org.cloudbus.cloudsim.sfc.parser.configGenerator.DeploymentScheduler;
 import org.cloudbus.cloudsim.sfc.resourcemanager.StaticSchedulerScenario1;
-import org.cloudbus.cloudsim.sfc.resourcemanager.StaticSchedulerScenario2;
+import org.cloudbus.cloudsim.sfc.resourcemanager.StaticSchedulerScenario4;
 import org.cloudbus.cloudsim.util.JsonUtils;
 
 import java.io.*;
@@ -126,8 +126,8 @@ public class FileParser {
             customVirtualTopologyGenerator = new StaticSchedulerScenario1(serviceFunctionChainDemands, sfcWorkloads,
                     resources);
 
-        else if (scenario.equalsIgnoreCase("scenario2"))
-            customVirtualTopologyGenerator = new StaticSchedulerScenario2(serviceFunctionChainDemands, sfcWorkloads,
+        else if (scenario.equalsIgnoreCase("scenario4"))
+            customVirtualTopologyGenerator = new StaticSchedulerScenario4(serviceFunctionChainDemands, sfcWorkloads,
                     resources);
         // else if (scenario.equalsIgnoreCase("scenario3"))
         // customVirtualTopologyGenerator = new

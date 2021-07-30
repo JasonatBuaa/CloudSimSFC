@@ -107,7 +107,9 @@ public class WorkloadParser {
 					+ String.format("%02d", nowtime.get(Calendar.SECOND)) + "]";
 
 			// result_file = path_folder + now.substring(now.length() / 2) + "result_";
-			result_file = path_folder + strDateTime + "result_";
+
+			// result_file = path_folder + strDateTime + "result_";
+			result_file = path_folder + "result_";
 
 			// result_file += (StartAvailability.failOverDebug ? "" : "Availability");
 			// result_file += (StartAvailability.queueDebug ? "" : "Queue");

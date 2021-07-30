@@ -25,7 +25,8 @@ class FileParserTest {
 
         fileParser.setRootPath(Configuration.ROOT_FOLDER);
         fileParser.parse();
-        String scenario = "scenario1";
+        // String scenario = "scenario2";
+        String scenario = "scenario4";
         try {
             fileParser.deploymentSchedule(scenario);
         } catch (Exception e) {

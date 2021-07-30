@@ -44,23 +44,23 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
 
     @Override
     public void generateLinks(List<ServiceFunctionChain> serverFunctionChains) {
-        generateLinksForScenario1_1(serverFunctionChains);
+        // generateLinksForScenario1_1(serverFunctionChains);
         // generateLinksForScenario1_2(serverFunctionChains);
         // generateLinksForScenario1_3(serverFunctionChains);
         // generateLinksForScenario1_4(serverFunctionChains);
         // generateLinksForScenario1_5(serverFunctionChains);
-        // generateLinksForScenario1_6(serverFunctionChains);
+        generateLinksForScenario1_6(serverFunctionChains);
     }
 
     @Override
     public void generateNodes(List<SFCWorkload> sfcWorkloads, List<Resource> resources,
             List<ServiceFunctionChain> serviceFunctionChains) {
-        generateNodesForScenario1_1(sfcWorkloads, resources, serviceFunctionChains);
+        // generateNodesForScenario1_1(sfcWorkloads, resources, serviceFunctionChains);
         // generateNodesForScenario1_2(sfcWorkloads, resources, serviceFunctionChains);
         // generateNodesForScenario1_3(sfcWorkloads, resources, serviceFunctionChains);
         // generateNodesForScenario1_4(sfcWorkloads, resources, serviceFunctionChains);
         // generateNodesForScenario1_5(sfcWorkloads, resources, serviceFunctionChains);
-        // generateNodesForScenario1_6(sfcWorkloads, resources, serviceFunctionChains);
+        generateNodesForScenario1_6(sfcWorkloads, resources, serviceFunctionChains);
     }
 
     // Jason : Scenario 1-1
@@ -553,6 +553,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
             int avarageInputSize = needSchedule.getAverageInputSize();
 
             double inOutRatioCurrent = 1.0;
+            boolean headOfChain = true;
 
             // iterate all the SFs in the chain
             for (; index < chain.size();) {
@@ -573,8 +574,13 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
                     inOutRatioCurrent *= serviceFunction.getOutputRate() / serviceFunction.getInputRate();
                     index++;
                 } while (inOutRatioCurrent > 1 && index < chain.size());
+                String ingressDc;
+                if (headOfChain == true)
+                    ingressDc = needSchedule.getIngressDCs().get(0).getDC();
+                else
+                    ingressDc = needSchedule.getEgressDC().getDC();
+                headOfChain = false;
 
-                String ingressDc = needSchedule.getIngressDCs().get(0).getDC();
                 String selectDc = "";
                 // 优先在ingress中尝试部署
                 if (isIngressSuitable(ingressDc, serviceFunctionTogether)) {

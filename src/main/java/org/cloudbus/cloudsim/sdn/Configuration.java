@@ -12,7 +12,12 @@ public class Configuration {
 	// public static String workingDirectory = "./jason";
 	public static String workingDirectory = "./";
 	public static String experimentName = "";
-	public static String ROOT_FOLDER = "Scenario1-1/";
+	// public static String ROOT_FOLDER = "Scenario1-1/";
+	// public static String ROOT_FOLDER = "Scenario1-2/";
+	// public static String ROOT_FOLDER = "Scenario1-3/";
+	public static String ROOT_FOLDER = "Scenario2-4/";
+	// public static String ROOT_FOLDER = "Scenario2-2/";
+	// public static String ROOT_FOLDER = "Scenario2-3/";
 	public static String RESULT_FOLDER = ROOT_FOLDER + "results/";
 
 	// public static double minTimeBetweenEvents = 0.01;//0.01; // in sec
@@ -155,9 +160,9 @@ public class Configuration {
 	public static final double SFC_UNDERLOAD_THRESHOLD_BW = 0.4;
 	public static final double SFC_UNDERLOAD_THRESHOLD_VM = 0.4;
 
-	public static boolean ENABLE_TRANSMISSION_JITTER = false;
-	public static boolean ENABLE_COMPUTATION_JITTER = false;
-	public static final double NETWORK_JITTER_SIGMA = 1;
+	public static boolean ENABLE_TRANSMISSION_JITTER = true;
+	public static boolean ENABLE_COMPUTATION_JITTER = true;
+	public static final double NETWORK_JITTER_SIGMA = 30;
 
 	// public static boolean DISABLE_FAILURE_RECOVERY = true; // True: Do not injuct
 	// fail over event.
