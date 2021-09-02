@@ -15,7 +15,7 @@ public class Configuration {
 	// public static String ROOT_FOLDER = "Scenario1-1/";
 	// public static String ROOT_FOLDER = "Scenario1-2/";
 	// public static String ROOT_FOLDER = "Scenario1-3/";
-	public static String ROOT_FOLDER = "Scenario2-4/";
+	public static String ROOT_FOLDER = "Scenario4-2/";
 	// public static String ROOT_FOLDER = "Scenario2-2/";
 	// public static String ROOT_FOLDER = "Scenario2-3/";
 	public static String RESULT_FOLDER = ROOT_FOLDER + "results/";

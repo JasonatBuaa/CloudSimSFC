@@ -457,7 +457,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
                     index++;
                 } while (inOutRatioCurrent > 1 && index < chain.size());
                 String ingressDc;
-                if (headOfChain == true)
+                if (headOfChain == true && inOutRatioCurrent < 1)
                     ingressDc = needSchedule.getIngressDCs().get(0).getDC();
                 else
                     ingressDc = needSchedule.getEgressDC().getDC();
@@ -550,7 +550,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
 
             List<VirtualTopologyVmSF> physicalChain = new LinkedList<>();
 
-            int avarageInputSize = needSchedule.getAverageInputSize();
+            // int avarageInputSize = needSchedule.getAverageInputSize();
 
             double inOutRatioCurrent = 1.0;
             boolean headOfChain = true;
@@ -561,21 +561,25 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
                 Map<ServiceFunction, VirtualTopologyVmSF> serviceFunctionTogether = new LinkedHashMap<>();
 
                 inOutRatioCurrent = 1.0;
+                int mipsPerPe = 1000;
+                int totalReqMips = 1000;
+                int pes = 1;
                 // 0. 确定资源配额
                 // 如果chain的某一个SF 出/进>1,就继续循环,找下一个捆绑部署,直到 出/进 < 1;如果某一个SF 出/进 < 1，就单独部署
                 do {
                     ServiceFunction serviceFunction = ServiceFunction.serverFunctionMap.get(chain.get(index));
                     int size = 1000;
-                    int pes = 1;
-                    int mips = 1000;
+                    totalReqMips = (int) (totalReqMips * inOutRatioCurrent);
+                    pes = totalReqMips / mipsPerPe + 1; // e.g., totalReqMips = 600, mipsPerPe = 1000. pes = 1;
+                    mipsPerPe = totalReqMips / pes;
                     int queueSize = 128;
-                    VirtualTopologyVmSF tryFlavor = new VirtualTopologyVmSF(size, pes, mips, queueSize);
+                    VirtualTopologyVmSF tryFlavor = new VirtualTopologyVmSF(size, pes, mipsPerPe, queueSize);
                     serviceFunctionTogether.put(serviceFunction, tryFlavor);
                     inOutRatioCurrent *= serviceFunction.getOutputRate() / serviceFunction.getInputRate();
                     index++;
                 } while (inOutRatioCurrent > 1 && index < chain.size());
                 String ingressDc;
-                if (headOfChain == true)
+                if (headOfChain == true && inOutRatioCurrent < 1)
                     ingressDc = needSchedule.getIngressDCs().get(0).getDC();
                 else
                     ingressDc = needSchedule.getEgressDC().getDC();

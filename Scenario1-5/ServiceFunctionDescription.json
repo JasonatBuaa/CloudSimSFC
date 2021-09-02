@@ -23,15 +23,15 @@
   {
     "Name": "SF-D",
     "Type": "DPI",
-    "InputRate": 1.8,
-    "OutputRate": 1.0,
+    "InputRate": 1.0,
+    "OutputRate": 2.0,
     "OperationalComplexity": 100
   },
   {
     "Name": "SF-E",
     "Type": "Filter",
     "InputRate": 1.2,
-    "OutputRate": 1.0,
+    "OutputRate": 2.0,
     "OperationalComplexity": 200
   }
 ]

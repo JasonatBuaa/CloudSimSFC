@@ -16,11 +16,12 @@ public class PerformanceJitter {
 
 	// Jason: Per-Event sampling : This function should be called by the Channel
 	// Manager during each transmission.
+
 	public double sampleTransmissionPerformance(double link_bw) {
 		double jitter_sigma = Configuration.NETWORK_JITTER_SIGMA;
 		if (Configuration.ENABLE_TRANSMISSION_JITTER) {
 			// this.nd = new NormalDistr(link_bw, sigma);
-			double jitter = link_bw * 0.2;
+			double jitter = link_bw * 0.05;
 			this.nd = new NormalDistr(link_bw, jitter);
 			// System.out.println("Jitter!!!!!! Check!!!!!!!");
 			// return nd.sample(link_bw / 5, link_bw * 2);
@@ -37,7 +38,7 @@ public class PerformanceJitter {
 	public double sampleComputationPerformance(double mips, double jitter_sigma) {
 		if (Configuration.ENABLE_COMPUTATION_JITTER) {
 			// this.nd = new NormalDistr(mips, mips * jitter_sigma);
-			double jitter = mips * 0.2;
+			double jitter = mips * 0.05;
 			this.nd = new NormalDistr(mips, jitter);
 			// return Math.min(nd.sample(), mips);
 			// System.out.println("Jitter!!!!!! Check!!!!!!!");

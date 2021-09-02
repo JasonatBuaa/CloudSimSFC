@@ -1011,7 +1011,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain2_psfc1SF-A",
 			"type":"SF-A",
 			"size":1000,
@@ -1020,7 +1020,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain2_psfc1SF-C",
 			"type":"SF-C",
 			"size":1000,
@@ -1065,7 +1065,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain4_psfc1SF-A",
 			"type":"SF-A",
 			"size":1000,
@@ -1074,7 +1074,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain4_psfc1SF-C",
 			"type":"SF-C",
 			"size":1000,
@@ -1083,7 +1083,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain5_psfc1SF-A",
 			"type":"SF-A",
 			"size":1000,
@@ -1092,7 +1092,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain5_psfc1SF-D",
 			"type":"SF-D",
 			"size":1000,
@@ -1105,8 +1105,8 @@
 			"name":"chain5_psfc1SF-E",
 			"type":"SF-E",
 			"size":1000,
-			"pes":2,
-			"mips":916,
+			"pes":7,
+			"mips":942,
 			"queuesize":128
 		},
 		{
@@ -1164,7 +1164,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain8_psfc1SF-A",
 			"type":"SF-A",
 			"size":1000,
@@ -1173,7 +1173,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain8_psfc1SF-C",
 			"type":"SF-C",
 			"size":1000,
@@ -1195,12 +1195,12 @@
 			"name":"chain8_psfc1SF-E",
 			"type":"SF-E",
 			"size":1000,
-			"pes":2,
-			"mips":777,
+			"pes":6,
+			"mips":933,
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain9_psfc1SF-A",
 			"type":"SF-A",
 			"size":1000,
@@ -1209,7 +1209,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain9_psfc1SF-C",
 			"type":"SF-C",
 			"size":1000,
@@ -1218,7 +1218,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain10_psfc1SF-A",
 			"type":"SF-A",
 			"size":1000,
@@ -1227,7 +1227,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain10_psfc1SF-E",
 			"type":"SF-E",
 			"size":1000,
@@ -1267,12 +1267,12 @@
 			"name":"chain11_psfc1SF-E",
 			"type":"SF-E",
 			"size":1000,
-			"pes":1,
-			"mips":370,
+			"pes":2,
+			"mips":666,
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain12_psfc1SF-A",
 			"type":"SF-A",
 			"size":1000,
@@ -1281,7 +1281,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain12_psfc1SF-D",
 			"type":"SF-D",
 			"size":1000,
@@ -1294,8 +1294,8 @@
 			"name":"chain12_psfc1SF-E",
 			"type":"SF-E",
 			"size":1000,
-			"pes":2,
-			"mips":833,
+			"pes":7,
+			"mips":857,
 			"queuesize":128
 		},
 		{
@@ -1348,8 +1348,8 @@
 			"name":"chain14_psfc1SF-E",
 			"type":"SF-E",
 			"size":1000,
-			"pes":1,
-			"mips":370,
+			"pes":2,
+			"mips":666,
 			"queuesize":128
 		},
 		{
@@ -1384,8 +1384,8 @@
 			"name":"chain15_psfc1SF-E",
 			"type":"SF-E",
 			"size":1000,
-			"pes":1,
-			"mips":833,
+			"pes":4,
+			"mips":750,
 			"queuesize":128
 		},
 		{
@@ -1416,7 +1416,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain17_psfc1SF-A",
 			"type":"SF-A",
 			"size":1000,
@@ -1425,7 +1425,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain17_psfc1SF-C",
 			"type":"SF-C",
 			"size":1000,
@@ -1447,12 +1447,12 @@
 			"name":"chain17_psfc1SF-E",
 			"type":"SF-E",
 			"size":1000,
-			"pes":2,
-			"mips":666,
+			"pes":5,
+			"mips":960,
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain18_psfc1SF-A",
 			"type":"SF-A",
 			"size":1000,
@@ -1461,7 +1461,7 @@
 			"queuesize":128
 		},
 		{
-			"datacenter":"DC2",
+			"datacenter":"DC1",
 			"name":"chain18_psfc1SF-C",
 			"type":"SF-C",
 			"size":1000,
@@ -1492,8 +1492,8 @@
 			"name":"chain19_psfc1SF-E",
 			"type":"SF-E",
 			"size":1000,
-			"pes":1,
-			"mips":611,
+			"pes":3,
+			"mips":733,
 			"queuesize":128
 		},
 		{

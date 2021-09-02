@@ -460,7 +460,7 @@ public class StaticSchedulerScenario4 extends DeploymentScheduler {
                     index++;
                 } while (inOutRatioCurrent > 1 && index < chain.size());
                 String ingressDc;
-                if (headOfChain == true)
+                if (headOfChain == true && inOutRatioCurrent < 1)
                     ingressDc = needSchedule.getIngressDCs().get(0).getDC();
                 else
                     ingressDc = needSchedule.getEgressDC().getDC();

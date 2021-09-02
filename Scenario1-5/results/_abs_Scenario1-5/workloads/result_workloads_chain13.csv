@@ -11,11 +11,11 @@
 #Over transmissions:0
 #Over transmissions per cent:0.0
 #======================================
-#Total serve time:2146.308161041078
-#CPU serve time:1721.74020939993
-#Network serve time:1265.3387140356556
-#Average total serve time:4.301218759601359
-#Average CPU serve time per workload:3.4503811811621845
-#Average network serve time per workload:2.5357489259231576
-#Average CPU serve time per Cloudlet:1.7251905905810923
-#Average network serve time per transmission:0.8452496419743858
+#Total serve time:2133.3623274101496
+#CPU serve time:1708.8116087501655
+#Network serve time:1052.5248352734375
+#Average total serve time:4.275275205230761
+#Average CPU serve time per workload:3.424472161823979
+#Average network serve time per workload:2.1092682069607966
+#Average CPU serve time per Cloudlet:1.7122360809119894
+#Average network serve time per transmission:0.7030894023202655
