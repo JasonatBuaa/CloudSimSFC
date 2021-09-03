@@ -2,9 +2,9 @@ package org.cloudbus.cloudsim.sfc.test;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import org.cloudbus.cloudsim.sfc.parser.*;
-import org.cloudbus.cloudsim.sfc.parser.configGenerator.CustomPhysicalTopologyGenerator;
-import org.cloudbus.cloudsim.sfc.parser.configGenerator.DeploymentScheduler;
+import org.cloudbus.cloudsim.sfc.scenariomanager.*;
+import org.cloudbus.cloudsim.sfc.scenariomanager.configGenerator.CustomPhysicalTopologyGenerator;
+import org.cloudbus.cloudsim.sfc.scenariomanager.configGenerator.DeploymentScheduler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ class SFCWorkloadTest {
                                 + "    \"EgressDC\": [{\"Name\":\"Egress2\",\"Weight\":1}],\n"
                                 + "    \"AverageInputSize\": 110,\n" + "    \"CreateTime\": 0,\n"
                                 + "    \"DestroyTime\":10001\n" + "  }\n" + "]";
-                List<ServiceFunctionChain> serverFunctionChains = JSONObject.parseObject(jsonStr0,
+                List<ServiceFunctionChain> serviceFunctionChains = JSONObject.parseObject(jsonStr0,
                                 new TypeReference<List<ServiceFunctionChain>>() {
                                 });
 
@@ -38,7 +38,7 @@ class SFCWorkloadTest {
                                 + "    \"Performance\":100\n" + "  },\n" + "  {\n" + "    \"Name\": \"SF-D\",\n"
                                 + "    \"Type\": \"Other\",\n" + "    \"InputRate\": 1.0,\n"
                                 + "    \"OutputRate\": 1.0,\n" + "    \"Performance\":300\n" + "  }\n" + "]";
-                List<ServiceFunction> serverFunctions = JSONObject.parseObject(jsonStr1,
+                List<ServiceFunction> serviceFunctions = JSONObject.parseObject(jsonStr1,
                                 new TypeReference<List<ServiceFunction>>() {
                                 });
 
@@ -94,7 +94,7 @@ class SFCWorkloadTest {
 
                 List<SFCWorkload> sfcWorkloadList = new ArrayList<>();
 
-                for (ServiceFunctionChain serviceFunctionChain : serverFunctionChains) {
+                for (ServiceFunctionChain serviceFunctionChain : serviceFunctionChains) {
                         SFCWorkload sfcWorkload = new SFCWorkload(serviceFunctionChain);
                         sfcWorkloadList.add(sfcWorkload);
                         for (SFCRequest sfcRequest : sfcWorkload.getSfcRequestList()) {
@@ -105,7 +105,7 @@ class SFCWorkloadTest {
 
                 }
 
-                DeploymentScheduler customVirtualTopologyGenerator = new DeploymentScheduler(serverFunctionChains,
+                DeploymentScheduler customVirtualTopologyGenerator = new DeploymentScheduler(serviceFunctionChains,
                                 sfcWorkloadList, resourceParsers);
 
         }

@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import org.cloudbus.cloudsim.sfc.parser.Resource;
-import org.cloudbus.cloudsim.sfc.parser.configGenerator.CustomPhysicalTopologyGenerator;
+import org.cloudbus.cloudsim.sfc.scenariomanager.Resource;
+import org.cloudbus.cloudsim.sfc.scenariomanager.configGenerator.CustomPhysicalTopologyGenerator;
 
 import java.util.List;
 

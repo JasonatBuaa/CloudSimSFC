@@ -1,8 +1,0 @@
-Data center infrastructure (Physical Topology) : LFF
-Virtual Machine and Network requests (Virtual Topology) : SFCExampleConfig/PhysicalResource.json
-Workloads in SmallSFCDemo/SingleQueuedSF.json :
-  ./
-  SmallSFCDemo/jasontestFile.csv
-Starting CloudSim SDN...
-Initialising...
-Unwanted errors happen

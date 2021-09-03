@@ -1,13 +1,9 @@
 package org.cloudbus.cloudsim.sfc.resourcemanager;
 
-import org.cloudbus.cloudsim.Host;
-import org.cloudbus.cloudsim.distributions.NormalDistr;
-import org.cloudbus.cloudsim.sdn.SDNBroker;
-import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNDatacenter;
-import org.cloudbus.cloudsim.sfc.parser.HomogeneousResourceGroup;
-import org.cloudbus.cloudsim.sfc.parser.PhysicalResource;
-import org.cloudbus.cloudsim.sfc.parser.Resource;
-import org.cloudbus.cloudsim.sfc.parser.configGenerator.HostDesp;
+import org.cloudbus.cloudsim.sfc.scenariomanager.HomogeneousResourceGroup;
+import org.cloudbus.cloudsim.sfc.scenariomanager.PhysicalResource;
+import org.cloudbus.cloudsim.sfc.scenariomanager.Resource;
+import org.cloudbus.cloudsim.sfc.scenariomanager.configGenerator.HostDesp;
 
 import java.util.ArrayList;
 import java.util.HashMap;

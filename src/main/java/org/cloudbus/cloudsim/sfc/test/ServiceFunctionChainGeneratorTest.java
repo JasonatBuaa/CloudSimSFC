@@ -1,6 +1,6 @@
 package org.cloudbus.cloudsim.sfc.test;
 
-import org.cloudbus.cloudsim.sfc.parser.configGenerator.ServiceFunctionChainGenerator;
+import org.cloudbus.cloudsim.sfc.scenariomanager.configGenerator.ServiceFunctionChainGenerator;
 
 /**
  * @author chengr

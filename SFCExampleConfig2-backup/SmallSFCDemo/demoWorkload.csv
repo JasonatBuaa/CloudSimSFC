@@ -1,2 +1,0 @@
-target_sfc,Ingress,time(s),Transmission1(MB),cloudlet.1(MI),Transmission2(MB),cloudlet.2(MI),Transmission3(MB),Egress,latency_demand(s)
-sfc1,sfc1_Ingress_1,10.0,100,1000,110,200,110,sfc1_Egress,10.0

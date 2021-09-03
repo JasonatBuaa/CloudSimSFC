@@ -1,8 +1,6 @@
 package org.cloudbus.cloudsim.sfc.resourcemanager;
 
 import org.cloudbus.cloudsim.Host;
-import org.cloudbus.cloudsim.sfc.parser.configGenerator.HostDesp;
-import org.cloudbus.cloudsim.sdn.sfc.ServiceFunction;
 
 import java.util.List;
 import java.util.Map;
