@@ -45,11 +45,11 @@ public class FREventParser {
     private String file;
     private int userId;
 
-    private List<FREvent> parsedFailOverEvents;
+    private List<FREvent> parsedFREvents;
 
     private WorkloadResultWriter resultWriter = null;
 
-    private int failOverEventNum = 0;
+    private int FREventNum = 0;
 
     private BufferedReader bufReader = null;
 
@@ -98,8 +98,8 @@ public class FREventParser {
         return result_file;
     }
 
-    public void parseNextFailOverEvents() {
-        this.parsedFailOverEvents = new ArrayList<FREvent>();
+    public void parseNextFREvents() {
+        this.parsedFREvents = new ArrayList<FREvent>();
         try {
             parseNext(NUM_PARSE_EACHTIME);
         } catch (Exception e) {
@@ -108,8 +108,8 @@ public class FREventParser {
         }
     }
 
-    public List<FREvent> getParsedFailOverEvents() {
-        return this.parsedFailOverEvents;
+    public List<FREvent> getParsedFREvents() {
+        return this.parsedFREvents;
     }
 
     public WorkloadResultWriter getResultWriter() {
@@ -147,9 +147,9 @@ public class FREventParser {
         String line;
 
         try {
-            while (((line = bufReader.readLine()) != null) && (parsedFailOverEvents.size() < numPerBatch)) {
+            while (((line = bufReader.readLine()) != null) && (parsedFREvents.size() < numPerBatch)) {
                 // System.out.println("parsing:"+line);
-                FREvent ae = new FREvent(failOverEventNum++);
+                FREvent ae = new FREvent(FREventNum++);
 
                 String[] splitLine = line.split(",");
                 Queue<String> lineitems = new LinkedList<String>(Arrays.asList(splitLine));
@@ -174,7 +174,7 @@ public class FREventParser {
                 ae.setFailureTime(failureTime);
                 ae.setRecoveryTime(recoveryTime);
 
-                parsedFailOverEvents.add(ae);
+                parsedFREvents.add(ae);
 
                 // String inputEventType = lineitems.poll();
                 // event type
@@ -210,8 +210,8 @@ public class FREventParser {
      * System.err.println(dir+"/"+name+"."+ext); return dir+"/"+name+"."+ext; }
      */
 
-    public int getFailOverEventNum() {
-        return failOverEventNum;
+    public int getFREventNum() {
+        return FREventNum;
     }
 
 }

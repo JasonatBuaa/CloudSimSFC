@@ -61,7 +61,7 @@ public class SDNBroker extends SimEntity {
 	private String applicationFileName = null;
 	private HashMap<WorkloadParser, Integer> workloadId = null;
 
-	private HashMap<FREventParser, Integer> failOverIds = null; // Jason: For failOver Events
+	private HashMap<FREventParser, Integer> FRIds = null; // Jason: For FR Events
 	private HashMap<Long, Workload> requestMap = null;
 	private List<String> workloadFileNames = null;
 
@@ -74,7 +74,7 @@ public class SDNBroker extends SimEntity {
 
 		this.FRFileNames = new ArrayList<String>();
 		workloadId = new HashMap<WorkloadParser, Integer>();
-		failOverIds = new HashMap<FREventParser, Integer>();
+		FRIds = new HashMap<FREventParser, Integer>();
 		requestMap = new HashMap<Long, Workload>();
 
 	}
@@ -194,7 +194,7 @@ public class SDNBroker extends SimEntity {
 		this.workloadFileNames.add(filename);
 	}
 
-	public void submitFailOverEvents(String filename) {
+	public void submitFREvents(String filename) {
 		this.FRFileNames.add(filename);
 	}
 
@@ -211,7 +211,7 @@ public class SDNBroker extends SimEntity {
 				break;
 			case CloudSimTagsSDN.APPLICATION_SUBMIT_ACK:
 				applicationSubmitCompleted(ev);
-				hostFailOver(ev); // Jason: Todo! check
+				hostFR(ev); // Jason: Todo! check
 				break;
 			case CloudSimTagsSDN.REQUEST_COMPLETED:
 				requestCompleted(ev);
@@ -256,7 +256,7 @@ public class SDNBroker extends SimEntity {
 		}
 	}
 
-	// private void injectFailOverEvents(SimEvent ev) {
+	// private void injectFREvents(SimEvent ev) {
 
 	// }
 
@@ -267,17 +267,17 @@ public class SDNBroker extends SimEntity {
 	 * 
 	 * @param ev
 	 */
-	private void hostFailOver(SimEvent ev) {
+	private void hostFR(SimEvent ev) {
 
-		// if (StartAvailability.failOverDebug)
+		// if (StartAvailability.FRDebug)
 		if (Configuration.DISABLE_FAILURE_RECOVERY)
 			return;
 		for (String filename : this.FRFileNames) {
-			FREventParser frEventParser = startFailOverEventParser(filename);
-			failOverIds.put(frEventParser, SDNBroker.lastAppId);
+			FREventParser frEventParser = startFREventParser(filename);
+			FRIds.put(frEventParser, SDNBroker.lastAppId);
 			SDNBroker.lastAppId++;
 
-			injectFailOverEvents(frEventParser);
+			injectFREvents(frEventParser);
 		}
 	}
 
@@ -360,13 +360,13 @@ public class SDNBroker extends SimEntity {
 	/**
 	 * Jason: Todo! find host_name to host_id relationship
 	 * 
-	 * @param failOverEventFile
+	 * @param FREventFile
 	 * @return
 	 */
-	private FREventParser startFailOverEventParser(String failOverEventFile) {
+	private FREventParser startFREventParser(String FREventFile) {
 		Map<String, Integer> hostIdMap = new HashMap<>(); // Jason:Todo! finish this part!!
-		FREventParser failOverEventParser = new FREventParser(failOverEventFile);
-		// (failOverEventFile,
+		FREventParser FREventParser = new FREventParser(FREventFile);
+		// (FREventFile,
 
 		for (SDNDatacenter datacenter : datacenters.values()) {
 			List<? extends Host> hostList = datacenter.getVmAllocationPolicy().getHostList();
@@ -377,9 +377,9 @@ public class SDNBroker extends SimEntity {
 
 		// System.err.println("SDNBroker.startWorkloadParser : DEBUGGGGGGGGGGG REMOVE
 		// here!");
-		failOverEventParser.forceStartTime(experimentStartTime);
-		failOverEventParser.forceFinishTime(experimentFinishTime);
-		return failOverEventParser;
+		FREventParser.forceStartTime(experimentStartTime);
+		FREventParser.forceFinishTime(experimentFinishTime);
+		return FREventParser;
 
 	}
 
@@ -428,21 +428,21 @@ public class SDNBroker extends SimEntity {
 			send(this.getId(), lastWorkload.time - CloudSim.clock(), CloudSimTagsSDN.REQUEST_OFFER_MORE, workParser);
 		}
 	}
-	// List<FailOverEvent> parsedFailOverEvents =
+	// List<FREvent> parsedFREvents =
 
 	/**
 	 * Jason: Gets from Schedule Requests
 	 * 
-	 * @param failOverEventParser
+	 * @param FREventParser
 	 */
-	private void injectFailOverEvents(FREventParser failOverEventParser) {
-		int failOverId = this.failOverIds.get(failOverEventParser);
-		failOverEventParser.parseNextFailOverEvents();
-		List<FREvent> parsedFailOverEvents = failOverEventParser.getParsedFailOverEvents();
+	private void injectFREvents(FREventParser FREventParser) {
+		int FRId = this.FRIds.get(FREventParser);
+		FREventParser.parseNextFREvents();
+		List<FREvent> parsedFREvents = FREventParser.getParsedFREvents();
 
-		if (parsedFailOverEvents.size() > 0) {
+		if (parsedFREvents.size() > 0) {
 			// Schedule the parsed workloads
-			for (FREvent fow : parsedFailOverEvents) {
+			for (FREvent fow : parsedFREvents) {
 				double injectTime = fow.getTime() - CloudSim.clock();
 				if (injectTime < 0) {
 					// throw new IllegalArgumentException("SDNBroker.scheduleRequest(): Workload's
@@ -451,7 +451,7 @@ public class SDNBroker extends SimEntity {
 							"**" + CloudSim.clock() + ": SDNBroker.scheduleRequest(): abnormal start time." + fow);
 					continue;
 				}
-				fow.fREventId = failOverId;
+				fow.fREventId = FRId;
 				int hostId = fow.getHostID();
 
 				double failureTime = fow.getFailureTime();
