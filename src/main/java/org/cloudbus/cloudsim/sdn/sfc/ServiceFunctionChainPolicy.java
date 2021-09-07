@@ -91,18 +91,18 @@ public class ServiceFunctionChainPolicy {
 	private double bwUtilThresholdMin = Configuration.SFC_UNDERLOAD_THRESHOLD_BW;
 
 	/** Monitor end-to-end delay going through the entire chain: total time */
-	private double accumulatedTime = 0; // Jason: Todo
+	private double accumulatedTime = 0; //
 
 	/**
 	 * Monitor end-to-end delay going through the entire chain: number of packets
 	 */
-	private int accumulatedCount = 0; // Jason: Todo
+	private int accumulatedCount = 0; //
 
 	private double actualAvailability = 0;
 	private double neededAvailability = 0;
 
 	/** Monitor end-to-end delay going through the entire chain: set of packets */
-	private Set<Packet> monitoringPackets = new HashSet<Packet>(); // Jason: Todo
+	private Set<Packet> monitoringPackets = new HashSet<Packet>(); //
 
 	/**
 	 * Monitor bandwidth utilization of network of this chain: total bytes We use
@@ -365,8 +365,7 @@ public class ServiceFunctionChainPolicy {
 	}
 
 	public double calculateActualAvailability() {
-		// Jason Todo: Check here: getServiceFunctionChain or
-		// getServiceFunctionChainIncludeVM?
+		// Check here: getServiceFunctionChain or getServiceFunctionChainIncludeVM?
 		List<Integer> sfc = this.getServiceFunctionChain();
 		double tempAvailability = 1d;
 		for (int i : sfc) {

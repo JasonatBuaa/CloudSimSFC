@@ -23,20 +23,7 @@ import org.cloudbus.cloudsim.sdn.physicalcomponents.SDNHost;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.QueuedVM;
 import org.cloudbus.cloudsim.sdn.virtualcomponents.SDNVm;
 
-/**
- * ServiceFunction is a class to implement a VNF, which extends SDNVm including
- * ServiceFunctionType and MI/operation. When one network packet passes through
- * a ServiceFunction, it will take additional time here. Additional processing
- * time for a packet : MI per Operation / MIPS allocated for this SF (=VM)
- *
- * 
- * Todo: the additional processing time += queueing time
- * 
- * @author Jungmin Jay Son and Jason Sun
- * @since CloudSimSDN 3.0
- */
-
-// public class ServiceFunction extends SDNVm { // Jason: a small modify here
+// public class ServiceFunction extends SDNVm { 
 public class ServiceFunction extends QueuedVM {
 
 	/**
@@ -95,7 +82,7 @@ public class ServiceFunction extends QueuedVM {
 	// }
 
 	/**
-	 * Jason: Added availability and queuing size
+	 * Add availability and queuing size
 	 * 
 	 * @param id
 	 * @param userId
@@ -161,7 +148,7 @@ public class ServiceFunction extends QueuedVM {
 		return this.runningNOS;
 	}
 
-	// Jason: add performance jitter here!
+	// performance jitter
 
 	@Override
 	public double updateVmProcessing(double currentTime, List<Double> mipsShare) {
@@ -174,8 +161,7 @@ public class ServiceFunction extends QueuedVM {
 			long totalGivenPrevTime = (long) (cls.getTimeSpentPreviousMonitoredTime(currentTime) * sumMips);
 			long totalProcessingPrevTime = cls.getTotalProcessingPreviousTime(currentTime, mipsShare);
 
-			// Monitoring this VM Jason: totalGivenPrevTime?? totalProcessingPrevTime??
-			// Jason : total processing is the real work, total given is the max capacity.
+			// total processing is the real work, total given is the max capacity.
 			// The former divided by the latter gets the utilization.
 			this.increaseProcessedMIs(totalProcessingPrevTime, totalGivenPrevTime);
 
