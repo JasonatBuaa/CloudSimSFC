@@ -36,7 +36,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
         super();
         this.monitor = new StaticMonitor(resources);
         monitor.initiateResource(resources);
-        generate(serviceFunctionChains, sfcWorkloads, resources);
+        schedule(serviceFunctionChains, sfcWorkloads, resources);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
         generateNodesForScenario1_6(sfcWorkloads, resources, serviceFunctionChains);
     }
 
-    // Jason : Scenario 1-1
+    // Scenario 1-1
     // ```````````````````````````````````````````````````````````````````````````````````````````
     // description:
     // Bandwidth : the best fit policy
@@ -101,7 +101,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
     }
     // ```````````````````````````````````````````````````````````````````````````````````````````
 
-    // Jason: Scenario 1-2
+    // Scenario 1-2
     // ```````````````````````````````````````````````````````````````````````````````````````````
     // description:
     // bandwidth: maxmize bandwidth, thus cost more dollors
@@ -141,7 +141,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
     }
     // ```````````````````````````````````````````````````````````````````````````````````````````
 
-    // Jason: Scenario 1-3
+    // Scenario 1-3
     // ```````````````````````````````````````````````````````````````````````````````````````````
     // description:
     // bandwidth : ingress bandwidth
@@ -171,7 +171,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
     }
     // ```````````````````````````````````````````````````````````````````````````````````````````
 
-    // Jason: Scenario 1-4
+    // Scenario 1-4
     // description: use best bandwidth policy, change the computation resource
     //
     // bandwidth : best fit bandwidth
@@ -209,7 +209,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
     }
     // ```````````````````````````````````````````````````````````````````````````````````````````
 
-    // Jason: Scenario 1-5
+    // Scenario 1-5
     // description: use best bandwidth policy, change the computation resource
     // allocation policy
     // bandwidth : best fit bandwidth
@@ -247,7 +247,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
     }
     // ```````````````````````````````````````````````````````````````````````````````````````````
 
-    // Jason: Scenario 1-6
+    // Scenario 1-6
     // description: use best bandwidth policy, change the computation resource
     // allocation policy
     // bandwidth : best fit bandwidth
@@ -286,7 +286,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
     // ```````````````````````````````````````````````````````````````````````````````````````````
 
     /**
-     * Jason: complete
+     * J
      * 
      * @param serviceFunctionChains
      */
@@ -348,8 +348,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
     }
 
     /**
-     * Jason: complete
-     * 
+     *
      * @param serviceFunctionChains
      */
     public void generateLinkIngressBW(List<ServiceFunctionChain> serviceFunctionChains) {
@@ -408,8 +407,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
     }
 
     /**
-     * Jason: complete
-     * 
+     *
      * @param serviceFunctionChains
      */
     public void generateLinkMaxBW(List<ServiceFunctionChain> serviceFunctionChains) {
@@ -576,8 +574,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
     }
 
     /**
-     * Jason: CloudOnly: completed
-     * 
+     *
      * @param serviceFunctionChains
      */
     public void TCAgnostMIPSAware(List<ServiceFunctionChain> serviceFunctionChains) {
@@ -619,7 +616,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
     }
 
     /**
-     * Jason: Cloud-Edge
+     * Cloud-Edge
      * 
      * @param serviceFunctionChains
      */
@@ -694,7 +691,7 @@ public class StaticSchedulerScenario1 extends DeploymentScheduler {
     }
 
     /**
-     * Jason: CloudOnly, MIPS = 1000/10 * averageInputSize: completed
+     * CloudOnly, MIPS = 1000/10 * averageInputSize: completed
      * 
      * @param serviceFunctionChains
      */

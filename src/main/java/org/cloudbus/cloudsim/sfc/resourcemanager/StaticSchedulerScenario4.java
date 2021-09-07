@@ -37,7 +37,7 @@ public class StaticSchedulerScenario4 extends DeploymentScheduler {
         super();
         this.monitor = new StaticMonitor(resources);
         monitor.initiateResource(resources);
-        generate(serviceFunctionChains, sfcWorkloads, resources);
+        schedule(serviceFunctionChains, sfcWorkloads, resources);
     }
 
     @Override

@@ -66,37 +66,6 @@ public class FREvent implements Comparable<FREvent> {
     // return 0;
     // }
 
-    // public static enum AvailabilityEventType {
-    // Failure("failure"), Recovery("recovery");
-
-    // private AvailabilityEventType(String type) {
-    // this.type = type;
-    // }
-
-    // // 成员变量
-    // private String type;
-
-    // public String getType() {
-    // return type;
-    // }
-
-    // public void setType(String type) {
-    // this.type = type;
-    // }
-
-    // @Override
-    // public String toString() {
-    // return this.type;
-    // }
-    // }
-
-    // public static void main(String[] args) {
-    // FailOverEvent a = new FailOverEvent(1);
-    // System.out.println(FailOverEventType.Failure);
-    // System.out.println(FailOverEventType.Recovery);
-
-    // }
-
     public double getTime() {
         return time;
     }
@@ -121,11 +90,4 @@ public class FREvent implements Comparable<FREvent> {
         this.recoveryTime = recoveryTime;
     }
 
-    // public AvailabilityEventType getType() {
-    // return type;
-    // }
-
-    // public void setType(AvailabilityEventType type) {
-    // this.type = type;
-    // }
 }

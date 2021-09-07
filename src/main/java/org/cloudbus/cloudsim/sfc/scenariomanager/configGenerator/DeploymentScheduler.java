@@ -1,5 +1,6 @@
 package org.cloudbus.cloudsim.sfc.scenariomanager.configGenerator;
 
+import org.cloudbus.cloudsim.sfc.resourcemanager.SchedulingInterface;
 import org.cloudbus.cloudsim.sfc.scenariomanager.InOutDc;
 import org.cloudbus.cloudsim.sfc.scenariomanager.Resource;
 import org.cloudbus.cloudsim.sfc.scenariomanager.SFCWorkload;
@@ -15,7 +16,7 @@ import java.util.List;
  * @createTime 2021-06-30 21:24
  */
 // public class CustomVirtualTopologyGenerator {
-public class DeploymentScheduler {
+public class DeploymentScheduler implements SchedulingInterface {
     public List<VirtualTopologyVM> nodes;
     public List<VirtualTopologyLink> links;
     public List<VirtualTopologyPolicy> policies;
@@ -25,7 +26,7 @@ public class DeploymentScheduler {
         nodes = new ArrayList<>();
         links = new ArrayList<>();
         policies = new ArrayList<>();
-        generate(serviceFunctionChains, sfcWorkloads, resources);
+        schedule(serviceFunctionChains, sfcWorkloads, resources);
     }
 
     public DeploymentScheduler() {
@@ -34,13 +35,15 @@ public class DeploymentScheduler {
         policies = new ArrayList<>();
     }
 
-    public void generate(List<ServiceFunctionChain> serviceFunctionChains, List<SFCWorkload> sfcWorkloads,
-            List<Resource> resources) {
+    @Override
+    public void schedule(List<ServiceFunctionChain> serviceFunctionChains, List<SFCWorkload> sfcWorkloads,
+                         List<Resource> resources) {
         generateNodes(sfcWorkloads, resources, serviceFunctionChains);
         generateLinks(serviceFunctionChains);
         generatePolicies(serviceFunctionChains);
     }
 
+    @Override
     public void generateNodes(List<SFCWorkload> sfcWorkloads, List<Resource> resources,
             List<ServiceFunctionChain> serviceFunctionChains) {
         // Generate Ingress,Egress
@@ -90,6 +93,7 @@ public class DeploymentScheduler {
 
     }
 
+    @Override
     public void generateLinks(List<ServiceFunctionChain> serviceFunctionChains) {
         for (ServiceFunctionChain serviceFunctionChain : serviceFunctionChains) {
             int count = 1;
@@ -117,6 +121,7 @@ public class DeploymentScheduler {
 
     }
 
+    @Override
     public void generatePolicies(List<ServiceFunctionChain> serviceFunctionChains) {
         for (ServiceFunctionChain serviceFunctionChain : serviceFunctionChains) {
             int count = 1;

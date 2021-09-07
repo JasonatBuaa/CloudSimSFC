@@ -1,10 +1,12 @@
 # CloudSimSFC
-服务调度： 包括NFV调度和Microservice调度两个研究点。
 
-工作记录：[wiki](http://gitlab.act.buaa.edu.cn/service-scheduling/service-scheduling/-/wikis/home)
-## 代码阅读
-### link
-SmallSFCDemo/sfc-example-physical.json 和  SmallSFCDemo/sfc-example-virtual.json 中存在两种link,前种类是Link， 后种类是 FlowConfig(表示VM间的traffic)
-### Workload
-SmallSFCDemo/sfc-example-physical.json
-{generateTime,workloadSubmitVm,submitPackageSize,{ReuqestCloudletLen,LinkName,toVmName,TransimissionSize},{ReuqestCloudletLen,LinkName,toVmName,TransimissionSize}....}
+**CloudSimSFC** is a toolkit for simulating SFC in MDSN environments. 
+
+**Service Function Chain** Service function chain (SFC) is widely adopted in multi-domain service networks (MDSN) to enforce network policies on Customer traffic. Great effort has been devoted to the research of SFC deployment strategies. In this context, simulators are helpful to the design and evaluation of those strategies. A suitable simulator should be expressive toward what might influence the performance of the SFC. However, existing SFC simulators fall short of this need due to two major drawbacks: First, they overlook the resource heterogeneity and performance instability of the MDSN environment. Second, their performance models for service functions are too general to contain distinctive features. 
+
+
+In contrast, CloudSimSFC has the following features
+- It considers the performance fluctuations and server failures in MDSN environment to align with the performance instability of real-world systems
+- It elaborates the modeling of service functions to involve the computation components such as CPU and queue, and the traffic changing effect which happens during packet processing.
+- It employs scenario abstraction to simplify the definition of new (heterogeneous) simulation scenarios and supports standard service metrics like latency and price. 
+These features endow CloudSimSFC with the quality to evaluate the SFC deployment strategies regarding resource consumption and service efficiency.

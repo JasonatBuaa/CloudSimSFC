@@ -27,15 +27,6 @@ public class BasicStaticScheduler extends DeploymentScheduler {
     // private ServiceFunctionChain needSchedule;
     private MonitorInterface monitor;
 
-    // public ExampleScheduler(ServiceFunctionChain needSchedule, MonitorInterface
-    // monitor,
-    // List<ServiceFunctionChain> serviceFunctionChains, List<SFCWorkload>
-    // sfcWorkloads, List<Resource> resources) {
-    // super(serviceFunctionChains, sfcWorkloads, resources);
-    // this.needSchedule = needSchedule;
-    // this.monitor = monitor;
-    // }
-
     public BasicStaticScheduler(List<ServiceFunctionChain> serviceFunctionChains, List<SFCWorkload> sfcWorkloads,
                                 List<Resource> resources, MonitorInterface monitor) {
         super(serviceFunctionChains, sfcWorkloads, resources);
