@@ -358,13 +358,13 @@ public class SDNBroker extends SimEntity {
 	}
 
 	/**
-	 * Jason: Todo! find host_name to host_id relationship
+	 * Jason: find host_name to host_id relationship
 	 * 
 	 * @param FREventFile
 	 * @return
 	 */
 	private FREventParser startFREventParser(String FREventFile) {
-		Map<String, Integer> hostIdMap = new HashMap<>(); // Jason:Todo! finish this part!!
+		Map<String, Integer> hostIdMap = new HashMap<>(); // Jason: finish this part!!
 		FREventParser FREventParser = new FREventParser(FREventFile);
 		// (FREventFile,
 
@@ -497,7 +497,7 @@ public class SDNBroker extends SimEntity {
 				}
 
 				// Jason: Todo! Complete the following steps
-				// steps: 1-2 need test, 3 need to be done
+				// steps: 1-2 need test, 3 to continue
 				// 1. find the corresponding host
 				// 2. generate a host_failure event, and send it (the source is SDNBroker, the
 				// dest is SDNDataCenter)

@@ -301,7 +301,7 @@ public class MDSNAvailability {
 		// Submit workload files individually
 		if (FREvents != null) {
 			for (String frEvent : FREvents)
-				broker.submitFailOverEvents(frEvent);
+				broker.submitFREvents(frEvent);
 		}
 	}
 

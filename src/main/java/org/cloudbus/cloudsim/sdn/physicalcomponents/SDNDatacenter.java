@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// import javax.security.auth.login.Configuration;
+
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.CloudletScheduler;
 import org.cloudbus.cloudsim.Datacenter;
@@ -37,6 +39,7 @@ import org.cloudbus.cloudsim.sdn.workload.Activity;
 import org.cloudbus.cloudsim.sdn.workload.Processing;
 import org.cloudbus.cloudsim.sdn.workload.Request;
 import org.cloudbus.cloudsim.sdn.workload.Transmission;
+import org.cloudbus.cloudsim.sdn.Configuration;
 
 /**
  * Extended class of Datacenter that supports processing SDN-specific events. In
@@ -223,6 +226,11 @@ public class SDNDatacenter extends Datacenter {
 			case CloudSimTagsSDN.SDN_HOST_RECOVER:
 				processHostRecover(ev);
 				break;
+			case CloudSimTagsSDN.SDN_HOST_FAIL_SIGNAL:
+				processHostFailSignal(ev);
+				break;
+			case CloudSimTagsSDN.SDN_HOST_RECOVER_SIGNAL:
+				processHostRecoverSignal(ev);
 			default:
 				System.out.println("Unknown event recevied by SdnDatacenter. Tag:" + ev.getTag());
 		}
@@ -239,6 +247,14 @@ public class SDNDatacenter extends Datacenter {
 		// Jason: find the failed host, and halt all the corresponding cloudlet in the
 		// host
 
+		// Jason: trigger a signal to the scheduling center, so that the user could be
+		// aware of the *host_failure*.
+
+		// Jason: discuss-- the signal should not be triggered right after the failure,
+		// i.e., there should be a fair delay between the failure and the user finds the
+		// failure.
+		send(getId(), Configuration.FAILURE_DETECTION_DELAY, CloudSimTagsSDN.SDN_HOST_FAIL_SIGNAL);
+
 	}
 
 	/**
@@ -251,6 +267,32 @@ public class SDNDatacenter extends Datacenter {
 		host.setFailed(false);
 		// Jason: find the recovered host, and halt all the corresponding cloudlet in
 		// the host
+
+		// Jason: trigger a signal to the scheduling center, so that the user could be
+		// aware of the *host_recover*.
+		// Jason: discuss-- the signal should not be triggered right after the failure,
+		// i.e., there should be a fair delay between the failure and the user finds the
+		// failure.
+
+		send(getId(), Configuration.RECOVERY_DETECTION_DELAY, CloudSimTagsSDN.SDN_HOST_FAIL_SIGNAL);
+	}
+
+	/**
+	 * Jason: Todo! pause all included vms
+	 * 
+	 * @param ev
+	 */
+	private void processHostFailSignal(SimEvent ev) {
+
+	}
+
+	/**
+	 * Jason: Todo! online all included vms
+	 * 
+	 * @param ev
+	 */
+	private void processHostRecoverSignal(SimEvent ev) {
+
 	}
 
 	public void processUpdateProcessing() {

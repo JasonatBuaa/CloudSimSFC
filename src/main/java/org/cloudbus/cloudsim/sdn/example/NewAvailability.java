@@ -47,7 +47,7 @@ public class NewAvailability {
 
     protected static List<String> workloads;
 
-    protected static List<String> failOverEvents;
+    protected static List<String> FREvents;
 
     // protected static String physicalTopologyFile =
     // "SmallSFCDemo/4HostsPhysical.json";
@@ -71,14 +71,14 @@ public class NewAvailability {
 
     protected static String workload_file = "SmallSFCDemo/jasontestFile.csv";
 
-    protected static String failOver_file = "SmallSFCDemo/FailureEvent.csv";
+    protected static String FR_file = "SmallSFCDemo/FailureEvent.csv";
 
     protected static String[] workload_files = {};
 
     private static String[] argString = { "LFF", physicalTopologyFile, deploymentFile, "./", workload_file,
-            failOver_file };
+            FR_file };
 
-    public static boolean failOverDebug = true; // True: Do not injuct fail over event.
+    public static boolean FRDebug = true; // True: Do not injuct fail over event.
     public static boolean queueDebug = true; // True: Do not use MemoryQueue.
 
     private static boolean logEnabled = true; // Log for debug
@@ -185,11 +185,11 @@ public class NewAvailability {
         } else {
             workloads = (List<String>) Arrays.asList(workload_files);
         }
-        failOverEvents = new ArrayList<>();
-        failOverEvents.add(args[args.length - 1]);
+        FREvents = new ArrayList<>();
+        FREvents.add(args[args.length - 1]);
 
         String outputFileName = Configuration.workingDirectory + Configuration.experimentName
-                + (failOverDebug ? "" : "Failover") + (!queueDebug ? "" : "Queue") + "log.out.txt";
+                + (FRDebug ? "" : "FR") + (!queueDebug ? "" : "Queue") + "log.out.txt";
         FileOutputStream output = new FileOutputStream(outputFileName);
         Log.setOutput(output);
 
@@ -342,10 +342,10 @@ public class NewAvailability {
             // Submit: include individual workloads into the corresponding path
             submitWorkloads(broker);
 
-            submitAvailabilityEvent(broker); // Jason: submit failOVer (Availability) into the cloudsim simulation
+            submitAvailabilityEvent(broker); // Jason: submit FR (Availability) into the cloudsim simulation
                                              // system.
 
-            FRGenerator fg = new FRGenerator("failover_file.csv");
+            FRGenerator fg = new FRGenerator("FR_file.csv");
             fg.generate();
 
             // Sixth step: Starts the simulation
@@ -413,9 +413,9 @@ public class NewAvailability {
 
     public static void submitAvailabilityEvent(SDNBroker broker) {
         // Submit workload files individually
-        if (failOverEvents != null) {
-            for (String failOverEvent : failOverEvents)
-                broker.submitFailOverEvents(failOverEvent);
+        if (FREvents != null) {
+            for (String FREvent : FREvents)
+                broker.submitFREvents(FREvent);
         }
     }
 

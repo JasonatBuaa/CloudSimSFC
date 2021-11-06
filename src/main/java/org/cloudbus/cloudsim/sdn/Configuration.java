@@ -167,6 +167,8 @@ public class Configuration {
 	// public static boolean DISABLE_FAILURE_RECOVERY = true; // True: Do not injuct
 	// fail over event.
 	public static boolean DISABLE_FAILURE_RECOVERY = true; // True: Do not injuct fail over event.
+	public static double FAILURE_DETECTION_DELAY = 2.0;
+	public static double RECOVERY_DETECTION_DELAY = 2.0;
 
 	// Jason: Do not use queue
 	// public static boolean DISABLE_MEMORY_QUEUE = true; // True: Do not use

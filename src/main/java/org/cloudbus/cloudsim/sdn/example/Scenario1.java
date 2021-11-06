@@ -213,7 +213,7 @@ public class Scenario1 {
 			// Submit individual workloads
 			submitWorkloads(broker);
 
-			submitFailueRecoveryEvent(broker); // Jason: submit failOVer (Availability) into the cloudsim simulation
+			submitFailueRecoveryEvent(broker); // Jason: submit FR (Availability) into the cloudsim simulation
 			// system.
 
 			// Sixth step: Starts the simulation
@@ -302,7 +302,7 @@ public class Scenario1 {
 		// Submit workload files individually
 		if (FREvents != null) {
 			for (String frEvent : FREvents)
-				broker.submitFailOverEvents(frEvent);
+				broker.submitFREvents(frEvent);
 		}
 	}
 

@@ -42,6 +42,9 @@ public class CloudSimTagsSDN {
 	public static final int SDN_HOST_FAIL = SDN_BASE + 27; // Jason: Host failure event
 	public static final int SDN_HOST_RECOVER = SDN_BASE + 28;// Jason: Host Recovery event
 
+	public static final int SDN_HOST_FAIL_SIGNAL = SDN_BASE + 29; // Jason: Host failure event
+	public static final int SDN_HOST_RECOVER_SIGNAL = SDN_BASE + 30;// Jason: Host Recovery event
+
 	private CloudSimTagsSDN() {
 		throw new UnsupportedOperationException("CloudSimTags cannot be instantiated");
 	}
