@@ -78,7 +78,8 @@ public class FRGenerator extends SFCWorkloadGenerator {
             // TODO Auto-generated method stub
             if (fre1.eventArrivalTime != fre2.eventArrivalTime)
                 return (int) (fre1.eventArrivalTime - fre2.eventArrivalTime);
-            if (fre1.failureTime != fre2.failureTime)
+//            if (fre1.failureTime != fre2.failureTime)
+            else if (fre1.failureTime != fre2.failureTime)
                 return (int) (fre1.failureTime - fre2.failureTime);
             else if (fre1.recoveryTime != fre2.recoveryTime)
                 return (int) (fre1.recoveryTime - fre2.recoveryTime);
@@ -294,8 +295,28 @@ public class FRGenerator extends SFCWorkloadGenerator {
 
     }
 
+//    public void generate() {
+//        FRGenerator fg = new FRGenerator("FREvents.csv");
+//        List<Host> host_list = new ArrayList<>();
+//        for (Host h : PhysicalTopologyParser.deployedHosts.values()) {
+//            host_list.add(h);
+//        }
+//        // List<Host> host_list = new
+//        // ArrayList<>(PhysicalTopologyParser.deployedHosts.get("dc1"));
+//
+//        double mttr_min = 1.5;
+//        double mttr_max = 3;
+//        for (Host host : host_list) {
+//            fg.genMTBFMTTRWithAvailability(host, mttr_min, mttr_max);
+//        }
+//
+//        double start = 0;
+//        double end = Configuration.SIMULATION_DURATION;
+//        List<FREvent> allfre_list = fg.genFREventForAllHosts(host_list, start, end);
+//        fg.writeFREventIntoFile(allfre_list);
+//    }
+
     public void generate() {
-        FRGenerator fg = new FRGenerator("FREvents.csv");
         List<Host> host_list = new ArrayList<>();
         for (Host h : PhysicalTopologyParser.deployedHosts.values()) {
             host_list.add(h);
@@ -306,13 +327,13 @@ public class FRGenerator extends SFCWorkloadGenerator {
         double mttr_min = 1.5;
         double mttr_max = 3;
         for (Host host : host_list) {
-            fg.genMTBFMTTRWithAvailability(host, mttr_min, mttr_max);
+            this.genMTBFMTTRWithAvailability(host, mttr_min, mttr_max);
         }
 
         double start = 0;
         double end = Configuration.SIMULATION_DURATION;
-        List<FREvent> allfre_list = fg.genFREventForAllHosts(host_list, start, end);
-        fg.writeFREventIntoFile(allfre_list);
+        List<FREvent> allfre_list = this.genFREventForAllHosts(host_list, start, end);
+        this.writeFREventIntoFile(allfre_list);
     }
 
     public static void main(String[] argv) {

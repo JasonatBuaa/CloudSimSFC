@@ -3,6 +3,7 @@ package org.cloudbus.cloudsim.distributions;
 import java.util.Random;
 
 import org.apache.commons.math3.distribution.NormalDistribution;
+import org.cloudbus.cloudsim.sdn.Configuration;
 
 /**
  * 
@@ -35,6 +36,7 @@ public class NormalDistr implements ContinuousDistribution {
 	 */
 	public NormalDistr(double mean, double variance) {
 		numGen = new NormalDistribution(mean, variance);
+		Configuration.normal_dist_call_frequency +=1;
 	}
 
 	@Override
@@ -56,5 +58,15 @@ public class NormalDistr implements ContinuousDistribution {
 			result = numGen.sample();
 		return result;
 	}
+
+	@Override
+	public double sampleInInterval(double min, double max) {
+		double result = sample();
+		while (result < min || result > max)
+			result = sample();
+		return result;
+	}
+
+
 
 }

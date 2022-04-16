@@ -371,7 +371,8 @@ public abstract class NetworkOperatingSystem extends SimEntity {
 			for (Transmission tr : ch.getArrivedPackets()) {
 				Packet pkt = tr.getPacket();
 				if (tr.getPacket().getSize() == 5L)
-					System.out.println("breakpoint");
+//					System.out.println("breakpoint");
+					;
 				int vmId = pkt.getDestination();
 				Datacenter dc = SDNDatacenter.findDatacenterGlobal(vmId);
 

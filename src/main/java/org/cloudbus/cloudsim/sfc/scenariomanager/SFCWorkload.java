@@ -3,6 +3,7 @@ package org.cloudbus.cloudsim.sfc.scenariomanager;
 import java.util.*;
 
 import org.cloudbus.cloudsim.distributions.UniformDistr;
+import org.cloudbus.cloudsim.sdn.Configuration;
 
 public class SFCWorkload {
     public String targetChainName;
@@ -12,7 +13,7 @@ public class SFCWorkload {
     public int startTime;
     public int endTime;
     public List<SFCRequest> sfcRequestList;
-    public double latencyDemand = 1000;
+    public double latencyDemand = 10;
     public LinkedList<InEgressNode> inEgressNodes;
     public int baseWeight;
     public int chainLength;
@@ -37,24 +38,27 @@ public class SFCWorkload {
         Random random = new Random();
         List<String> chain = serviceFunctionChain.getChain();
 
-        double minInputSize = chainInputSize * 0.8;
-        double maxInputSize = chainInputSize * 1.2;
+        double minInputSize = chainInputSize * 0.5;
+        double maxInputSize = chainInputSize * 1.5;
         UniformDistr inputSizeDistr = new UniformDistr(minInputSize, maxInputSize);
         while (count <= requestSize) {
             int time = count * 1 + startTime;
             SFCRequest sfcRequest = new SFCRequest(time);
             setInEgress(sfcRequest, count);
             int index = 0, cloudletLen = 0;
-            double outputSize = 0;
+            double outputSize = 0; //1
             // int inputSize = chainInputSize + random.nextInt(2) * 10;
             double exactInputSize = inputSizeDistr.sample();
+//            int outputSize = 0;//1-1
 
-            double inputSize = exactInputSize;
+            double inputSize = exactInputSize; //2
+//            int inputSize = (int)(exactInputSize) * 1024; //2-1
 
             for (; index < chain.size(); index++) {
                 ServiceFunction serviceFunction = ServiceFunction.serviceFunctionMap.get(chain.get(index));
                 cloudletLen = (int) (serviceFunction.getOperationalComplexity() * inputSize);
-                outputSize = serviceFunction.getOutputSize(inputSize);
+                outputSize = serviceFunction.getOutputSize(inputSize); //3
+//                outputSize = (int) serviceFunction.getOutputSize(inputSize); //3-1
                 sfcRequest.fillRequest(chain.get(index), (int) inputSize, cloudletLen);
                 inputSize = outputSize;
             }
@@ -65,6 +69,42 @@ public class SFCWorkload {
         }
 
     }
+
+
+//    private void compGenerateRequest(ServiceFunctionChain serviceFunctionChain) {
+//        int requestSize = (endTime - startTime) / 1;
+//        int count = 0;
+//        Random random = new Random();
+//        List<String> chain = serviceFunctionChain.getChain();
+//
+//        double minInputSize = chainInputSize * 0.8;
+//        double maxInputSize = chainInputSize * 1.2;
+//        UniformDistr inputSizeDistr = new UniformDistr(minInputSize, maxInputSize);
+//        while (count <= requestSize) {
+//            int time = count * 1 + startTime;
+//            SFCRequest sfcRequest = new SFCRequest(time);
+//            setInEgress(sfcRequest, count);
+//            int index = 0, cloudletLen = 0;
+//            double outputSize = 0;
+//            // int inputSize = chainInputSize + random.nextInt(2) * 10;
+//            double exactInputSize = inputSizeDistr.sample();
+//
+//            double inputSize = exactInputSize;
+//
+//            for (; index < chain.size(); index++) {
+//                ServiceFunction serviceFunction = ServiceFunction.serviceFunctionMap.get(chain.get(index));
+//                cloudletLen = (int) (serviceFunction.getOperationalComplexity() * inputSize);
+//                outputSize = serviceFunction.getOutputSize(inputSize);
+//                sfcRequest.fillRequest(chain.get(index), (int) inputSize, cloudletLen);
+//                inputSize = outputSize;
+//            }
+//            // transmission to Egress
+//            sfcRequest.setOutput((int) outputSize);
+//            sfcRequestList.add(sfcRequest);
+//            count++;
+//        }
+//
+//    }
 
     @Override
     public String toString() {
@@ -123,7 +163,7 @@ public class SFCWorkload {
 
     public void setInEgress(SFCRequest sfcRequest, int count) {
         count %= baseWeight;
-        for (Iterator<InEgressNode> iterator = inEgressNodes.iterator(); iterator.hasNext();) {
+        for (Iterator<InEgressNode> iterator = inEgressNodes.iterator(); iterator.hasNext(); ) {
             InEgressNode now = iterator.next();
             if (count < now.weight || count <= 0) {
                 sfcRequest.setIngress(now.ingress);

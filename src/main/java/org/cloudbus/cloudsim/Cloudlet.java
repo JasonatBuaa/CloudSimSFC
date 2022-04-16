@@ -7,6 +7,7 @@
  */
 package org.cloudbus.cloudsim;
 
+import java.security.InvalidParameterException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -240,6 +241,21 @@ public class Cloudlet {
      * given VM
      */
     private List<String> requiredFiles = null;
+
+    public long getQueueRequired() {
+        if(queueRequired == Long.MAX_VALUE)
+            throw new InvalidParameterException();
+        return queueRequired;
+    }
+
+    public void setQueueRequired(long queueRequired) {
+        this.queueRequired = queueRequired;
+    }
+
+    /**
+     * !!!Jason: this is a walk-around solution for now. !!!
+     */
+    private long queueRequired = Long.MAX_VALUE;
 
     /**
      * Allocates a new Cloudlet object. The Cloudlet length, input and output file

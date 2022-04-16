@@ -3,9 +3,10 @@ package org.cloudbus.cloudsim.sfc.scenariomanager.configGenerator;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import org.cloudbus.cloudsim.sfc.scenariomanager.InOutDc;
+//import org.cloudbus.cloudsim.sfc.scenariomanager.InOutDc;
 import org.cloudbus.cloudsim.sfc.scenariomanager.ServiceFunction;
 import org.cloudbus.cloudsim.sfc.scenariomanager.ServiceFunctionChain;
+import org.cloudbus.cloudsim.sfc.scenariomanager.InOutDc;
 import org.cloudbus.cloudsim.util.JsonUtils;
 
 import java.util.ArrayList;

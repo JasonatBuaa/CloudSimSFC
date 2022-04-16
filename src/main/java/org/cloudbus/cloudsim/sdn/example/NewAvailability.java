@@ -27,11 +27,14 @@ import org.cloudbus.cloudsim.sdn.policies.selectlink.LinkSelectionPolicyFlowCapa
 import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationPolicyCombinedMostFullFirst;
 import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmMigrationPolicy;
 import org.cloudbus.cloudsim.sdn.workload.Workload;
+import org.omg.Messaging.SyncScopeHelper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.*;
+
+import javax.sound.sampled.SourceDataLine;
 
 // import java.util.Map;dList;
 
@@ -80,8 +83,9 @@ public class NewAvailability {
 
     public static boolean FRDebug = true; // True: Do not injuct fail over event.
     public static boolean queueDebug = true; // True: Do not use MemoryQueue.
-
+    
     private static boolean logEnabled = true; // Log for debug
+
     /*
      * / private static boolean logEnabled = false; //
      */

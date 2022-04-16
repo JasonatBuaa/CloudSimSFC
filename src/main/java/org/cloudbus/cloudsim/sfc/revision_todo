@@ -1,0 +1,5 @@
+1. Find a real-world SFC case to emulate, compare the simulator with our real-world experiment
+2. CPU usage comparasion
+3. LOC comparison? leave this to the end since we could add new codes alongside the revision progress.
+4. Hybrid SFC? Paralism-aware SFC?
+5. 

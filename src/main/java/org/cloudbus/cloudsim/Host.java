@@ -585,7 +585,7 @@ public class Host {
 	public boolean setFailed(boolean failed) {
 		// all the PEs are failed (or recovered, depending on fail)
 		this.failed = failed;
-		PeList.setStatusFailed(getPeList(), failed);
+		PeList.setStatusFailed(getPeList(), failed); // Jason: 目前貌似没有用到这个pe的failed状态???
 		return true;
 	}
 

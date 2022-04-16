@@ -52,4 +52,11 @@ public class ParetoDistr implements ContinuousDistribution {
 		return numGen.sample();
 	}
 
+	public double sampleInInterval(double min, double max) {
+		double result = sample();
+		while (result < min || result > max)
+			result = sample();
+		return result;
+	}
+
 }

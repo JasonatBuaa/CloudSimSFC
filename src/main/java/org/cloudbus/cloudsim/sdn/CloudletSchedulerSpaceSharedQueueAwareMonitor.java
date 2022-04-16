@@ -100,7 +100,7 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
         // 0);
         ercl = getCloudletWaitingList(true).addCloudlet(cloudlet);
         if (ercl == null) {
-            System.out.println("Jason: warning!!! the memory queue" + this + " in" + this.queuedVM + " is full");
+//            System.out.println("Jason: 000 warning!!! the memory queue" + this + " in" + this.queuedVM + " is full");
             dropCloudletRequest(cloudlet);
             return Double.MAX_VALUE; // Jason: Use the double max value to denote a queue-full event
         }
@@ -116,8 +116,10 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
                     && (currentCpus - usedPes) >= getCloudletWaitingList(true).testConsumeCloudlet()
                             .getNumberOfPes();) {
                 ercl = getCloudletWaitingList(true).consumeCloudlet();
-                if (ercl == null)
+                if (ercl == null) {
                     System.out.println("Fatel error!!!!!!!!! need debug");
+                    throw new RuntimeException("need debug");
+                }
                 ercl.setCloudletStatus(Cloudlet.INEXEC);
                 for (int k = 0; k < ercl.getNumberOfPes(); k++) {
                     ercl.setMachineAndPeId(0, i);
@@ -348,15 +350,6 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
         return returnValue;
     }
 
-    @Override
-    public List<Cloudlet> getFailedCloudlet() {
-        List<Cloudlet> failed = new ArrayList<Cloudlet>();
-        for (ResCloudlet cl : getCloudletFailedList()) {
-            failed.add(cl.getCloudlet());
-        }
-        getCloudletFailedList().clear();
-        return failed;
-    }
 
     // public void dropCloudletRequest(EncapedResCloudlet encapedRcl) {
     // this.setDisabledCloudlet(encapedRcl);
@@ -365,7 +358,7 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
     public void dropCloudletRequest(Cloudlet cloudlet) {
         ResCloudlet resCloudlet = new ResCloudlet(cloudlet);
         this.setDisabledCloudlet(resCloudlet);
-        System.out.println("Warning!!! cloudlet dropped because of insufficient memory queue space!!!");
+//        System.out.println("Warning!!! cloudlet dropped because of insufficient memory queue space!!!");
         Log.printLine("Warning!!! cloudlet dropped because of insufficient memory queue space!!!");
     }
 
@@ -422,7 +415,6 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
                 getCloudletWaitingList(true).removeAll(timeoutCloudlet);
                 getCloudletFailedList().addAll(timeoutCloudlet);
             }
-
         }
     }
 
@@ -466,9 +458,7 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
                 return ercl.getCloudlet();
             }
         }
-
         return null;
-
     }
 
     @Override
@@ -546,33 +536,6 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
     }
 
     @Override
-    public long getTotalProcessingPreviousTime(double currentTime, List<Double> mipsShare) {
-        long totalProcessedMIs = 0;
-        double timeSpent = currentTime - prevMonitoredTime;
-        double capacity = getCapacity(mipsShare);
-
-        for (ResCloudlet rcl : getCloudletExecList()) {
-            totalProcessedMIs += (long) (capacity * timeSpent * rcl.getNumberOfPes() * Consts.MILLION);
-        }
-
-        prevMonitoredTime = currentTime;
-        return totalProcessedMIs;
-    }
-
-    protected double getCapacity(List<Double> mipsShare) {
-        double capacity = 0.0;
-        int cpus = 0;
-        for (Double mips : mipsShare) {
-            capacity += mips;
-            if (mips > 0.0) {
-                cpus++;
-            }
-        }
-        capacity /= cpus;
-        return capacity;
-    }
-
-    @Override
     public boolean isVmIdle() {
         if (runningCloudlets() > 0)
             return false;
@@ -581,21 +544,6 @@ public class CloudletSchedulerSpaceSharedQueueAwareMonitor extends CloudletSched
         return true;
     }
 
-    @Override
-    public double getTimeSpentPreviousMonitoredTime(double currentTime) {
-        double timeSpent = currentTime - prevMonitoredTime;
-        return timeSpent;
-    }
-
-    @Override
-    public int getCloudletTotalPesRequested() {
-        return getCurrentMipsShare().size();
-    }
-
-    public int getNumAllCloudlets() {
-        return super.cloudletExecList.size() + super.cloudletFailedList.size() + super.getCloudletFinishedList().size()
-                + super.cloudletPausedList.size() + super.cloudletWaitingList.size();
-    }
 
     public QueuedVM getQueuedVM() {
         return queuedVM;

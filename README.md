@@ -6,7 +6,16 @@
 
 
 In contrast, CloudSimSFC has the following features
-- It considers the performance fluctuations and server failures in MDSN environment to align with the performance instability of real-world systems
+- It considers the performance fluctuations and server CompVirtualTopologyVmSFs in MDSN environment to align with the performance instability of real-world systems
 - It elaborates the modeling of service functions to involve the computation components such as CPU and queue, and the traffic changing effect which happens during packet processing.
 - It employs scenario abstraction to simplify the definition of new (heterogeneous) simulation scenarios and supports standard service metrics like latency and price. 
 These features endow CloudSimSFC with the quality to evaluate the SFC deployment strategies regarding resource consumption and service efficiency.
+
+
+
+**Usage**
+CloudSimSFC provides an SFC model with straight-forward notations, so that researchers (of SFC) could easily understand the whole Simulation process.
+
+To start a simulation process, serveral configurations should be ready. 
+- The resource specification for the physical environment should be configured as a MDSN resource abstraction.
+- 

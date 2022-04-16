@@ -17,6 +17,7 @@ import org.cloudbus.cloudsim.sdn.Configuration;
  * @author Rodrigo N. Calheiros
  * @since CloudSimSDN 1.0
  */
+//public class HostCompVirtualTopologyVmSF implements Activity {
 public class HostFailure implements Activity {
     Cloudlet cl;
     double startTime = 0;

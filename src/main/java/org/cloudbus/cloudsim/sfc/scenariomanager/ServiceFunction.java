@@ -16,7 +16,7 @@ public class ServiceFunction {
         InputRate = inputRate;
         OutputRate = outputRate;
         this.OperationalComplexity = operationalComplexity;
-        serviceFunctionMap.put(Name, this);
+        ServiceFunction.serviceFunctionMap.put(Name, this);
     }
 
     public String getName() {

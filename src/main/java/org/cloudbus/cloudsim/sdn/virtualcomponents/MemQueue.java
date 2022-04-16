@@ -56,7 +56,7 @@ public class MemQueue {
      */
     public boolean addCloudlet(Cloudlet newCloudlet) {
         if (newCloudlet.getCloudletLength() > queueRemainingSize) {
-            Log.print("Not enough queue size!!! Queue in: " + this);
+            Log.print("--------------Not enough queue size!!! Queue in: " + this);
             return false;
         }
         EncapedResCloudlet enCloudlet = new EncapedResCloudlet(newCloudlet, CloudSim.clock(), serial++);

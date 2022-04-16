@@ -16,6 +16,15 @@ import javax.lang.model.util.ElementScanner6;
 import org.cloudbus.cloudsim.core.CloudSim;
 
 /**
+ *
+ * Jason: At any time, only one PE can be used to process cloudlet in this settings.
+ * This is however not realistic.  So that we change this part, allowing multiple PEs to be bounded together
+ * to process workloads.
+ *
+ * The root cause may happen in resCloudlet, which contains a 1PE parameter. Check!!!
+ * Check also CloudletSchedulerSpaceSharedMonitor.
+ *
+ *
  * CloudletSchedulerSpaceShared implements a policy of scheduling performed by a
  * virtual machine to run its {@link Cloudlet Cloudlets}. It consider there will
  * be only one cloudlet per VM. Other cloudlets will be in a waiting list. We

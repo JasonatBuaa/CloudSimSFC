@@ -78,4 +78,12 @@ public class UniformDistr implements ContinuousDistribution {
 		numGen.reseedRandomGenerator(seed);
 	}
 
+	@Override
+	public double sampleInInterval(double min, double max) {
+		double result = sample();
+		while (result < min || result > max)
+			result = sample();
+		return result;
+	}
+
 }

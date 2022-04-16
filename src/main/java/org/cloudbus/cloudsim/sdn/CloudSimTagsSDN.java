@@ -36,6 +36,12 @@ public class CloudSimTagsSDN {
 	public static final int APPLICATION_SUBMIT = SDN_BASE + 20; // Broker -> Datacenter.
 	public static final int APPLICATION_SUBMIT_ACK = SDN_BASE + 21;
 
+	public static final int SFC_DEPLOY = SDN_BASE + 22; // Broker -> Datacenter.
+	public static final int SFC_DEPLOY_ACK = SDN_BASE + 23; // Broker -> Datacenter.
+
+	public static final int PROCESS_SFC_DEMAND = SDN_BASE + 24; // Broker -> Datacenter.
+	// PROCESS_CUSTOMER_DEMAND
+
 	public static final int MONITOR_UPDATE_UTILIZATION = SDN_BASE + 25;
 	// public static final int CHECK_MIGRATION = SDN_BASE + 26;
 
@@ -44,6 +50,9 @@ public class CloudSimTagsSDN {
 
 	public static final int SDN_HOST_FAIL_SIGNAL = SDN_BASE + 29; // Jason: Host failure event
 	public static final int SDN_HOST_RECOVER_SIGNAL = SDN_BASE + 30;// Jason: Host Recovery event
+
+	public static final int DEPLOY_SCHEDULE_RESULT = SDN_BASE + 35;
+	public static final int DEPLOY_SCHEDULE_RESULT_ACK = SDN_BASE + 36;
 
 	private CloudSimTagsSDN() {
 		throw new UnsupportedOperationException("CloudSimTags cannot be instantiated");

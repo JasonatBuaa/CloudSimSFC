@@ -24,4 +24,6 @@ public interface ContinuousDistribution {
 	 */
 	double sample();
 
+	double sampleInInterval(double min, double max);
+
 }

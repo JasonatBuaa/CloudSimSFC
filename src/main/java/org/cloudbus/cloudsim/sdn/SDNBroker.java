@@ -54,6 +54,7 @@ public class SDNBroker extends SimEntity {
 	public static double experimentFinishTime = Double.POSITIVE_INFINITY;
 
 	public static int lastAppId = 0;
+	public static int dropedCloudletsDueToQueueFull = 0;
 
 	public static Map<String, SDNDatacenter> datacenters = new HashMap<String, SDNDatacenter>();
 	private static Map<Integer, SDNDatacenter> vmIdToDc = new HashMap<Integer, SDNDatacenter>();
@@ -158,6 +159,8 @@ public class SDNBroker extends SimEntity {
 			Log.printLine("Network overtime percentage: " + (double) numWorkloadsNetworkOver / numWorkloadsNetwork);
 		}
 
+		Log.printLine("Droped cloudlets due to Queue Full: " + SDNBroker.dropedCloudletsDueToQueueFull);
+
 		// For group analysis
 		Log.printLine("============= SDNBroker.printResult() Group analysis =======================");
 		for (int i = 0; i < SDNBroker.lastAppId; i++) {
@@ -209,6 +212,14 @@ public class SDNBroker extends SimEntity {
 			case CloudSimTagsSDN.APPLICATION_SUBMIT:
 				processApplication(ev.getSource(), (String) ev.getData());
 				break;
+
+			case CloudSimTagsSDN.DEPLOY_SCHEDULE_RESULT:
+				deployScheduleResult(ev.getSource(), (String) ev.getData());
+				break;
+			case CloudSimTagsSDN.DEPLOY_SCHEDULE_RESULT_ACK:
+				// Jason: Todo!!!
+				break;
+
 			case CloudSimTagsSDN.APPLICATION_SUBMIT_ACK:
 				applicationSubmitCompleted(ev);
 				hostFR(ev); // Jason: Todo! check
@@ -242,6 +253,7 @@ public class SDNBroker extends SimEntity {
 	private void requestCompleted(SimEvent ev) {
 		Request req = (Request) ev.getData();
 		Workload wl = requestMap.remove(req.getRequestId());
+//		wl.
 		wl.writeResult();
 	}
 
@@ -275,10 +287,67 @@ public class SDNBroker extends SimEntity {
 		for (String filename : this.FRFileNames) {
 			FREventParser frEventParser = startFREventParser(filename);
 			FRIds.put(frEventParser, SDNBroker.lastAppId);
-			SDNBroker.lastAppId++;
+//			SDNBroker.lastAppId++; // ?? 先注释掉
 
 			injectFREvents(frEventParser);
 		}
+	}
+
+	// deploy_schedule_result(ev.getSource(), (String) ev.getData());
+	private void deployScheduleResult(int userId, String vmsFileName) {
+		SDNDatacenter defaultDC = SDNBroker.datacenters.entrySet().iterator().next().getValue();
+		DeploymentFileParser parser = new DeploymentFileParser(defaultDC.getName(), vmsFileName, userId);
+
+		for (String dcName : SDNBroker.datacenters.keySet()) {
+			SDNDatacenter dc = SDNBroker.datacenters.get(dcName);
+			NetworkOperatingSystem nos = dc.getNOS();
+
+			for (SDNVm vm : parser.getVmList(dcName)) {
+				nos.addVm(vm);
+				if (vm instanceof ServiceFunction) {
+					ServiceFunction sf = (ServiceFunction) vm;
+					sf.setNetworkOperatingSystem(nos);
+				}
+				SDNBroker.vmIdToDc.put(vm.getId(), dc);
+			}
+			// System.out.println("test");
+		}
+
+		for (FlowConfig arc : parser.getArcList()) {
+			SDNDatacenter srcDc = SDNBroker.vmIdToDc.get(arc.getSrcId());
+			SDNDatacenter dstDc = SDNBroker.vmIdToDc.get(arc.getDstId());
+
+			if (srcDc.equals(dstDc)) {
+				// Intra-DC traffic: create a virtual flow inside the DC
+				srcDc.getNOS().addFlow(arc);
+			} else {
+				// Inter-DC traffic: Create it in inter-DC N.O.S.
+				srcDc.getNOS().addFlow(arc);
+				dstDc.getNOS().addFlow(arc);
+			}
+		}
+
+		// Add parsed ServiceFunctionChainPolicy
+		for (ServiceFunctionChainPolicy policy : parser.getSFCPolicyList()) {
+			SDNDatacenter srcDc = SDNBroker.vmIdToDc.get(policy.getSrcId());
+			SDNDatacenter dstDc = SDNBroker.vmIdToDc.get(policy.getDstId());
+			if (srcDc.equals(dstDc)) {
+				// Intra-DC traffic: create a virtual flow inside the DC
+				srcDc.getNOS().addSFCPolicy(policy);
+			} else {
+				// Inter-DC traffic: Create it in inter-DC N.O.S.
+				srcDc.getNOS().addSFCPolicy(policy);
+				dstDc.getNOS().addSFCPolicy(policy);
+			}
+		}
+
+		for (String dcName : SDNBroker.datacenters.keySet()) {
+			SDNDatacenter dc = SDNBroker.datacenters.get(dcName);
+			NetworkOperatingSystem nos = dc.getNOS();
+			nos.startDeployApplicatoin();
+		}
+
+		send(userId, 0, CloudSimTagsSDN.APPLICATION_SUBMIT_ACK, vmsFileName);
 	}
 
 	/**
@@ -354,7 +423,7 @@ public class SDNBroker extends SimEntity {
 
 	private void requestOfferMode(SimEvent ev) {
 		WorkloadParser wp = (WorkloadParser) ev.getData();
-		scheduleRequest(wp);
+			scheduleRequest(wp);
 	}
 
 	/**
@@ -479,7 +548,7 @@ public class SDNBroker extends SimEntity {
 
 				for (Map.Entry<String, SDNHost> h : PhysicalTopologyParser.deployedHosts.entries()) {
 
-					System.out.println("--- " + h.getKey());
+//					System.out.println("--- " + h.getKey());
 					if (h.getValue().getId() == hostId) {
 						host = h.getValue();
 						dc_name = h.getKey();

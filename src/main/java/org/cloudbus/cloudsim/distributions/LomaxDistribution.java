@@ -63,4 +63,12 @@ public class LomaxDistribution extends ParetoDistr implements ContinuousDistribu
 		return super.sample() - shift;
 	}
 
+	@Override
+	public double sampleInInterval(double min, double max) {
+		double result = sample();
+		while (result < min || result > max)
+			result = sample();
+		return result;
+	}
+
 }

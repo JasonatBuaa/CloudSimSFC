@@ -50,8 +50,8 @@ import org.cloudbus.cloudsim.sdn.policies.vmallocation.VmAllocationPolicyMipsMos
  */
 public class Scenario1 {
 
-	// protected static String rootFolder = "Scenario1-1/";
-	protected static String rootFolder = Configuration.ROOT_FOLDER;
+	 protected static String rootFolder = "Scenario1-6/";
+//	protected static String rootFolder = Configuration.ROOT_FOLDER;
 	protected static String physicalTopologyFile = rootFolder + "PhysicalResource.json";
 	protected static String deploymentFile = rootFolder + "virtualTopology.json"; // virtual topology
 	protected static String workload_folder = rootFolder + "workloads/";
@@ -99,6 +99,7 @@ public class Scenario1 {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) throws FileNotFoundException {
 		CloudSimEx.setStartTime();
+		Configuration.setRootFolder(rootFolder);
 
 		// workloads = new ArrayList<String>();
 
@@ -226,6 +227,12 @@ public class Scenario1 {
 			e.printStackTrace();
 			Log.printLine("Unwanted errors happen");
 		}
+
+		System.out.println("The total counts for calling Normal distribution is :" + Configuration.normal_dist_call_frequency);
+		System.out.println("vm frequency is :" + Configuration.vm_freq);
+		System.out.println("channel frequency is :" + Configuration.channel_freq);
+		System.out.println("total bw samplings is :" + Configuration.total_bw_samplings);
+
 	}
 
 	public static void startSimulation(SDNBroker broker, Collection<SDNDatacenter> dcs) {

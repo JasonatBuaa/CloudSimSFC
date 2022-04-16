@@ -220,6 +220,8 @@ public class PacketSchedulerSpaceShared implements PacketScheduler {
 
 	private double getAllocatedBandwidthPerTransmissionWithJitter(){
 		double basicBW = this.getAllocatedBandwidthPerTransmission();
-		return jitter.sampleTransmissionPerformance(basicBW);
+//		return jitter.sampleTransmissionPerformance(basicBW, this.channel);
+		return jitter.sampleTransmissionPerformancePercentage(basicBW, this.channel);
+//		return jitter.sampleTransmissionPerformance(basicBW);
 	}
 }

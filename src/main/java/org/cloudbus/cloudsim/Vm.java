@@ -85,7 +85,7 @@ public class Vm {
 	/** Indicates if the VM is being instantiated. */
 	private boolean beingInstantiated;
 
-	public PerformanceJitter perfJitter;
+//	public PerformanceJitter perfJitter;
 
 	/**
 	 * The mips allocation history.
@@ -143,7 +143,6 @@ public class Vm {
 		setCurrentAllocatedRam(0);
 		setCurrentAllocatedSize(0);
 
-		perfJitter = new PerformanceJitter();
 	}
 
 	/**

@@ -1,0 +1,25 @@
+[
+  {
+    "Name": "sfc-ingress1egress1",
+    "Chain": [
+      "SF-A",
+      "SF-B",
+      "SF-C"
+    ],
+    "IngressDCs": [
+      {
+        "Name": "Ingress1",
+        "Weight": 1,
+        "DC": "DC1"
+      }
+    ],
+    "EgressDC": {
+      "Name": "Egress1",
+      "Weight": 1,
+      "DC": "DC2"
+    },
+    "AverageInputSize": 5,
+    "CreateTime": 0,
+    "DestroyTime": 1000
+  }
+]

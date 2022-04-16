@@ -1,0 +1,70 @@
+[
+  {
+    "Type": "Cloud",
+    "Name": "DC1",
+    "InterCloudBW": 10000,
+    "HomogeneousResourceGroups": [
+      {
+        "Name": "HRG1",
+        "PhysicalResources": [
+          {
+            "Name": "HRG1",
+            "ServerNumber": 5,
+            "MIPS": 20000,
+            "SIGMA": 1,
+            "FastMem": 1000,
+            "BW": 10000000,
+            "Availability": 1,
+            "MTTR": 100,
+            "MTBF": 9900,
+            "MinMIPS": 1000,
+            "PriceRatio": 1.0
+          }
+        ]
+      },
+      {
+        "Name": "HRG2",
+        "PhysicalResources": [
+          {
+            "Name": "HRG2",
+            "ServerNumber": 5,
+            "MIPS": 10000,
+            "SIGMA": 1,
+            "FastMem": 1000,
+            "BW": 10000000,
+            "Availability": 1,
+            "MTTR": 300,
+            "MTBF": 9700,
+            "MinMIPS": 1000,
+            "PriceRatio": 1.0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Type": "Edge",
+    "Name": "DC2",
+    "InterCloudBW": 1000,
+    "HomogeneousResourceGroups": [
+      {
+        "Name": "HRG3",
+        "PhysicalResources": [
+          {
+            "Name": "HRG3",
+            "ServerNumber": 5,
+            "MIPS": 10000,
+            "SIGMA": 400,
+            "FastMem": 1000,
+            "BW": 10000000,
+            "Availability": 1,
+            "MTTR": 200,
+            "MTBF": 9800,
+            "MinMIPS": 1000,
+            "PriceRatio": 1.0
+          }
+        ]
+      }
+    ]
+  }
+]

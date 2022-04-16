@@ -1,0 +1,23 @@
+[
+  {
+    "Name": "SF-A",
+    "Type": "FireWall",
+    "InputRate": 1.0,
+    "OutputRate": 1.0,
+    "OperationalComplexity": 100
+  },
+  {
+    "Name": "SF-B",
+    "Type": "Compressor",
+    "InputRate": 1.0,
+    "OutputRate": 1.0,
+    "OperationalComplexity": 150
+  },
+  {
+    "Name": "SF-C",
+    "Type": "Decompressor",
+    "InputRate": 1.0,
+    "OutputRate": 1.0,
+    "OperationalComplexity": 350
+  }
+]

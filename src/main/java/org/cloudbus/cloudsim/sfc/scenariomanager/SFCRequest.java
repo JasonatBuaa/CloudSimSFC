@@ -10,7 +10,7 @@ public class SFCRequest {
     private List<Integer> transmissions;
     private List<Integer> cloudletLengths;
     private String egress;
-    public int output;
+    public int output; // the last output (data volume transmitted to egress node)
 
     public SFCRequest(float startTime) {
         this.startTime = startTime;
@@ -73,6 +73,9 @@ public class SFCRequest {
         cloudletLengths.add(performance);
     }
 
+    /**
+     * @return
+     */
     public String requestsToString() {
         String request = "," + transmissions.get(0); // Jason: initial uploaded workload size
         for (int index = 0; index < cloudletLengths.size(); index++) {
@@ -83,6 +86,36 @@ public class SFCRequest {
         return request;
 
     }
+
+    /**
+     * @return
+     */
+//    public String requestsToStringForCloudSimSDNNFV(String egressName, String chainName) {
+    public String requestsToStringForCloudSimSDNNFV(String physicalChainName) {
+        String request = "";
+
+        String begin = getStartTime() + "," + physicalChainName + "," + getIngress() + "," + "0,0";
+        String prevNode = getIngress();
+        String curNode, linkName = null;
+        for (int index = 0; index < cloudletLengths.size(); index++) {
+            curNode = physicalChainName + vms.get(index);
+            linkName = prevNode + "-" + curNode;
+//            request += "," + linkName + "," + vms.get(index) + "," +
+//                    transmissions.get(index) + "," + cloudletLengths.get(index);
+            request += "," + linkName + "," + curNode + "," +
+                    transmissions.get(index) + "," + cloudletLengths.get(index);
+            prevNode = curNode;
+        }
+//        if (!getEgress().equals(egressName))
+//            System.out.println("error!!!!!!!!!!!!!!!!!!!");
+        // , Link_to_Egress,
+        linkName = prevNode + "-" + getEgress();
+        String end = "," + linkName + "," + getEgress() + "," + output + ",0";
+        // ,LinkName, Egress, Packet, Workload
+//        request += ", " + linkName + ", " + egressName + ", " + output + ", 0";
+        return begin + request + end;
+    }
+
 
     @Override
     public String toString() {

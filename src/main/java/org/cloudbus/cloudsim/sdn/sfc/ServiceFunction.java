@@ -16,6 +16,7 @@ import java.util.Map;
 import com.google.common.util.concurrent.Service;
 
 import org.cloudbus.cloudsim.CloudletScheduler;
+import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.sdn.CloudletSchedulerMonitor;
 import org.cloudbus.cloudsim.sdn.nos.NetworkOperatingSystem;
 import org.cloudbus.cloudsim.sdn.nos.PerformanceJitter;
@@ -53,6 +54,9 @@ public class ServiceFunction extends QueuedVM {
 	// private long mipOper = 0;
 
 	private long miperUnitWorkload;
+
+	public PerformanceJitter perfJitter;
+
 
 	// private int queueRam;
 
@@ -95,8 +99,8 @@ public class ServiceFunction extends QueuedVM {
 	 * @param cloudletScheduler
 	 * @param startTime
 	 * @param finishTime
-	 * @param availability
-	 * @param queueRam
+	 * @param avail
+	 * @param queueSize
 	 * @throws Exception
 	 */
 	public ServiceFunction(int id, int userId, double mips, int numberOfPes, int ram, long bw, long size, String vmm,
@@ -114,6 +118,9 @@ public class ServiceFunction extends QueuedVM {
 		} else {
 			ServiceFunction.sfMap.put(id, this);
 		}
+
+		perfJitter = new PerformanceJitter();
+
 	}
 
 	// public void setMIperOperation(long mipOperation) {
@@ -173,11 +180,14 @@ public class ServiceFunction extends QueuedVM {
 
 		List<Double> realMIPSShareWithJitter = new ArrayList();
 		for (double mips : mipsShare) {
-			double jitterMIPS = perfJitter.sampleComputationPerformance(mips, getPerfJitterSigma());
+//			double jitterMIPS = perfJitter.sampleComputationPerformance(mips, getPerfJitterSigma(), this);
+			double jitterMIPS = perfJitter.sampleComputationPerformancePercentage(mips, this);
 			realMIPSShareWithJitter.add(jitterMIPS);
 		}
 
 		// return super.updateVmProcessing(currentTime, mipsShare);
+//		if(getHost().isFailed())
+//			return super.updateVmProcessing(currentTime, mipsShare);
 		return super.updateVmProcessing(currentTime, realMIPSShareWithJitter);
 	}
 

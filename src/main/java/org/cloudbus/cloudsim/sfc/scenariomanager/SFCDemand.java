@@ -1,10 +1,16 @@
 package org.cloudbus.cloudsim.sfc.scenariomanager;
 
+import com.alibaba.fastjson.TypeReference;
+
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.annotation.JSONField;
+import org.cloudbus.cloudsim.util.JsonUtils;
 // import com.alibaba.fastjson.annotation.JSONType;
 
 // @JSONType(orders = { "Name", "Weight", "DC" })
@@ -66,14 +72,14 @@ public class SFCDemand {
 
     public IEDC MakeIngress(String ijoinj) {
         IEDC ingress = new IEDC();
-        ingress.setDC("DC2");
+        ingress.setDC("DC1");
         ingress.setName("Ingress" + ijoinj);
         return ingress;
     }
 
     public IEDC MakeEgress(int i) {
         IEDC egress = new IEDC();
-        egress.setDC("DC1");
+        egress.setDC("DC2");
         egress.setName("Egress" + i);
         return egress;
     }
@@ -82,14 +88,18 @@ public class SFCDemand {
         name = "chain" + i;
     }
 
-    public void setChain(int num) {
+    public void setName(String ingress, String egress) {
+        name = "sfc-" + ingress + egress;
+    }
+
+    public void setChain(int chainLen) {
         ArrayList<Integer> no = new ArrayList<Integer>();
         ArrayList<String> chain = new ArrayList<String>();
         ArrayList<Integer> SFs = new ArrayList<Integer>();
         for (int i = 0; i < 5; i++) {
             SFs.add(i);
         }
-        for (int i = 0; i < num; i++) {
+        for (int i = 0; i < chainLen; i++) {
             int a = (SFs.remove(new Random().nextInt(SFs.size())));
             no.add(a);
         }
@@ -100,6 +110,64 @@ public class SFCDemand {
         Chain = chain;
     }
 
+    /**
+     * Generate a test chain, with a length of {1, 2, 3}
+     *
+     * @param chainLen
+     * @param serviceFunctionDescriptionFileName
+     */
+    public void compSetChain(int chainLen, String serviceFunctionDescriptionFileName) {
+        ArrayList<String> sfc = new ArrayList<String>();
+        ArrayList<Integer> SFTypes = new ArrayList<Integer>();
+
+        List<ServiceFunction> serviceFunctions;
+
+        String jsonStr = JsonUtils.jsonRead(serviceFunctionDescriptionFileName);
+        serviceFunctions = JSONObject.parseObject(jsonStr, new TypeReference<List<ServiceFunction>>() {
+        });
+
+            if(chainLen <= 1){
+                // len=1
+                sfc.add(serviceFunctions.get(0).getName());
+            }
+            else if (chainLen <=2){
+                // len=2
+                sfc.add(serviceFunctions.get(1).getName());
+                sfc.add(serviceFunctions.get(2).getName());
+            }
+            else{ // rdn \in [0.67, 1]
+                // len=3
+                sfc.add(serviceFunctions.get(0).getName());
+                sfc.add(serviceFunctions.get(1).getName());
+                sfc.add(serviceFunctions.get(2).getName());
+            }
+
+        Chain = sfc;
+//        for (int i = 0; i < 5; i++) {
+//            SFs.add(i);
+//        }
+//        for (int i = 0; i < num; i++) {
+//            int a = (SFs.remove(new Random().nextInt(SFs.size())));
+//            no.add(a);
+//        }
+//        no.sort(Comparator.naturalOrder());
+//        no.forEach((e) -> {
+//            chain.add("SF-" + (char) (e + (int) 'A'));
+//        });
+//        Chain = chain;
+    }
+
+    public void loadServiceFunctions(String serviceFunctionDescriptionFileName) {
+
+    }
+
+
+
+    /**
+     *
+     * @param i index of the Ingress node in the current DC
+     * @param num sub_index of the Ingress node (i.e., ingress count of the current virtual chain)
+     */
     public void setIngressDCs(int i, int num) {
         ArrayList<IEDC> InDCs = new ArrayList<IEDC>();
         for (int j = 1; j < num + 1; j++) {

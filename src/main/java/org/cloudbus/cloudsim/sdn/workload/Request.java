@@ -26,6 +26,16 @@ public class Request {
 
 	private long requestId;
 	private int userId;
+
+	public long getLast_packet_size() {
+		return last_packet_size;
+	}
+
+	public void setLast_packet_size(long last_packet_size) {
+		this.last_packet_size = last_packet_size;
+	}
+
+	private long last_packet_size = 0;
 	private LinkedList<Activity> activities;
 	private LinkedList<Activity> removedActivites; // Logging purpose only
 

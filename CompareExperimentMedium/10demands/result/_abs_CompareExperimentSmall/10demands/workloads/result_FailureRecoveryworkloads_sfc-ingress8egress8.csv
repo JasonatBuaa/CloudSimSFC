@@ -1,0 +1,21 @@
+#abs======================================
+#Number of workloads:997
+#Timeout workloads:0
+#Timeout workloads per cent:0.0
+#Over workloads:0
+#Over workloads per cent:0.0
+#Number of Cloudlets:1994
+#Over Cloudlets:0
+#Over Cloudlets per cent:0.0
+#Number of transmissions:2991
+#Over transmissions:0
+#Over transmissions per cent:0.0
+#======================================
+#Total serve time:10637.39529086493
+#CPU serve time:6800.123692431374
+#Network serve time:3837.2715984335446
+#Average total serve time:10.669403501369038
+#Average CPU serve time per workload:6.820585448777708
+#Average network serve time per workload:3.8488180525913185
+#Average CPU serve time per Cloudlet:3.410292724388854
+#Average network serve time per transmission:1.2829393508637728

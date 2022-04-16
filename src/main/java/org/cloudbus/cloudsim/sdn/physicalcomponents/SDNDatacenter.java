@@ -231,6 +231,7 @@ public class SDNDatacenter extends Datacenter {
 				break;
 			case CloudSimTagsSDN.SDN_HOST_RECOVER_SIGNAL:
 				processHostRecoverSignal(ev);
+				break;
 			default:
 				System.out.println("Unknown event recevied by SdnDatacenter. Tag:" + ev.getTag());
 		}
@@ -247,7 +248,7 @@ public class SDNDatacenter extends Datacenter {
 		// Jason: find the failed host, and halt all the corresponding cloudlet in the
 		// host
 
-		// Jason: trigger a signal to the scheduling center, so that the user could be
+		// Jason: trigger a signal to the datacenter, so that the user could be
 		// aware of the *host_failure*.
 
 		// Jason: discuss-- the signal should not be triggered right after the failure,
@@ -274,21 +275,21 @@ public class SDNDatacenter extends Datacenter {
 		// i.e., there should be a fair delay between the failure and the user finds the
 		// failure.
 
-		send(getId(), Configuration.RECOVERY_DETECTION_DELAY, CloudSimTagsSDN.SDN_HOST_FAIL_SIGNAL);
+		send(getId(), Configuration.RECOVERY_DETECTION_DELAY, CloudSimTagsSDN.SDN_HOST_RECOVER_SIGNAL);
 	}
 
 	/**
-	 * Jason: Todo! pause all included vms
-	 * 
+	 * Jason: Todo! finish this part
+	 * Notify user of the server failure event
 	 * @param ev
 	 */
 	private void processHostFailSignal(SimEvent ev) {
-
+//		send(getId(), Configuration.RECOVERY_DETECTION_DELAY, CloudSimTagsSDN.SDN_HOST_FAIL_SIGNAL);
 	}
 
 	/**
-	 * Jason: Todo! online all included vms
-	 * 
+	 * Jason: Todo! finish this part
+	 * Notify user of the server recovery event
 	 * @param ev
 	 */
 	private void processHostRecoverSignal(SimEvent ev) {
@@ -422,6 +423,7 @@ public class SDNDatacenter extends Datacenter {
 
 						if (req.isFinished()) {
 							// All requests are finished, no more activities to do. Return to user
+//							req.
 							send(req.getUserId(), CloudSim.getMinTimeBetweenEvents(), CloudSimTagsSDN.REQUEST_COMPLETED,
 									req);
 						} else {
@@ -500,6 +502,8 @@ public class SDNDatacenter extends Datacenter {
 			send(req.getUserId(), CloudSim.getMinTimeBetweenEvents(), CloudSimTagsSDN.REQUEST_COMPLETED, req);
 		} else {
 			// consume the next activity from request. It should be a transmission.
+			//!!!Jason: here is a walk-around of the queue!!!
+			req.setLast_packet_size(pkt.getSize());
 			processNextActivity(req);
 		}
 	}
@@ -531,6 +535,8 @@ public class SDNDatacenter extends Datacenter {
 	private void processNextActivityProcessing(Processing proc, Request reqAfterCloudlet) {
 		Cloudlet cl = proc.getCloudlet();
 		proc.clearCloudlet();
+		cl.setQueueRequired(reqAfterCloudlet.getLast_packet_size());
+//		cl.setQueueRequired(reqAfterCloudlet.last_packet_size);
 
 		requestsTable.put(cl.getCloudletId(), reqAfterCloudlet); // Jason: ???????
 		sendNow(getId(), CloudSimTags.CLOUDLET_SUBMIT, cl);
@@ -548,7 +554,7 @@ public class SDNDatacenter extends Datacenter {
 			Vm orgVm = nos.getSFForwarderOriginalVm(vmId);
 			if (orgVm != null) {
 				vmId = orgVm.getId();
-				// Jason: use the queue
+				// Jason: use queue
 				// boolean enQueue = true;
 				// if (orgVm instanceof QueuedVM) {
 				// TheQueue theQueue = ((QueuedVM) orgVm).getTheQueue();
@@ -556,8 +562,7 @@ public class SDNDatacenter extends Datacenter {
 				// }
 				// if (!enQueue) {
 				// // Jason: discard the request. Use cloudlet failed?? or enlarge the process
-				// time
-				// // to triger timeout?
+				// time to triger timeout?
 				// sendNow(getId(), CloudSimTags.CLOUDLET_CANCEL, cl); // Jason: here
 
 				// }

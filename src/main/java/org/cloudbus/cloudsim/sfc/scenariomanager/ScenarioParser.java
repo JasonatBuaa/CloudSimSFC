@@ -141,6 +141,22 @@ public class ScenarioParser {
         JsonUtils.jsonWrite(rootPath + "virtualTopology.json", jsonstr);
     }
 
+//    public void generatePhysicalResource() {
+//        CustomPhysicalTopologyGenerator physicalTopologyGenerator = new CustomPhysicalTopologyGenerator();
+//        physicalTopologyGenerator.generate(resources);
+//        JSON.DEFAULT_GENERATE_FEATURE = JSON.DEFAULT_GENERATE_FEATURE & ~SerializerFeature.SortField.getMask();
+//        String jsonstr = JSON.toJSONString(physicalTopologyGenerator, SerializerFeature.PrettyFormat);
+//        JsonUtils.jsonWrite(rootPath + "PhysicalResource.json", jsonstr);
+//
+//        for (SFCWorkload sfcWorkload : sfcWorkloads) {
+//            // workloadsCsvWriter(rootPath + "workloads_" + sfcWorkload.getTargetChainName()
+//            // + ".csv", sfcWorkload);
+//            workloadsCsvWriter(workloadFolder + "workloads_" + sfcWorkload.getTargetChainName() + ".csv", sfcWorkload);
+//        }
+//
+//    }
+
+
     public void generate() {
         CustomPhysicalTopologyGenerator physicalTopologyGenerator = new CustomPhysicalTopologyGenerator();
         physicalTopologyGenerator.generate(resources);
