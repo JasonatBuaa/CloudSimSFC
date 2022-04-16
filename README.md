@@ -18,4 +18,11 @@ CloudSimSFC provides an SFC model with straight-forward notations, so that resea
 
 To start a simulation process, serveral configurations should be ready. 
 - The resource specification for the physical environment should be configured as a MDSN resource abstraction.
-- 
+- The service function demands
+
+
+The characteristics of service functions are included in 'ServiceFunctionDescription.json' as an example, which should includes:
+- service function name 'Name'
+- service function type 'Type'
+- computation complexity 'OperationalComplexity'
+- traffic changing ratio declared with 'InputRate' and 'OutputRate'
